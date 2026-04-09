@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "description": "MCP server wrapping the BoondManager REST API",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/main.js",
   "bin": {
-    "boond-mcp-server": "dist/index.js"
+    "boond-mcp-server": "dist/main.js"
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsx watch src/index.ts",
-    "start": "node dist/index.js",
+    "dev": "tsx watch src/main.ts",
+    "start": "node dist/main.js",
     "check": "biome check .",
     "check:fix": "biome check --fix .",
     "format": "biome format --write .",
-    "lint": "biome lint ."
+    "lint": "biome lint .",
+    "prepare": "husky"
   },
   "keywords": [
     "mcp",
@@ -28,13 +29,25 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.29.0",
+    "@nestjs/common": "^11.1.18",
+    "@nestjs/core": "^11.1.18",
+    "@rekog/mcp-nest": "^1.9.9",
     "dotenv": "^17.4.1",
+    "reflect-metadata": "^0.2.2",
+    "rxjs": "^7.8.2",
     "zod": "^4.3.6"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.4.10",
     "@types/node": "^25.5.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "biome check --write"
+    ]
   }
 }

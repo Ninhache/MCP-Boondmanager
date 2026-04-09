@@ -20,7 +20,8 @@
       },
       "style": {
         "useConst": "error",
-        "noNonNullAssertion": "warn"
+        "noNonNullAssertion": "warn",
+        "useImportType": "off"
       }
     }
   },
