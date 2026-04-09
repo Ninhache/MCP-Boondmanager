@@ -14,8 +14,8 @@ export interface RelationshipSpec {
 }
 
 /**
- * Resolve a relationship from the `included` section of a JSON:API response.
- * Returns a flat object with the requested attributes, or null if unresolvable.
+ * Resolve a to-one relationship from the `included` section of a JSON:API response.
+ * Only handles to-one relationships. Returns null for to-many (array) relationships.
  */
 export function resolveRelationship(
   response: JsonApiResponse,
@@ -25,9 +25,9 @@ export function resolveRelationship(
   const rel = resource.relationships?.[spec.name];
   if (!rel?.data || !response.included?.length) return null;
 
-  // Handle single relationship (take first if array)
-  const relData = Array.isArray(rel.data) ? rel.data[0] : rel.data;
-  if (!relData) return null;
+  // Only handle to-one relationships; to-many are not supported
+  if (Array.isArray(rel.data)) return null;
+  const relData = rel.data;
 
   const included = response.included.find((r) => r.id === relData.id && r.type === relData.type);
   if (!included) return null;
@@ -92,7 +92,7 @@ export function formatDetail(
   },
 ): Record<string, unknown> {
   const resource = Array.isArray(response.data) ? response.data[0] : response.data;
-  if (!resource) return { error: "Ressource introuvable" };
+  if (!resource) return {};
 
   const result = flattenResource(resource, options?.attributeKeys);
 
