@@ -8,7 +8,7 @@
 
 import "dotenv/config";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { BoondClient, type BoondConfig } from "./boond/client.js";
+import { BoondClient, type BoondConfig, type JwtMode } from "./boond/client.js";
 import { createServer } from "./server.js";
 
 function loadConfig(): BoondConfig {
@@ -22,11 +22,16 @@ function loadConfig(): BoondConfig {
   return {
     baseUrl,
     authMode,
+    // Basic Auth
     username: process.env.BOOND_USERNAME,
     password: process.env.BOOND_PASSWORD,
+    // JWT Auth
     userToken: process.env.BOOND_USER_TOKEN,
+    appToken: process.env.BOOND_APP_TOKEN,
+    appKey: process.env.BOOND_APP_KEY,
     clientToken: process.env.BOOND_CLIENT_TOKEN,
-    clientKey: process.env.BOOND_CLIENT_KEY,
+    godClientToken: process.env.BOOND_GOD_CLIENT_TOKEN,
+    jwtMode: (process.env.BOOND_JWT_MODE as JwtMode) ?? "normal",
   };
 }
 

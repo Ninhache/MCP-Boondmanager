@@ -1,7 +1,35 @@
 /**
  * HTTP client wrapper for the BoondManager REST API.
- * Supports Basic Auth and JWT authentication modes.
+ * Supports Basic Auth and JWT App authentication modes.
+ *
+ * JWT implementation matches Pit.Portal.Boond and PBI-proxy:
+ * - Header: X-Jwt-App-Boondmanager (normal) or X-Jwt-Client-Boondmanager (god)
+ * - Payload: { userToken, appToken, time, mode } or { userToken, clientToken, time, mode }
+ * - Signed with HMAC-SHA256
  */
+
+import { createHmac } from "node:crypto";
+
+function base64UrlEncode(input: string): string {
+  return Buffer.from(input).toString("base64url");
+}
+
+/**
+ * Generate a Boond JWT token signed with HMAC-SHA256.
+ * Follows the exact format used in Pit.Portal.Boond/lib/boond-api.ts.
+ */
+function jwtEncode(payload: Record<string, unknown>, key: string): string {
+  const header = { typ: "JWT", alg: "HS256" };
+  const segments = [
+    base64UrlEncode(JSON.stringify(header)),
+    base64UrlEncode(JSON.stringify(payload)),
+  ];
+  const signingInput = segments.join(".");
+  const signature = createHmac("sha256", key).update(signingInput).digest("base64url");
+  return `${signingInput}.${signature}`;
+}
+
+export type JwtMode = "normal" | "god";
 
 export interface BoondConfig {
   /** Base URL of the Boond API (e.g. https://ui.boondmanager.com/api) */
@@ -11,10 +39,18 @@ export interface BoondConfig {
   /** Basic Auth credentials */
   username?: string;
   password?: string;
-  /** JWT Auth tokens */
+  /** JWT Auth — user token (Mon compte > Configuration > Sécurité) */
   userToken?: string;
+  /** JWT Auth — app token (from Boond OAuth install / signed request) */
+  appToken?: string;
+  /** JWT Auth — app key used to sign normal-mode JWTs */
+  appKey?: string;
+  /** JWT Auth — client token for god-mode (Admin > Espace développeur) */
   clientToken?: string;
-  clientKey?: string;
+  /** JWT Auth — signing key for god-mode JWTs */
+  godClientToken?: string;
+  /** JWT mode: "normal" for user-scoped, "god" for admin/elevated */
+  jwtMode?: JwtMode;
 }
 
 export class BoondApiError extends Error {
@@ -42,10 +78,12 @@ export class BoondClient {
         throw new Error("Basic Auth requires BOOND_USERNAME and BOOND_PASSWORD");
       }
     } else if (this.config.authMode === "jwt") {
-      if (!this.config.userToken || !this.config.clientToken || !this.config.clientKey) {
-        throw new Error(
-          "JWT Auth requires BOOND_USER_TOKEN, BOOND_CLIENT_TOKEN, and BOOND_CLIENT_KEY",
-        );
+      if (!this.config.userToken || !this.config.appToken || !this.config.appKey) {
+        throw new Error("JWT Auth requires BOOND_USER_TOKEN, BOOND_APP_TOKEN, and BOOND_APP_KEY");
+      }
+      const mode = this.config.jwtMode ?? "normal";
+      if (mode === "god" && (!this.config.clientToken || !this.config.godClientToken)) {
+        throw new Error("JWT god mode requires BOOND_CLIENT_TOKEN and BOOND_GOD_CLIENT_TOKEN");
       }
     }
   }
@@ -62,9 +100,27 @@ export class BoondClient {
       );
       headers.Authorization = `Basic ${credentials}`;
     } else if (this.config.authMode === "jwt") {
-      // JWT generation would go here — for now we support passing a pre-generated token
-      // via userToken as a bearer token placeholder
-      headers.Authorization = `Bearer ${this.config.userToken}`;
+      const mode = this.config.jwtMode ?? "normal";
+
+      if (mode === "god" && this.config.clientToken && this.config.godClientToken) {
+        const payload = {
+          userToken: this.config.userToken,
+          clientToken: this.config.clientToken,
+          time: Math.floor(Date.now() / 1000),
+          mode: "god",
+        };
+        const token = jwtEncode(payload, this.config.godClientToken);
+        headers["X-Jwt-Client-Boondmanager"] = token;
+      } else if (this.config.appToken && this.config.appKey) {
+        const payload = {
+          userToken: this.config.userToken,
+          appToken: this.config.appToken,
+          time: Math.floor(Date.now() / 1000),
+          mode: "normal",
+        };
+        const token = jwtEncode(payload, this.config.appKey);
+        headers["X-Jwt-App-Boondmanager"] = token;
+      }
     }
 
     return headers;
