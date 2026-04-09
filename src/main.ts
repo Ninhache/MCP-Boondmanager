@@ -9,7 +9,7 @@ async function bootstrap(): Promise<void> {
   const app = await NestFactory.createApplicationContext(AppModule, {
     logger: ["error", "warn"],
   });
-  await app.init();
+  app.enableShutdownHooks();
 }
 
 bootstrap().catch((err) => {

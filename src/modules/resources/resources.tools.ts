@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
+import { DEFAULT_PAGE_SIZE } from "../../utils/constants.js";
+import { handleBoondError } from "../../utils/error-handler.js";
 import { formatDetail, formatList, toTextContent } from "../../utils/formatters.js";
 import { BoondClient, type JsonApiResponse } from "../boond/index.js";
-
-const DEFAULT_PAGE_SIZE = "25";
 
 @Injectable()
 export class ResourcesTools {
@@ -33,12 +33,16 @@ export class ResourcesTools {
     const params: Record<string, string> = {
       maxResults: String(pageSize ?? DEFAULT_PAGE_SIZE),
     };
-    if (page) params.page = String(page);
+    if (page != null) params.page = String(page);
     if (keywords) params.keywords = keywords;
 
-    const data = await this.boond.get<JsonApiResponse>("/resources", params);
-    const formatted = formatList(data, ["firstName", "lastName", "email", "title", "state"]);
-    return { content: [toTextContent(formatted)] };
+    try {
+      const data = await this.boond.get<JsonApiResponse>("/resources", params);
+      const formatted = formatList(data, ["firstName", "lastName", "email", "title", "state"]);
+      return { content: [toTextContent(formatted)] };
+    } catch (error) {
+      return handleBoondError(error);
+    }
   }
 
   @Tool({
@@ -49,17 +53,19 @@ export class ResourcesTools {
     parameters: z.object({
       id: z.number().describe("ID du collaborateur dans Boond"),
       tab: z
-        .string()
+        .enum(["information", "projects", "absences", "timesReport", "expensesReport"])
         .optional()
-        .describe(
-          "Onglet spécifique : information, projects, absences, timesReport, expensesReport",
-        ),
+        .describe("Onglet spécifique à récupérer"),
     }),
   })
   async getResource({ id, tab }: { id: number; tab?: string }) {
     const path = tab ? `/resources/${id}/${tab}` : `/resources/${id}`;
-    const data = await this.boond.get<JsonApiResponse>(path);
-    const formatted = formatDetail(data);
-    return { content: [toTextContent(formatted)] };
+    try {
+      const data = await this.boond.get<JsonApiResponse>(path);
+      const formatted = formatDetail(data);
+      return { content: [toTextContent(formatted)] };
+    } catch (error) {
+      return handleBoondError(error);
+    }
   }
 }

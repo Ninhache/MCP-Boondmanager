@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
+import { DEFAULT_PAGE_SIZE } from "../../utils/constants.js";
+import { handleBoondError } from "../../utils/error-handler.js";
 import { formatDetail, formatList, toTextContent } from "../../utils/formatters.js";
 import { BoondClient, type JsonApiResponse } from "../boond/index.js";
-
-const DEFAULT_PAGE_SIZE = "25";
 
 @Injectable()
 export class ProjectsTools {
@@ -33,12 +33,16 @@ export class ProjectsTools {
     const params: Record<string, string> = {
       maxResults: String(pageSize ?? DEFAULT_PAGE_SIZE),
     };
-    if (page) params.page = String(page);
+    if (page != null) params.page = String(page);
     if (keywords) params.keywords = keywords;
 
-    const data = await this.boond.get<JsonApiResponse>("/projects", params);
-    const formatted = formatList(data, ["name", "reference", "state", "startDate", "endDate"]);
-    return { content: [toTextContent(formatted)] };
+    try {
+      const data = await this.boond.get<JsonApiResponse>("/projects", params);
+      const formatted = formatList(data, ["name", "reference", "state", "startDate", "endDate"]);
+      return { content: [toTextContent(formatted)] };
+    } catch (error) {
+      return handleBoondError(error);
+    }
   }
 
   @Tool({
@@ -49,8 +53,12 @@ export class ProjectsTools {
     }),
   })
   async getProject({ id }: { id: number }) {
-    const data = await this.boond.get<JsonApiResponse>(`/projects/${id}`);
-    const formatted = formatDetail(data);
-    return { content: [toTextContent(formatted)] };
+    try {
+      const data = await this.boond.get<JsonApiResponse>(`/projects/${id}`);
+      const formatted = formatDetail(data);
+      return { content: [toTextContent(formatted)] };
+    } catch (error) {
+      return handleBoondError(error);
+    }
   }
 }
