@@ -19,3 +19,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Raw schemas (regenerable via npm run generate-types)
+schemas/
