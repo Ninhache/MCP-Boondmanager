@@ -14,7 +14,8 @@
     "check": "biome check .",
     "check:fix": "biome check --fix .",
     "format": "biome format --write .",
-    "lint": "biome lint ."
+    "lint": "biome lint .",
+    "prepare": "husky"
   },
   "keywords": [
     "mcp",
@@ -39,7 +40,14 @@
   "devDependencies": {
     "@biomejs/biome": "^2.4.10",
     "@types/node": "^25.5.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "biome check --write"
+    ]
   }
 }
