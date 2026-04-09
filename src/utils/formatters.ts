@@ -5,6 +5,42 @@
 
 import type { JsonApiResource, JsonApiResponse } from "../modules/boond/boond.types.js";
 
+/** Spec for resolving a relationship into inline attributes. */
+export interface RelationshipSpec {
+  /** Name of the relationship key in the JSON:API resource */
+  name: string;
+  /** Attributes to extract from the resolved included resource */
+  attributeKeys: string[];
+}
+
+/**
+ * Resolve a relationship from the `included` section of a JSON:API response.
+ * Returns a flat object with the requested attributes, or null if unresolvable.
+ */
+export function resolveRelationship(
+  response: JsonApiResponse,
+  resource: JsonApiResource,
+  spec: RelationshipSpec,
+): Record<string, unknown> | null {
+  const rel = resource.relationships?.[spec.name];
+  if (!rel?.data || !response.included?.length) return null;
+
+  // Handle single relationship (take first if array)
+  const relData = Array.isArray(rel.data) ? rel.data[0] : rel.data;
+  if (!relData) return null;
+
+  const included = response.included.find((r) => r.id === relData.id && r.type === relData.type);
+  if (!included) return null;
+
+  const result: Record<string, unknown> = {};
+  for (const key of spec.attributeKeys) {
+    if (key in included.attributes) {
+      result[key] = included.attributes[key];
+    }
+  }
+  return Object.keys(result).length > 0 ? result : null;
+}
+
 /**
  * Extract a flat summary from a JSON:API resource.
  * Merges id + selected attributes into a plain object.
@@ -46,11 +82,30 @@ export function formatList(
 
 /**
  * Format a single JSON:API resource response.
+ * Optionally resolves relationships from the `included` section.
  */
-export function formatDetail(response: JsonApiResponse): Record<string, unknown> {
+export function formatDetail(
+  response: JsonApiResponse,
+  options?: {
+    attributeKeys?: string[];
+    relationships?: RelationshipSpec[];
+  },
+): Record<string, unknown> {
   const resource = Array.isArray(response.data) ? response.data[0] : response.data;
-  if (!resource) return {};
-  return flattenResource(resource);
+  if (!resource) return { error: "Ressource introuvable" };
+
+  const result = flattenResource(resource, options?.attributeKeys);
+
+  if (options?.relationships) {
+    for (const spec of options.relationships) {
+      const resolved = resolveRelationship(response, resource, spec);
+      if (resolved) {
+        result[spec.name] = resolved;
+      }
+    }
+  }
+
+  return result;
 }
 
 /**
