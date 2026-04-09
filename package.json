@@ -16,6 +16,7 @@
     "format": "biome format --write .",
     "lint": "biome lint .",
     "validate-routes": "tsx scripts/validate-routes.ts",
+    "generate-types": "tsx scripts/generate-types.ts",
     "prepare": "husky"
   },
   "keywords": [
@@ -42,6 +43,7 @@
     "@biomejs/biome": "^2.4.10",
     "@types/node": "^25.5.2",
     "husky": "^9.1.7",
+    "json-schema-to-typescript": "^15.0.4",
     "lint-staged": "^16.4.0",
     "tsx": "^4.21.0",
     "typescript": "^6.0.2"
