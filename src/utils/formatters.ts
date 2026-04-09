@@ -3,7 +3,7 @@
  * concise payloads that are token-efficient for LLMs.
  */
 
-import type { JsonApiResource, JsonApiResponse } from "../boond/types.js";
+import type { JsonApiResource, JsonApiResponse } from "../modules/boond/boond.types.js";
 
 /**
  * Extract a flat summary from a JSON:API resource.
