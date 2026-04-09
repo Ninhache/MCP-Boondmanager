@@ -2,7 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
 import { formatDetail, formatList, toTextContent } from "../../utils/formatters.js";
-// biome-ignore lint/style/useImportType: BoondClient is needed at runtime for NestJS DI
 import { BoondClient, type JsonApiResponse } from "../boond/index.js";
 
 const DEFAULT_PAGE_SIZE = "25";
