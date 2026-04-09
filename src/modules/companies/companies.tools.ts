@@ -1,10 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
+import type {
+  BoondDetailResponse,
+  BoondListResponse,
+  CompanyAttributes,
+} from "../../generated/index.js";
 import { DEFAULT_PAGE_SIZE } from "../../utils/constants.js";
 import { handleBoondError } from "../../utils/error-handler.js";
 import { formatDetail, formatList, toTextContent } from "../../utils/formatters.js";
-import { BoondClient, type JsonApiResponse } from "../boond/index.js";
+import { BoondClient } from "../boond/index.js";
 
 @Injectable()
 export class CompaniesTools {
@@ -37,7 +42,7 @@ export class CompaniesTools {
     if (keywords) params.keywords = keywords;
 
     try {
-      const data = await this.boond.get<JsonApiResponse>("/companies", params);
+      const data = await this.boond.get<BoondListResponse<CompanyAttributes>>("/companies", params);
       const formatted = formatList(data, ["name", "phone", "email", "city", "country", "state"]);
       return { content: [toTextContent(formatted)] };
     } catch (error) {
@@ -56,7 +61,7 @@ export class CompaniesTools {
   })
   async getCompany({ id }: { id: number }) {
     try {
-      const data = await this.boond.get<JsonApiResponse>(`/companies/${id}`);
+      const data = await this.boond.get<BoondDetailResponse<CompanyAttributes>>(`/companies/${id}`);
       const formatted = formatDetail(data);
       return { content: [toTextContent(formatted)] };
     } catch (error) {

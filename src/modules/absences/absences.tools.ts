@@ -1,10 +1,11 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
+import type { AbsenceAttributes, BoondListResponse } from "../../generated/index.js";
 import { DEFAULT_PAGE_SIZE } from "../../utils/constants.js";
 import { handleBoondError } from "../../utils/error-handler.js";
 import { formatList, toTextContent } from "../../utils/formatters.js";
-import { BoondClient, type JsonApiResponse } from "../boond/index.js";
+import { BoondClient } from "../boond/index.js";
 
 @Injectable()
 export class AbsencesTools {
@@ -27,7 +28,7 @@ export class AbsencesTools {
     if (page != null) params.page = String(page);
 
     try {
-      const data = await this.boond.get<JsonApiResponse>("/absences", params);
+      const data = await this.boond.get<BoondListResponse<AbsenceAttributes>>("/absences", params);
       const formatted = formatList(data, [
         "startDate",
         "endDate",
