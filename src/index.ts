@@ -6,6 +6,7 @@
  * with stdio transport (compatible with Claude Desktop, Claude Code, Cursor).
  */
 
+import "dotenv/config";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { BoondClient, type BoondConfig } from "./boond/client.js";
 import { createServer } from "./server.js";
