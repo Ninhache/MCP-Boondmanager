@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+/**
+ * BoondManager MCP Server — Entry point.
+ * Reads configuration from environment variables and starts the server
+ * with stdio transport (compatible with Claude Desktop, Claude Code, Cursor).
+ */
+
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { BoondClient, type BoondConfig } from "./boond/client.js";
+import { createServer } from "./server.js";
+
+function loadConfig(): BoondConfig {
+  const baseUrl = process.env.BOOND_API_URL;
+  if (!baseUrl) {
+    throw new Error("BOOND_API_URL environment variable is required");
+  }
+
+  const authMode = (process.env.BOOND_AUTH_MODE ?? "basic") as BoondConfig["authMode"];
+
+  return {
+    baseUrl,
+    authMode,
+    username: process.env.BOOND_USERNAME,
+    password: process.env.BOOND_PASSWORD,
+    userToken: process.env.BOOND_USER_TOKEN,
+    clientToken: process.env.BOOND_CLIENT_TOKEN,
+    clientKey: process.env.BOOND_CLIENT_KEY,
+  };
+}
+
+async function main(): Promise<void> {
+  const config = loadConfig();
+  const boondClient = new BoondClient(config);
+  const server = createServer(boondClient);
+  const transport = new StdioServerTransport();
+
+  await server.connect(transport);
+}
+
+main().catch((err) => {
+  console.error("Fatal error:", err);
+  process.exit(1);
+});

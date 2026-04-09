@@ -1,0 +1,39 @@
+{
+  "name": "boondmanager-mcp-server",
+  "version": "0.1.0",
+  "description": "MCP server wrapping the BoondManager REST API",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "boond-mcp-server": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "check": "biome check .",
+    "check:fix": "biome check --fix .",
+    "format": "biome format --write .",
+    "lint": "biome lint ."
+  },
+  "keywords": [
+    "mcp",
+    "boondmanager",
+    "erp",
+    "api"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.10",
+    "@types/node": "^25.5.2",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2"
+  }
+}
