@@ -4489,3 +4489,1216 @@ export interface SchemasContactsSearchJson {
       }
   )[];
 }
+
+// ─── absencesReports ───
+/**
+ * List of requests of absences
+ */
+export interface SchemasAbsencesReportsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "absencesreport";
+    attributes?: {
+      creationDate?: string;
+      state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+      /**
+       * List of absences periods
+       */
+      absencesPeriods?: {
+        id: string;
+        startDate: string;
+        /**
+         * The value have to be superior or equal to startDate
+         */
+        endDate: string;
+        duration: number;
+        title?: string;
+        workUnitType: {
+          reference: number;
+          activityType:
+            | "production"
+            | "absence"
+            | "internal"
+            | "exceptionalTime"
+            | "exceptionalCalendar";
+          name: string;
+        };
+      }[];
+    };
+    relationships?: {
+      /**
+       * Absences request's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      /**
+       * Absences request's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Request of absences basic data
+ */
+export interface SchemasAbsencesReportsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    warnings?: {
+      /**
+       * Warning's code
+       */
+      code: "moreThanAbsenceAccountAcquired";
+      /**
+       * Warning's message
+       */
+      detail: string;
+      workUnitType: {
+        reference: number;
+        name: string;
+      };
+    }[];
+    expectedValidatorsAllowedForValidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForUnvalidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForReject?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+  };
+  data: {
+    id: string;
+    type: "absencesreport";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+      informationComments?: string;
+      /**
+       * List of absences periods
+       */
+      absencesPeriods?: {
+        id: string;
+        startDate: string;
+        /**
+         * The value have to be superior or equal to startDate
+         */
+        endDate: string;
+        duration: number;
+        title?: string;
+        workUnitType: {
+          reference: number;
+          activityType:
+            | "production"
+            | "absence"
+            | "internal"
+            | "exceptionalTime"
+            | "exceptionalCalendar";
+          name: string;
+        };
+      }[];
+      absencesQuestions?: {
+        question: string;
+        answer: boolean;
+      }[];
+    };
+    relationships?: {
+      /**
+       * Request of absences resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      /**
+       * Request of absences agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      /**
+       * List of timesheet's files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "document";
+        }[];
+      };
+      /**
+       * List of request of absences validations
+       */
+      validations?: {
+        data: {
+          id: string;
+          type: "validation";
+        }[];
+      };
+      /**
+       * Request of absences expected validators
+       */
+      validationWorkflow?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      /**
+       * Absences accounts
+       */
+      absencesAccounts?: {
+        data?: {
+          id: string;
+          type: "absencesaccount";
+        }[];
+      };
+    };
+  };
+  /**
+   * @minItems 1
+   */
+  included?: [
+    (
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            function?: string;
+            workUnitTypesAllowed?: {
+              reference: number;
+              name: string;
+              activityType:
+                | "production"
+                | "absence"
+                | "internal"
+                | "exceptionalTime"
+                | "exceptionalCalendar";
+            }[];
+            workUnitRate?: "notUsed" | number;
+          };
+          relationships?: {
+            /**
+             * Agency
+             */
+            agency?: {
+              data?: {
+                id?: string;
+                type?: "agency";
+              };
+            };
+            /**
+             * Absences Reports
+             */
+            absencesReports?: {
+              data?: {
+                id?: string;
+                type?: "absencesreport";
+              }[];
+            };
+            /**
+             * Mandatory leaves
+             */
+            mandatoryLeaves?: {
+              data?: {
+                id?: string;
+                type?: "mandatoryleave";
+              }[];
+            };
+            /**
+             * Resource's contracts/amendments
+             */
+            contracts?: {
+              data: {
+                id: string;
+                type: "contract";
+              }[];
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            workUnitRate?: "notUsed" | number;
+            calendar?: string;
+            absencesLegals?: string;
+            absencesReportsQuestions?: {
+              question: string;
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "document";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "validation";
+          attributes?: {
+            date?: string;
+            state?: "waitingForValidation" | "validated" | "rejected";
+            reason?: string;
+          };
+          relationships?: {
+            realValidator?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            /**
+             * Validation's expected validator
+             */
+            expectedValidator?: {
+              data: {
+                id: string;
+                type: "resource";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "validation";
+          attributes?: {
+            period?:
+              | "JanuaryToDecember"
+              | "FebruaryToJanuary"
+              | "MarchToFebruary"
+              | "AprilToMarch"
+              | "MayToApril"
+              | "JuneToMay"
+              | "JulyToJune"
+              | "AugustToJuly"
+              | "SeptemberToAugust"
+              | "OctoberToSeptember"
+              | "NovemberToOctober"
+              | "DecemberToNovember";
+            year?: number;
+            amountAcquired?: number;
+            /**
+             * Sum of all times used on acquired's absences with this work unit type & including in this term
+             */
+            amountAcquiredUsed?: number;
+            amountBeingAcquired?: number;
+            /**
+             * Sum of all periods asked on acquired's absences with this work unit type & including in this term
+             */
+            amountAcquiredAsked?: number;
+            /**
+             * Sum of all periods asked on being acquired's absences with this work unit type & including in this term
+             */
+            amountBeingAcquiredAsked?: number;
+            /**
+             * Sum of all times used on being acquired's absences with this work unit type & including in this term
+             */
+            amountBeingAcquiredUsed?: number;
+            /**
+             * amountAcquired - amountAcquiredAsked
+             */
+            deltaAcquiredAsked?: number;
+            /**
+             * amountAcquired - amountAcquiredUsed
+             */
+            deltaAcquiredUsed?: number;
+            /**
+             * amountBeingAcquired - amountBeingAcquiredAsked
+             */
+            deltaBeingAcquiredAsked?: number;
+            /**
+             * amountBeingAcquired - amountBeingAcquiredUsed
+             */
+            deltaBeingAcquiredUsed?: number;
+            useBeingAcquired?:
+              | "inactive"
+              | "allowTakenAbsencesOnBeingAcquired"
+              | "forbidTakenAbsencesOnBeingAcquired";
+            /**
+             * true if absence's account is set for this resource, false if it does not exist but the resource has only take time of this type
+             */
+            isQuotaExists?: boolean;
+            automaticDescription?: {
+              date: string;
+              previousAmountBeingAcquired: number | null;
+              newAmountBeingAcquired: number;
+              previousAmountAcquired: number | null;
+              newAmountAcquired: number;
+            }[];
+            workUnitType?: {
+              reference: number;
+              activityType:
+                | "production"
+                | "absence"
+                | "internal"
+                | "exceptionalTime"
+                | "exceptionalCalendar";
+              name: string;
+            };
+          };
+          relationships?: {
+            /**
+             * Request of absences agency
+             */
+            agency?: {
+              data: {
+                id: string;
+                type: "agency";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "absencesreport";
+          attributes?: {
+            state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+            /**
+             * List of absences periods
+             */
+            absencesPeriods?: {
+              id: string;
+              startDate: string;
+              /**
+               * The value have to be superior or equal to startDate
+               */
+              endDate: string;
+              duration: number;
+              title?: string;
+              workUnitType: {
+                reference: number;
+                activityType:
+                  | "production"
+                  | "absence"
+                  | "internal"
+                  | "exceptionalTime"
+                  | "exceptionalCalendar";
+                name: string;
+              };
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            startDate?: string;
+            endDate?: string;
+            calendar?: string;
+            partialWorkTimes?: string[];
+            isPartialWorkTimeEvenOdd?: boolean;
+          };
+          relationships?: {
+            /**
+             * Contract's agency
+             */
+            agency?: {
+              data: {
+                id: string;
+                type: "agency";
+              };
+            };
+          };
+        }
+    ),
+    ...(
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            function?: string;
+            workUnitTypesAllowed?: {
+              reference: number;
+              name: string;
+              activityType:
+                | "production"
+                | "absence"
+                | "internal"
+                | "exceptionalTime"
+                | "exceptionalCalendar";
+            }[];
+            workUnitRate?: "notUsed" | number;
+          };
+          relationships?: {
+            /**
+             * Agency
+             */
+            agency?: {
+              data?: {
+                id?: string;
+                type?: "agency";
+              };
+            };
+            /**
+             * Absences Reports
+             */
+            absencesReports?: {
+              data?: {
+                id?: string;
+                type?: "absencesreport";
+              }[];
+            };
+            /**
+             * Mandatory leaves
+             */
+            mandatoryLeaves?: {
+              data?: {
+                id?: string;
+                type?: "mandatoryleave";
+              }[];
+            };
+            /**
+             * Resource's contracts/amendments
+             */
+            contracts?: {
+              data: {
+                id: string;
+                type: "contract";
+              }[];
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            workUnitRate?: "notUsed" | number;
+            calendar?: string;
+            absencesLegals?: string;
+            absencesReportsQuestions?: {
+              question: string;
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "document";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "validation";
+          attributes?: {
+            date?: string;
+            state?: "waitingForValidation" | "validated" | "rejected";
+            reason?: string;
+          };
+          relationships?: {
+            realValidator?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            /**
+             * Validation's expected validator
+             */
+            expectedValidator?: {
+              data: {
+                id: string;
+                type: "resource";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "validation";
+          attributes?: {
+            period?:
+              | "JanuaryToDecember"
+              | "FebruaryToJanuary"
+              | "MarchToFebruary"
+              | "AprilToMarch"
+              | "MayToApril"
+              | "JuneToMay"
+              | "JulyToJune"
+              | "AugustToJuly"
+              | "SeptemberToAugust"
+              | "OctoberToSeptember"
+              | "NovemberToOctober"
+              | "DecemberToNovember";
+            year?: number;
+            amountAcquired?: number;
+            /**
+             * Sum of all times used on acquired's absences with this work unit type & including in this term
+             */
+            amountAcquiredUsed?: number;
+            amountBeingAcquired?: number;
+            /**
+             * Sum of all periods asked on acquired's absences with this work unit type & including in this term
+             */
+            amountAcquiredAsked?: number;
+            /**
+             * Sum of all periods asked on being acquired's absences with this work unit type & including in this term
+             */
+            amountBeingAcquiredAsked?: number;
+            /**
+             * Sum of all times used on being acquired's absences with this work unit type & including in this term
+             */
+            amountBeingAcquiredUsed?: number;
+            /**
+             * amountAcquired - amountAcquiredAsked
+             */
+            deltaAcquiredAsked?: number;
+            /**
+             * amountAcquired - amountAcquiredUsed
+             */
+            deltaAcquiredUsed?: number;
+            /**
+             * amountBeingAcquired - amountBeingAcquiredAsked
+             */
+            deltaBeingAcquiredAsked?: number;
+            /**
+             * amountBeingAcquired - amountBeingAcquiredUsed
+             */
+            deltaBeingAcquiredUsed?: number;
+            useBeingAcquired?:
+              | "inactive"
+              | "allowTakenAbsencesOnBeingAcquired"
+              | "forbidTakenAbsencesOnBeingAcquired";
+            /**
+             * true if absence's account is set for this resource, false if it does not exist but the resource has only take time of this type
+             */
+            isQuotaExists?: boolean;
+            automaticDescription?: {
+              date: string;
+              previousAmountBeingAcquired: number | null;
+              newAmountBeingAcquired: number;
+              previousAmountAcquired: number | null;
+              newAmountAcquired: number;
+            }[];
+            workUnitType?: {
+              reference: number;
+              activityType:
+                | "production"
+                | "absence"
+                | "internal"
+                | "exceptionalTime"
+                | "exceptionalCalendar";
+              name: string;
+            };
+          };
+          relationships?: {
+            /**
+             * Request of absences agency
+             */
+            agency?: {
+              data: {
+                id: string;
+                type: "agency";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "absencesreport";
+          attributes?: {
+            state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+            /**
+             * List of absences periods
+             */
+            absencesPeriods?: {
+              id: string;
+              startDate: string;
+              /**
+               * The value have to be superior or equal to startDate
+               */
+              endDate: string;
+              duration: number;
+              title?: string;
+              workUnitType: {
+                reference: number;
+                activityType:
+                  | "production"
+                  | "absence"
+                  | "internal"
+                  | "exceptionalTime"
+                  | "exceptionalCalendar";
+                name: string;
+              };
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            startDate?: string;
+            endDate?: string;
+            calendar?: string;
+            partialWorkTimes?: string[];
+            isPartialWorkTimeEvenOdd?: boolean;
+          };
+          relationships?: {
+            /**
+             * Contract's agency
+             */
+            agency?: {
+              data: {
+                id: string;
+                type: "agency";
+              };
+            };
+          };
+        }
+    )[],
+  ];
+}
+
+/**
+ * Empty request of absences default basic data
+ */
+export interface SchemasAbsencesReportsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    warnings?: {
+      /**
+       * Warning's code
+       */
+      code: "moreThanAbsenceAccountAcquired";
+      /**
+       * Warning's message
+       */
+      detail: string;
+      workUnitType: {
+        reference: number;
+        name: string;
+      };
+    }[];
+    expectedValidatorsAllowedForValidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForUnvalidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForReject?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+  };
+  data: {
+    id: "0";
+    type: "absencesreport";
+    relationships?: {
+      /**
+       * Request of absences resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Request of absences agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      /**
+       * Timesheet's expected validators
+       */
+      validationWorkflow?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      /**
+       * Absences accounts
+       */
+      absencesAccounts?: {
+        data?: {
+          id: string;
+          type: "absencesaccount";
+        }[];
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          function?: string;
+          workUnitTypesAllowed?: {
+            reference: number;
+            name: string;
+            activityType:
+              | "production"
+              | "absence"
+              | "internal"
+              | "exceptionalTime"
+              | "exceptionalCalendar";
+          }[];
+          workUnitRate?: "notUsed" | number;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          workUnitRate?: "notUsed" | number;
+          calendar?: string;
+          absencesReportsQuestions?: {
+            question: string;
+          }[];
+        };
+      }
+    | {
+        id: string;
+        type: "validation";
+        attributes?: {
+          period?:
+            | "JanuaryToDecember"
+            | "FebruaryToJanuary"
+            | "MarchToFebruary"
+            | "AprilToMarch"
+            | "MayToApril"
+            | "JuneToMay"
+            | "JulyToJune"
+            | "AugustToJuly"
+            | "SeptemberToAugust"
+            | "OctoberToSeptember"
+            | "NovemberToOctober"
+            | "DecemberToNovember";
+          year?: number;
+          amountAcquired?: number;
+          /**
+           * Sum of all times used on acquired's absences with this work unit type & including in this term
+           */
+          amountAcquiredUsed?: number;
+          amountBeingAcquired?: number;
+          /**
+           * Sum of all periods asked on acquired's absences with this work unit type & including in this term
+           */
+          amountAcquiredAsked?: number;
+          /**
+           * Sum of all periods asked on being acquired's absences with this work unit type & including in this term
+           */
+          amountBeingAcquiredAsked?: number;
+          /**
+           * Sum of all times used on being acquired's absences with this work unit type & including in this term
+           */
+          amountBeingAcquiredUsed?: number;
+          /**
+           * amountAcquired - amountAcquiredAsked
+           */
+          deltaAcquiredAsked?: number;
+          /**
+           * amountAcquired - amountAcquiredUsed
+           */
+          deltaAcquiredUsed?: number;
+          /**
+           * amountBeingAcquired - amountBeingAcquiredAsked
+           */
+          deltaBeingAcquiredAsked?: number;
+          /**
+           * amountBeingAcquired - amountBeingAcquiredUsed
+           */
+          deltaBeingAcquiredUsed?: number;
+          useBeingAcquired?:
+            | "inactive"
+            | "allowTakenAbsencesOnBeingAcquired"
+            | "forbidTakenAbsencesOnBeingAcquired";
+          /**
+           * true if absence's account is set for this resource, false if it does not exist but the resource has only take time of this type
+           */
+          isQuotaExists?: boolean;
+          automaticDescription?: {
+            date: string;
+            previousAmountBeingAcquired: number | null;
+            newAmountBeingAcquired: number;
+            previousAmountAcquired: number | null;
+            newAmountAcquired: number;
+          }[];
+          workUnitType?: {
+            reference: number;
+            activityType:
+              | "production"
+              | "absence"
+              | "internal"
+              | "exceptionalTime"
+              | "exceptionalCalendar";
+            name: string;
+          };
+        };
+        relationships?: {
+          /**
+           * Request of absences agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+        };
+      }
+  )[];
+}
+
+/**
+ * Request of absences rights
+ */
+export interface SchemasAbsencesReportsRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+        /**
+         * true if this action is available
+         */
+        validate?: boolean;
+        /**
+         * true if this action is available
+         */
+        reject?: boolean;
+        /**
+         * true if this action is available
+         */
+        unvalidate?: boolean;
+        /**
+         * true if this action is available
+         */
+        downloadInternalPDF?: boolean;
+        /**
+         * true if this action is available
+         */
+        exportToDownloadCenter?: boolean;
+        /**
+         * true if this action is available
+         */
+        deleteValidators?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        files?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        absencesAccounts?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        absencesQuestions?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Request of absences basic data sent in the body with a POST method
+ */
+export interface SchemasAbsencesReportsBodyPostJson {
+  data: {
+    type: "absencesreport";
+    attributes?: {
+      creationDate?: string;
+      informationComments?: string;
+      /**
+       * List of absences periods
+       */
+      absencesPeriods?: (
+        | {
+            startDate: string;
+            /**
+             * The value have to be superior or equal to startDate
+             */
+            endDate: string;
+            duration: number;
+            title: string;
+            workUnitType: {
+              reference: number;
+            };
+          }
+        | {
+            id: string;
+            startDate: string;
+            /**
+             * The value have to be superior or equal to startDate
+             */
+            endDate: string;
+            duration: number;
+            title: string;
+            workUnitType: {
+              reference: number;
+            };
+          }
+      )[];
+      absencesQuestions?: {
+        question: string;
+        answer: boolean;
+      }[];
+    };
+    relationships: {
+      /**
+       * Request of absences resource
+       */
+      resource: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Request of absences agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Request of absences basic data sent in the body with a PUT method
+ */
+export interface SchemasAbsencesReportsBodyPutJson {
+  data: {
+    id: string;
+    type: "absencesreport";
+    attributes?: {
+      informationComments?: string;
+      /**
+       * List of absences periods
+       */
+      absencesPeriods?: (
+        | {
+            startDate: string;
+            /**
+             * The value have to be superior or equal to startDate
+             */
+            endDate: string;
+            duration: number;
+            title: string;
+            workUnitType: {
+              reference: number;
+            };
+          }
+        | {
+            id: string;
+            startDate: string;
+            /**
+             * The value have to be superior or equal to startDate
+             */
+            endDate: string;
+            duration: number;
+            title: string;
+            workUnitType: {
+              reference: number;
+            };
+          }
+      )[];
+      absencesQuestions?: {
+        question: string;
+        answer: boolean;
+      }[];
+    };
+  };
+}
+
+/**
+ * Absences request's validation reject data sent in the body with a POST method
+ */
+export interface SchemasAbsencesReportsRejectPostJson {
+  data: {
+    /**
+     * Resource's `id` on which absences request depends
+     */
+    expectedValidator: number;
+    reason: string;
+    rejectTypeOf:
+      | "correctionForPreviousValidator"
+      | "correctionForAllValidators"
+      | "definitiveRefusal";
+  };
+}

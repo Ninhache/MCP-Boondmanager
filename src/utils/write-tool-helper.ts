@@ -49,8 +49,10 @@ export async function executeCreateTool(
 }
 
 /**
- * PATCH a Boond resource by ID with JSON:API body.
+ * PUT to a Boond resource by ID with JSON:API body.
  * Returns the updated resource formatted for the LLM.
+ *
+ * Note: Boond uses PUT for updates (not PATCH), per the RAML spec.
  */
 export async function executeUpdateTool(
   client: BoondClient,
@@ -66,7 +68,7 @@ export async function executeUpdateTool(
         attributes,
       },
     };
-    const response = await client.patch<BoondDetailResponse>(`${config.path}/${id}`, body);
+    const response = await client.put<BoondDetailResponse>(`${config.path}/${id}`, body);
     const formatted = formatDetail(response);
     return {
       content: [
@@ -74,6 +76,39 @@ export async function executeUpdateTool(
           success: true,
           message: `✓ Updated ${config.resourceType} ${id}`,
           resource: formatted,
+        }),
+      ],
+    };
+  } catch (error) {
+    return handleBoondError(error);
+  }
+}
+
+/**
+ * Execute a POST action endpoint (e.g. /validate, /reject, /pay).
+ * These endpoints typically have no request body (or a small one), and return
+ * either the updated resource or just a success status.
+ *
+ * @param client - BoondClient instance
+ * @param path - Full path to the action (e.g. "/absences-reports/42/validate")
+ * @param actionLabel - Human-readable label (e.g. "validated", "rejected")
+ * @param body - Optional request body (for actions that accept one, like reject with comment)
+ */
+export async function executeActionTool(
+  client: BoondClient,
+  path: string,
+  actionLabel: string,
+  body?: Record<string, unknown>,
+): Promise<{ content: { type: "text"; text: string }[]; isError?: true }> {
+  try {
+    const response = await client.post<BoondDetailResponse | undefined>(path, body ?? {});
+    const formatted = response?.data ? formatDetail(response) : null;
+    return {
+      content: [
+        toTextContent({
+          success: true,
+          message: `✓ ${actionLabel}`,
+          ...(formatted && { resource: formatted }),
         }),
       ],
     };
