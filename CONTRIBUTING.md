@@ -86,11 +86,7 @@ Reference issues/PRs when relevant: `feat(actions): add delete_action (closes #3
 
 The project currently has **no automated tests** — this is a known gap (tracked in an issue). Until tests are added:
 
-1. **Validate routes** against a real Boond instance:
-   ```bash
-   npm run validate-routes
-   ```
-2. **Manual test via MCP Inspector**:
+1. **Manual test via MCP Inspector**:
    ```bash
    npm run build
    npx @modelcontextprotocol/inspector node dist/main.js

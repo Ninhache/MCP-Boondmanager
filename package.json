@@ -16,7 +16,6 @@
     "check:fix": "biome check --fix .",
     "format": "biome format --write .",
     "lint": "biome lint .",
-    "validate-routes": "tsx scripts/validate-routes.ts",
     "generate-types": "tsx scripts/generate-types.ts",
     "prepare": "husky"
   },
