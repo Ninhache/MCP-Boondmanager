@@ -7,11 +7,24 @@
 import type {
   SchemasAbsencesSearchJson,
   SchemasActionsSearchJson,
+  SchemasAgenciesSearchJson,
+  SchemasCalendarsSearchJson,
   SchemasCandidatesSearchJson,
   SchemasCompaniesSearchJson,
+  SchemasDashboardsSearchJson,
+  SchemasExpensesSearchJson,
+  SchemasInvoicesSearchJson,
+  SchemasNotificationsSearchJson,
   SchemasOpportunitiesSearchJson,
+  SchemasOrdersSearchJson,
+  SchemasPolesSearchJson,
+  SchemasPositioningsSearchJson,
+  SchemasProductsSearchJson,
   SchemasProjectsSearchJson,
+  SchemasPurchasesSearchJson,
   SchemasResourcesSearchJson,
+  SchemasRolesSearchJson,
+  SchemasValidationsSearchJson,
 } from "./boond-schemas.js";
 
 /** Extract the attributes type from a generated search schema */
@@ -23,6 +36,7 @@ type ExtractAttributes<T> = T extends { data: Array<infer Item> }
     ? A
     : never;
 
+// Core modules
 export type ResourceAttributes = ExtractAttributes<SchemasResourcesSearchJson>;
 export type CandidateAttributes = ExtractAttributes<SchemasCandidatesSearchJson>;
 export type ProjectAttributes = ExtractAttributes<SchemasProjectsSearchJson>;
@@ -30,6 +44,25 @@ export type CompanyAttributes = ExtractAttributes<SchemasCompaniesSearchJson>;
 export type OpportunityAttributes = ExtractAttributes<SchemasOpportunitiesSearchJson>;
 export type AbsenceAttributes = ExtractAttributes<SchemasAbsencesSearchJson>;
 export type ActionAttributes = ExtractAttributes<SchemasActionsSearchJson>;
+
+// Commercial / financial
+export type PositioningAttributes = ExtractAttributes<SchemasPositioningsSearchJson>;
+export type PurchaseAttributes = ExtractAttributes<SchemasPurchasesSearchJson>;
+export type InvoiceAttributes = ExtractAttributes<SchemasInvoicesSearchJson>;
+export type OrderAttributes = ExtractAttributes<SchemasOrdersSearchJson>;
+export type ExpenseAttributes = ExtractAttributes<SchemasExpensesSearchJson>;
+export type ProductAttributes = ExtractAttributes<SchemasProductsSearchJson>;
+
+// Organizational
+export type AgencyAttributes = ExtractAttributes<SchemasAgenciesSearchJson>;
+export type PoleAttributes = ExtractAttributes<SchemasPolesSearchJson>;
+export type CalendarAttributes = ExtractAttributes<SchemasCalendarsSearchJson>;
+export type DashboardAttributes = ExtractAttributes<SchemasDashboardsSearchJson>;
+
+// Admin / system
+export type NotificationAttributes = ExtractAttributes<SchemasNotificationsSearchJson>;
+export type ValidationAttributes = ExtractAttributes<SchemasValidationsSearchJson>;
+export type RoleAttributes = ExtractAttributes<SchemasRolesSearchJson>;
 
 /**
  * Generic typed Boond list response.
