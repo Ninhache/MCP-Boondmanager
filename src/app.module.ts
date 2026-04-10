@@ -23,6 +23,7 @@ import { ExpensesModule } from "./modules/expenses/expenses.module.js";
 import { ExpensesReportsModule } from "./modules/expenses-reports/expenses-reports.module.js";
 import { FlagsModule } from "./modules/flags/flags.module.js";
 import { FormsModule } from "./modules/forms/forms.module.js";
+import { GroupmentsModule } from "./modules/groupments/groupments.module.js";
 import { InactivitiesModule } from "./modules/inactivities/inactivities.module.js";
 import { InvoicesModule } from "./modules/invoices/invoices.module.js";
 import { MarketplaceModule } from "./modules/marketplace/marketplace.module.js";
@@ -92,6 +93,7 @@ const DOMAIN_MODULES = [
   AdvantagesModule,
   FlagsModule,
   FormsModule,
+  GroupmentsModule,
   TargetsModule,
   MarketplaceModule,
   DocumentsModule,
