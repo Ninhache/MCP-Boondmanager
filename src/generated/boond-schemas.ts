@@ -21083,3 +21083,425 @@ export interface SchemasSavedsearchesBodyPutJson {
   };
 }
 
+
+// ─── todolists ───
+/**
+ * List of Todolists
+ */
+export interface SchemasTodolistsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "todolist";
+    attributes?: {
+      title?: string;
+      state?: boolean;
+      profile?:
+        | (
+            | "absencesreport"
+            | "advantage"
+            | "candidate"
+            | "compagny"
+            | "contact"
+            | "contract"
+            | "delivery"
+            | "expensesreport"
+            | "invoice"
+            | "opportunity"
+            | "order"
+            | "payment"
+            | "positioning"
+            | "product"
+            | "project"
+            | "purchase"
+            | "quotation"
+            | "resource"
+            | "timesreport"
+          )
+        | string;
+      /**
+       * Profile's typeOf triggering the TodoList
+       */
+      profileTypesOf?: unknown[];
+      /**
+       * Profile's state triggering the TodoList
+       */
+      profileStates?: unknown[];
+      /**
+       * Parent profile's typeOf triggering the TodoList
+       */
+      parentProfileTypesOf?: unknown[];
+      /**
+       * Parent profile's state triggering the TodoList
+       */
+      parentProfileStates?: unknown[];
+      /**
+       * List of agencies
+       */
+      agencies?: {
+        id: string;
+        name: string;
+      }[];
+    };
+    relationships?: {
+      /**
+       * TodoList's app
+       */
+      app?: {
+        data: {
+          id: string;
+          type: "app";
+        };
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "app";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * TodoList data
+ */
+export interface SchemasTodolistsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "todolist";
+    attributes?: {
+      title?: string;
+      state?: boolean;
+      profile?:
+        | (
+            | "absencesreport"
+            | "advantage"
+            | "candidate"
+            | "compagny"
+            | "contact"
+            | "contract"
+            | "delivery"
+            | "expensesreport"
+            | "invoice"
+            | "opportunity"
+            | "order"
+            | "payment"
+            | "positioning"
+            | "product"
+            | "project"
+            | "purchase"
+            | "quotation"
+            | "resource"
+            | "timesreport"
+          )
+        | string;
+      /**
+       * Profile's typeOf triggering the TodoList
+       */
+      profileTypesOf?: unknown[];
+      /**
+       * Profile's state triggering the TodoList
+       */
+      profileStates?: unknown[];
+      /**
+       * Parent profile's typeOf triggering the TodoList
+       */
+      parentProfileTypesOf?: unknown[];
+      /**
+       * Parent profile's state triggering the TodoList
+       */
+      parentProfileStates?: unknown[];
+      /**
+       * List of agencies
+       */
+      agencies?: {
+        id: string;
+        name: string;
+      }[];
+      /**
+       * List of Tasks
+       */
+      tasks?: {
+        id: string;
+        description: string;
+        state: boolean;
+        idParent?: number;
+      }[];
+    };
+    relationships?: {
+      /**
+       * TodoList's app
+       */
+      app?: {
+        data: {
+          id: string;
+          type: "app";
+        };
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "app";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * Empty TodoList's default basic data
+ */
+export interface SchemasTodolistsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "todolist";
+    attributes?: {
+      title?: string;
+      state?: boolean;
+      profile?:
+        | (
+            | "absencesreport"
+            | "advantage"
+            | "candidate"
+            | "compagny"
+            | "contact"
+            | "contract"
+            | "delivery"
+            | "expensesreport"
+            | "invoice"
+            | "opportunity"
+            | "order"
+            | "payment"
+            | "positioning"
+            | "product"
+            | "project"
+            | "purchase"
+            | "quotation"
+            | "resource"
+            | "timesreport"
+          )
+        | string;
+      /**
+       * Profile's typeOf triggering the TodoList
+       */
+      profileTypesOf?: unknown[];
+      /**
+       * Profile's state triggering the TodoList
+       */
+      profileStates?: unknown[];
+      /**
+       * Parent profile's typeOf triggering the TodoList
+       */
+      parentProfileTypesOf?: unknown[];
+      /**
+       * Parent profile's state triggering the TodoList
+       */
+      parentProfileStates?: unknown[];
+      /**
+       * List of agencies
+       */
+      agencies?: {
+        id: string;
+        name: string;
+      }[];
+      /**
+       * List of Tasks
+       */
+      tasks?: {
+        id: string;
+        description: string;
+        state: boolean;
+        idParent?: number;
+      }[];
+    };
+  };
+}
+
+/**
+ * Todolist's basic data sent in the body with a POST method
+ */
+export interface SchemasTodolistsBodyPostJson {
+  data: {
+    type: "todolist";
+    attributes: {
+      title: string;
+      state?: boolean;
+      profile?:
+        | (
+            | "absencesreport"
+            | "advantage"
+            | "candidate"
+            | "compagny"
+            | "contact"
+            | "contract"
+            | "delivery"
+            | "expensesreport"
+            | "invoice"
+            | "opportunity"
+            | "order"
+            | "payment"
+            | "positioning"
+            | "product"
+            | "project"
+            | "purchase"
+            | "quotation"
+            | "resource"
+            | "timesreport"
+          )
+        | string;
+      /**
+       * Profile's typeOf triggering the TodoList
+       */
+      profileTypesOf?: unknown[];
+      /**
+       * Profile's state triggering the TodoList
+       */
+      profileStates?: unknown[];
+      /**
+       * Parent profile's typeOf triggering the TodoList
+       */
+      parentProfileTypesOf?: unknown[];
+      /**
+       * Parent profile's state triggering the TodoList
+       */
+      parentProfileStates?: unknown[];
+      /**
+       * List of agencies
+       */
+      agencies?: {
+        id: string;
+        name: string;
+      }[];
+      /**
+       * List of Tasks
+       */
+      tasks?: {
+        id: string;
+        description: string;
+        state: boolean;
+        idParent?: number;
+      }[];
+    };
+  };
+}
+
+/**
+ * Todolist's basic data sent in the body with a POST method
+ */
+export interface SchemasTodolistsBodyPutJson {
+  data: {
+    id: string;
+    type: "todolist";
+    attributes?: {
+      title?: string;
+      state?: boolean;
+      profile?:
+        | (
+            | "absencesreport"
+            | "advantage"
+            | "candidate"
+            | "compagny"
+            | "contact"
+            | "contract"
+            | "delivery"
+            | "expensesreport"
+            | "invoice"
+            | "opportunity"
+            | "order"
+            | "payment"
+            | "positioning"
+            | "product"
+            | "project"
+            | "purchase"
+            | "quotation"
+            | "resource"
+            | "timesreport"
+          )
+        | string;
+      /**
+       * Profile's typeOf triggering the TodoList
+       */
+      profileTypesOf?: unknown[];
+      /**
+       * Profile's state triggering the TodoList
+       */
+      profileStates?: unknown[];
+      /**
+       * Parent profile's typeOf triggering the TodoList
+       */
+      parentProfileTypseOf?: unknown[];
+      /**
+       * Parent profile's state triggering the TodoList
+       */
+      parentProfileStates?: unknown[];
+      /**
+       * List of agencies
+       */
+      agencies?: {
+        id: string;
+        name: string;
+      }[];
+      /**
+       * List of Tasks
+       */
+      tasks?: {
+        id: string;
+        description: string;
+        state: boolean;
+        idParent?: number;
+      }[];
+    };
+  };
+}
+

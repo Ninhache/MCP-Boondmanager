@@ -42,6 +42,7 @@ import { SavedSearchesModule } from "./modules/savedsearches/savedsearches.modul
 import { TargetsModule } from "./modules/targets/targets.module.js";
 import { TimesModule } from "./modules/times/times.module.js";
 import { TimesReportsModule } from "./modules/times-reports/times-reports.module.js";
+import { TodolistsModule } from "./modules/todolists/todolists.module.js";
 import { ValidationsModule } from "./modules/validations/validations.module.js";
 import { WebhooksModule } from "./modules/webhooks/webhooks.module.js";
 
@@ -92,6 +93,7 @@ const DOMAIN_MODULES = [
   MarketplaceModule,
   DocumentsModule,
   SavedSearchesModule,
+  TodolistsModule,
   WebhooksModule,
   // MCP Prompts and Resources
   McpExtrasModule,
