@@ -35,7 +35,7 @@ jobs:
 
       - run: npm ci
 
-      - name: TypeScript build
+      - name: SWC build
         run: npm run build
 
   typecheck:
@@ -51,5 +51,5 @@ jobs:
 
       - run: npm ci
 
-      - name: TypeScript noEmit
-        run: npx tsc --noEmit
+      - name: TypeScript typecheck
+        run: npm run typecheck
