@@ -55,6 +55,7 @@ import { TimesModule } from "./modules/times/times.module.js";
 import { TimesReportsModule } from "./modules/times-reports/times-reports.module.js";
 import { TodolistsModule } from "./modules/todolists/todolists.module.js";
 import { ValidationsModule } from "./modules/validations/validations.module.js";
+import { VendorModule } from "./modules/vendor/vendor.module.js";
 import { WebhooksModule } from "./modules/webhooks/webhooks.module.js";
 
 const DOMAIN_MODULES = [
@@ -116,6 +117,7 @@ const DOMAIN_MODULES = [
   SubscriptionModule,
   TodolistsModule,
   ThreadsModule,
+  VendorModule,
   WebhooksModule,
   // MCP Prompts and Resources
   McpExtrasModule,

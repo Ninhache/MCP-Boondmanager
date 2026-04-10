@@ -26380,3 +26380,80 @@ export interface SchemasSubscriptionBodyPutJson {
   };
 }
 
+
+// ─── vendor ───
+/**
+ * Vendor's data
+ */
+export interface SchemasVendorProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "vendor";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      name?: string;
+      isOwner?: boolean;
+      description?: string;
+      email1?: string;
+      phone1?: string;
+      address?: string;
+      postcode?: string;
+      town?: string;
+      country?: string;
+      website?: string;
+      /**
+       * Vendor's absolute logo url
+       */
+      logo?: string;
+    };
+    relationships?: {
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+    };
+  };
+}
+
+/**
+ * Vendor's data sent in the body with a PUT method
+ */
+export interface SchemasVendorBodyPutJson {
+  data: {
+    id: string;
+    type: "vendor";
+    attributes?: {
+      name?: string;
+      description?: string;
+      email1?: string;
+      phone1?: string;
+      address?: string;
+      postcode?: string;
+      town?: string;
+      country?: string;
+      website?: string;
+    };
+  };
+}
+

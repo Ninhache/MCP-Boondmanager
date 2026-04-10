@@ -58,6 +58,7 @@ import type {
   SchemasTimesSearchJson,
   SchemasTodolistsSearchJson,
   SchemasValidationsSearchJson,
+  SchemasVendorProfileJson,
   SchemasWebhooksSearchJson,
 } from "./boond-schemas.js";
 
@@ -129,6 +130,7 @@ export type DownloadCenterAttributes = ExtractAttributes<SchemasDownloadCenterPr
 export type SavedSearchAttributes = ExtractAttributes<SchemasSavedsearchesSearchJson>;
 export type StandardProfileAttributes = ExtractAttributes<SchemasStandardProfilesSearchJson>;
 export type SubscriptionAttributes = ExtractAttributes<SchemasSubscriptionProfileJson>;
+export type VendorAttributes = ExtractAttributes<SchemasVendorProfileJson>;
 export type TodolistAttributes = ExtractAttributes<SchemasTodolistsSearchJson>;
 export type ThreadAttributes = ExtractAttributes<SchemasThreadsSearchJson>;
 export type FormAttributes = ExtractAttributes<SchemasFormsProfileJson>;
