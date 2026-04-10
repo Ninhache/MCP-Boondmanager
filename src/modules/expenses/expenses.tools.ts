@@ -1,11 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
-import type { BoondDetailResponse, ExpenseAttributes } from "../../generated/index.js";
-import { handleBoondError } from "../../utils/error-handler.js";
-import { formatDetail, toTextContent } from "../../utils/formatters.js";
+import type { ExpenseAttributes } from "../../generated/index.js";
 import { executeListTool } from "../../utils/list-tool-helper.js";
 import { BoondClient } from "../boond/index.js";
+
+// Note: Boond's /expenses/{id} detail endpoint returns 404 for most tenants.
+// Expenses are typically accessed via their parent expense report
+// (expensesReport sub-resource on /resources/{id}/expensesReport).
+// Keeping list-only for now.
 
 @Injectable()
 export class ExpensesTools {
@@ -46,28 +49,9 @@ export class ExpensesTools {
       this.boond,
       {
         path: "/expenses",
-        attributeKeys: ["category", "reference", "name"],
+        attributeKeys: ["category"],
       },
       { page, pageSize, fetchAll, extraParams },
     );
-  }
-
-  @Tool({
-    name: "get_expense",
-    description:
-      "Récupère les informations détaillées d'une note de frais par son ID. " +
-      "Exemples : « détails de la note de frais 42 »",
-    parameters: z.object({
-      id: z.number().describe("ID de la note de frais dans Boond"),
-    }),
-  })
-  async getExpense({ id }: { id: number }) {
-    try {
-      const data = await this.boond.get<BoondDetailResponse<ExpenseAttributes>>(`/expenses/${id}`);
-      const formatted = formatDetail(data);
-      return { content: [toTextContent(formatted)] };
-    } catch (error) {
-      return handleBoondError(error);
-    }
   }
 }

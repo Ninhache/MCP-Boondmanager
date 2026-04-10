@@ -1,11 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
-import type { BoondDetailResponse, TimeAttributes } from "../../generated/index.js";
-import { handleBoondError } from "../../utils/error-handler.js";
-import { formatDetail, toTextContent } from "../../utils/formatters.js";
+import type { TimeAttributes } from "../../generated/index.js";
 import { executeListTool } from "../../utils/list-tool-helper.js";
 import { BoondClient } from "../boond/index.js";
+
+// Note: Boond's /times/{id} detail endpoint returns 404 for most tenants.
+// Times are typically accessed via their parent time report
+// (timesReport sub-resource on /resources/{id}/timesReport).
+// Keeping list-only for now.
 
 @Injectable()
 export class TimesTools {
@@ -44,26 +47,9 @@ export class TimesTools {
       this.boond,
       {
         path: "/times",
-        attributeKeys: ["category", "reference", "name"],
+        attributeKeys: ["category"],
       },
       { page, pageSize, fetchAll, extraParams },
     );
-  }
-
-  @Tool({
-    name: "get_time",
-    description: "Récupère les détails d'un temps saisi par son ID.",
-    parameters: z.object({
-      id: z.number().describe("ID du temps dans Boond"),
-    }),
-  })
-  async getTime({ id }: { id: number }) {
-    try {
-      const data = await this.boond.get<BoondDetailResponse<TimeAttributes>>(`/times/${id}`);
-      const formatted = formatDetail(data);
-      return { content: [toTextContent(formatted)] };
-    } catch (error) {
-      return handleBoondError(error);
-    }
   }
 }

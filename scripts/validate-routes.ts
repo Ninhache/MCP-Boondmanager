@@ -82,7 +82,7 @@ const ROUTES: RouteSpec[] = [
     kind: "list",
     name: "list_absences",
     path: "/absences",
-    expectedAttrs: ["startDate", "endDate", "duration", "title", "workUnitType", "activityType"],
+    expectedAttrs: ["startDate", "endDate", "duration", "title", "workUnitType"],
   },
   {
     kind: "list",
@@ -96,7 +96,7 @@ const ROUTES: RouteSpec[] = [
     kind: "list",
     name: "list_positionings",
     path: "/positionings",
-    expectedAttrs: ["creationDate", "state", "typeOf"],
+    expectedAttrs: ["state", "startDate", "endDate"],
     detailName: "get_positioning",
   },
   {
@@ -124,8 +124,7 @@ const ROUTES: RouteSpec[] = [
     kind: "list",
     name: "list_expenses",
     path: "/expenses",
-    expectedAttrs: ["category", "reference", "name"],
-    detailName: "get_expense",
+    expectedAttrs: ["category"],
   },
   {
     kind: "list",
@@ -145,8 +144,7 @@ const ROUTES: RouteSpec[] = [
     kind: "list",
     name: "list_times",
     path: "/times",
-    expectedAttrs: ["category", "reference", "name"],
-    detailName: "get_time",
+    expectedAttrs: ["category"],
   },
   // Organizational
   {
@@ -167,7 +165,7 @@ const ROUTES: RouteSpec[] = [
     kind: "list",
     name: "list_dashboards",
     path: "/dashboards",
-    expectedAttrs: ["title", "typeOf", "isDefault"],
+    expectedAttrs: ["typeOf", "isDefault"],
   },
   // Admin / system
   {
