@@ -11483,3 +11483,1633 @@ export interface SchemasWebhooksBodyPutJson {
   };
 }
 
+
+// ─── deliveries ───
+/**
+ * Delivery's basic data
+ */
+export interface SchemasDeliveriesProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "delivery";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      typeOf?: number;
+      state?: number;
+      /**
+       * If false then contract information is not accessible for delivery
+       */
+      canShowAverageDailyContractCost?: boolean;
+      /**
+       * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+       */
+      averageDailyPriceExcludingTax?: number;
+      forceAverageDailyPriceExcludingTax?: boolean;
+      subscriptionQuantityCharged?: number;
+      subscriptionQuantityFree?: number;
+      subscriptionPriceExcludingTax?: number;
+      averageDailyCost?: number;
+      averageDailyContractCost?: number;
+      numberOfDaysInvoicedOrQuantity?: number;
+      numberOfDaysFree?: number;
+      informationComments?: string;
+      conditions?: string;
+      /**
+       * Sum of all turnover on delivery & additional data excluding tax
+       */
+      turnoverSimulatedExcludingTax?: number;
+      /**
+       * Sum of all costs on delivery & additional data excluding tax
+       */
+      costsSimulatedExcludingTax?: number;
+      /**
+       * turnoverSimulatedExcludingTax - costsSimulatedExcludingTax
+       */
+      marginSimulatedExcludingTax?: number;
+      /**
+       * 100 * marginSimulatedExcludingTax / turnoverSimulatedExcludingTax
+       */
+      profitabilitySimulated?: number;
+      /**
+       * (numberOfDaysInvoicedOrQuantity +  numberOfDaysFree) / number of working days or periods between startDate and endDate, only available if delivery is not a `groupment` and project's type is not `product`
+       */
+      occupationRate?: number;
+      dailyExpenses?: number;
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      weeklyWorkingHours?: number;
+      averageHourlyPriceExcludingTax?: number;
+      forceAverageHourlyPriceExcludingTax?: boolean;
+      /**
+       * Delivery's additional turnover and costs
+       */
+      additionalTurnoverAndCosts?: {
+        id: string;
+        date: string;
+        state: boolean;
+        /**
+         * True if user can write on additional turnover and costs
+         */
+        canWriteAdditionalTurnoverAndCosts?: boolean;
+        title: string;
+        turnoverExcludingTax: number;
+        costsExcludingTax: number;
+        typeOf: number;
+        purchase:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+              subscription: number;
+            };
+      }[];
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: {
+        id: string;
+        expenseType: {
+          reference: number;
+          name: string;
+        };
+        periodicity: "daily" | "monthly";
+        netAmount: number;
+        /**
+         * Agency on which expenses detail depends
+         */
+        agency: {
+          id: string;
+          name: string;
+        };
+      }[];
+      /**
+       * List of advantages
+       */
+      advantageTypes?: {
+        reference: number;
+        name: string;
+        frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+        category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+        participationQuota: number;
+        agencyQuota: number;
+        employeeQuota: number;
+        /**
+         * Agency on which advantage type depends
+         */
+        agency: {
+          id: string;
+          name: string;
+        };
+      }[];
+      /**
+       * List of exceptional scales
+       */
+      exceptionalScales?: {
+        reference: number;
+        name: string;
+        workUnitTypes: {
+          reference: number;
+          name: string;
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+        }[];
+        exceptionalRules: {
+          reference: number;
+          name: string;
+          priceExcludingTaxOrPriceRate: null | number;
+          grossCostOrSalaryRate: null | number;
+        }[];
+        dependsOn:
+          | {
+              id: string;
+              type: "agency";
+              name: string;
+              currency: number;
+              exchangeRate: number;
+              /**
+               * Agency's exceptional scales types
+               *
+               * @minItems 1
+               * @maxItems 1
+               */
+              exceptionScales?: [
+                {
+                  reference: number;
+                  exceptionalRules?: {
+                    reference: number;
+                    name: string;
+                    priceExcludingTaxOrPriceRate: number;
+                    grossCostOrSalaryRate: number;
+                  }[];
+                }
+              ];
+            }
+          | {
+              id: string;
+              type: "company";
+              name: string;
+              /**
+               * @minItems 1
+               * @maxItems 1
+               */
+              exceptionScales?: [
+                {
+                  reference: number;
+                  exceptionalRules: {
+                    reference: number;
+                    name: string;
+                    priceExcludingTaxOrPriceRate: number;
+                    grossCostOrSalaryRate: number;
+                  }[];
+                }
+              ];
+            };
+        /**
+         * Agency on which exceptional type depends
+         */
+        agency?: {
+          id: string;
+          name: string;
+          currency: number;
+          exchangeRate: number;
+          /**
+           * Agency's work unit types
+           */
+          workUnitTypes: {
+            reference: number;
+            activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+            name: string;
+            allowAccessLevel: {
+              [k: string]: unknown;
+            };
+            resourcesTypes: string[];
+            state: boolean;
+          }[];
+        };
+      }[];
+      creationDate?: string;
+      updateDate?: string;
+      calendar?: string;
+    };
+    relationships?: {
+      /**
+       * Delivery's project
+       */
+      project?: {
+        data: {
+          id: string;
+          type: "project";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "standardprofile";
+            };
+          };
+      contract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+      purchase?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          };
+      groupment?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          };
+      master?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          };
+      slave?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          };
+      /**
+       * List of delivery's files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "document";
+        }[];
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          typeOf?: number;
+        };
+        relationships?: {
+          /**
+           * Resource's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          /**
+           * List of resource's contracts available on this period
+           */
+          contracts?: {
+            data: {
+              id: string;
+              type: "contract";
+            }[];
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "product";
+        attributes?: {
+          name?: string;
+          subscription?: number;
+        };
+      }
+    | {
+        id: string;
+        type: "standardprofile";
+        attributes?: {
+          title?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          calendar?: string;
+          /**
+           * Agency's expense types
+           */
+          expenseTypes?: {
+            reference: number;
+            name: string;
+            taxRate: number;
+          }[];
+          /**
+           * Agency's advantage types with state
+           */
+          advantageTypes?: {
+            reference: number;
+            name: string;
+            frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+            category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+            participationQuota: number;
+            agencyQuota: number;
+            employeeQuota: number;
+            state: boolean;
+          }[];
+          /**
+           * Agency's exceptional scales types
+           */
+          exceptionalScales?: {
+            reference: number;
+            name: string;
+            workUnitTypes: {
+              reference: number;
+              name: string;
+              activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+            }[];
+            exceptionalRules: {
+              reference: number;
+              name: string;
+              priceExcludingTaxOrPriceRate: number;
+              grossCostOrSalaryRate: number;
+            }[];
+          }[];
+          exchangeRate?: number;
+          currency?: number;
+          allowAdvantagesOnProjects?: boolean;
+          allowExceptionalScalesOnProjects?: boolean;
+          /**
+           * List of closed periods
+           */
+          closedPeriods?: {
+            id: string;
+            parentType: "invoice" | "expensesreport" | "timesreport" | "project";
+            period: string;
+          }[];
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          title?: string;
+          startDate?: string;
+          endDate?: string;
+          calendar?: string;
+        };
+        relationships?: {
+          /**
+           * Delivery's project
+           */
+          project?: {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+          typeOf?: number;
+          mode?: number;
+          currency?: number;
+          exchangeRate?: number;
+          currencyAgency?: number;
+          exchangeRateAgency?: number;
+          workUnitRate?: number;
+        };
+        relationships?: {
+          /**
+           * Project's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          opportunity?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "opportunity";
+                };
+              };
+          /**
+           * Project's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          technical?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "opportunity";
+        attributes?: {
+          title?: string;
+          reference?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+        relationships?: {
+          /**
+           * Technical contact's company
+           */
+          company?: {
+            data: {
+              id: string;
+              type: "company";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+          exceptionalScales?: {
+            reference: number;
+            name: string;
+            workUnitTypes: {
+              reference: number;
+              name: string;
+              activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+            }[];
+            exceptionalRules: {
+              reference: number;
+              name: string;
+              priceExcludingTaxOrPriceRate: number;
+              grossCostOrSalaryRate: number;
+            }[];
+          }[];
+        };
+      }
+    | {
+        id: string;
+        type: "document";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contract";
+        attributes?: {
+          contractAverageDailyCost?: number;
+          startDate?: string;
+          endDate?: string;
+          monthlySalary?: number;
+          /**
+           * Can be updated only if `expensesDetails` is not empty
+           */
+          dailyExpenses?: number;
+          /**
+           * Can be updated only if `expensesDetails` is not empty
+           */
+          monthlyExpenses?: number;
+          currency?: number;
+          currencyAgency?: number;
+          exchangeRate?: number;
+          exchangeRateAgency?: number;
+        };
+      }
+    | {
+        id: string;
+        type: "purchase";
+        attributes?: {
+          title?: string;
+          reference?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contract";
+        attributes?: {
+          startDate?: string;
+          endDate?: string;
+          calendar?: string;
+        };
+        relationships?: {
+          /**
+           * Contract's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+        };
+      }
+  )[];
+}
+
+/**
+ * Delivery's rights
+ */
+export interface SchemasDeliveriesRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+        /**
+         * true if this action is available
+         */
+        addAdvantage?: boolean;
+        /**
+         * true if this action is available
+         */
+        addAdvantageType?: boolean;
+        /**
+         * true if this action is available
+         */
+        displayAdvantages?: boolean;
+        /**
+         * true if this action is available
+         */
+        transformIntoPurchase?: boolean;
+        /**
+         * true if this action is available
+         */
+        downloadDeliveryOrderPDF?: boolean;
+        /**
+         * true if this action is available
+         */
+        sendResourceMail?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+        /**
+         * true if this action is available
+         */
+        download?: boolean;
+        /**
+         * true if this action is available
+         */
+        replaceStandardprofile?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+        advantages?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+        tasks?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        averageDailyCost?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        averageDailyContractCost?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        averageWorkUnitPriceExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        dailyExpenses?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        monthlyExpenses?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        numberOfWorkingDays?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        weeklyWorkingHours?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        averageDailyPriceExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        averageHourlyPriceExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        contract?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "dependsOn.contracts"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        forceAverageHourlyPriceExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        forceAverageDailyPriceExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        expensesDetails?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        advantageTypes?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "dependsOn.agency.advantageTypes"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        exceptionalScales?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "exceptionalScales.exceptionalRules.grossCostOrSalaryRate"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "dependsOn.agency.exceptionalScales"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "project.company.exceptionalScales"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        numberOfDaysInvoicedOrQuantity?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        numberOfDaysFree?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        startDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        endDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        state?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        forceTransferCreation?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        slave?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        master?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        title?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        files?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "contract.monthlySalary"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "contract.dailyExpenses"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "contract.monthlyExpenses"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "dependsOn.contracts.monthlySalary"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "dependsOn.contracts.dailyExpenses"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "dependsOn.contracts.monthlyExpenses"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        turnoverSimulatedExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        costsSimulatedExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        marginSimulatedExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        profitabilitySimulated?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        subscriptionQuantityCharged?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        subscriptionQuantityFree?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        subscriptionPriceExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Deliveries tasks data
+ */
+export interface SchemasDeliveriesTasksJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "task";
+    attributes?: {
+      description?: string;
+      row?: number;
+      state?: boolean;
+      validatedAt?: number;
+      validatedBy?: {
+        id?: string;
+        firstName?: string;
+        lastName?: string;
+      };
+    };
+    relationships?: {
+      /**
+       * List of children tasks
+       */
+      children?: {
+        data: {
+          id: string;
+          type: "task";
+        }[];
+      };
+      /**
+       * Task's todolist
+       */
+      todolist?: {
+        data: {
+          id: string;
+          type: "todolist";
+        }[];
+      };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "task";
+        attributes?: {
+          description?: string;
+          row?: number;
+          state?: boolean;
+          validatedAt?: number;
+          validatedBy?: {
+            id?: string;
+            firstName?: string;
+            lastName?: string;
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "todolist";
+        attributes?: {
+          title?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Delivery's basic data sent in the body with a POST method
+ */
+export interface SchemasDeliveriesBodyPostJson {
+  data: {
+    type: "delivery";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      typeOf?: number;
+      state?: number;
+      /**
+       * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+       */
+      averageDailyPriceExcludingTax?: number;
+      forceAverageDailyPriceExcludingTax?: boolean;
+      subscriptionQuantityCharged?: number;
+      subscriptionQuantityFree?: number;
+      subscriptionPriceExcludingTax?: number;
+      averageDailyContractCost?: number;
+      numberOfDaysInvoicedOrQuantity?: number;
+      numberOfDaysFree?: number;
+      informationComments?: string;
+      conditions?: string;
+      dailyExpenses?: number;
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      weeklyWorkingHours?: number;
+      averageHourlyPriceExcludingTax?: number;
+      forceAverageHourlyPriceExcludingTax?: boolean;
+      /**
+       * Delivery's additional turnover and costs
+       */
+      additionalTurnoverAndCosts?: {
+        id: string;
+        date: string;
+        state: boolean;
+        /**
+         * True if user can write on additional turnover and costs
+         */
+        canWriteAdditionalTurnoverAndCosts?: boolean;
+        title: string;
+        turnoverExcludingTax: number;
+        costsExcludingTax: number;
+        typeOf: number;
+        purchase:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+              subscription: number;
+            };
+      }[];
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: (
+        | {
+            expenseType: {
+              reference: number;
+            };
+            periodicity: "daily" | "monthly";
+            netAmount: number;
+            /**
+             * Agency on which expenses detail depends
+             */
+            agency: {
+              id: string;
+            };
+          }
+        | {
+            id: string;
+            expenseType: {
+              reference: number;
+            };
+            periodicity: "daily" | "monthly";
+            netAmount: number;
+            /**
+             * Agency on which expenses detail depends
+             */
+            agency: {
+              id: string;
+            };
+          }
+      )[];
+      /**
+       * List of advantages
+       */
+      advantageTypes?: {
+        reference: number;
+        frequency?: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+        category?: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+        participationQuota?: number;
+        agencyQuota?: number;
+        employeeQuota?: number;
+        /**
+         * Agency on which advantage type depends
+         */
+        agency?: {
+          id: string;
+        };
+      }[];
+      /**
+       * List of exceptional scales
+       */
+      exceptionalScales?: {
+        reference: number;
+        exceptionalRules: {
+          reference: number;
+          priceExcludingTaxOrPriceRate: null | number;
+          grossCostOrSalaryRate: null | number;
+        }[];
+        dependsOn:
+          | {
+              id: string;
+              type: "agency";
+            }
+          | {
+              id: string;
+              type: "company";
+            };
+      }[];
+      calendar?: string;
+    };
+    relationships: {
+      /**
+       * Delivery's project
+       */
+      project: {
+        data: {
+          id: string;
+          type: "project";
+        };
+      };
+      dependsOn:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          };
+      /**
+       * Delivery's contract
+       */
+      contract?: {
+        data: {
+          id: string;
+          type: "contract";
+        };
+      };
+      /**
+       * Delivery's slave
+       */
+      slave?: {
+        data: {
+          id: string;
+          type: "delivery";
+        };
+      };
+      /**
+       * Delivery's groupment
+       */
+      groupment?: {
+        data: {
+          id: string;
+          type: "groupment";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Delivery's basic data sent in the body with a PUT method
+ */
+export interface SchemasDeliveriesBodyPutJson {
+  data: {
+    id: string;
+    type: "delivery";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      typeOf?: number;
+      state?: number;
+      /**
+       * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+       */
+      averageDailyPriceExcludingTax?: number;
+      forceAverageDailyPriceExcludingTax?: boolean;
+      subscriptionQuantityCharged?: number;
+      subscriptionQuantityFree?: number;
+      subscriptionPriceExcludingTax?: number;
+      averageDailyContractCost?: number;
+      numberOfDaysInvoicedOrQuantity?: number;
+      numberOfDaysFree?: number;
+      informationComments?: string;
+      conditions?: string;
+      dailyExpenses?: number;
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      weeklyWorkingHours?: number;
+      averageHourlyPriceExcludingTax?: number;
+      forceAverageHourlyPriceExcludingTax?: boolean;
+      /**
+       * Delivery's additional turnover and costs
+       */
+      additionalTurnoverAndCosts?: {
+        id: string;
+        date: string;
+        state: boolean;
+        /**
+         * True if user can write on additional turnover and costs
+         */
+        canWriteAdditionalTurnoverAndCosts?: boolean;
+        title: string;
+        turnoverExcludingTax: number;
+        costsExcludingTax: number;
+        typeOf: number;
+        purchase:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+              subscription: number;
+            };
+      }[];
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: (
+        | {
+            expenseType: {
+              reference: number;
+            };
+            periodicity: "daily" | "monthly";
+            netAmount: number;
+            /**
+             * Agency on which expenses detail depends
+             */
+            agency: {
+              id: string;
+            };
+          }
+        | {
+            id: string;
+            expenseType: {
+              reference: number;
+            };
+            periodicity: "daily" | "monthly";
+            netAmount: number;
+            /**
+             * Agency on which expenses detail depends
+             */
+            agency: {
+              id: string;
+            };
+          }
+      )[];
+      /**
+       * List of advantages
+       */
+      advantageTypes?: {
+        reference: number;
+        frequency?: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+        category?: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+        participationQuota?: number;
+        agencyQuota?: number;
+        employeeQuota?: number;
+        /**
+         * Agency on which advantage type depends
+         */
+        agency?: {
+          id: string;
+        };
+      }[];
+      /**
+       * List of exceptional scales
+       */
+      exceptionalScales?: {
+        reference: number;
+        exceptionalRules: {
+          reference: number;
+          priceExcludingTaxOrPriceRate: null | number;
+          grossCostOrSalaryRate: null | number;
+        }[];
+        dependsOn:
+          | {
+              id: string;
+              type: "agency";
+            }
+          | {
+              id: string;
+              type: "company";
+            };
+      }[];
+      calendar?: string;
+    };
+    relationships?: {
+      dependsOn?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      contract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+      slave?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          };
+    };
+  };
+}
+
+/**
+ * Delivery's data sent to these emails
+ */
+export interface SchemasDeliveriesSendJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "delivery";
+    attributes?: {
+      emails?: string[];
+    };
+  };
+}
+

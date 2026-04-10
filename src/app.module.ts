@@ -13,6 +13,7 @@ import { CandidatesModule } from "./modules/candidates/candidates.module.js";
 import { CompaniesModule } from "./modules/companies/companies.module.js";
 import { ContactsModule } from "./modules/contacts/contacts.module.js";
 import { DashboardsModule } from "./modules/dashboards/dashboards.module.js";
+import { DeliveriesModule } from "./modules/deliveries/deliveries.module.js";
 import { ExpensesModule } from "./modules/expenses/expenses.module.js";
 import { ExpensesReportsModule } from "./modules/expenses-reports/expenses-reports.module.js";
 import { InvoicesModule } from "./modules/invoices/invoices.module.js";
@@ -52,6 +53,7 @@ const DOMAIN_MODULES = [
   PurchasesModule,
   InvoicesModule,
   OrdersModule,
+  DeliveriesModule,
   ExpensesModule,
   ExpensesReportsModule,
   ProductsModule,

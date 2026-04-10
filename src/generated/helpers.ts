@@ -17,6 +17,7 @@ import type {
   SchemasCompaniesSearchJson,
   SchemasContactsSearchJson,
   SchemasDashboardsSearchJson,
+  SchemasDeliveriesProfileJson,
   SchemasExpensesReportsSearchJson,
   SchemasExpensesSearchJson,
   SchemasInvoicesSearchJson,
@@ -38,13 +39,13 @@ import type {
   SchemasWebhooksSearchJson,
 } from "./boond-schemas.js";
 
-/** Extract the attributes type from a generated search schema */
+/** Extract the attributes type from a generated search or profile schema */
 type ExtractAttributes<T> = T extends { data: Array<infer Item> }
-  ? Item extends { attributes: infer A }
-    ? A
+  ? Item extends { attributes?: infer A }
+    ? Exclude<A, undefined>
     : never
-  : T extends { data: { attributes: infer A } }
-    ? A
+  : T extends { data: { attributes?: infer A } }
+    ? Exclude<A, undefined>
     : never;
 
 // Core modules
@@ -89,6 +90,7 @@ export type BillingDetailAttributes = ExtractAttributes<SchemasBillingDetailsSea
 export type TimesReportAttributes = ExtractAttributes<SchemasTimesReportsSearchJson>;
 export type ProviderInvoiceAttributes = ExtractAttributes<SchemasProviderInvoicesSearchJson>;
 export type WebhookAttributes = ExtractAttributes<SchemasWebhooksSearchJson>;
+export type DeliveryAttributes = ExtractAttributes<SchemasDeliveriesProfileJson>;
 
 /**
  * Generic typed Boond list response.
