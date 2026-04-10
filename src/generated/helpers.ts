@@ -33,6 +33,7 @@ import type {
   SchemasGroupmentsProfileJson,
   SchemasInactivitiesProfileJson,
   SchemasInvoicesSearchJson,
+  SchemasInvoicingConnectionsSearchJson,
   SchemasMarketplaceSearchJson,
   SchemasNotificationsSearchJson,
   SchemasOpportunitiesSearchJson,
@@ -115,6 +116,8 @@ export type ContractAttributes = ExtractAttributes<SchemasContractsProfileJson>;
 export type ConditionalFieldAttributes = ExtractAttributes<SchemasConditionalFieldsSearchJson>;
 export type FlagAttributes = ExtractAttributes<SchemasFlagsSearchJson>;
 export type InactivityAttributes = ExtractAttributes<SchemasInactivitiesProfileJson>;
+export type InvoicingConnectionAttributes =
+  ExtractAttributes<SchemasInvoicingConnectionsSearchJson>;
 export type AdvantageAttributes = ExtractAttributes<SchemasAdvantagesProfileJson>;
 export type AlertAttributes = ExtractAttributes<SchemasAlertsSearchJson>;
 export type BankingTransactionAttributes = ExtractAttributes<SchemasBankingTransactionsSearchJson>;

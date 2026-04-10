@@ -29,6 +29,7 @@ import { FormsModule } from "./modules/forms/forms.module.js";
 import { GroupmentsModule } from "./modules/groupments/groupments.module.js";
 import { InactivitiesModule } from "./modules/inactivities/inactivities.module.js";
 import { InvoicesModule } from "./modules/invoices/invoices.module.js";
+import { InvoicingConnectionsModule } from "./modules/invoicing-connections/invoicing-connections.module.js";
 import { MarketplaceModule } from "./modules/marketplace/marketplace.module.js";
 import { McpExtrasModule } from "./modules/mcp-extras/mcp-extras.module.js";
 import { NotificationsModule } from "./modules/notifications/notifications.module.js";
@@ -73,6 +74,7 @@ const DOMAIN_MODULES = [
   PositioningsModule,
   PurchasesModule,
   InvoicesModule,
+  InvoicingConnectionsModule,
   OrdersModule,
   DeliveriesModule,
   ExpensesModule,

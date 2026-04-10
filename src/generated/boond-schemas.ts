@@ -25855,3 +25855,268 @@ export interface SchemasTechnicalDatasVisitorAccessJson {
   }[];
 }
 
+
+// ─── invoicingConnections ───
+/**
+ * List of invoicing connectors
+ */
+export interface SchemasInvoicingConnectionsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "invoicingconnection";
+    attributes?: {
+      code?: string;
+      name?: string;
+      country?: string;
+      taxNumber?: string;
+      cinNumber?: string;
+      cinScheme?: string;
+      /**
+       * true if connector is validated
+       */
+      validated?: boolean;
+      /**
+       * true if connector is disabled
+       */
+      disabled?: boolean;
+      /**
+       * true if reception is enabled (purchase module enable for this customer
+       */
+      canEnableReception?: boolean;
+      /**
+       * List of channels
+       */
+      channels?: {
+        code?: string;
+        typeOf?: string;
+        configuration?: {
+          [k: string]: unknown;
+        };
+        /**
+         * true if connector is disabled
+         */
+        disabled?: boolean;
+        /**
+         * true if connector is validated
+         */
+        validated?: boolean;
+      }[];
+    };
+    relationships?: {
+      /**
+       * Connector agencies
+       */
+      agencies?: {
+        data: {
+          id: string;
+          type: "agency";
+        }[];
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "agency";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * Invoicing connector basic data
+ */
+export interface SchemasInvoicingConnectionsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "invoicingconnection";
+    attributes?: {
+      code?: string;
+      taxNumber?: string;
+      cinNumber?: string;
+      cinScheme?: string;
+      name?: string;
+      address?: string;
+      postcode?: string;
+      town?: string;
+      province?: string;
+      country?: string;
+      email?: string;
+      phone?: string;
+      /**
+       * true if connector is validated
+       */
+      validated?: boolean;
+      /**
+       * true if connector is disabled
+       */
+      disabled?: boolean;
+      /**
+       * List of channels
+       */
+      channels?: {
+        code?: string;
+        typeOf?: string;
+        configuration?: {
+          [k: string]: unknown;
+        };
+        /**
+         * true if connector is disabled
+         */
+        disabled?: boolean;
+        /**
+         * true if connector is validated
+         */
+        validated?: boolean;
+      }[];
+      /**
+       * true if reception is enabled (purchase module enable for this customer
+       */
+      canEnableReception?: boolean;
+    };
+    relationships?: {
+      /**
+       * Connector agencies
+       */
+      agencies?: {
+        data: {
+          id: string;
+          type: "agency";
+        }[];
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "agency";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * Invoicing connector data sent in the body with a PUT method
+ */
+export interface SchemasInvoicingConnectionsBodyPostJson {
+  data: {
+    id: string;
+    type: "invoicingconnection";
+    attributes?: {
+      name: string;
+      code: string;
+      taxNumber: string;
+      address: string;
+      postcode: string;
+      town: string;
+      country: string;
+      province: string;
+      email: string;
+      phone: string;
+      /**
+       * true if connector is disabled
+       */
+      disabled?: boolean;
+      /**
+       * List of channels
+       */
+      channels: {
+        code?: string;
+        typeOf?: string;
+        configuration?: {
+          [k: string]: unknown;
+        };
+        /**
+         * true if connector is disabled
+         */
+        disabled?: boolean;
+        /**
+         * true if connector is validated
+         */
+        validated?: boolean;
+      }[];
+    };
+    relationships?: {
+      /**
+       * Invoicing connector's agencies
+       */
+      agencies: {
+        data: {
+          id: string;
+          type: "agency";
+        }[];
+      };
+    };
+  };
+}
+
+/**
+ * Invoicing connector data sent in the body with a PUT method
+ */
+export interface SchemasInvoicingConnectionsBodyPutJson {
+  data: {
+    id: string;
+    type: "invoicingconnection";
+    attributes?: {
+      name: string;
+      address: string;
+      postcode: string;
+      town: string;
+      country: string;
+      province: string;
+      email: string;
+      phone: string;
+      /**
+       * true if connector is disabled
+       */
+      disabled?: boolean;
+    };
+    relationships?: {
+      /**
+       * Invoicing connector's agencies
+       */
+      agencies: {
+        data: {
+          id: string;
+          type: "agency";
+        }[];
+      };
+    };
+  };
+}
+
