@@ -1,0 +1,3939 @@
+[
+  {
+    "parent": {
+      "name": "/absences-reports",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/absences-reports/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/absences-reports/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/absences-reports/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/absences-reports/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/absences-reports/{id}/validate",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/absences-reports/{id}/unvalidate",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/absences-reports/{id}/reject",
+        "verbs": [
+          "POST"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/accounts",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/accounts/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/accounts/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/accounts/{id}/connect",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/actions",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/actions/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/actions/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/actions/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/actions/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/actions/templates",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/actions/templates/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/administrator",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "children": [
+      {
+        "name": "/administrator/logo",
+        "verbs": [
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/advantages",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/advantages/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/advantages/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/advantages/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/agencies",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/agencies/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/agencies/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/activity-expenses",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/activity-expenses/logo",
+        "verbs": [
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/billing",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/billing/logo",
+        "verbs": [
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/opportunities",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/projects",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/purchases",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/products",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/resources",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/agencies/{id}/technical-data",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/alerts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "children": [
+      {
+        "name": "/alerts/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/alerts/{id}/values",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/apps",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "children": [
+      {
+        "name": "/apps/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/{appCode}/install",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/{appCode}/uninstall",
+        "verbs": [
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/{appId}/entities",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/{appId}/entities/dependson",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/{appId}/entities/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/{appId}/entities/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/{appId}/entities/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/{appId}/entities/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/{appId}/entities/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/absences-accounts",
+        "verbs": []
+      },
+      {
+        "name": "/apps/absences-accounts/absences-accounts",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/absences-accounts/absences-accounts/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/absences-accounts/import/absences-accounts",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/accounting-payroll",
+        "verbs": []
+      },
+      {
+        "name": "/apps/accounting-payroll/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/accounting-payroll/companies",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/accounting-payroll/companies/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/accounting-payroll/resources",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/accounting-payroll/resources/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/accounting-payroll/expenses-reports",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/accounting-payroll/invoices",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/accounting-payroll/payments",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/accounting-payroll/contracts",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/advanced-candidates",
+        "verbs": []
+      },
+      {
+        "name": "/apps/advanced-candidates/resources/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/advanced-candidates/candidates",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/advanced-candidates/candidates/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/advanced-candidates/candidates/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/advanced-candidates/candidates/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/advanced-candidates/candidates/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/advanced-candidates/candidates/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/advanced-projects",
+        "verbs": []
+      },
+      {
+        "name": "/apps/advanced-projects/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/advanced-projects/projects",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/advanced-projects/projects/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/advantages",
+        "verbs": []
+      },
+      {
+        "name": "/apps/advantages/advantages",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/answering-validators",
+        "verbs": []
+      },
+      {
+        "name": "/apps/answering-validators/answering-machines",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/answering-validators/answering-machines/{id}",
+        "verbs": [
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/backup-database",
+        "verbs": []
+      },
+      {
+        "name": "/apps/backup-database/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/backup-database/dump-database",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/celebrations",
+        "verbs": []
+      },
+      {
+        "name": "/apps/celebrations/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/celebrations/employees/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/celebrations/employees/birthday",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/celebrations/employees/seniority",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/celebrations/employees/arrival",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/contracts",
+        "verbs": []
+      },
+      {
+        "name": "/apps/contracts/contracts",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/corporama",
+        "verbs": []
+      },
+      {
+        "name": "/apps/corporama/configuration",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/digital-workplace",
+        "verbs": []
+      },
+      {
+        "name": "/apps/digital-workplace/categories",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/digital-workplace/categories/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/digital-workplace/news",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/digital-workplace/news/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/digital-workplace/documents",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/digital-workplace/documents/viewer",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/digital-workplace/documents/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/create-activity-documents",
+        "verbs": []
+      },
+      {
+        "name": "/apps/create-activity-documents/resources/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/data-closing",
+        "verbs": []
+      },
+      {
+        "name": "/apps/data-closing/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/data-closing/closed-periods",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/data-closing/closed-periods/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/data-closing/times-reports",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/data-closing/times-reports/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/data-closing/invoices",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/data-closing/invoices/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/data-closing/expenses-reports",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/data-closing/expenses-reports/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/doc-templates",
+        "verbs": []
+      },
+      {
+        "name": "/apps/doc-templates/configuration",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/doc-templates/templates",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/doc-templates/templates/viewer",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/doc-templates/templates/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/emailing",
+        "verbs": []
+      },
+      {
+        "name": "/apps/emailing/absencesreports/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/candidates/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/emailing/configuration/connection",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/contacts/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/expensesreports/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/invoices/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/positionings/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/quotations/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/resources/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/resources/{id}/connection",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/resources/{id}/settings",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/emailing/templates",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/emailing/templates/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/emailing/templates/last-used",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/timesreports/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/emailing/share",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/esignature",
+        "verbs": []
+      },
+      {
+        "name": "/apps/esignature/esignatures",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/esignature/esignatures/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/esignature/candidates/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/esignature/esignatures/{id}/cancel",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/exceptional-activity",
+        "verbs": []
+      },
+      {
+        "name": "/apps/exceptional-activity/companies",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/exceptional-activity/times",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/exceptional-activity/times/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/extractbi",
+        "verbs": []
+      },
+      {
+        "name": "/apps/extractbi/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/extractbi/templates",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/extractbi/templates/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/extractbi/templates/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/extractbi/requests",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/extractbi/requests/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/extractbi/requests/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/extractbi/test",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/extract-payroll",
+        "verbs": []
+      },
+      {
+        "name": "/apps/extract-payroll/resources/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/extract-payroll/contracts",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/extract-payroll/contracts/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/gcalendar",
+        "verbs": []
+      },
+      {
+        "name": "/apps/gcalendar/resources/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/gcalendar/get-event",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/gcalendar/update-event",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/gcalendar/remove-event",
+        "verbs": [
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/gcalendar/notifications-events",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/gmail",
+        "verbs": []
+      },
+      {
+        "name": "/apps/gmail/resources/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/gmail/mails",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/gmail/mails/{idMail}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/gviewer",
+        "verbs": []
+      },
+      {
+        "name": "/apps/gviewer/resources/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/gviewer/url-documents",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/gviewer/download/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/hrflow",
+        "verbs": []
+      },
+      {
+        "name": "/apps/hrflow/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/hrflow/resumes",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/hour-accounts",
+        "verbs": []
+      },
+      {
+        "name": "/apps/hour-accounts/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/hour-accounts/resources/{id}",
+        "verbs": []
+      },
+      {
+        "name": "/apps/hour-accounts/resources/{id}/settings",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/hour-accounts/resources/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/hour-accounts/houraccounts/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/hour-accounts/houraccounts/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/hour-accounts/houraccounts",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/intranet-accounts",
+        "verbs": []
+      },
+      {
+        "name": "/apps/intranet-accounts/resources",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/intranet-accounts/resources/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/markers",
+        "verbs": []
+      },
+      {
+        "name": "/apps/markers/markers",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/microsoft",
+        "verbs": []
+      },
+      {
+        "name": "/apps/microsoft/resources/{id}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/get-event",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/update-event",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/remove-event",
+        "verbs": [
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/gadget",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/manifest",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/extra-id",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/mails",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/mails/{idMail}",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/events/{idEvent}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/microsoft/events/{idEvent}/find",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/organization-charts",
+        "verbs": []
+      },
+      {
+        "name": "/apps/organization-charts/nodes",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/organization-charts/nodes/{id}",
+        "verbs": [
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/organization-charts/orgcharts",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/organization-charts/orgcharts/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/organization-charts/settings",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/organization-charts/settings/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/plan-production",
+        "verbs": []
+      },
+      {
+        "name": "/apps/plan-production/resources",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/post-production",
+        "verbs": []
+      },
+      {
+        "name": "/apps/post-production/resources/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/post-production/projects",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/post-production/projects/{id}",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/quotations",
+        "verbs": []
+      },
+      {
+        "name": "/apps/quotations/quotations",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/quotations/quotations/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/quotations/quotations/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/apps/quotations/quotations/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/quotations/quotations/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/quotations/quotations/{id}/send",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/quotations/quotations/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/resource-planner",
+        "verbs": []
+      },
+      {
+        "name": "/apps/resource-planner/resources/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/resource-planner/resources/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/resource-planner/projects/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/resource-planner/projects/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/saas-editor",
+        "verbs": []
+      },
+      {
+        "name": "/apps/saas-editor/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/saas-editor/reporting",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/sepa",
+        "verbs": []
+      },
+      {
+        "name": "/apps/sepa/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/sepa/companies/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/sepa/contracts",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/sepa/contracts/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/sepa/invoices",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/sepa/orders",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/sepa/orders/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/sepa/purchases",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/sepa/payments",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/sepa/purchases/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/sepa/import/transfers",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/sepa/import/contracts",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/sepa/import/orders",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/sepa/import/purchases",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/apps/special-reporting",
+        "verbs": []
+      },
+      {
+        "name": "/apps/special-reporting/reporting",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/survey",
+        "verbs": []
+      },
+      {
+        "name": "/apps/survey/configuration",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/survey/satisfactions",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/survey/satisfaction-indicators",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/apps/survey/enquiries/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/apps/survey/enquiries/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/banking-transactions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "children": [
+      {
+        "name": "/banking-transactions/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/billing-details",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/billing-details/analyze",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/billing-details/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/business-units",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/business-units/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/business-units/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/calendars",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "children": [
+      {
+        "name": "/calendars/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/calendars/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/candidates",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/candidates/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/candidates/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/administrative",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/technical-data",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/technical-datas",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/actions",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/positionings",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/merge",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/ai/matching",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/candidates/{id}/ai/summary",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/companies",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/companies/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/companies/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/companies/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/contacts",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/actions",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/opportunities",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/projects",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/purchases",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/provider-invoices",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/orders",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/invoices",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/settings",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/companies/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/companies/{id}/merge",
+        "verbs": [
+          "POST"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/conditional-fields",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/conditional-fields/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/conditional-fields/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/contacts",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/contacts/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/actions",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/opportunities",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/projects",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/purchases",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/orders",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/invoices",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contacts/{id}/merge",
+        "verbs": [
+          "POST"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/contracts",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/contracts/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contracts/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/contracts/{id}/advantages",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contracts/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contracts/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/contracts/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/dashboards",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/dashboards/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/deliveries",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/deliveries/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/deliveries/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/deliveries/{id}/advantages",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/deliveries/{id}/delivery-order-download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/deliveries/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/deliveries/{id}/send",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/deliveries/{id}/renew",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/deliveries/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/devices/{id}",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    "children": [
+      {
+        "name": "/devices/{id}/session",
+        "verbs": [
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/documents",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/documents/viewer",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/documents/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/download-center",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "children": [
+      {
+        "name": "/download-center/{perimeterManager}/{folder}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/download-center/{perimeterManager}/{folder}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/download-center/{perimeterManager}/{folder}/visitor-access",
+        "verbs": [
+          "POST",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/download-center/{perimeterManager}/{folder}/{file}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/expenses-reports",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/expenses-reports/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/expenses-reports/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/expenses-reports/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/expenses-reports/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/expenses-reports/{id}/pay",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/expenses-reports/{id}/validate",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/expenses-reports/{id}/unvalidate",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/expenses-reports/{id}/reject",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/expenses-reports/{id}/certification",
+        "verbs": [
+          "POST"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/flags",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/flags/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/followed-documents",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/followed-documents/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/followed-documents/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/followed-documents/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/forms",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/forms/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/forms/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/forms/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/forms/{id}/remind",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/forms/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/forms/templates",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/forms/templates/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/forms/templates/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/groupments",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/groupments/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/groupments/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/groupments/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/groupments/duplicate",
+        "verbs": [
+          "POST"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/import",
+      "verbs": []
+    },
+    "children": [
+      {
+        "name": "/import/actions",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/import/opportunities",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/import/candidates",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/import/resources",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/import/contacts",
+        "verbs": [
+          "POST"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/inactivities",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/inactivities/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/inactivities/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/inactivities/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/invoices",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/invoices/cart",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/invoices/bulk-send",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/invoices/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/invoices/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/actions",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/billable-items",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/send",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/adjust",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/check",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/invoices/{id}/preview",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/invoicing-connections",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/invoicing-connections/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/logs",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "children": [
+      {
+        "name": "/logs/{id}",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/mandatory-leave",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/mandatory-leave/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/mandatory-leave/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/mandatory-leave/{id}/resources",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/mandatory-leave/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/marketplace",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/marketplace/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/marketplace/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/marketplace/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/marketplace/{id}/install",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/marketplace/{id}/validate",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/marketplace/{id}/uninstall",
+        "verbs": [
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/marketplace/{id}/logo",
+        "verbs": [
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/marketplace/{id}/publish",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/marketplace/{id}/translations",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/marketplace/{appCode}/configure",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/marketplace/refresh-token",
+        "verbs": [
+          "POST"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/notifications",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "children": [
+      {
+        "name": "/notifications/{id}",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/notifications/markas",
+        "verbs": [
+          "PUT"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/opportunities",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/opportunities/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/simulation",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/positionings",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/actions",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/projects",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/opportunities/{id}/ai/matching",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/orders",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/orders/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/orders/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/orders/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/orders/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/orders/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/orders/{id}/invoices",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/orders/{id}/actions",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/orders/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/orders/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/payments",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/payments/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/payments/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/payments/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/payments/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/positionings",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/positionings/bulk-update",
+        "verbs": [
+          "PUT"
+        ]
+      },
+      {
+        "name": "/positionings/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/positionings/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/positionings/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/positionings/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/products",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/products/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/products/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/products/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/products/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/products/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/products/{id}/opportunities",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/products/{id}/projects",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/products/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/projects",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/projects/carts",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/carts/widgets",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/projects/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/projects/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/{id}/batches-markers",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/projects/{id}/actions",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/{id}/simulation",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/projects/{id}/deliveries-groupments",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/{id}/advantages",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/{id}/purchases",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/{id}/productivity",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/{id}/orders",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/projects/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/provider-invoices",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/provider-invoices/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/provider-invoices/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/provider-invoices/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/provider-invoices/{id}/activity-expenses",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/purchases",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/purchases/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/purchases/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/purchases/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/purchases/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/purchases/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/purchases/{id}/simulation",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/purchases/{id}/payments",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/purchases/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/purchases/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/resources",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/resources/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/resources/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/information",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/attached-flags",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/administrative",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/advantages",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/followed-documents",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/technical-data",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/technical-datas",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/actions",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/positionings",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/deliveries-inactivities",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/projects",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/provider-invoices",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/times-reports",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/expenses-reports",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/absences-reports",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/absences-accounts",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/dashboards",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/intranet",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/targets",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/security",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/absences-accounts",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/alerts",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/alerts/reset",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/groups",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/reporting",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/notifications",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/settings/positioning-suggests",
+        "verbs": [
+          "GET",
+          "PUT"
+        ]
+      },
+      {
+        "name": "/resources/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/tasks",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/forms",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/ai/matching",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/resources/{id}/ai/summary",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/roles",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/roles/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/roles/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/roles/templates",
+        "verbs": [
+          "GET",
+          "POST"
+        ]
+      },
+      {
+        "name": "/roles/templates/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/roles/templates/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/savedsearches",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/savedsearches/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/sandbox",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/sandbox/connect",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/share",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/share/default",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/standard-profiles",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/standard-profiles/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/standard-profiles/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/standard-profiles/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/subscription",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    "children": [
+      {
+        "name": "/subscription/invoices",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/subscription/invoices/{id}",
+        "verbs": []
+      },
+      {
+        "name": "/subscription/invoices/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/targets",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/targets/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/tasks/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    "children": [
+      {
+        "name": "/tasks/{id}/check",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/tasks/{id}/uncheck",
+        "verbs": [
+          "POST"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/technical-datas",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/technical-datas/visitor-access",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/technical-datas/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/technical-datas/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/technical-datas/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/technical-datas/{id}/applyresume",
+        "verbs": [
+          "PUT"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/threads",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/threads/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/threads/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/times-reports",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/times-reports/default",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/times-reports/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      },
+      {
+        "name": "/times-reports/{id}/rights",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/times-reports/{id}/download",
+        "verbs": [
+          "GET"
+        ]
+      },
+      {
+        "name": "/times-reports/{id}/validate",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/times-reports/{id}/unvalidate",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/times-reports/{id}/reject",
+        "verbs": [
+          "POST"
+        ]
+      },
+      {
+        "name": "/times-reports/{id}/signature",
+        "verbs": [
+          "POST"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/thumbnails",
+      "verbs": [
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/thumbnails/{id}",
+        "verbs": [
+          "GET",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/todolists",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/todolists/default",
+        "verbs": []
+      },
+      {
+        "name": "/todolists/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/validations",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/validations/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/vendor",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    "children": [
+      {
+        "name": "/vendor/logo",
+        "verbs": [
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  },
+  {
+    "parent": {
+      "name": "/webhooks",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    "children": [
+      {
+        "name": "/webhooks/{id}",
+        "verbs": [
+          "GET",
+          "PUT",
+          "DELETE"
+        ]
+      }
+    ]
+  }
+]
