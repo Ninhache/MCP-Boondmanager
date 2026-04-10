@@ -40,6 +40,7 @@ import { ResourcesModule } from "./modules/resources/resources.module.js";
 import { RolesModule } from "./modules/roles/roles.module.js";
 import { SavedSearchesModule } from "./modules/savedsearches/savedsearches.module.js";
 import { TargetsModule } from "./modules/targets/targets.module.js";
+import { ThreadsModule } from "./modules/threads/threads.module.js";
 import { TimesModule } from "./modules/times/times.module.js";
 import { TimesReportsModule } from "./modules/times-reports/times-reports.module.js";
 import { TodolistsModule } from "./modules/todolists/todolists.module.js";
@@ -94,6 +95,7 @@ const DOMAIN_MODULES = [
   DocumentsModule,
   SavedSearchesModule,
   TodolistsModule,
+  ThreadsModule,
   WebhooksModule,
   // MCP Prompts and Resources
   McpExtrasModule,

@@ -21505,3 +21505,845 @@ export interface SchemasTodolistsBodyPutJson {
   };
 }
 
+
+// ─── threads ───
+/**
+ * List of threads
+ */
+export interface SchemasThreadsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "thread";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      text?: string;
+      share?: boolean;
+      numberOfAnswers?: number;
+    };
+    relationships?: {
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "action";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "order";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "invoice";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "payment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "positioning";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "absencesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "advantage";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "inactivity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "quotation";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "appentity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "form";
+            };
+          };
+      /**
+       * List of managers mentioned
+       */
+      mentions?: {
+        data: {
+          id?: string;
+          type?: "resource";
+        }[];
+      };
+      parentThread?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "thread";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          thumbnail?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Thread's basic data
+ */
+export interface SchemasThreadsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "thread";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      text?: string;
+      share?: boolean;
+      numberOfAnswers?: number;
+    };
+    relationships?: {
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "action";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "order";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "invoice";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "payment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "positioning";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "absencesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "advantage";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "inactivity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "quotation";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "appentity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "form";
+            };
+          };
+      /**
+       * List of managers mentioned
+       */
+      mentions?: {
+        data: {
+          id?: string;
+          type?: "resource";
+        }[];
+      };
+      parentThread?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "thread";
+            };
+          };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          thumbnail?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Thread's basic data
+ */
+export interface SchemasThreadsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    enum?: ["0"];
+    type: "thread";
+    attributes?: {
+      text?: string;
+      share?: boolean;
+    };
+    relationships?: {
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "action";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "order";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "invoice";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "payment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "positioning";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "absencesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "advantage";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "thread";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "inactivity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "quotation";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "appentity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "form";
+            };
+          };
+    };
+  };
+}
+
+/**
+ * Thread basic data sent in the body with a POST method
+ */
+export interface SchemasThreadsBodyPostJson {
+  data?: {
+    type?: "thread";
+    attributes?: {
+      text?: string;
+      share?: boolean;
+    };
+    relationships?: {
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      dependsOn:
+        | {
+            data: {
+              id: string;
+              type: "action";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              properties?: {
+                [k: string]: unknown;
+              };
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "order";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "invoice";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "payment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "positioning";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "absencesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "advantage";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "thread";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "inactivity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "quotation";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "appentity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "form";
+            };
+          };
+      /**
+       * List of managers mentioned
+       */
+      mentions?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      parentThread?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "thread";
+            };
+          };
+    };
+    required?: ["type", "attributes", "relationships"];
+    additionalProperties?: never;
+  };
+  required?: ["data"];
+  additionalProperties?: never;
+}
+
+/**
+ * Thread basic data sent in the body with a PUT method
+ */
+export interface SchemasThreadsBodyPutJson {
+  data: {
+    id?: string;
+    type: "thread";
+    attributes?: {
+      text?: string;
+    };
+    relationships?: {
+      /**
+       * List of managers mentioned
+       */
+      mentions?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+    };
+  };
+}
+
