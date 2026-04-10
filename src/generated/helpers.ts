@@ -10,6 +10,7 @@ import type {
   SchemasAccountsSearchJson,
   SchemasActionsSearchJson,
   SchemasAgenciesSearchJson,
+  SchemasBusinessUnitsSearchJson,
   SchemasCalendarsSearchJson,
   SchemasCandidatesSearchJson,
   SchemasCompaniesSearchJson,
@@ -77,6 +78,7 @@ export type ContactAttributes = ExtractAttributes<SchemasContactsSearchJson>;
 
 // Phase 5: workflow report modules
 export type AbsencesReportAttributes = ExtractAttributes<SchemasAbsencesReportsSearchJson>;
+export type BusinessUnitAttributes = ExtractAttributes<SchemasBusinessUnitsSearchJson>;
 
 /**
  * Generic typed Boond list response.
