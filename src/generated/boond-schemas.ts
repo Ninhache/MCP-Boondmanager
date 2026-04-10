@@ -26120,3 +26120,263 @@ export interface SchemasInvoicingConnectionsBodyPutJson {
   };
 }
 
+
+// ─── subscription ───
+/**
+ * Subscription's information data
+ */
+export interface SchemasSubscriptionProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "customer";
+    attributes?: {
+      numberOfAllowedManagers?: number;
+      numberOfAllowedResources?: number;
+      numberOfAllowedAccounts?: number;
+      numberOfActivatedManagers?: number;
+      numberOfActivatedResources?: number;
+      numberOfActivatedAccounts?: number;
+      numberOfChargedManagers?: number;
+      numberOfChargedResources?: number;
+      numberOfChargedAccounts?: number;
+      numberOfFreeManagers?: number;
+      numberOfFreeResources?: number;
+      numberOfFreeAccounts?: number;
+      numberOfAllowedResourcesPerManager?: number;
+      numberOfMonthlyEsignatureAllowedPerAccount?: number;
+      numberOfMonthlyEsignatureAllowed?: number;
+      numberOfMonthlyEsignatureUsedThisMonth?: number;
+      numberOfMonthlyAiRequestsAllowedPerAccount?: number;
+      numberOfMonthlyAiRequestsAllowed?: number;
+      numberOfMonthlyAiRequestsUsedThisMonth?: number;
+      numberOfMonthlyApiRequestsAllowedPerAccount?: number;
+      numberOfMonthlyApiRequestsAllowed?: number;
+      numberOfMonthlyApiRequestsUsedThisMonth?: number;
+      numberOfAllowedAppsNoCode?: number;
+      numberOfUsedAppsNoCode?: number;
+      priceExcludingTaxPerAllowedManager?: number;
+      priceExcludingTaxPerAllowedResource?: number;
+      priceExcludingTaxPerAllowedAccount?: number;
+      pricingType?: "custom" | "scheduleCustom" | "manager" | "scheduleManager" | "account" | "scheduleAccount";
+      discountRate?: number;
+      discountRateResources?: number;
+      allowOverlapEsignature?: boolean;
+      allowOverlapAi?: boolean;
+      allowOverlapApi?: boolean;
+      allowOverlapAppsNoCode?: boolean;
+      amountExcludingTaxOverlapEsignature?: number;
+      amountExcludingTaxOverlapAi?: number;
+      amountExcludingTaxOverlapApi?: number;
+      totalAmountExcludingTax?: number;
+      isDeliveryManagerSynchronized?: boolean;
+      isDeliveryResourceSynchronized?: boolean;
+      isDeliveryAccountSynchronized?: boolean;
+      isOverlapped?: boolean;
+      /**
+       * list of additional products
+       */
+      additionalProducts?: string[];
+      /**
+       * list of periods
+       */
+      consumption?: {
+        period: string;
+        esignature: number;
+        ai: number;
+        api: number;
+        backupdatabase: number;
+        readdatabase: number;
+        einvoicing: number;
+        extractbi: number;
+      }[];
+      numberOfMonthlyExtractBiAllowedPerAccount?: number;
+      numberOfMonthlyExtractBiAllowed?: number;
+      numberOfMonthlyExtractBiUsedThisMonth?: number;
+      numberOfMonthlyReadDatabaseAllowedPerAccount?: number;
+      numberOfMonthlyReadDatabaseAllowed?: number;
+      numberOfMonthlyReadDatabaseUsedThisMonth?: number;
+      numberOfMonthlyEinvoicingAllowedPerAccount?: number;
+      numberOfMonthlyEinvoicingAllowed?: number;
+      numberOfMonthlyEinvoicingUsedThisMonth?: number;
+      numberOfMonthlyBackupDatabaseAllowed?: number;
+      numberOfMonthlyBackupDatabaseUsedThisMonth?: number;
+      numberOfAllowedAgencies?: number;
+      numberOfAllowedDocTemplatesHr?: number;
+      numberOfAllowedDocTemplatesOthers?: number;
+      numberOfUsedDocTemplates?: {
+        candidate?: number;
+        resource?: number;
+        contract?: number;
+        invoice?: number;
+        creditnote?: number;
+        quotation?: number;
+        administrative?: number;
+        opportunity?: number;
+        delivery?: number;
+        deliveryOrder?: number;
+        order?: number;
+        purchase?: number;
+      };
+      numberOfAllowedTechnicalDatasPerProfile?: number;
+      amountExcludingTaxOverlapExtractBi?: number;
+      amountExcludingTaxOverlapReadDatabase?: number;
+      amountExcludingTaxOverlapBackupDatabase?: number;
+      amountExcludingTaxOverlapEinvoicing?: number;
+      allowOverlapExtractBi?: boolean;
+      allowOverlapReadDatabase?: boolean;
+      allowOverlapBackupDatabase?: boolean;
+      allowOverlapEinvoicing?: boolean;
+      allowOverlapAgencies?: boolean;
+      allowOverlapDocTemplatesHr?: boolean;
+      allowOverlapDocTemplatesOthers?: boolean;
+      allowOverlapTechnicalDatas?: boolean;
+      numberOfUsedAgencies?: number;
+      modules?: {
+        downloadCenter?: boolean;
+        intranet?: boolean;
+        resources?: boolean;
+        projects?: boolean;
+        opportunities?: boolean;
+        candidates?: boolean;
+        crm?: boolean;
+        activityExpenses?: boolean;
+        billing?: boolean;
+        products?: boolean;
+        purchases?: boolean;
+        appsNoCode?: boolean;
+        advancedBi?: boolean;
+        artificialIntelligence?: boolean;
+        banking?: boolean;
+        labs?: boolean;
+        standardProfiles?: boolean;
+        eInvoicing?: boolean;
+        sandbox?: boolean;
+        matchingAi?: boolean;
+        parsingAi?: boolean;
+        enrichmentAi?: boolean;
+        jamesAi?: boolean;
+        conditionalFields?: boolean;
+        appExtractBi?: boolean;
+        appDataClosing?: boolean;
+        appAccountingPayroll?: boolean;
+        appSepa?: boolean;
+        appBackupDatabase?: boolean;
+        appDocTemplates?: boolean;
+        readDatabase?: boolean;
+        appESignature?: boolean;
+        multiTd?: boolean;
+        tdCustomization?: boolean;
+        validationsAlerts?: boolean;
+        createIntranetRoles?: boolean;
+        core?: boolean;
+        advance?: boolean;
+        business?: boolean;
+        enterprise?: boolean;
+      };
+    };
+    relationships?: {
+      offer?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "offer";
+            };
+          };
+    };
+  };
+  included?: {
+    id: string;
+    type: "offer";
+    attributes?: {
+      name?: string;
+      /**
+       * list of additional products
+       */
+      additionalProducts?: {
+        quota: number;
+        typeOf: "api" | "ai" | "backupdatabase" | "esignature" | "appsnocode" | "extractbi" | "sandbox";
+        amountExcludingTax: number;
+      }[];
+      amountExcludingTaxPerAccount?: number;
+      amountExcludingTaxPerManager?: number;
+      amountExcludingTaxPerResource?: number;
+      amountExcludingTaxOverlapApi?: number;
+      amountExcludingTaxOverlapAi?: number;
+      amountExcludingTaxOverlapEsignature?: number;
+      startAmountExcludingScheduleAccounts?: number;
+      endAmountExcludingScheduleAccounts?: number;
+      startAmountExcludingScheduleManagers?: number;
+      endAmountExcludingScheduleManagers?: number;
+      startAmountExcludingScheduleResources?: number;
+      endAmountExcludingScheduleResources?: number;
+      /**
+       * list of accounts schedules
+       */
+      rangesScheduleAccounts?: {
+        startLevel: number;
+        endLevel: number;
+        step: number;
+        decreaseAmountExcludingTax: number;
+      }[];
+      /**
+       * list of managers schedules
+       */
+      rangesScheduleManagers?: {
+        startLevel: number;
+        endLevel: number;
+        step: number;
+        decreaseAmountExcludingTax: number;
+      }[];
+      /**
+       * list of intranets schedules
+       */
+      rangesScheduleResources?: {
+        startLevel: number;
+        endLevel: number;
+        step: number;
+        decreaseAmountExcludingTax: number;
+      }[];
+      amountExcludingTaxOverlapExtractBi?: number;
+      amountExcludingTaxOverlapReadDatabase?: number;
+      amountExcludingTaxOverlapBackupDatabase?: number;
+      amountExcludingTaxOverlapEinvoicing?: number;
+    };
+  }[];
+}
+
+/**
+ * Subscription's basic data sent in the body with a PUT method
+ */
+export interface SchemasSubscriptionBodyPutJson {
+  data: {
+    id?: string;
+    type: "customer";
+    attributes: {
+      numberOfAllowedManagers?: number;
+      numberOfAllowedResources?: number;
+      numberOfAllowedAccounts?: number;
+      /**
+       * list of additional products
+       */
+      additionalProducts?: string[];
+    };
+  };
+}
+
