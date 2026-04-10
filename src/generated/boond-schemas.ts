@@ -5702,3 +5702,225 @@ export interface SchemasAbsencesReportsRejectPostJson {
       | "definitiveRefusal";
   };
 }
+
+// ─── businessUnits ───
+/**
+ * List of business units
+ */
+export interface SchemasBusinessUnitsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "businessunit";
+    attributes?: {
+      name?: string;
+    };
+    relationships?: {
+      /**
+       * Business unit's managers
+       */
+      includedManagers?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "resource";
+    attributes?: {
+      firstName?: string;
+      lastName?: string;
+    };
+  }[];
+}
+
+/**
+ * Business unit's basic data
+ */
+export interface SchemasBusinessUnitsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    managers?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+  };
+  data: {
+    id: string;
+    type: "businessunit";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      name?: string;
+    };
+    relationships?: {
+      /**
+       * Business unit's managers
+       */
+      includedManagers?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      /**
+       * Business unit's excluded managers in search
+       */
+      excludedManagersInSearch?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+    };
+  };
+  included?: {
+    id: string;
+    type: "resource";
+    attributes?: {
+      firstName?: string;
+      lastName?: string;
+    };
+  }[];
+}
+
+/**
+ * Empty business unit's default information data
+ */
+export interface SchemasBusinessUnitsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    managers?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+  };
+  data: {
+    id: "0";
+    type: "businessunit";
+  };
+}
+
+/**
+ * Business unit's basic data sent in the body with a POST method
+ */
+export interface SchemasBusinessUnitsBodyPostJson {
+  data: {
+    type: "businessunit";
+    attributes: {
+      name: string;
+    };
+    relationships?: {
+      /**
+       * Business unit's managers
+       */
+      includedManagers?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      /**
+       * Business unit's excluded managers in search
+       */
+      excludedManagersInSearch?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+    };
+  };
+}
+
+/**
+ * Business unit's basic data sent in the body with a POST method
+ */
+export interface SchemasBusinessUnitsBodyPutJson {
+  data: {
+    id: string;
+    type: "businessunit";
+    attributes?: {
+      name?: string;
+    };
+    relationships?: {
+      /**
+       * Business unit's managers
+       */
+      includedManagers?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      /**
+       * Business unit's excluded managers in search
+       */
+      excludedManagersInSearch?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+    };
+  };
+}
