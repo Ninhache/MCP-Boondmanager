@@ -1,6 +1,7 @@
 import { type DynamicModule, Module } from "@nestjs/common";
 import { McpModule, McpTransportType } from "@rekog/mcp-nest";
 import { AbsencesModule } from "./modules/absences/absences.module.js";
+import { AbsencesReportsModule } from "./modules/absences-reports/absences-reports.module.js";
 import { AccountsModule } from "./modules/accounts/accounts.module.js";
 import { ActionsModule } from "./modules/actions/actions.module.js";
 import { AgenciesModule } from "./modules/agencies/agencies.module.js";
@@ -36,6 +37,7 @@ const DOMAIN_MODULES = [
   CompaniesModule,
   OpportunitiesModule,
   AbsencesModule,
+  AbsencesReportsModule,
   ActionsModule,
   // Commercial / financial
   PositioningsModule,

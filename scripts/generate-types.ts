@@ -7,6 +7,10 @@
  * and converts them to TypeScript using json-schema-to-typescript.
  *
  * Usage: npm run generate-types
+ *
+ * Module format:
+ * - Simple string: downloads `<module>/search.json` only (legacy behavior)
+ * - Object { name, schemas }: downloads each listed schema file
  */
 
 import { mkdir, writeFile } from "node:fs/promises";
@@ -15,8 +19,10 @@ import { compile } from "json-schema-to-typescript";
 
 const SCHEMA_BASE_URL = "https://doc.boondmanager.com/api-externe/raml-build/schemas";
 
-const MODULES = [
-  // Core business modules (phase 1-2)
+type ModuleSpec = string | { name: string; schemas: readonly string[] };
+
+const MODULES: readonly ModuleSpec[] = [
+  // Core business modules (phase 1-2) — search-only (legacy)
   "resources",
   "candidates",
   "projects",
@@ -45,16 +51,27 @@ const MODULES = [
   "payments",
   "accounts",
   "contacts",
+  // Phase 5: workflow report modules — multi-schema
+  {
+    name: "absencesReports",
+    schemas: ["search", "profile", "default", "rights", "bodyPost", "bodyPut", "rejectPost"],
+  },
   // Note: "logs" schema has a malformed comment that crashes json-schema-to-typescript
-  // Skip for now — can be added later if/when Boond fixes the schema
-] as const;
+];
 
 const SCHEMA_DIR = join(import.meta.dirname, "..", "schemas");
 const OUTPUT_DIR = join(import.meta.dirname, "..", "src", "generated");
 
-async function downloadSchema(module: string): Promise<unknown> {
-  const url = `${SCHEMA_BASE_URL}/${module}/search.json`;
-  console.log(`  Downloading ${module}/search.json...`);
+interface DownloadResult {
+  module: string;
+  schemaName: string;
+  typeName: string;
+  ts: string;
+}
+
+async function downloadSchema(module: string, schemaName: string): Promise<unknown> {
+  const url = `${SCHEMA_BASE_URL}/${module}/${schemaName}.json`;
+  console.log(`  Downloading ${module}/${schemaName}.json...`);
 
   const res = await fetch(url);
   if (!res.ok) {
@@ -68,6 +85,33 @@ function pascalCase(str: string): string {
     .split(/[-_]/)
     .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
     .join("");
+}
+
+function schemaTypeName(module: string, schemaName: string): string {
+  // e.g. "absencesReports" + "search" → "SchemasAbsencesReportsSearchJson"
+  // Matches the existing convention from json-schema-to-typescript output
+  return `Schemas${pascalCase(module)}${pascalCase(schemaName)}Json`;
+}
+
+async function processSchema(module: string, schemaName: string): Promise<DownloadResult | null> {
+  try {
+    const schema = await downloadSchema(module, schemaName);
+    const schemaPath = join(SCHEMA_DIR, `${module}-${schemaName}.json`);
+    await writeFile(schemaPath, JSON.stringify(schema, null, 2));
+
+    const typeName = schemaTypeName(module, schemaName);
+    const ts = await compile(schema as Record<string, unknown>, typeName, {
+      bannerComment: "",
+      additionalProperties: false,
+      style: { semi: true, singleQuote: false },
+    });
+
+    return { module, schemaName, typeName, ts };
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : "Unknown error";
+    console.error(`  \u274C ${module}/${schemaName}: ${msg}`);
+    return null;
+  }
 }
 
 async function generateTypes(): Promise<void> {
@@ -85,31 +129,19 @@ async function generateTypes(): Promise<void> {
     "",
   ];
 
-  for (const module of MODULES) {
-    try {
-      const schema = await downloadSchema(module);
+  for (const spec of MODULES) {
+    const moduleName = typeof spec === "string" ? spec : spec.name;
+    const schemaNames: readonly string[] = typeof spec === "string" ? ["search"] : spec.schemas;
 
-      // Save raw schema
-      const schemaPath = join(SCHEMA_DIR, `${module}-search.json`);
-      await writeFile(schemaPath, JSON.stringify(schema, null, 2));
-
-      // Generate TypeScript
-      const typeName = `${pascalCase(module)}SearchResponse`;
-      const ts = await compile(schema as Record<string, unknown>, typeName, {
-        bannerComment: "",
-        additionalProperties: false,
-        style: { semi: true, singleQuote: false },
-      });
-
-      allTypes.push(`// ─── ${module} ───`);
-      allTypes.push(ts);
-      allTypes.push("");
-
-      console.log(`  \u2705 ${module} → ${typeName}`);
-    } catch (error) {
-      const msg = error instanceof Error ? error.message : "Unknown error";
-      console.error(`  \u274C ${module}: ${msg}`);
+    allTypes.push(`// ─── ${moduleName} ───`);
+    for (const schemaName of schemaNames) {
+      const result = await processSchema(moduleName, schemaName);
+      if (result) {
+        allTypes.push(result.ts);
+        console.log(`  \u2705 ${moduleName}/${schemaName} → ${result.typeName}`);
+      }
     }
+    allTypes.push("");
   }
 
   // Write combined types file
