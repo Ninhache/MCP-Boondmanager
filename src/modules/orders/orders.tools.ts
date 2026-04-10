@@ -46,7 +46,7 @@ export class OrdersTools {
       this.boond,
       {
         path: "/orders",
-        attributeKeys: ["reference", "state", "startDate", "endDate"],
+        attributeKeys: ["date", "number", "reference"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

@@ -1,9 +1,25 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
-import type { CalendarAttributes } from "../../generated/index.js";
-import { executeListTool } from "../../utils/list-tool-helper.js";
+import { handleBoondError } from "../../utils/error-handler.js";
+import { toTextContent } from "../../utils/formatters.js";
 import { BoondClient } from "../boond/index.js";
+
+/**
+ * Calendars use a non-standard JSON:API shape — items are `{ iso, value }`
+ * directly on data, not `{ id, attributes: {...} }`. We can't use the
+ * standard executeListTool helper.
+ */
+interface CalendarItem {
+  iso: string;
+  value: string;
+  subCalendars?: { iso: string; value: string }[];
+}
+
+interface CalendarsResponse {
+  data: CalendarItem[];
+  meta?: { totals?: { rows?: number } };
+}
 
 @Injectable()
 export class CalendarsTools {
@@ -12,35 +28,28 @@ export class CalendarsTools {
   @Tool({
     name: "list_calendars",
     description:
-      "Récupère la liste paginée des calendriers de BoondManager. " +
+      "Récupère la liste des calendriers disponibles dans BoondManager. " +
       "Exemples de questions : « liste les calendriers », « quels calendriers existent ? »",
-    parameters: z.object({
-      page: z.number().optional().describe("Numéro de page (défaut: 1)"),
-      pageSize: z.number().optional().describe("Nombre de résultats par page (défaut: 25)"),
-      fetchAll: z
-        .boolean()
-        .optional()
-        .describe(
-          "Si true, récupère toutes les pages jusqu'à la limite de sécurité (ignore page/pageSize)",
-        ),
-    }),
+    parameters: z.object({}),
   })
-  async listCalendars({
-    page,
-    pageSize,
-    fetchAll,
-  }: {
-    page?: number;
-    pageSize?: number;
-    fetchAll?: boolean;
-  }) {
-    return executeListTool<CalendarAttributes>(
-      this.boond,
-      {
-        path: "/calendars",
-        attributeKeys: ["name", "startDate", "endDate"],
-      },
-      { page, pageSize, fetchAll },
-    );
+  async listCalendars() {
+    try {
+      const data = await this.boond.get<CalendarsResponse>("/calendars");
+      const items = (Array.isArray(data.data) ? data.data : []).map((c) => ({
+        iso: c.iso,
+        value: c.value,
+        subCalendars: c.subCalendars,
+      }));
+      return {
+        content: [
+          toTextContent({
+            total: data.meta?.totals?.rows ?? items.length,
+            items,
+          }),
+        ],
+      };
+    } catch (error) {
+      return handleBoondError(error);
+    }
   }
 }

@@ -38,7 +38,7 @@ export class ValidationsTools {
       this.boond,
       {
         path: "/validations",
-        attributeKeys: ["state", "typeOf", "date"],
+        attributeKeys: ["date", "state"],
       },
       { page, pageSize, fetchAll },
     );

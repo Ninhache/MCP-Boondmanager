@@ -53,7 +53,7 @@ export class ActionsTools {
       this.boond,
       {
         path: "/actions",
-        attributeKeys: ["name", "state", "startDate", "endDate", "typeOf"],
+        attributeKeys: ["startDate", "creationDate", "typeOf", "text"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

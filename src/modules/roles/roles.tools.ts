@@ -38,7 +38,7 @@ export class RolesTools {
       this.boond,
       {
         path: "/roles",
-        attributeKeys: ["name"],
+        attributeKeys: ["name", "typeOf"],
       },
       { page, pageSize, fetchAll },
     );

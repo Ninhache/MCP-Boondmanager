@@ -46,7 +46,7 @@ export class OpportunitiesTools {
       this.boond,
       {
         path: "/opportunities",
-        attributeKeys: ["name", "state", "startDate", "endDate", "typeOf"],
+        attributeKeys: ["title", "reference", "state", "startDate", "endDate", "typeOf"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

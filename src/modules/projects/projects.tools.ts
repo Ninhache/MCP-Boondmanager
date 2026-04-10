@@ -46,7 +46,7 @@ export class ProjectsTools {
       this.boond,
       {
         path: "/projects",
-        attributeKeys: ["name", "reference", "state", "startDate", "endDate"],
+        attributeKeys: ["reference", "typeOf", "mode", "startDate", "endDate"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

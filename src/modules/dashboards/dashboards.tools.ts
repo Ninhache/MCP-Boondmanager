@@ -36,7 +36,7 @@ export class DashboardsTools {
       this.boond,
       {
         path: "/dashboards",
-        attributeKeys: ["name", "typeOf"],
+        attributeKeys: ["title", "typeOf", "isDefault"],
       },
       { page, pageSize, fetchAll },
     );

@@ -44,7 +44,7 @@ export class AccountsTools {
       this.boond,
       {
         path: "/accounts",
-        attributeKeys: ["firstName", "lastName", "email", "state"],
+        attributeKeys: ["firstName", "lastName", "typeOf", "login"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

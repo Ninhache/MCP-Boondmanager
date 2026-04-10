@@ -38,7 +38,14 @@ export class AbsencesTools {
       this.boond,
       {
         path: "/absences",
-        attributeKeys: ["startDate", "endDate", "duration", "state", "typeOf", "comment"],
+        attributeKeys: [
+          "startDate",
+          "endDate",
+          "duration",
+          "title",
+          "workUnitType",
+          "activityType",
+        ],
       },
       { page, pageSize, fetchAll },
     );

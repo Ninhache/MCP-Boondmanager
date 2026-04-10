@@ -44,7 +44,7 @@ export class TimesTools {
       this.boond,
       {
         path: "/times",
-        attributeKeys: ["startDate", "endDate", "state", "typeOf"],
+        attributeKeys: ["category", "reference", "name"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

@@ -44,7 +44,7 @@ export class ProductsTools {
       this.boond,
       {
         path: "/products",
-        attributeKeys: ["name", "reference", "state", "typeOf"],
+        attributeKeys: ["reference", "name", "priceExcludingTax"],
       },
       { page, pageSize, fetchAll, extraParams },
     );
