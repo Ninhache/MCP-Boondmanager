@@ -4,6 +4,7 @@ import { AbsencesModule } from "./modules/absences/absences.module.js";
 import { AbsencesReportsModule } from "./modules/absences-reports/absences-reports.module.js";
 import { AccountsModule } from "./modules/accounts/accounts.module.js";
 import { ActionsModule } from "./modules/actions/actions.module.js";
+import { AdministratorModule } from "./modules/administrator/administrator.module.js";
 import { AdvantagesModule } from "./modules/advantages/advantages.module.js";
 import { AgenciesModule } from "./modules/agencies/agencies.module.js";
 import { AlertsModule } from "./modules/alerts/alerts.module.js";
@@ -19,6 +20,7 @@ import { ContactsModule } from "./modules/contacts/contacts.module.js";
 import { ContractsModule } from "./modules/contracts/contracts.module.js";
 import { DashboardsModule } from "./modules/dashboards/dashboards.module.js";
 import { DeliveriesModule } from "./modules/deliveries/deliveries.module.js";
+import { DevicesModule } from "./modules/devices/devices.module.js";
 import { DocumentsModule } from "./modules/documents/documents.module.js";
 import { DownloadCenterModule } from "./modules/download-center/download-center.module.js";
 import { ExpensesModule } from "./modules/expenses/expenses.module.js";
@@ -44,7 +46,9 @@ import { ProviderInvoicesModule } from "./modules/provider-invoices/provider-inv
 import { PurchasesModule } from "./modules/purchases/purchases.module.js";
 import { ResourcesModule } from "./modules/resources/resources.module.js";
 import { RolesModule } from "./modules/roles/roles.module.js";
+import { SandboxModule } from "./modules/sandbox/sandbox.module.js";
 import { SavedSearchesModule } from "./modules/savedsearches/savedsearches.module.js";
+import { ShareModule } from "./modules/share/share.module.js";
 import { StandardProfilesModule } from "./modules/standard-profiles/standard-profiles.module.js";
 import { SubscriptionModule } from "./modules/subscription/subscription.module.js";
 import { TargetsModule } from "./modules/targets/targets.module.js";
@@ -99,9 +103,13 @@ const DOMAIN_MODULES = [
   RolesModule,
   AlertsModule,
   AccountsModule,
+  AdministratorModule,
   ContactsModule,
   ContractsModule,
   ConditionalFieldsModule,
+  DevicesModule,
+  SandboxModule,
+  ShareModule,
   AdvantagesModule,
   FlagsModule,
   FollowedDocumentsModule,
