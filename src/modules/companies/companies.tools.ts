@@ -1,14 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
-import type {
-  BoondDetailResponse,
-  BoondListResponse,
-  CompanyAttributes,
-} from "../../generated/index.js";
-import { DEFAULT_PAGE_SIZE } from "../../utils/constants.js";
+import type { BoondDetailResponse, CompanyAttributes } from "../../generated/index.js";
 import { handleBoondError } from "../../utils/error-handler.js";
-import { formatDetail, formatList, toTextContent } from "../../utils/formatters.js";
+import { formatDetail, toTextContent } from "../../utils/formatters.js";
+import { executeListTool } from "../../utils/list-tool-helper.js";
 import { BoondClient } from "../boond/index.js";
 
 @Injectable()
@@ -24,30 +20,36 @@ export class CompaniesTools {
       page: z.number().optional().describe("Numéro de page (défaut: 1)"),
       pageSize: z.number().optional().describe("Nombre de résultats par page (défaut: 25)"),
       keywords: z.string().optional().describe("Recherche par mots-clés (nom, ville, email)"),
+      fetchAll: z
+        .boolean()
+        .optional()
+        .describe(
+          "Si true, récupère toutes les pages jusqu'à la limite de sécurité (ignore page/pageSize)",
+        ),
     }),
   })
   async listCompanies({
     page,
     pageSize,
     keywords,
+    fetchAll,
   }: {
     page?: number;
     pageSize?: number;
     keywords?: string;
+    fetchAll?: boolean;
   }) {
-    const params: Record<string, string> = {
-      maxResults: String(pageSize ?? DEFAULT_PAGE_SIZE),
-    };
-    if (page != null) params.page = String(page);
-    if (keywords) params.keywords = keywords;
+    const extraParams: Record<string, string> = {};
+    if (keywords) extraParams.keywords = keywords;
 
-    try {
-      const data = await this.boond.get<BoondListResponse<CompanyAttributes>>("/companies", params);
-      const formatted = formatList(data, ["name", "phone", "email", "city", "country", "state"]);
-      return { content: [toTextContent(formatted)] };
-    } catch (error) {
-      return handleBoondError(error);
-    }
+    return executeListTool<CompanyAttributes>(
+      this.boond,
+      {
+        path: "/companies",
+        attributeKeys: ["name", "phone", "email", "city", "country", "state"],
+      },
+      { page, pageSize, fetchAll, extraParams },
+    );
   }
 
   @Tool({

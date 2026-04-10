@@ -1,14 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
-import type {
-  BoondDetailResponse,
-  BoondListResponse,
-  CandidateAttributes,
-} from "../../generated/index.js";
-import { DEFAULT_PAGE_SIZE } from "../../utils/constants.js";
+import type { BoondDetailResponse, CandidateAttributes } from "../../generated/index.js";
 import { handleBoondError } from "../../utils/error-handler.js";
-import { formatDetail, formatList, toTextContent } from "../../utils/formatters.js";
+import { formatDetail, toTextContent } from "../../utils/formatters.js";
+import { executeListTool } from "../../utils/list-tool-helper.js";
 import { BoondClient } from "../boond/index.js";
 
 @Injectable()
@@ -24,33 +20,33 @@ export class CandidatesTools {
       keywords: z.string().describe("Mots-clés de recherche (nom, compétences, etc.)"),
       page: z.number().optional().describe("Numéro de page (défaut: 1)"),
       pageSize: z.number().optional().describe("Nombre de résultats par page (défaut: 25)"),
+      fetchAll: z
+        .boolean()
+        .optional()
+        .describe(
+          "Si true, récupère toutes les pages jusqu'à la limite de sécurité (ignore page/pageSize)",
+        ),
     }),
   })
   async searchCandidates({
     keywords,
     page,
     pageSize,
+    fetchAll,
   }: {
     keywords: string;
     page?: number;
     pageSize?: number;
+    fetchAll?: boolean;
   }) {
-    const params: Record<string, string> = {
-      keywords,
-      maxResults: String(pageSize ?? DEFAULT_PAGE_SIZE),
-    };
-    if (page != null) params.page = String(page);
-
-    try {
-      const data = await this.boond.get<BoondListResponse<CandidateAttributes>>(
-        "/candidates",
-        params,
-      );
-      const formatted = formatList(data, ["firstName", "lastName", "email", "state", "title"]);
-      return { content: [toTextContent(formatted)] };
-    } catch (error) {
-      return handleBoondError(error);
-    }
+    return executeListTool<CandidateAttributes>(
+      this.boond,
+      {
+        path: "/candidates",
+        attributeKeys: ["firstName", "lastName", "email1", "state", "title"],
+      },
+      { page, pageSize, fetchAll, extraParams: { keywords } },
+    );
   }
 
   @Tool({
