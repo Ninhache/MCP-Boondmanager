@@ -16285,3 +16285,916 @@ export interface SchemasAdvantagesBodyPutJson {
   };
 }
 
+
+// ─── alerts ───
+/**
+ * List of alerts for dashboard
+ */
+export interface SchemasAlertsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "alert";
+    attributes?: {
+      indicator?:
+        | "actionsUpcoming"
+        | "actionsOfTheDay"
+        | "actionsLate"
+        | "timesReportsWithNoValidation"
+        | "expensesReportsWithNoValidation"
+        | "absencesReportsWithNoValidation"
+        | "candidatesWithNoAction"
+        | "candidatesNotUpdated"
+        | "resourcesWithNoAction"
+        | "resourcesWithNoContracts"
+        | "resourcesWithNoMoreContracts"
+        | "resourcesProbationaryDateUpcoming"
+        | "resourcesProbationaryDateToday"
+        | "resourcesProbationaryDateTerminated"
+        | "contractsEndedUpcoming"
+        | "contractsEndedToday"
+        | "contractsEnded"
+        | "resourcesWithOverlappedContracts"
+        | "resourcesWithNoContractEndDate"
+        | "resourcesArchivedWithActivatedIntranet"
+        | "resourcesWithFollowedDocuments"
+        | "opportunitiesWithNoAction"
+        | "positioningsNotUpdated"
+        | "projectsWithNoAction"
+        | "projectsEndedUpcoming"
+        | "projectsEndedUpcomingOrAlreadyEnded"
+        | "projectsEndedToday"
+        | "projectsEnded"
+        | "deliveriesEndedUpcoming"
+        | "deliveriesEndedToday"
+        | "deliveriesEnded"
+        | "deliveriesNotEntirelyCoveredByContracts"
+        | "projectsWithNoOrderNotArchived"
+        | "projectsWithSignedTurnoverGreaterThanOrderedTurnover"
+        | "ordersWithNoBillingDetail"
+        | "ordersWithNoDeliveryCorrelated"
+        | "ordersWithInvoicedTurnoverGreaterThanOrderedTurnover"
+        | "ordersWithSchedulesAmountDifferentFromOrderedTurnover"
+        | "invoicesWithNoAction"
+        | "invoicesWithDatesOfPaymentsUpcoming"
+        | "invoicesWithDatesOfPaymentsIsToday"
+        | "invoicesWithDatesOfPaymentsPast"
+        | "schedulesPastWithNoInvoice";
+      module?:
+        | "actions"
+        | "activityExpenses"
+        | "candidates"
+        | "resources"
+        | "opportunities"
+        | "positionings"
+        | "projects"
+        | "billing";
+      params?: {
+        perimeter?: string[];
+        /**
+         * Period for alert. Usually number of days for alert settings.
+         */
+        period?: number;
+        X?: number[];
+        Y?: number[];
+        Z?: number[];
+        U?: number[];
+      };
+    };
+  }[];
+}
+
+/**
+ * Alerts administrator settings
+ */
+export interface SchemasAlertsConfigurationJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "alert";
+    attributes?: {
+      systemSettings?: {
+        /**
+         * Day number for weekly reporting
+         */
+        dayForWeeklyAlerts?: number;
+        /**
+         * Hour for weekly reporting
+         */
+        hourForWeeklyAlerts?: number;
+        /**
+         * Days number for daily reporting
+         */
+        daysForDailyAlerts?: unknown[];
+        /**
+         * Hour for daily reporting
+         */
+        hourForDailyAlerts?: unknown[];
+      };
+      alerts?: {
+        id: string;
+        module:
+          | "actions"
+          | "activityExpenses"
+          | "candidates"
+          | "resources"
+          | "opportunities"
+          | "positionings"
+          | "projects"
+          | "billing";
+        indicator:
+          | "actionsUpcoming"
+          | "actionsOfTheDay"
+          | "actionsLate"
+          | "timesReportsWithNoValidation"
+          | "expensesReportsWithNoValidation"
+          | "absencesReportsWithNoValidation"
+          | "candidatesWithNoAction"
+          | "candidatesNotUpdated"
+          | "resourcesWithNoAction"
+          | "resourcesWithNoContracts"
+          | "resourcesWithNoMoreContracts"
+          | "resourcesProbationaryDateUpcoming"
+          | "resourcesProbationaryDateToday"
+          | "resourcesProbationaryDateTerminated"
+          | "contractsEndedUpcoming"
+          | "contractsEndedToday"
+          | "contractsEnded"
+          | "resourcesWithOverlappedContracts"
+          | "resourcesWithNoContractEndDate"
+          | "resourcesArchivedWithActivatedIntranet"
+          | "resourcesWithFollowedDocuments"
+          | "opportunitiesWithNoAction"
+          | "positioningsNotUpdated"
+          | "projectsWithNoAction"
+          | "projectsEndedUpcoming"
+          | "projectsEndedUpcomingOrAlreadyEnded"
+          | "projectsEndedToday"
+          | "projectsEnded"
+          | "deliveriesEndedUpcoming"
+          | "deliveriesEndedToday"
+          | "deliveriesEnded"
+          | "deliveriesNotEntirelyCoveredByContracts"
+          | "projectsWithNoOrderNotArchived"
+          | "projectsWithSignedTurnoverGreaterThanOrderedTurnover"
+          | "ordersWithNoBillingDetail"
+          | "ordersWithNoDeliveryCorrelated"
+          | "ordersWithInvoicedTurnoverGreaterThanOrderedTurnover"
+          | "ordersWithSchedulesAmountDifferentFromOrderedTurnover"
+          | "invoicesWithNoAction"
+          | "invoicesWithDatesOfPaymentsUpcoming"
+          | "invoicesWithDatesOfPaymentsIsToday"
+          | "invoicesWithDatesOfPaymentsPast"
+          | "schedulesPastWithNoInvoice";
+        /**
+         * Alert sent on daily reporting ?
+         */
+        isDaily: boolean;
+        /**
+         * Alert sent on weekly reporting ?
+         */
+        isWeekly: boolean;
+        /**
+         * Current alert state
+         */
+        state: -1 | 0 | 1;
+        params: {
+          perimeter?: string[];
+          /**
+           * Period for alert. Usually number of days for alert settings.
+           */
+          period?: number;
+          X?: number[];
+          Y?: number[];
+          Z?: number[];
+          U?: number[];
+        };
+        /**
+         * Current user can write alert ?
+         */
+        canWriteAlert: boolean;
+      }[];
+    };
+  }[];
+}
+
+/**
+ * Alerts administrator settings body put
+ */
+export interface SchemasAlertsConfigurationBodyPutJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "alert";
+    attributes?: {
+      systemSettings?: {
+        /**
+         * Day number for weekly reporting
+         */
+        dayForWeeklyAlerts?: number;
+        /**
+         * Hour for weekly reporting
+         */
+        hourForWeeklyAlerts?: number;
+        /**
+         * Days number for daily reporting
+         */
+        daysForDailyAlerts?: unknown[];
+        /**
+         * Hour for daily reporting
+         */
+        hourForDailyAlerts?: unknown[];
+      };
+      alerts?: {
+        id: string;
+        module:
+          | "actions"
+          | "activityExpenses"
+          | "candidates"
+          | "resources"
+          | "opportunities"
+          | "positionings"
+          | "projects"
+          | "billing";
+        indicator:
+          | "actionsUpcoming"
+          | "actionsOfTheDay"
+          | "actionsLate"
+          | "timesReportsWithNoValidation"
+          | "expensesReportsWithNoValidation"
+          | "absencesReportsWithNoValidation"
+          | "candidatesWithNoAction"
+          | "candidatesNotUpdated"
+          | "resourcesWithNoAction"
+          | "resourcesWithNoContracts"
+          | "resourcesWithNoMoreContracts"
+          | "resourcesProbationaryDateUpcoming"
+          | "resourcesProbationaryDateToday"
+          | "resourcesProbationaryDateTerminated"
+          | "contractsEndedUpcoming"
+          | "contractsEndedToday"
+          | "contractsEnded"
+          | "resourcesWithOverlappedContracts"
+          | "resourcesWithNoContractEndDate"
+          | "resourcesArchivedWithActivatedIntranet"
+          | "resourcesWithFollowedDocuments"
+          | "opportunitiesWithNoAction"
+          | "positioningsNotUpdated"
+          | "projectsWithNoAction"
+          | "projectsEndedUpcoming"
+          | "projectsEndedUpcomingOrAlreadyEnded"
+          | "projectsEndedToday"
+          | "projectsEnded"
+          | "deliveriesEndedUpcoming"
+          | "deliveriesEndedToday"
+          | "deliveriesEnded"
+          | "deliveriesNotEntirelyCoveredByContracts"
+          | "projectsWithNoOrderNotArchived"
+          | "projectsWithSignedTurnoverGreaterThanOrderedTurnover"
+          | "ordersWithNoBillingDetail"
+          | "ordersWithNoDeliveryCorrelated"
+          | "ordersWithInvoicedTurnoverGreaterThanOrderedTurnover"
+          | "ordersWithSchedulesAmountDifferentFromOrderedTurnover"
+          | "invoicesWithNoAction"
+          | "invoicesWithDatesOfPaymentsUpcoming"
+          | "invoicesWithDatesOfPaymentsIsToday"
+          | "invoicesWithDatesOfPaymentsPast"
+          | "schedulesPastWithNoInvoice";
+        /**
+         * Alert sent on daily reporting ?
+         */
+        isDaily: boolean;
+        /**
+         * Alert sent on weekly reporting ?
+         */
+        isWeekly: boolean;
+        /**
+         * Current alert state
+         */
+        state: -1 | 0 | 1;
+        params: {
+          perimeter?: string[];
+          /**
+           * Period for alert. Usually number of days for alert settings.
+           */
+          period?: number;
+          X?: number[];
+          Y?: number[];
+          Z?: number[];
+          U?: number[];
+        };
+        /**
+         * Current user can write alert ?
+         */
+        canWriteAlert: boolean;
+      }[];
+    };
+  }[];
+}
+
+/**
+ * Values for alert
+ */
+export interface SchemasAlertsValuesJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "alert";
+    attributes?: {
+      indicator?:
+        | "actionsUpcoming"
+        | "actionsOfTheDay"
+        | "actionsLate"
+        | "timesReportsWithNoValidation"
+        | "expensesReportsWithNoValidation"
+        | "absencesReportsWithNoValidation"
+        | "candidatesWithNoAction"
+        | "candidatesNotUpdated"
+        | "resourcesWithNoAction"
+        | "resourcesWithNoContracts"
+        | "resourcesWithNoMoreContracts"
+        | "resourcesProbationaryDateUpcoming"
+        | "resourcesProbationaryDateToday"
+        | "resourcesProbationaryDateTerminated"
+        | "contractsEndedUpcoming"
+        | "contractsEndedToday"
+        | "contractsEnded"
+        | "resourcesWithOverlappedContracts"
+        | "resourcesWithNoContractEndDate"
+        | "resourcesArchivedWithActivatedIntranet"
+        | "resourcesWithFollowedDocuments"
+        | "opportunitiesWithNoAction"
+        | "positioningsNotUpdated"
+        | "projectsWithNoAction"
+        | "projectsEndedUpcoming"
+        | "projectsEndedUpcomingOrAlreadyEnded"
+        | "projectsEndedToday"
+        | "projectsEnded"
+        | "deliveriesEndedUpcoming"
+        | "deliveriesEndedToday"
+        | "deliveriesEnded"
+        | "deliveriesNotEntirelyCoveredByContracts"
+        | "projectsWithNoOrderNotArchived"
+        | "projectsWithSignedTurnoverGreaterThanOrderedTurnover"
+        | "ordersWithNoBillingDetail"
+        | "ordersWithNoDeliveryCorrelated"
+        | "ordersWithInvoicedTurnoverGreaterThanOrderedTurnover"
+        | "ordersWithSchedulesAmountDifferentFromOrderedTurnover"
+        | "invoicesWithNoAction"
+        | "invoicesWithDatesOfPaymentsUpcoming"
+        | "invoicesWithDatesOfPaymentsIsToday"
+        | "invoicesWithDatesOfPaymentsPast"
+        | "schedulesPastWithNoInvoice";
+      /**
+       * User can read dependsOn values ?
+       */
+      canReadDependsOn?: boolean;
+    };
+    relationships?: {
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "action";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "absencesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "positioning";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "order";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "invoice";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "providerinvoice";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "action";
+        attributes?: {
+          startDate?: string;
+          typeOf?: number;
+        };
+        relationships?: {
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          dependsOn?:
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "candidate";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "opportunity";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "project";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "order";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "invoice";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "invoice";
+        attributes?: {
+          reference?: string;
+        };
+        relationships?: {
+          /**
+           * Invoice's order
+           */
+          order?: {
+            data: {
+              id: string;
+              type: "order";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "candidate";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+          thumbnail?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+          dateOfBirth?: string;
+          thumbnail?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "product";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "opportunity";
+        attributes?: {
+          title?: string;
+        };
+        relationships?: {
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "order";
+        attributes?: {
+          number?: string;
+        };
+        relationships?: {
+          /**
+           * Order's project
+           */
+          project?: {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+        };
+        relationships?: {
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "schedule";
+        attributes?: {
+          date?: string;
+          title?: string;
+        };
+        relationships?: {
+          /**
+           * Schedule's order
+           */
+          order?: {
+            data: {
+              id: string;
+              type: "order";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "timesreport";
+        attributes?: {
+          term?: string;
+        };
+        relationships?: {
+          /**
+           * Timesheet's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "expensesreport";
+        attributes?: {
+          term?: string;
+        };
+        relationships?: {
+          /**
+           * Expenses's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "absencesreport";
+        attributes?: {
+          creationDate?: string;
+        };
+        relationships?: {
+          /**
+           * Absences's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "contract";
+        attributes?: {
+          typeOf?: number;
+          startDate?: string;
+          endDate?: string;
+          probationEndDate?: string;
+          renewalProbationEndDate?: string;
+          /**
+           * If false then contract is not accessible
+           */
+          canReadContract?: boolean;
+        };
+        relationships?: {
+          /**
+           * Contract's resource
+           */
+          dependsOn?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "positioning";
+        relationships?: {
+          /**
+           * Positioning's opportunity
+           */
+          opportunity?: {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          };
+          dependsOn?:
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "candidate";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          startDate?: string;
+          endDate?: string;
+        };
+        relationships?: {
+          /**
+           * Delivery's project
+           */
+          project?: {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+          dependsOn?:
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "product";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "providerinvoice";
+        attributes?: {
+          invoiceDate?: string;
+          reference?: string;
+        };
+        relationships?: {
+          /**
+           * Provider invoice's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+  )[];
+}
+
