@@ -3720,3 +3720,772 @@ export interface SchemasRolesSearchJson {
     };
   }[];
 }
+
+// ─── times ───
+/**
+ * List of times
+ */
+export interface SchemasTimesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "time";
+    attributes?: {
+      category?: "regular" | "exceptional";
+      workUnitType?: {
+        reference: number;
+        activityType:
+          | "production"
+          | "absence"
+          | "internal"
+          | "exceptionalTime"
+          | "exceptionalCalendar";
+        name: string;
+      };
+      /**
+       * If it is a new line then row should be inferior or equal to 0
+       */
+      row?: number;
+      startDate?: string;
+      endDate?: string;
+      duration?: number;
+    };
+    relationships?: {
+      /**
+       * Time's timesheet
+       */
+      timesReport?: {
+        data: {
+          id: string;
+          type: "timesreport";
+        };
+      };
+      delivery?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          };
+      batch?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "batch";
+            };
+          };
+      project?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "timesreport";
+        attributes?: {
+          term?: string;
+          state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+          workUnitRate?: number;
+        };
+        relationships?: {
+          /**
+           * Timesheet's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          /**
+           * Timesheet's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          title?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "batch";
+        attributes?: {
+          title?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+        };
+        relationships?: {
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          workUnitRate?: "notUsed" | number;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          workUnitRate?: "notUsed" | number;
+        };
+      }
+  )[];
+}
+
+// ─── payments ───
+/**
+ * List of payments
+ */
+export interface SchemasPaymentsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+      amountExcludingTax?: number;
+      /**
+       * amountExcludingTax * (1 + taxRate / 100)
+       */
+      amountIncludingTax?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "payment";
+    attributes?: {
+      date?: string;
+      performedDate?: string;
+      expectedDate?: string;
+      state?: number;
+      number?: string;
+      amountExcludingTax?: number;
+      /**
+       * amountExcludingTax * (1 + taxRate / 100)
+       */
+      amountIncludingTax?: number;
+      /**
+       * number of files related to the payments
+       */
+      numberOfFiles?: number;
+      /**
+       * If false then payment is not accessible
+       */
+      canWritePayment?: boolean;
+      creationDate?: string;
+      updateDate?: string;
+    };
+    relationships?: {
+      /**
+       * Payment's purchase
+       */
+      purchase?: {
+        data: {
+          id: string;
+          type: "purchase";
+        };
+      };
+      file?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "document";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "purchase";
+        attributes?: {
+          title?: string;
+          subscription?: number;
+          typeOf?: number;
+          reference?: string;
+          currency?: number;
+          exchangeRate?: number;
+          currencyAgency?: number;
+          exchangeRateAgency?: number;
+        };
+        relationships?: {
+          /**
+           * Purchase's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          project?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "project";
+                };
+              };
+          delivery?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "delivery";
+                };
+              };
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          /**
+           * Purchase's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          /**
+           * Purchase's pole
+           */
+          pole?: {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          title?: string;
+        };
+        relationships?: {
+          dependsOn?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+// ─── accounts ───
+/**
+ * List of resources
+ */
+export interface SchemasAccountsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "account";
+    attributes?: {
+      firstName?: string;
+      lastName?: string;
+      typeOf?: number;
+      level?: "manager" | "resource" | "administrator";
+      isOwner?: boolean;
+      login?: string;
+      /**
+       * If true then this resource can log in Boond
+       */
+      subscription?: "active" | "inactive";
+      /**
+       * If false then account is not editable
+       */
+      canWriteAccount?: boolean;
+      /**
+       * If false then connection is forbidden
+       */
+      canConnectAccount?: boolean;
+      /**
+       * If false then deletion is forbidden
+       */
+      canDeleteAccount?: boolean;
+    };
+    relationships?: {
+      mainManager?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      /**
+       * Resource's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      pole?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+      role?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "role";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "role";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+// ─── contacts ───
+/**
+ * List of contacts
+ */
+export interface SchemasContactsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+    /**
+     * True if search is performed on SolR database
+     */
+    solr?: boolean;
+    /**
+     * true if conditional fields are configured for this module
+     */
+    conditionalFields?: boolean;
+  };
+  data: {
+    id: string;
+    type: "contact";
+    attributes?: {
+      creationDate?: string;
+      civility?: number;
+      thumbnail?: string;
+      firstName?: string;
+      lastName?: string;
+      state?: number;
+      function?: string;
+      department?: string;
+      email1?: string;
+      email2?: string;
+      email3?: string;
+      phone1?: string;
+      phone2?: string;
+      town?: string;
+      country?: string;
+      updateDate?: string;
+      /**
+       * If false then contact is not accessible
+       */
+      canReadContact?: boolean;
+      /**
+       * If false then contact is not editable
+       */
+      canWriteContact?: boolean;
+      /**
+       * If false then contact can not show action
+       */
+      canShowAction?: boolean;
+      typesOf?: string[];
+      /**
+       * @minItems 0
+       * @maxItems 4
+       */
+      socialNetworks?:
+        | []
+        | [
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+          ]
+        | [
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+          ]
+        | [
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+          ]
+        | [
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+          ];
+      creationSource?: string | null;
+    };
+    relationships?: {
+      /**
+       * Contact's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Contact's company
+       */
+      company?: {
+        data: {
+          id: string;
+          type: "company";
+        };
+      };
+      lastAction?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "action";
+            };
+          };
+      /**
+       * Contact's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      pole?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+      /**
+       * Contact's previous action
+       */
+      previousAction?: {
+        data: {
+          id: string;
+          type: "action";
+        };
+      };
+      /**
+       * Contact's next action
+       */
+      nextAction?: {
+        data: {
+          id: string;
+          type: "action";
+        };
+      };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+          expertiseArea?: string;
+          thumbnail?: string;
+          state?: number;
+        };
+      }
+    | {
+        id: string;
+        type: "action";
+        attributes?: {
+          startDate?: string;
+          typeOf?: number;
+          text?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
