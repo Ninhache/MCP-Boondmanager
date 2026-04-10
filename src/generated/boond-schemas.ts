@@ -20416,3 +20416,371 @@ export interface SchemasMarketplaceBodyPutJson {
   };
 }
 
+
+// ─── documents ───
+/**
+ * Document's basic data
+ */
+export interface SchemasDocumentsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "document";
+    attributes?: {
+      name?: string;
+      category?: "other" | "signedProof" | "signatureRequested";
+      size?: {
+        [k: string]: unknown;
+      };
+    };
+    relationships?: {
+      /**
+       * The project related to the document
+       */
+      project?: {
+        data: {
+          id: string;
+          type: "project";
+        };
+      };
+      /**
+       * The parsed document related to the document
+       */
+      parsedDocument?: {
+        data: {
+          id: string;
+          type: "parseddocument";
+        };
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+          /**
+           * If false then project is not accessible
+           */
+          canReadProject?: boolean;
+        };
+      }
+    | {
+        id: string;
+        type: "parseddocument";
+        attributes?: {
+          creationDate?: string;
+          score?: number;
+          provider?: "hrflow" | "mindee" | "openai" | "azure";
+          useCache?: boolean;
+          parsingData?: {
+            [k: string]: unknown;
+          };
+        };
+        relationships?: {
+          dependsOn?:
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "candidate";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "expensesreport";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "providerinvoice";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          civility?: number;
+          typeOf?: number;
+          state?: number;
+          email1?: string;
+          email2?: string;
+          email3?: string;
+          phone1?: string;
+          phone2?: string;
+          phone3?: string;
+          address?: string;
+          postcode?: string;
+          town?: string;
+          country?: string;
+          firstName?: string;
+          lastName?: string;
+          title?: string;
+          skills?: string;
+          dateOfBirth?: string;
+          placeOfBirth?: string;
+          diplomas?: string[];
+          activityAreas?: string[];
+          /**
+           * List of mobilities {id}
+           */
+          mobilityAreas?: string[];
+          situation?: number;
+          languages?: {
+            language: string;
+            /**
+             * Language level {id}
+             */
+            level: string;
+          }[];
+          expertiseAreas?: string[];
+          experience?: number;
+          references?: {
+            id: string;
+            title: string;
+            description: string;
+          }[];
+          tools?: {
+            /**
+             * Tool {id}
+             */
+            tool: string;
+            /**
+             * Tool level
+             */
+            level: number;
+          }[];
+          training?: string;
+          /**
+           * @minItems 0
+           * @maxItems 4
+           */
+          socialNetworks?:
+            | []
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ];
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          civility?: number;
+          typeOf?: number;
+          state?: number;
+          email2?: string;
+          email3?: string;
+          phone1?: string;
+          phone2?: string;
+          phone3?: string;
+          address?: string;
+          postcode?: string;
+          town?: string;
+          country?: string;
+          firstName?: string;
+          lastName?: string;
+          title?: string;
+          skills?: string;
+          dateOfBirth?: string;
+          placeOfBirth?: string;
+          diplomas?: string[];
+          activityAreas?: string[];
+          /**
+           * List of mobilities {id}
+           */
+          mobilityAreas?: string[];
+          situation?: number;
+          languages?: {
+            language: string;
+            /**
+             * Language level {id}
+             */
+            level: string;
+          }[];
+          expertiseAreas?: string[];
+          experience?: number;
+          /**
+           * List of references
+           */
+          references?: {
+            id: string;
+            title: string;
+            company?: string;
+            location?: string;
+            startMonth?: string;
+            startYear?: string;
+            endMonth?: string;
+            endYear?: string;
+            skills?: string;
+            description: string;
+            startDate?: string;
+            endDate?: string;
+            row?: number;
+          }[];
+          tools?: {
+            /**
+             * Tool {id}
+             */
+            tool: string;
+            /**
+             * Tool level
+             */
+            level: number;
+          }[];
+          training?: string;
+          /**
+           * @minItems 0
+           * @maxItems 4
+           */
+          socialNetworks?:
+            | []
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ];
+        };
+      }
+  )[];
+}
+
+/**
+ * Document's information data sent in the body with a PUT method
+ */
+export interface SchemasDocumentsProfileBodyPutJson {
+  data: {
+    id: string;
+    type: "document";
+    attributes?: {
+      name: string;
+      category: "other" | "signedProof" | "signatureRequested";
+      size?: {
+        [k: string]: unknown;
+      };
+    };
+    relationships?: {
+      /**
+       * The project related to the document
+       */
+      project?: {
+        data: {
+          id: string;
+          type: "project";
+        };
+      };
+    };
+  };
+}
+
