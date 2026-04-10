@@ -4,6 +4,7 @@ import { AbsencesModule } from "./modules/absences/absences.module.js";
 import { AbsencesReportsModule } from "./modules/absences-reports/absences-reports.module.js";
 import { AccountsModule } from "./modules/accounts/accounts.module.js";
 import { ActionsModule } from "./modules/actions/actions.module.js";
+import { AdvantagesModule } from "./modules/advantages/advantages.module.js";
 import { AgenciesModule } from "./modules/agencies/agencies.module.js";
 import { BillingDetailsModule } from "./modules/billing-details/billing-details.module.js";
 import { BoondModule } from "./modules/boond/boond.module.js";
@@ -77,6 +78,7 @@ const DOMAIN_MODULES = [
   AccountsModule,
   ContactsModule,
   ContractsModule,
+  AdvantagesModule,
   FlagsModule,
   WebhooksModule,
   // MCP Prompts and Resources
