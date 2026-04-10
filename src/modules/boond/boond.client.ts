@@ -9,6 +9,7 @@
  */
 
 import { createHmac } from "node:crypto";
+import { type RetryOptions, withRetry } from "../../utils/retry.js";
 
 function base64UrlEncode(input: string): string {
   return Buffer.from(input).toString("base64url");
@@ -54,6 +55,13 @@ export interface BoondConfig {
 }
 
 export class BoondApiError extends Error {
+  /**
+   * When the API responds with 429 Too Many Requests and a Retry-After
+   * header, this field is set to the parsed delay in milliseconds.
+   * `withRetry` reads this field to honour the server's requested backoff.
+   */
+  retryAfterMs?: number;
+
   constructor(
     public readonly status: number,
     public readonly statusText: string,
@@ -62,6 +70,73 @@ export class BoondApiError extends Error {
     super(`Boond API error ${status} (${statusText}): ${body}`);
     this.name = "BoondApiError";
   }
+}
+
+/**
+ * Determine whether a Boond API error is transient and worth retrying.
+ *
+ * Retryable:
+ *   - 429 Too Many Requests (rate-limited — honour Retry-After)
+ *   - 502, 503, 504 (gateway / upstream errors)
+ *   - Network errors (no HTTP status — `fetch` threw before a response)
+ *
+ * Not retryable:
+ *   - Other 4xx (client errors — retrying won't help)
+ *   - Other 5xx (service errors not expected to be transient)
+ */
+export function shouldRetryBoondError(error: unknown): boolean {
+  if (error instanceof BoondApiError) {
+    const { status } = error;
+    return status === 429 || status === 502 || status === 503 || status === 504;
+  }
+  // Non-BoondApiError means fetch threw (network failure) — retryable.
+  return true;
+}
+
+/**
+ * Parse BOOND_MAX_RETRIES from the environment.
+ * Falls back to 3. Throws if the value is present but not a positive integer.
+ */
+function parseMaxRetries(): number {
+  const raw = process.env.BOOND_MAX_RETRIES;
+  if (!raw) return 3;
+  const parsed = Number.parseInt(raw, 10);
+  if (!Number.isFinite(parsed) || parsed <= 0) {
+    throw new Error(`Invalid BOOND_MAX_RETRIES "${raw}": must be a positive integer`);
+  }
+  return parsed;
+}
+
+const DEFAULT_RETRY_OPTIONS: RetryOptions = {
+  maxRetries: parseMaxRetries(),
+  shouldRetry: shouldRetryBoondError,
+};
+
+/**
+ * Parse the value of a `Retry-After` HTTP header into milliseconds.
+ *
+ * Accepts two formats defined by RFC 7231:
+ *   - Delay-seconds: a non-negative integer (e.g. "60")
+ *   - HTTP-date:     an RFC 1123 date string (e.g. "Wed, 21 Oct 2025 07:28:00 GMT")
+ *
+ * Returns undefined if the value cannot be parsed.
+ */
+function parseRetryAfterMs(value: string): number | undefined {
+  const trimmed = value.trim();
+
+  // Delay-seconds format: pure integer string.
+  if (/^\d+$/.test(trimmed)) {
+    return Number.parseInt(trimmed, 10) * 1000;
+  }
+
+  // HTTP-date format: parse via Date.
+  const date = new Date(trimmed);
+  if (!Number.isNaN(date.getTime())) {
+    const delayMs = date.getTime() - Date.now();
+    return delayMs > 0 ? delayMs : 0;
+  }
+
+  return undefined;
 }
 
 export class BoondClient {
@@ -136,7 +211,14 @@ export class BoondClient {
     return url.toString();
   }
 
-  private async request<T>(
+  /**
+   * Execute a single HTTP request against the Boond API, throwing
+   * `BoondApiError` on non-2xx responses.
+   *
+   * On 429 responses the `Retry-After` header is parsed (seconds or
+   * HTTP-date) and attached to the error so `withRetry` can honour it.
+   */
+  private async rawRequest<T>(
     method: string,
     path: string,
     options?: {
@@ -159,10 +241,32 @@ export class BoondClient {
 
     if (!res.ok) {
       const body = await res.text();
-      throw new BoondApiError(res.status, res.statusText, body);
+      const apiError = new BoondApiError(res.status, res.statusText, body);
+
+      // Parse Retry-After on 429 so the retry loop can honour the server's
+      // requested backoff instead of using the computed exponential delay.
+      if (res.status === 429) {
+        const retryAfter = res.headers.get("Retry-After");
+        if (retryAfter !== null) {
+          apiError.retryAfterMs = parseRetryAfterMs(retryAfter);
+        }
+      }
+
+      throw apiError;
     }
 
     return res.json() as Promise<T>;
+  }
+
+  private async request<T>(
+    method: string,
+    path: string,
+    options?: {
+      params?: Record<string, string>;
+      body?: unknown;
+    },
+  ): Promise<T> {
+    return withRetry(() => this.rawRequest<T>(method, path, options), DEFAULT_RETRY_OPTIONS);
   }
 
   async get<T>(path: string, params?: Record<string, string>): Promise<T> {
