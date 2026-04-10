@@ -159,6 +159,10 @@ const MODULES: readonly ModuleSpec[] = [
     name: "threads",
     schemas: ["search", "profile", "default", "bodyPost", "bodyPut"],
   },
+  {
+    name: "forms",
+    schemas: ["profile", "default", "rights", "tasks"],
+  },
   // Note: "logs" schema has a malformed comment that crashes json-schema-to-typescript
 ];
 
