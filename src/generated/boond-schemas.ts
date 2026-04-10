@@ -17380,3 +17380,119 @@ export interface SchemasBankingTransactionsBodyPutJson {
   };
 }
 
+
+// ─── targets ───
+/**
+ * Target's basic data
+ */
+export interface SchemasTargetsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "target";
+    attributes?: {
+      category?: "commercial" | "humanResources" | "recruitment" | "activityExpenses" | "billing" | "global";
+      operator?: "<" | "<=" | "=" | ">" | ">=";
+      periodType?: "weekly" | "monthly" | "quaterly" | "semiAnnual" | "annual";
+      periodNumber?: "allDates" | number;
+      periodYear?: "allDates" | string;
+      value?: number;
+      scorecard?: {
+        reference: {
+          [k: string]: unknown;
+        };
+        typeOf: "money" | "percentage" | "number" | "string";
+        dictionaryId?: number;
+      };
+    };
+    relationships?: {
+      /**
+       * Target's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "resource";
+    attributes?: {
+      firstName?: string;
+      lastName?: string;
+    };
+  }[];
+}
+
+/**
+ * Target's basic data sent in the body with a POST method
+ */
+export interface SchemasTargetsBodyPostJson {
+  data: {
+    type: "target";
+    attributes?: {
+      category?: "commercial" | "humanResources" | "recruitment" | "activityExpenses" | "billing" | "global";
+      operator?: "<" | "<=" | "=" | ">" | ">=";
+      periodType?: "weekly" | "monthly" | "quaterly" | "semiAnnual" | "annual";
+      periodNumber?: "allDates" | number;
+      periodYear?: "allDates" | string;
+      value?: number;
+      scorecard?: {
+        reference: {
+          [k: string]: unknown;
+        };
+      };
+    };
+    relationships?: {
+      /**
+       * Target's resource
+       */
+      resource: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Target's basic data sent in the body with a PUT method
+ */
+export interface SchemasTargetsBodyPutJson {
+  data: {
+    id: string;
+    type: "target";
+    attributes?: {
+      category?: "commercial" | "humanResources" | "recruitment" | "activityExpenses" | "billing" | "global";
+      operator?: "<" | "<=" | "=" | ">" | ">=";
+      periodType?: "weekly" | "monthly" | "quaterly" | "semiAnnual" | "annual";
+      periodNumber?: "allDates" | number;
+      periodYear?: "allDates" | string;
+      value?: number;
+      scorecard?: {
+        reference: {
+          [k: string]: unknown;
+        };
+      };
+    };
+  };
+}
+

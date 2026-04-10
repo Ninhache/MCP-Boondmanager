@@ -39,6 +39,7 @@ import type {
   SchemasPurchasesSearchJson,
   SchemasResourcesSearchJson,
   SchemasRolesSearchJson,
+  SchemasTargetsProfileJson,
   SchemasTimesReportsSearchJson,
   SchemasTimesSearchJson,
   SchemasValidationsSearchJson,
@@ -103,6 +104,7 @@ export type InactivityAttributes = ExtractAttributes<SchemasInactivitiesProfileJ
 export type AdvantageAttributes = ExtractAttributes<SchemasAdvantagesProfileJson>;
 export type AlertAttributes = ExtractAttributes<SchemasAlertsSearchJson>;
 export type BankingTransactionAttributes = ExtractAttributes<SchemasBankingTransactionsSearchJson>;
+export type TargetAttributes = ExtractAttributes<SchemasTargetsProfileJson>;
 
 /**
  * Generic typed Boond list response.
