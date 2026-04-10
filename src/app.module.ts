@@ -42,6 +42,7 @@ import { PurchasesModule } from "./modules/purchases/purchases.module.js";
 import { ResourcesModule } from "./modules/resources/resources.module.js";
 import { RolesModule } from "./modules/roles/roles.module.js";
 import { SavedSearchesModule } from "./modules/savedsearches/savedsearches.module.js";
+import { StandardProfilesModule } from "./modules/standard-profiles/standard-profiles.module.js";
 import { TargetsModule } from "./modules/targets/targets.module.js";
 import { TasksModule } from "./modules/tasks/tasks.module.js";
 import { ThreadsModule } from "./modules/threads/threads.module.js";
@@ -102,6 +103,7 @@ const DOMAIN_MODULES = [
   DocumentsModule,
   DownloadCenterModule,
   SavedSearchesModule,
+  StandardProfilesModule,
   TodolistsModule,
   ThreadsModule,
   WebhooksModule,

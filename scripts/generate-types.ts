@@ -175,6 +175,10 @@ const MODULES: readonly ModuleSpec[] = [
     name: "downloadCenter",
     schemas: ["profile", "folder"],
   },
+  {
+    name: "standardProfiles",
+    schemas: ["search", "profile", "default", "rights", "bodyPost", "bodyPut"],
+  },
   // Note: "logs" schema has a malformed comment that crashes json-schema-to-typescript
 ];
 
