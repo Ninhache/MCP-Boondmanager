@@ -1,0 +1,1213 @@
+#%RAML 0.8
+title: Boond API
+version: 1.0
+protocols: [ HTTPS ]
+mediaType: application/json
+
+baseUri: https://{apiServer}/api/{apiVersion}
+baseUriParameters:
+  apiServer:
+    type: string
+    default: "ui.boondmanager.com"
+    enum: [ "ui.boondmanager.com" ]
+  apiVersion:
+    type: string
+    default: "1.0"
+    enum: [ "1.0" ]
+
+securitySchemes:
+  - basic-authentication: !include securitySchemes/basic.raml
+  - x-Token: !include securitySchemes/token.raml
+  - x-JWT-App-Refresh: !include securitySchemes/jwtAppRefresh.raml
+  - x-JWT-App: !include securitySchemes/jwtApp.raml
+  - x-JWT-Client: !include securitySchemes/jwtClient.raml
+
+schemas:
+  - error-422: !include schemas/errors/422.json
+  - error-500: !include schemas/errors/500.json
+
+  - absences-search: !include schemas/absences/search.json
+
+  - absencesReports-search: !include schemas/absencesReports/search.json
+  - absencesReports-profile: !include schemas/absencesReports/profile.json
+  - absencesReportsInformation-profile: !include schemas/absencesReports/profile.json
+  - absencesReports-rights: !include schemas/absencesReports/rights.json
+  - absencesReportsDefault-profile: !include schemas/absencesReports/default.json
+  - absencesReportsBody-post: !include schemas/absencesReports/bodyPost.json
+  - absencesReportsBody-put: !include schemas/absencesReports/bodyPut.json
+  - absencesReportsRejectBody-post: !include schemas/absencesReports/rejectPost.json
+
+  - accounts-search: !include schemas/accounts/search.json
+  - accounts-profile: !include schemas/accounts/profile.json
+  - accountsInformation-profile: !include schemas/accounts/profile.json
+  - accountsDefault-profile: !include schemas/accounts/default.json
+  - accountsBody-post: !include schemas/accounts/bodyPost.json
+  - accountsBody-put: !include schemas/accounts/bodyPut.json
+
+  - actions-search: !include schemas/actions/search.json
+  - actions-profile: !include schemas/actions/profile.json
+  - actions-delete: !include schemas/actions/delete.json
+  - actionsInformation-profile: !include schemas/actions/profile.json
+  - actions-rights: !include schemas/actions/rights.json
+  - actionsDefault-profile: !include schemas/actions/default.json
+  - actionsBody-post: !include schemas/actions/bodyPost.json
+  - actionsBody-put: !include schemas/actions/bodyPut.json
+  - actionsAttachedFlags-profile: !include schemas/actions/attachedFlags.json
+
+  - actionsTemplates-search: !include schemas/actions/templates/search.json
+  - actionsTemplatesInformation-profile: !include schemas/actions/templates/profile.json
+  - actionsTemplatesBody-post: !include schemas/actions/templates/bodyPost.json
+  - actionsTemplatesBody-put: !include schemas/actions/templates/bodyPut.json
+
+  - administrator-profile: !include schemas/administrator/profile.json
+
+  - advantages-profile: !include schemas/advantages/profile.json
+  - advantagesInformation-profile: !include schemas/advantages/profile.json
+  - advantages-rights: !include schemas/advantages/rights.json
+  - advantagesDefault-profile: !include schemas/advantages/default.json
+  - advantagesBody-post: !include schemas/advantages/bodyPost.json
+  - advantagesBody-put: !include schemas/advantages/bodyPut.json
+
+  - alerts-search: !include schemas/alerts/search.json
+  - alertsConfiguration-profile: !include schemas/alerts/configuration.json
+  - alertsConfigurationBody-put: !include schemas/alerts/configurationBodyPut.json
+  - alertsValues-search: !include schemas/alerts/values.json
+
+  - agencies-search: !include schemas/agencies/search.json
+  - agencies-rights: !include schemas/agencies/rights.json
+  - agencies-profile: !include schemas/agencies/profile.json
+  - agenciesDefault-profile: !include schemas/agencies/default.json
+  - agenciesBody-post: !include schemas/agencies/bodyPost.json
+  - agenciesInformation-profile: !include schemas/agencies/information.json
+  - agenciesInformationBody-put: !include schemas/agencies/informationBodyPut.json
+  - agenciesActivityExpenses-profile: !include schemas/agencies/activityExpenses.json
+  - agenciesActivityExpensesBody-put: !include schemas/agencies/activityExpensesBodyPut.json
+  - agenciesBilling-profile: !include schemas/agencies/billing.json
+  - agenciesBillingBody-put: !include schemas/agencies/billingBodyPut.json
+  - agenciesOpportunities-profile: !include schemas/agencies/opportunities.json
+  - agenciesOpportunitiesBody-put: !include schemas/agencies/opportunitiesBodyPut.json
+  - agenciesProjects-profile: !include schemas/agencies/projects.json
+  - agenciesProjectsBody-put: !include schemas/agencies/projectsBodyPut.json
+  - agenciesPurchases-profile: !include schemas/agencies/purchases.json
+  - agenciesPurchasesBody-put: !include schemas/agencies/purchasesBodyPut.json
+  - agenciesProducts-profile: !include schemas/agencies/products.json
+  - agenciesProductsBody-put: !include schemas/agencies/productsBodyPut.json
+  - agenciesResources-profile: !include schemas/agencies/resources.json
+  - agenciesResourcesBody-put: !include schemas/agencies/resourcesBodyPut.json
+  - agenciesTechnicalData-profile: !include schemas/agencies/technicalData.json
+  - agenciesTechnicalDataBody-put: !include schemas/agencies/technicalDataBodyPut.json
+
+  - application-assignments: !include schemas/application/assignments.json
+  - application-currentUser: !include schemas/application/currentUser.json
+  - application-dictionary-profile: !include schemas/application/dictionary.json
+  - application-dictionaryBody-put: !include schemas/application/dictionaryBodyPut.json
+  - application-dynamicFilters: !include schemas/application/dynamicFilters.json
+  - application-flags: !include schemas/application/flags.json
+  - application-language: !include schemas/application/language.json
+  - application-perimeters: !include schemas/application/perimeters.json
+  - application-readDatabase: !include schemas/application/readDatabase.json
+  - applicationResponse-get: !include schemas/application/responseGet.json
+  - applicationResponse-post: !include schemas/application/responsePost.json
+  - application-resetPassword: !include schemas/application/resetPassword.json
+  - application-settings-profile: !include schemas/application/settings.json
+  - application-settingsBodyPut-put: !include schemas/application/settingsBodyPut.json
+  - application-status: !include schemas/application/status.json
+  - application-geoCities: !include schemas/application/geoCities.json
+  - application-weekendAndBankHolidays: !include schemas/application/weekendAndBankHolidays.json
+
+  - apps-search: !include schemas/apps/search.json
+  - apps-profile: !include schemas/apps/profile.json
+  - apps-install: !include schemas/apps/install.json
+  - apps-uninstall: !include schemas/apps/uninstall.json
+  - appsAdvantages-search: !include schemas/apps/advantages/advantages/search.json
+  - appsContracts-search: !include schemas/apps/contracts/contracts/search.json
+  - appsMarkers-search: !include schemas/apps/markers/markers/search.json
+  - appsGMailResources-profile: !include schemas/apps/gmail/resources/profile.json
+  - appsGMailMailsBody-post: !include schemas/apps/gmail/mails/bodyPost.json
+  - appsGMailMails-profile: !include schemas/apps/gmail/mails/profile.json
+  - appsGCalendar-event: !include schemas/apps/gcalendar/event.json
+  - appsGCalendarResources-profile: !include schemas/apps/gcalendar/resources/profile.json
+  - appsGViewer-urlDocuments: !include schemas/apps/gviewer/urlDocuments.json
+  - appsGViewerResources-profile: !include schemas/apps/gviewer/resources/profile.json
+  - appsGViewerResourcesBody-put: !include schemas/apps/gviewer/resources/bodyPut.json
+  - appsDocTemplatesConfiguration-profile: !include schemas/apps/docTemplates/configuration/profile.json
+  - appsDocTemplatesTemplates-search: !include schemas/apps/docTemplates/templates/search.json
+  - appsDocTemplatesTemplates-profile: !include schemas/apps/docTemplates/templates/profile.json
+  - appsDocTemplatesTemplatesProfileBody-put: !include schemas/apps/docTemplates/templates/profileBodyPut.json
+  - appsDocTemplatesTemplatesViewer-search: !include schemas/apps/docTemplates/templates/viewer/search.json
+  - appsEMailingShareInformation-profile: !include schemas/apps/emailing/share/profile.json
+  - appsEMailingShareBody-post: !include schemas/apps/emailing/share/bodyPost.json
+  - appsEMailingConfiguration-profile: !include schemas/apps/emailing/configuration/profile.json
+  - appsEMailingConfigurationBody-put: !include schemas/apps/emailing/configuration/bodyPut.json
+  - appsEMailingAbsencesReports-profile: !include schemas/apps/emailing/absencesReports/profile.json
+  - appsEMailingCandidates-profile: !include schemas/apps/emailing/candidates/profile.json
+  - appsEMailingContacts-profile: !include schemas/apps/emailing/contacts/profile.json
+  - appsEMailingExpensesReports-profile: !include schemas/apps/emailing/expensesReports/profile.json
+  - appsEMailingInvoices-profile: !include schemas/apps/emailing/invoices/profile.json
+  - appsEMailingConnection-profile: !include schemas/apps/emailing/resources/connection.json
+  - appsEMailingPositionings-profile: !include schemas/apps/emailing/positionings/profile.json
+  - appsEMailingQuotations-profile: !include schemas/apps/emailing/quotations/profile.json
+  - appsEMailingResources-profile: !include schemas/apps/emailing/resources/profile.json
+  - appsEMailingResourcesSettings-profile: !include schemas/apps/emailing/resources/settings.json
+  - appsEMailingResourcesSettingsBody-put: !include schemas/apps/emailing/resources/settingsBodyPut.json
+  - appsEMailingTemplates-search: !include schemas/apps/emailing/templates/search.json
+  - appsEMailingTemplatesInformation-profile: !include schemas/apps/emailing/templates/profile.json
+  - appsEMailingTemplates-lastUsed: !include schemas/apps/emailing/templates/lastUsed.json
+  - appsEMailingTemplatesBody-put: !include schemas/apps/emailing/templates/bodyPut.json
+  - appsEMailingTemplatesBody-post: !include schemas/apps/emailing/templates/bodyPost.json
+  - appsEMailingTimesReports-profile: !include schemas/apps/emailing/timesReports/profile.json
+  - appsMicrosoftResources-profile: !include schemas/apps/microsoft/resources/profile.json
+  - appsMicrosoftMailsBody-post: !include schemas/apps/microsoft/mails/bodyPost.json
+  - appsMicrosoftMails-profile: !include schemas/apps/microsoft/mails/profile.json
+  - appsMicrosoft-event: !include schemas/apps/microsoft/event.json
+  - appsMicrosoft-extraid: !include schemas/apps/microsoft/extraid.json
+  - appsMicrosoftEvents-find: !include schemas/apps/microsoft/events/find.json
+  - appsMicrosoftEventsBody-put: !include schemas/apps/microsoft/events/bodyPut.json
+  - appsMicrosoftEvents-profile: !include schemas/apps/microsoft/events/profile.json
+  - appsSurveySatisfactions-search: !include schemas/apps/survey/satisfactions/search.json
+  - appsSurveySatisfactionIndicators-search: !include schemas/apps/survey/satisfactionIndicators/search.json
+  - appsSurveyEnquiries-rights: !include schemas/apps/survey/enquiries/rights.json
+  - appsSurveyEnquiries-profile: !include schemas/apps/survey/enquiries/profile.json
+  - appsSurveyEnquiriesBody-put: !include schemas/apps/survey/enquiries/bodyPut.json
+  - appsSurveyConfiguration-profile: !include schemas/apps/survey/configuration/profile.json
+  - appsSurveyConfigurationBody-put: !include schemas/apps/survey/configuration/bodyPut.json
+  - appsExtractPayrollContracts-search: !include schemas/apps/extractPayroll/contracts/search.json
+  - appsExtractPayrollContracts-profile: !include schemas/apps/extractPayroll/contracts/profile.json
+  - appsExtractPayrollContractsBody-put: !include schemas/apps/extractPayroll/contracts/bodyPut.json
+  - appsExtractPayrollResources-profile: !include schemas/apps/extractPayroll/resources/profile.json
+  - appsExtractPayrollResourcesBody-put: !include schemas/apps/extractPayroll/resources/bodyPut.json
+  - appsPostProductionProjects-search: !include schemas/apps/postProduction/projects/search.json
+  - appsPostProductionProjects-profile: !include schemas/apps/postProduction/projects/profile.json
+  - appsPostProductionProjectsBody-put: !include schemas/apps/postProduction/projects/bodyPut.json
+  - appsPostProductionResources-profile: !include schemas/apps/postProduction/resources/profile.json
+  - appsPostProductionResourcesBody-put: !include schemas/apps/postProduction/resources/bodyPut.json
+  - appsQuotationsOpportunities-search: !include schemas/apps/quotations/opportunities/search.json
+  - appsQuotationsQuotations-search: !include schemas/apps/quotations/quotations/search.json
+  - appsQuotationsQuotations-rights: !include schemas/apps/quotations/quotations/rights.json
+  - appsQuotationsQuotationsDefault-profile: !include schemas/apps/quotations/quotations/default.json
+  - appsQuotationsQuotationsBody-post: !include schemas/apps/quotations/quotations/bodyPost.json
+  - appsQuotationsQuotations-profile: !include schemas/apps/quotations/quotations/profile.json
+  - appsQuotationsQuotationsInformation-profile: !include schemas/apps/quotations/quotations/profile.json
+  - appsQuotationsQuotationsBody-put: !include schemas/apps/quotations/quotations/bodyPut.json
+  - appsQuotationsQuotations-send: !include schemas/apps/quotations/quotations/send.json
+  - appsQuotationsQuotationsTasks-profile: !include schemas/apps/quotations/quotations/tasks.json
+  - appsCorporamaConfiguration-profile: !include schemas/apps/corporama/configuration/profile.json
+  - appsPlanProductionResources-search: !include schemas/apps/planProduction/resources/search.json
+  - appsCreateActivityDocumentsResources-profile: !include schemas/apps/createActivityDocuments/resources/profile.json
+  - appsDigitalWorkplaceDocuments-profile: !include schemas/apps/digitalWorkplace/documents/profile.json
+  - appsDigitalWorkplaceDocumentsViewer-search: !include schemas/apps/digitalWorkplace/documents/viewer/search.json
+  - appsDigitalWorkplaceCategory-search: !include schemas/apps/digitalWorkplace/categories/categories.json
+  - appsDigitalWorkplaceCategory-profile: !include schemas/apps/digitalWorkplace/categories/category.json
+  - appsDigitalWorkplaceCategoryInformation-profile: !include schemas/apps/digitalWorkplace/categories/responsePost.json
+  - appsDigitalWorkplaceCategoryBody-post: !include schemas/apps/digitalWorkplace/categories/bodyPost.json
+  - appsDigitalWorkplaceCategoryBody-put: !include schemas/apps/digitalWorkplace/categories/bodyPut.json
+  - appsDigitalWorkplaceNews-search: !include schemas/apps/digitalWorkplace/news/newsList.json
+  - appsDigitalWorkplaceNews-profile: !include schemas/apps/digitalWorkplace/news/news.json
+  - appsDigitalWorkplaceNewsInformation-profile: !include schemas/apps/digitalWorkplace/news/responsePost.json
+  - appsDigitalWorkplaceNewsBody-post: !include schemas/apps/digitalWorkplace/news/bodyPost.json
+  - appsDigitalWorkplaceNewsBody-put: !include schemas/apps/digitalWorkplace/news/bodyPut.json
+  - appsIntranetAccountsResources-search: !include schemas/apps/intranetAccounts/resources/search.json
+  - appsIntranetAccountsResources-profile: !include schemas/apps/intranetAccounts/resources/profile.json
+  - appsIntranetAccountsResourcesBody-put: !include schemas/apps/intranetAccounts/resources/bodyPut.json
+  - appsAdvancedCandidatesCandidates-search: !include schemas/apps/advancedCandidates/candidates/search.json
+  - appsAdvancedCandidatesCandidates-rights: !include schemas/apps/advancedCandidates/candidates/rights.json
+  - appsAdvancedCandidatesCandidatesDefault-profile: !include schemas/apps/advancedCandidates/candidates/default.json
+  - appsAdvancedCandidatesCandidatesBody-post: !include schemas/apps/advancedCandidates/candidates/bodyPost.json
+  - appsAdvancedCandidatesCandidates-profile: !include schemas/apps/advancedCandidates/candidates/profile.json
+  - appsAdvancedCandidatesCandidatesInformation-profile: !include schemas/apps/advancedCandidates/candidates/profile.json
+  - appsAdvancedCandidatesCandidatesBody-put: !include schemas/apps/advancedCandidates/candidates/bodyPut.json
+  - appsAdvancedCandidatesCandidatesTasks-profile: !include schemas/apps/advancedCandidates/candidates/tasks.json
+  - appsAdvancedCandidatesResources-profile: !include schemas/apps/advancedCandidates/resources/profile.json
+  - appsAdvancedCandidatesResourcesBody-put: !include schemas/apps/advancedCandidates/resources/bodyPut.json
+  - appsAbsencesAccountsAbsencesAccounts-search: !include schemas/apps/absencesAccounts/absencesAccounts/search.json
+  - appsAbsencesAccountsAbsencesAccounts-profile: !include schemas/apps/absencesAccounts/absencesAccounts/profile.json
+  - appsAbsencesAccountsAbsencesAccountsBody-put: !include schemas/apps/absencesAccounts/absencesAccounts/bodyPut.json
+  - appsBackupDatabaseConfiguration-profile: !include schemas/apps/backupDatabase/configuration/profile.json
+  - appsBackupDatabaseConfigurationBody-put: !include schemas/apps/backupDatabase/configuration/bodyPut.json
+  - appsEsignatureEsignatures-profile: !include schemas/apps/esignature/esignatures/profile.json
+  - appsEsignatureEsignaturesDefault-profile: !include schemas/apps/esignature/esignatures/default.json
+  - appsEsignatureEsignaturesBody-post: !include schemas/apps/esignature/esignatures/bodyPost.json
+  - appsEsignatureEsignaturesCancelBody-post: !include schemas/apps/esignature/esignatures/cancelBodyPost.json
+  - appsSaasEditorReporting-search: !include schemas/apps/saasEditor/reporting/search.json
+  - appsSaasEditorConfiguration-profile: !include schemas/apps/saasEditor/configuration/profile.json
+  - appsSaasEditorConfigurationBody-put: !include schemas/apps/saasEditor/configuration/bodyPut.json
+  - appsExtractBIConfiguration-profile: !include schemas/apps/extractBi/configuration/profile.json
+  - appsExtractBIConfigurationBody-put: !include schemas/apps/extractBi/configuration/bodyPut.json
+  - appsExtractBITemplates-search: !include schemas/apps/extractBi/templates/search.json
+  - appsExtractBITemplatesBody-post: !include schemas/apps/extractBi/templates/bodyPost.json
+  - appsExtractBITemplatesBody-put: !include schemas/apps/extractBi/templates/bodyPut.json
+  - appsExtractBITemplatesInformation-profile: !include schemas/apps/extractBi/templates/profile.json
+  - appsExtractBITemplates-profile: !include schemas/apps/extractBi/templates/profile.json
+  - appsExtractBIRequests-search: !include schemas/apps/extractBi/requests/search.json
+  - appsExtractBIRequestsBody-post: !include schemas/apps/extractBi/requests/bodyPost.json
+  - appsExtractBIRequestsBody-put: !include schemas/apps/extractBi/requests/bodyPut.json
+  - appsExtractBIRequestsInformation-profile: !include schemas/apps/extractBi/requests/profile.json
+  - appsExtractBIRequests-profile: !include schemas/apps/extractBi/requests/profile.json
+  - appsExtractBITest-profile: !include schemas/apps/extractBi/test/profile.json
+  - appsAccountingPayrollConfiguration-profile: !include schemas/apps/accountingPayroll/configuration.json
+  - appsAccountingPayrollConfigurationBody-put: !include schemas/apps/accountingPayroll/configurationBodyPut.json
+  - appsAccountingPayrollCompanies-search: !include schemas/apps/accountingPayroll/companies/search.json
+  - appsAccountingPayrollCompanies-profile: !include schemas/apps/accountingPayroll/companies/profile.json
+  - appsAccountingPayrollCompaniesBody-put: !include schemas/apps/accountingPayroll/companies/bodyPut.json
+  - appsAccountingPayrollExpensesReports-search: !include schemas/apps/accountingPayroll/expensesReports/search.json
+  - appsAccountingPayrollInvoices-search: !include schemas/apps/accountingPayroll/invoices/search.json
+  - appsAccountingPayrollPayments-search: !include schemas/apps/accountingPayroll/payments/search.json
+  - appsAccountingPayrollContracts-search: !include schemas/apps/accountingPayroll/contracts/search.json
+  - appsDataClosingConfiguration-profile: !include schemas/apps/dataClosing/configuration/profile.json
+  - appsDataClosingConfigurationBody-put: !include schemas/apps/dataClosing/configuration/bodyPut.json
+  - appsDataClosingClosedPeriods-search: !include schemas/apps/dataClosing/closedPeriods/search.json
+  - appsDataClosingClosedPeriodsBody-put: !include schemas/apps/dataClosing/closedPeriods/bodyPut.json
+  - appsDataClosingExpensesReports-search: !include schemas/apps/dataClosing/expensesReports/search.json
+  - appsDataClosingExpensesReports-profile: !include schemas/apps/dataClosing/expensesReports/profile.json
+  - appsDataClosingExpensesReportsBody-put: !include schemas/apps/dataClosing/expensesReports/bodyPut.json
+  - appsDataClosingTimesReports-search: !include schemas/apps/dataClosing/timesReports/search.json
+  - appsDataClosingTimesReportsBody-profile: !include schemas/apps/dataClosing/timesReports/profile.json
+  - appsDataClosingTimesReportsBody-put: !include schemas/apps/dataClosing/timesReports/bodyPut.json
+  - appsDataClosingInvoices-search: !include schemas/apps/dataClosing/invoices/search.json
+  - appsDataClosingInvoices-profile: !include schemas/apps/dataClosing/invoices/profile.json
+  - appsDataClosingInvoicesBody-put: !include schemas/apps/dataClosing/invoices/bodyPut.json
+  - appsSepaConfiguration-profile: !include schemas/apps/sepa/configuration/profile.json
+  - appsSepaConfigurationBody-put: !include schemas/apps/sepa/configuration/bodyPut.json
+  - appsSepaCompanies-profile: !include schemas/apps/sepa/companies/profile.json
+  - appsSepaCompaniesBody-put: !include schemas/apps/sepa/companies/bodyPut.json
+  - appsSepaContracts-search: !include schemas/apps/sepa/contracts/search.json
+  - appsSepaContracts-profile: !include schemas/apps/sepa/contracts/profile.json
+  - appsSepaContractsBody-put: !include schemas/apps/sepa/contracts/bodyPut.json
+  - appsSepaInvoices-search: !include schemas/apps/sepa/invoices/search.json
+  - appsSepaOrders-search: !include schemas/apps/sepa/orders/search.json
+  - appsSepaOrders-profile: !include schemas/apps/sepa/orders/profile.json
+  - appsSepaOrdersBody-put: !include schemas/apps/sepa/orders/bodyPut.json
+  - appsSepaPayments-search: !include schemas/apps/sepa/payments/search.json
+  - appsSepaPurchases-search: !include schemas/apps/sepa/purchases/search.json
+  - appsSepaPurchases-profile: !include schemas/apps/sepa/purchases/profile.json
+  - appsSepaPurchasesBody-put: !include schemas/apps/sepa/purchases/bodyPut.json
+  - appsExceptionalActivityCompanies-search: !include schemas/apps/exceptionalActivity/companies/search.json
+  - appsExceptionalActivityTimes-search: !include schemas/apps/exceptionalActivity/times/search.json
+  - appsExceptionalActivityTimes-profile: !include schemas/apps/exceptionalActivity/times/profile.json
+  - appsExceptionalActivityTimesBody-put: !include schemas/apps/exceptionalActivity/times/bodyPut.json
+  - appsResourcePlannerResources-profile: !include schemas/apps/resourcePlanner/resources/profile.json
+  - appsResourcePlannerResources-rights: !include schemas/apps/resourcePlanner/resources/rights.json
+  - appsResourcePlannerResourcesBody-put: !include schemas/apps/resourcePlanner/resources/profileBodyPut.json
+  - appsResourcePlannerProjects-profile: !include schemas/apps/resourcePlanner/projects/profile.json
+  - appsResourcePlannerProjects-rights: !include schemas/apps/resourcePlanner/projects/rights.json
+  - appsResourcePlannerProjectsBody-put: !include schemas/apps/resourcePlanner/projects/profileBodyPut.json
+  - appsAnsweringValidatorsAnsweringMachines-search: !include schemas/apps/answeringValidators/answeringMachines/search.json
+  - appsAnsweringValidatorsAnsweringMachines-profile: !include schemas/apps/answeringValidators/answeringMachines/profile.json
+  - appsAnsweringValidatorsAnsweringMachinesBody-post: !include schemas/apps/answeringValidators/answeringMachines/bodyPost.json
+  - appsAdvancedProjectsConfiguration-profile: !include schemas/apps/advancedProjects/configuration/profile.json
+  - appsAdvancedProjectsConfigurationBody-put: !include schemas/apps/advancedProjects/configuration/bodyPut.json
+  - appsAdvancedProjectsProjects-search: !include schemas/apps/advancedProjects/projects/search.json
+  - appsAdvancedProjectsProjects-profile: !include schemas/apps/advancedProjects/projects/profile.json
+  - appsAdvancedProjectsProjectsBody-put: !include schemas/apps/advancedProjects/projects/bodyPut.json
+  - appsHourAccountsConfiguration-profile: !include schemas/apps/hourAccounts/configuration/profile.json
+  - appsHourAccountsConfigurationBody-put: !include schemas/apps/hourAccounts/configuration/bodyPut.json
+  - appsHourAccountsHourAccount-search: !include schemas/apps/hourAccounts/houraccounts/search.json
+  - appsHourAccountsHourAccount-profile: !include schemas/apps/hourAccounts/houraccounts/profile.json
+  - appsHourAccountsHourAccount-rights: !include schemas/apps/hourAccounts/houraccounts/rights.json
+  - appsHourAccountsHourAccountBody-put: !include schemas/apps/hourAccounts/houraccounts/bodyPut.json
+  - appsHourAccountsResource-rights: !include schemas/apps/hourAccounts/employees/rights.json
+  - appsHourAccountsResourceSettings-profile: !include schemas/apps/hourAccounts/employees/settings.json
+  - appsHourAccountsResourceSettingsBody-put: !include schemas/apps/hourAccounts/employees/settingsBodyPut.json
+  - appsOrganizationCharts-orgCharts-search: !include schemas/apps/organizationCharts/orgcharts/search.json
+  - appsOrganizationCharts-orgChartsBody-post: !include schemas/apps/organizationCharts/orgcharts/bodyPost.json
+  - appsOrganizationCharts-orgChartsInformation-profile: !include schemas/apps/organizationCharts/orgcharts/profile.json
+  - appsOrganizationCharts-orgCharts-profile: !include schemas/apps/organizationCharts/orgcharts/profile.json
+  - appsOrganizationCharts-nodesBody-post: !include schemas/apps/organizationCharts/nodes/bodyPost.json
+  - appsOrganizationCharts-nodesInformation-profile: !include schemas/apps/organizationCharts/nodes/profile.json
+  - appsOrganizationCharts-nodesBody-put: !include schemas/apps/organizationCharts/nodes/bodyPut.json
+  - appsOrganizationCharts-nodes-profile: !include schemas/apps/organizationCharts/nodes/profile.json
+  - appsOrganizationCharts-settingsBody-post: !include schemas/apps/organizationCharts/settings/bodyPost.json
+  - appsOrganizationCharts-settingsInformation-profile: !include schemas/apps/organizationCharts/settings/profile.json
+  - appsOrganizationCharts-settingsBody-put: !include schemas/apps/organizationCharts/settings/bodyPut.json
+  - appsOrganizationCharts-settings-profile: !include schemas/apps/organizationCharts/settings/profile.json
+  - appsCelebrationsConfiguration-profile: !include schemas/apps/celebrations/configuration/profile.json
+  - appsCelebrationsConfigurationBody-put: !include schemas/apps/celebrations/configuration/bodyPut.json
+  - appsCelebrationsEmployeesConfiguration-profile: !include schemas/apps/celebrations/employees/profile.json
+  - appsCelebrationsEmployeesConfigurationBody-put: !include schemas/apps/celebrations/employees/bodyPut.json
+  - appsCelebrationsEmployeesBirthday-search: !include schemas/apps/celebrations/employees/birthday.json
+  - appsCelebrationsEmployeesSeniority-search: !include schemas/apps/celebrations/employees/seniority.json
+  - appsCelebrationsEmployeesArrival-search: !include schemas/apps/celebrations/employees/arrival.json
+
+  - appsEntities-search: !include schemas/apps/entities/search.json
+  - appsEntities-profile: !include schemas/apps/entities/profile.json
+  - appsEntitiesInformation-profile: !include schemas/apps/entities/profile.json
+  - appsEntities-rights: !include schemas/apps/entities/rights.json
+  - appsEntitiesDependsOn-profile: !include schemas/apps/entities/profile.json
+  - appsEntitiesDefault-profile: !include schemas/apps/entities/default.json
+  - appsEntitiesBody-post: !include schemas/apps/entities/bodyPost.json
+  - appsEntitiesBody-put: !include schemas/apps/entities/bodyPut.json
+  - appsEntitiesAttachedFlags-profile: !include schemas/apps/entities/attachedFlags.json
+  - appsEntitiesTasks-profile: !include schemas/apps/entities/tasks.json
+
+  - architecture-profile: !include schemas/architecture/profile.json
+  - architectureBody-put: !include schemas/architecture/bodyPut.json
+
+  - attachedFlagsBody-post: !include schemas/attachedFlags/bodyPost.json
+  - attachedFlagsInformation-profile: !include schemas/attachedFlags/profile.json
+
+  - bankingAccounts-search: !include schemas/bankingAccounts/search.json
+
+  - bankingTransactions-search: !include schemas/bankingTransactions/search.json
+  - bankingTransactionsBody-put: !include schemas/bankingTransactions/bodyPut.json
+  - bankingTransactions-profile: !include schemas/bankingTransactions/profile.json
+
+  #  - billableItems-search: !include schemas/billableItems/search.json
+  #  - billableItems-profile: !include schemas/billableItems/profile.json
+  #  - billableItemsBody-put: !include schemas/billableItems/bodyPut.json
+  #  - billableItemsBulkEditBody-post: !include schemas/billableItems/bulkEditPost.json
+  #  - billableItemsBulkEditInformation-profile: !include schemas/billableItems/search.json
+
+  - billingDetails-search: !include schemas/billingDetails/search.json
+  - billingDetails-profile: !include schemas/billingDetails/profile.json
+  - billingDetailsInformation-profile: !include schemas/billingDetails/information.json
+  - billingDetailsBody-post: !include schemas/billingDetails/bodyPost.json
+  - billingDetailsBody-put: !include schemas/billingDetails/bodyPut.json
+
+  - billingDeliveriesPurchasesBalance-search: !include schemas/billingDeliveriesPurchasesBalance/search.json
+  - billingMonthlyBalance-search: !include schemas/billingMonthlyBalance/search.json
+  - billingProjectsBalance-search: !include schemas/billingProjectsBalance/search.json
+  - billingSchedulesBalance-search: !include schemas/billingSchedulesBalance/search.json
+
+  - businessUnits-search: !include schemas/businessUnits/search.json
+  - businessUnitsDefault-profile: !include schemas/businessUnits/default.json
+  - businessUnits-profile: !include schemas/businessUnits/profile.json
+  - businessUnitsInformation-profile: !include schemas/businessUnits/profile.json
+  - businessUnitsBody-post: !include schemas/businessUnits/bodyPost.json
+  - businessUnitsBody-put: !include schemas/businessUnits/bodyPut.json
+
+  - calendars-search: !include schemas/calendars/search.json
+  - calendars-profile: !include schemas/calendars/profile.json
+  - calendarsDefault-profile: !include schemas/calendars/default.json
+  - calendarsBody-put: !include schemas/calendars/bodyPut.json
+
+  - candidates-search: !include schemas/candidates/search.json
+  - candidates-profile: !include schemas/candidates/profile.json
+  - candidates-rights: !include schemas/candidates/rights.json
+  - candidatesDefault-profile: !include schemas/candidates/default.json
+  - candidatesBody-post: !include schemas/candidates/bodyPost.json
+  - candidatesInformation-profile: !include schemas/candidates/information.json
+  - candidatesInformationBody-put: !include schemas/candidates/informationBodyPut.json
+  - candidatesAdministrative-profile: !include schemas/candidates/administrative.json
+  - candidatesAdministrativeBody-put: !include schemas/candidates/administrativeBodyPut.json
+  - candidatesTechnicalData-profile: !include schemas/candidates/technicalData.json
+  - candidatesTechnicalDataBody-put: !include schemas/candidates/technicalDataBodyPut.json
+  - candidatesActions-profile: !include schemas/candidates/actions.json
+  - candidatesPositionings-profile: !include schemas/candidates/positionings.json
+  - candidatesAttachedFlags-profile: !include schemas/candidates/attachedFlags.json
+  - candidatesTasks-profile: !include schemas/candidates/tasks.json
+  - candidatesMerge-profile: !include schemas/candidates/merge.json
+  - candidatesMergeBody-post: !include schemas/candidates/mergeBodyPost.json
+  - candidatesAiSummary-profile: !include schemas/candidates/ai/summary.json
+
+  - conditionalFields-search: !include schemas/conditionalFields/search.json
+  - conditionalFields-profile: !include schemas/conditionalFields/profile.json
+  - conditionalFieldsDefault-profile: !include schemas/conditionalFields/default.json
+  - conditionalFieldsBody-post: !include schemas/conditionalFields/bodyPost.json
+  - conditionalFieldsBody-put: !include schemas/conditionalFields/bodyPut.json
+
+  - companies-search: !include schemas/companies/search.json
+  - companies-profile: !include schemas/companies/profile.json
+  - companies-rights: !include schemas/companies/rights.json
+  - companiesDefault-profile: !include schemas/companies/default.json
+  - companiesBody-post: !include schemas/companies/bodyPost.json
+  - companiesInformation-profile: !include schemas/companies/information.json
+  - companiesInformationBody-put: !include schemas/companies/informationBodyPut.json
+  - companiesContacts-profile: !include schemas/companies/contacts.json
+  - companiesActions-profile: !include schemas/companies/actions.json
+  - companiesOpportunities-profile: !include schemas/companies/opportunities.json
+  - companiesProjects-profile: !include schemas/companies/projects.json
+  - companiesPurchases-profile: !include schemas/companies/purchases.json
+  - companiesProviderInvoices-profile: !include schemas/companies/providerInvoices.json
+  - companiesInvoices-profile: !include schemas/companies/invoices.json
+  - companiesOrders-profile: !include schemas/companies/orders.json
+  - companiesAttachedFlags-profile: !include schemas/companies/attachedFlags.json
+  - companiesSettings-rofile: !include schemas/companies/settings.json
+  - companiesSettingsBody-put: !include schemas/companies/settingsBodyPut.json
+  - companiesTasks-profile: !include schemas/companies/tasks.json
+  - companiesMerge-profile: !include schemas/companies/merge.json
+  - companiesMergeBody-post: !include schemas/companies/mergeBodyPost.json
+
+  - threads-search: !include schemas/threads/search.json
+  - threads-profile: !include schemas/threads/profile.json
+  - threadsBody-put: !include schemas/threads/bodyPut.json
+  - threadsBody-post: !include schemas/threads/bodyPost.json
+
+  - contacts-search: !include schemas/contacts/search.json
+  - contacts-profile: !include schemas/contacts/profile.json
+  - contacts-rights: !include schemas/contacts/rights.json
+  - contactsDefault-profile: !include schemas/contacts/default.json
+  - contactsBody-post: !include schemas/contacts/bodyPost.json
+  - contactsInformation-profile: !include schemas/contacts/information.json
+  - contactsInformationBody-put: !include schemas/contacts/informationBodyPut.json
+  - contactsActions-profile: !include schemas/contacts/actions.json
+  - contactsOpportunities-profile: !include schemas/contacts/opportunities.json
+  - contactsProjects-profile: !include schemas/contacts/projects.json
+  - contactsPurchases-profile: !include schemas/contacts/purchases.json
+  - contactsInvoices-profile: !include schemas/contacts/invoices.json
+  - contactsOrders-profile: !include schemas/contacts/orders.json
+  - contactsAttachedFlags-profile: !include schemas/contacts/attachedFlags.json
+  - contactsTasks-profile: !include schemas/contacts/tasks.json
+  - contactsMerge-profile: !include schemas/contacts/merge.json
+  - contactsMergeBody-post: !include schemas/contacts/mergeBodyPost.json
+
+  - contracts-profile: !include schemas/contracts/profile.json
+  - contractsInformation-profile: !include schemas/contracts/profile.json
+  - contracts-rights: !include schemas/contracts/rights.json
+  - contractsDefault-profile: !include schemas/contracts/default.json
+  - contractsBody-post: !include schemas/contracts/bodyPost.json
+  - contractsBody-put: !include schemas/contracts/bodyPut.json
+  - contractsAdvantages-profile: !include schemas/contracts/advantages.json
+  - contractsTasks-profile: !include schemas/contracts/tasks.json
+
+  - customers-search: !include schemas/customers/search.json
+  - customers-profile: !include schemas/customers/profile.json
+  - customers-rights: !include schemas/customers/rights.json
+  - customersSolr-profile: !include schemas/customers/solr.json
+  - customersDefault-profile: !include schemas/customers/default.json
+  - customersBody-post: !include schemas/customers/bodyPost.json
+  - customersBody-put: !include schemas/customers/bodyPut.json
+
+  - boondmanagerContracts-profile: !include schemas/boondmanagerContracts/profile.json
+  - boondmanagerContractsBody-put: !include schemas/boondmanagerContracts/bodyPut.json
+
+  - dashboards-profile: !include schemas/dashboards/profile.json
+  - dashboardsInformation-profile: !include schemas/dashboards/profile.json
+  - dashboards-search: !include schemas/dashboards/search.json
+  - dashboardsBody-post: !include schemas/dashboards/bodyPost.json
+  - dashboardsBody-put: !include schemas/dashboards/bodyPut.json
+
+  - deliveriesGroupments-search: !include schemas/deliveriesGroupments/search.json
+  - deliveries-profile: !include schemas/deliveries/profile.json
+  - deliveriesInformation-profile: !include schemas/deliveries/profile.json
+  - deliveries-rights: !include schemas/deliveries/rights.json
+  - deliveriesBody-post: !include schemas/deliveries/bodyPost.json
+  - deliveriesBody-put: !include schemas/deliveries/bodyPut.json
+  - deliveries-send: !include schemas/deliveries/send.json
+  - deliveriesTasks-profile: !include schemas/deliveries/tasks.json
+
+  - documents-profile: !include schemas/documents/profile.json
+  - documentsProfileBody-put: !include schemas/documents/profileBodyPut.json
+  - documentsViewer-search: !include schemas/documents/viewer/search.json
+
+  - downloadCenter-profile: !include schemas/downloadCenter/profile.json
+  - downloadCenterFolder-profile: !include schemas/downloadCenter/folder.json
+
+  - expensesReports-search: !include schemas/expensesReports/search.json
+  - expensesReports-profile: !include schemas/expensesReports/profile.json
+  - expensesReportsInformation-profile: !include schemas/expensesReports/profile.json
+  - expensesReports-rights: !include schemas/expensesReports/rights.json
+  - expensesReportsDefault-profile: !include schemas/expensesReports/default.json
+  - expensesReportsCertification-profile: !include schemas/expensesReports/profile.json
+  - expensesReportsCertificationBody-post: !include schemas/expensesReports/certificationPost.json
+  - expensesReportsBody-post: !include schemas/expensesReports/bodyPost.json
+  - expensesReportsBody-put: !include schemas/expensesReports/bodyPut.json
+  - expensesReportsRejectBody-post: !include schemas/expensesReports/rejectPost.json
+
+  - expenses-search: !include schemas/expenses/search.json
+
+  - flags-search: !include schemas/flags/search.json
+  - flags-profile: !include schemas/flags/profile.json
+  - flagsInformation-profile: !include schemas/flags/profile.json
+  - flagsBody-post: !include schemas/flags/bodyPost.json
+  - flagsBody-put: !include schemas/flags/bodyPut.json
+
+  - followedDocuments-profile: !include schemas/followedDocuments/profile.json
+  - followedDocumentsInformation-profile: !include schemas/followedDocuments/profile.json
+  - followedDocuments-rights: !include schemas/followedDocuments/rights.json
+  - followedDocumentsDefault-profile: !include schemas/followedDocuments/default.json
+  - followedDocumentsBody-post: !include schemas/followedDocuments/bodyPost.json
+  - followedDocumentsBody-put: !include schemas/followedDocuments/bodyPut.json
+
+  - forms-profile: !include schemas/forms/profile.json
+  - forms-rights: !include schemas/forms/rights.json
+  - formsTasks-profile: !include schemas/forms/tasks.json
+
+  - formsTemplates-profile: !include schemas/forms/templates/profile.json
+  - formsTemplates-search: !include schemas/forms/templates/search.json
+
+  - gadgetValues-profile: !include schemas/gadgets/values.json
+
+  - groupments-profile: !include schemas/groupments/profile.json
+  - groupmentsInformation-profile: !include schemas/groupments/profile.json
+  - groupmentsDefault-profile: !include schemas/groupments/default.json
+  - groupments-rights: !include schemas/groupments/rights.json
+  - groupmentsBody-post: !include schemas/groupments/bodyPost.json
+  - groupmentsBody-put: !include schemas/groupments/bodyPut.json
+  - groupmentsDuplicateInformation-profile: !include schemas/groupments/bodyPost.json
+
+  - inactivities-profile: !include schemas/inactivities/profile.json
+  - inactivitiesInformation-profile: !include schemas/inactivities/profile.json
+  - inactivitiesDefault-profile: !include schemas/inactivities/default.json
+  - inactivities-rights: !include schemas/inactivities/rights.json
+  - inactivitiesBody-post: !include schemas/inactivities/bodyPost.json
+  - inactivitiesBody-put: !include schemas/inactivities/bodyPut.json
+
+  - invoices-search: !include schemas/invoices/search.json
+  - invoices-profile: !include schemas/invoices/profile.json
+  - invoices-rights: !include schemas/invoices/rights.json
+  - invoicesDefault-profile: !include schemas/invoices/default.json
+  - invoicesBody-post: !include schemas/invoices/bodyPost.json
+  - invoicesInformation-profile: !include schemas/invoices/information.json
+  - invoicesInformationBody-put: !include schemas/invoices/informationBodyPut.json
+  - invoicesActions-profile: !include schemas/invoices/actions.json
+  - invoices-send: !include schemas/invoices/send.json
+  - invoices-sendBodyPost: !include schemas/invoices/sendBodyPost.json
+  - invoices-check: !include schemas/invoices/check.json
+  - invoicesAttachedFlags-profile: !include schemas/invoices/attachedFlags.json
+  - invoicesTasks-profile: !include schemas/invoices/tasks.json
+  # - invoicesBillableItems-profile: !include schemas/invoices/billableItems.json
+  # - invoicesAdjust-profile: !include schemas/invoices/profile.json
+  # - invoicesCart-search: !include schemas/invoices/information.json
+  - invoicesPreview-profile: !include schemas/invoices/preview.json
+  - invoicesBulkSendBody-post: !include schemas/invoices/bulkSendBodyPost.json
+  - invoicesBulkSendInformation-profile: !include schemas/invoices/bulkSend.json
+
+  - einvoicingSchemes-profile: !include schemas/einvoicing/schemes.json
+
+  - invoicingConnections-search: !include schemas/invoicingConnections/search.json
+  - invoicingConnections-profile: !include schemas/invoicingConnections/profile.json
+  - invoicingConnectionsInformation-profile: !include schemas/invoicingConnections/profile.json
+  - invoicingConnectionsValidate-profile: !include schemas/invoicingConnections/profile.json
+  - invoicingConnectionsBody-post: !include schemas/invoicingConnections/bodyPost.json
+  - invoicingConnectionsBody-put: !include schemas/invoicingConnections/bodyPut.json
+
+  - logs-search: !include schemas/logs/search.json
+  - logs-profile: !include schemas/logs/profile.json
+
+  - mandatoryLeaves-search: !include schemas/mandatoryLeaves/search.json
+  - mandatoryLeaves-profile: !include schemas/mandatoryLeaves/profile.json
+  - mandatoryLeavesBody-post: !include schemas/mandatoryLeaves/bodyPost.json
+  - mandatoryLeaves-rights: !include schemas/mandatoryLeaves/rights.json
+  - mandatoryLeavesResources-profile: !include schemas/mandatoryLeaves/resources.json
+  - mandatoryLeavesResourcesBody-put: !include schemas/mandatoryLeaves/resourcesBodyPut.json
+  - mandatoryLeavesInformation-profile: !include schemas/mandatoryLeaves/information.json
+  - mandatoryLeavesInformationBody-put: !include schemas/mandatoryLeaves/informationBodyPut.json
+
+  - marketplace-search: !include schemas/marketplace/search.json
+  - marketplaceConfigure-profile: !include schemas/marketplace/configure.json
+  - marketplaceConfigureBody-put: !include schemas/marketplace/configureBodyPut.json
+  - marketplace-profile: !include schemas/marketplace/profile.json
+  - marketplace-rights: !include schemas/marketplace/rights.json
+  - marketplaceDefault-profile: !include schemas/marketplace/default.json
+  - marketplaceBody-post: !include schemas/marketplace/bodyPost.json
+  - marketplaceInformation-profile: !include schemas/marketplace/profile.json
+  - marketplaceBody-put: !include schemas/marketplace/bodyPut.json
+  - marketplaceInstall-post: !include schemas/marketplace/installPost.json
+  - marketplaceInstallBody-post: !include schemas/marketplace/installBodyPost.json
+  - marketplaceValidate-post: !include schemas/marketplace/validatePost.json
+  - marketplaceRefresh-post: !include schemas/marketplace/refreshPost.json
+  - marketplacePublishBody-post: !include schemas/marketplace/publishBodyPost.json
+  - marketplace-translations: !include schemas/marketplace/translations.json
+  - marketplace-translations-put: !include schemas/marketplace/translationsPut.json
+
+  - notifications-search: !include schemas/notifications/search.json
+  - notifications-profile: !include schemas/notifications/profile.json
+  - notificationsMarkasBody-put: !include schemas/notifications/markasBodyPut.json
+  - notificationsBody-put: !include schemas/notifications/bodyPut.json
+
+  - offers-search: !include schemas/offers/search.json
+  - offers-profile: !include schemas/offers/profile.json
+  - offersInformation-profile: !include schemas/offers/profile.json
+  - offers-rights: !include schemas/offers/rights.json
+  - offersDefault-profile: !include schemas/offers/default.json
+  - offersBody-post: !include schemas/offers/bodyPost.json
+  - offersBody-put: !include schemas/offers/bodyPut.json
+
+  - opportunities-search: !include schemas/opportunities/search.json
+  - opportunities-profile: !include schemas/opportunities/profile.json
+  - opportunities-rights: !include schemas/opportunities/rights.json
+  - opportunitiesDefault-profile: !include schemas/opportunities/default.json
+  - opportunitiesBody-post: !include schemas/opportunities/bodyPost.json
+  - opportunitiesInformation-profile: !include schemas/opportunities/information.json
+  - opportunitiesInformationBody-put: !include schemas/opportunities/informationBodyPut.json
+  - opportunitiesActions-profile: !include schemas/opportunities/actions.json
+  - opportunitiesSimulation-profile: !include schemas/opportunities/simulation.json
+  - opportunitiesSimulationBody-put: !include schemas/opportunities/simulationBodyPut.json
+  - opportunitiesPositionings-profile: !include schemas/opportunities/positionings.json
+  - opportunitiesProjects-profile: !include schemas/opportunities/projects.json
+  - opportunitiesAttachedFlags-profile: !include schemas/opportunities/attachedFlags.json
+  - opportunitiesTasks-profile: !include schemas/opportunities/tasks.json
+
+  - orders-search: !include schemas/orders/search.json
+  - orders-profile: !include schemas/orders/profile.json
+  - orders-rights: !include schemas/orders/rights.json
+  - ordersDefault-profile: !include schemas/orders/default.json
+  - ordersBody-post: !include schemas/orders/bodyPost.json
+  - ordersInformation-profile: !include schemas/orders/information.json
+  - ordersInformationBody-put: !include schemas/orders/informationBodyPut.json
+  - ordersActions-profile: !include schemas/orders/actions.json
+  - ordersInvoices-profile: !include schemas/orders/invoices.json
+  - ordersAttachedFlags-profile: !include schemas/orders/attachedFlags.json
+  - ordersTasks-profile: !include schemas/orders/tasks.json
+
+  - planningAbsences-search: !include schemas/planningAbsences/search.json
+
+  - poles-search: !include schemas/poles/search.json
+  - poles-profile: !include schemas/poles/profile.json
+  - polesInformation-profile: !include schemas/poles/profile.json
+  - polesBody-post: !include schemas/poles/bodyPost.json
+  - polesBody-put: !include schemas/poles/bodyPut.json
+
+  - positionings-search: !include schemas/positionings/search.json
+  - positionings-profile: !include schemas/positionings/profile.json
+  - positioningsInformation-profile: !include schemas/positionings/profile.json
+  - positionings-rights: !include schemas/positionings/rights.json
+  - positioningsBody-post: !include schemas/positionings/bodyPost.json
+  - positioningsBody-put: !include schemas/positionings/bodyPut.json
+  - positioningsAttachedFlags-profile: !include schemas/positionings/attachedFlags.json
+  - positioningsTasks-profile: !include schemas/positionings/tasks.json
+  - positioningsBulkUpdateBody-put: !include schemas/positionings/bulkUpdateBodyPut.json
+  - positioningsBulkUpdate-bulk: !include schemas/positionings/bulkUpdate.json
+
+  - products-search: !include schemas/products/search.json
+  - products-profile: !include schemas/products/profile.json
+  - products-rights: !include schemas/products/rights.json
+  - productsDefault-profile: !include schemas/products/default.json
+  - productsBody-post: !include schemas/products/bodyPost.json
+  - productsInformation-profile: !include schemas/products/information.json
+  - productsInformationBody-put: !include schemas/products/informationBodyPut.json
+  - productsOpportunities-profile: !include schemas/products/opportunities.json
+  - productsProjects-profile: !include schemas/products/projects.json
+  - productsAttachedFlags-profile: !include schemas/products/attachedFlags.json
+  - productsTasks-profile: !include schemas/products/tasks.json
+
+  - projects-search: !include schemas/projects/search.json
+  - projects-profile: !include schemas/projects/profile.json
+  - projects-rights: !include schemas/projects/rights.json
+  - projectsBody-post: !include schemas/projects/bodyPost.json
+  - projectsInformation-profile: !include schemas/projects/information.json
+  - projectsInformationBody-put: !include schemas/projects/informationBodyPut.json
+  - projectsBatchesMarkers-profile: !include schemas/projects/batchesMarkers.json
+  - projectsBatchesMarkersBody-put: !include schemas/projects/batchesMarkersBodyPut.json
+  - projectsActions-profile: !include schemas/projects/actions.json
+  - projectsSimulation-profile: !include schemas/projects/simulation.json
+  - projectsSimulationBody-put: !include schemas/projects/simulationBodyPut.json
+  - projectsDeliveriesGroupments-profile: !include schemas/projects/deliveriesGroupments.json
+  - projectsAdvantages-profile: !include schemas/projects/advantages.json
+  - projectsPurchases-profile: !include schemas/projects/purchases.json
+  - projectsProductivity-profile: !include schemas/projects/productivity.json
+  - projectsOrders-profile: !include schemas/projects/orders.json
+  - projectsAttachedFlags-profile: !include schemas/projects/attachedFlags.json
+  - projectsTasks-profile: !include schemas/projects/tasks.json
+  # - projectsCarts-search: !include schemas/carts/search.json
+  # - projectsCartsWidgets-search: !include schemas/carts/widgets.json
+  # - projectsCartsIgnore-profile: !include schemas/billableItems/search.json
+
+
+  - providerInvoices-search: !include schemas/providerInvoices/search.json
+  - providerInvoices-profile: !include schemas/providerInvoices/profile.json
+  - providerInvoicesInformation-profile: !include schemas/providerInvoices/profile.json
+  - providerInvoices-rights: !include schemas/providerInvoices/rights.json
+  - providerInvoicesDefault-profile: !include schemas/providerInvoices/default.json
+  - providerInvoicesBody-post: !include schemas/providerInvoices/bodyPost.json
+  - providerInvoicesBody-put: !include schemas/providerInvoices/bodyPut.json
+  - providerInvoicesActivityExpenses-profile: !include schemas/providerInvoices/activityExpenses.json
+
+  - purchases-search: !include schemas/purchases/search.json
+  - purchases-profile: !include schemas/purchases/profile.json
+  - purchases-rights: !include schemas/purchases/rights.json
+  - purchasesDefault-profile: !include schemas/purchases/default.json
+  - purchasesBody-post: !include schemas/purchases/bodyPost.json
+  - purchasesInformation-profile: !include schemas/purchases/information.json
+  - purchasesInformationBody-put: !include schemas/purchases/informationBodyPut.json
+  - purchasesPayments-profile: !include schemas/purchases/payments.json
+  - purchasesSimulation-profile: !include schemas/purchases/simulation.json
+  - purchasesAttachedFlags-profile: !include schemas/purchases/attachedFlags.json
+  - purchasesTasks-profile: !include schemas/purchases/tasks.json
+
+  - payments-search: !include schemas/payments/search.json
+  - payments-profile: !include schemas/payments/profile.json
+  - paymentsInformation-profile: !include schemas/payments/profile.json
+  - payments-rights: !include schemas/payments/rights.json
+  - paymentsDefault-profile: !include schemas/payments/default.json
+  - paymentsBody-post: !include schemas/payments/bodyPost.json
+  - paymentsBody-put: !include schemas/payments/bodyPut.json
+  - paymentsTasks-profile: !include schemas/payments/tasks.json
+
+  - reportingSynthesis-search: !include schemas/reportingSynthesis/search.json
+  - reportingProductionPlans-search: !include schemas/reportingProductionPlans/search.json
+  - reportingCompanies-search: !include schemas/reportingCompanies/search.json
+  - reportingProjects-search: !include schemas/reportingProjects/search.json
+  - reportingResources-search: !include schemas/reportingResources/search.json
+
+  - resources-search: !include schemas/resources/search.json
+  - resources-profile: !include schemas/resources/profile.json
+  - resources-rights: !include schemas/resources/rights.json
+  - resourcesDefault-profile: !include schemas/resources/default.json
+  - resourcesBody-post: !include schemas/resources/bodyPost.json
+  - resourcesInformation-profile: !include schemas/resources/information.json
+  - resourcesInformationBody-put: !include schemas/resources/informationBodyPut.json
+  - resourcesAdministrative-profile: !include schemas/resources/administrative.json
+  - resourcesAdministrativeBody-put: !include schemas/resources/administrativeBodyPut.json
+  - resourcesAdvantages-profile: !include schemas/resources/advantages.json
+  - resourcesFollowedDocuments-profile: !include schemas/resources/followedDocuments.json
+  - resourcesTechnicalData-profile: !include schemas/resources/technicalData.json
+  - resourcesTechnicalDataBody-put: !include schemas/resources/technicalDataBodyPut.json
+  - resourcesActions-profile: !include schemas/resources/actions.json
+  - resourcesPositionings-profile: !include schemas/resources/positionings.json
+  - resourcesDeliveriesInactivities-profile: !include schemas/resources/deliveriesInactivities.json
+  - resourcesProjects-profile: !include schemas/resources/projects.json
+  - resourcesProviderInvoices-profile: !include schemas/resources/providerInvoices.json
+  - resourcesTimesReports-profile: !include schemas/resources/timesReports.json
+  - resourcesExpensesReports-profile: !include schemas/resources/expensesReports.json
+  - resourcesAbsencesReports-profile: !include schemas/resources/absencesReports.json
+  - resourcesAbsencesAccounts-profile: !include schemas/resources/absencesAccounts.json
+  - resourcesAbsencesAccounts-profile: !include schemas/resources/absencesAccounts.json
+  - resourcesSettingsAbsencesAccounts-profile: !include schemas/resources/settings/absencesAccounts.json
+  - resourcesSettingsAbsencesAccountsBody-put: !include schemas/resources/settings/absencesAccountsBodyPut.json
+  - resourcesSettingsAlerts-profile: !include schemas/resources/settings/alerts.json
+  - resourcesSettingsAlertsBody-put: !include schemas/resources/settings/alertsBodyPut.json
+  - resourcesSettingsIntranet-profile: !include schemas/resources/settings/intranet.json
+  - resourcesSettingsIntranetBody-put: !include schemas/resources/settings/intranetBodyPut.json
+  - resourcesSettingsDashboards-profile: !include schemas/resources/settings/dashboards.json
+  - resourcesSettingsNotifications-profile: !include schemas/resources/settings/notifications.json
+  - resourcesSettingsNotificationsBody-put: !include schemas/resources/settings/notificationsBodyPut.json
+  - resourcesSettingsPositioningSuggests-profile: !include schemas/resources/settings/positioningSuggests.json
+  - resourcesSettingsPositioningSuggestsBody-put: !include schemas/resources/settings/positioningSuggestsBodyPut.json
+  - resourcesSettingsTargets-profile: !include schemas/resources/settings/targets.json
+  - resourcesSettingsGroups-profile: !include schemas/resources/settings/groups.json
+  - resourcesSettingsGroupsBody-put: !include schemas/resources/settings/groupsBodyPut.json
+  - resourcesSettingsReporting-profile: !include schemas/resources/settings/reporting.json
+  - resourcesSettingsReportingBody-put: !include schemas/resources/settings/reportingBodyPut.json
+  - resourcesAttachedFlags-profile: !include schemas/resources/attachedFlags.json
+  - resourcesTasks-profile: !include schemas/resources/tasks.json
+  - resourcesForms-profile: !include schemas/resources/forms.json
+  - resourcesAiSummary-profile: !include schemas/resources/ai/summary.json
+
+  - roles-search: !include schemas/roles/search.json
+  - roles-profile: !include schemas/roles/profile.json
+  - rolesDefault-profile: !include schemas/roles/default.json
+  - rolesInformation-profile: !include schemas/roles/profile.json
+  - rolesBody-post: !include schemas/roles/bodyPost.json
+  - rolesBody-put: !include schemas/roles/bodyPut.json
+
+  - roleTemplates-search: !include schemas/roles/templates/search.json
+
+  - savedsearches-profile: !include schemas/savedsearches/profile.json
+  - savedsearchesInformation-profile: !include schemas/savedsearches/profile.json
+  - savedsearches-search: !include schemas/savedsearches/search.json
+  - savedsearchesBody-post: !include schemas/savedsearches/bodyPost.json
+  - savedsearchesBody-put: !include schemas/savedsearches/bodyPut.json
+
+  - shareDefault-profile: !include schemas/share/default.json
+  - shareInformation-profile: !include schemas/share/profile.json
+  - shareBody-post: !include schemas/share/bodyPost.json
+
+  - signatures-profile: !include schemas/signatures/visitorAccess.json
+  - signaturesBody-put: !include schemas/signatures/visitorAccessBodyPut.json
+  - signatures-delete: !include schemas/signatures/delete.json
+
+  - standardProfilesDefault-profile: !include schemas/standardProfiles/default.json
+  - standardProfiles-profile: !include schemas/standardProfiles/profile.json
+  - standardProfiles-rights: !include schemas/standardProfiles/rights.json
+  - standardProfiles-search: !include schemas/standardProfiles/search.json
+  - standardProfilesBody-post: !include schemas/standardProfiles/bodyPost.json
+  - standardProfilesBody-put: !include schemas/standardProfiles/bodyPut.json
+
+  - subscription-profile: !include schemas/subscription/profile.json
+  - subscriptionInvoices-search: !include schemas/subscription/invoices/search.json
+  - subscriptionBody-put: !include schemas/subscription/bodyPut.json
+
+  - targets-profile: !include schemas/targets/profile.json
+  - targetsInformation-profile: !include schemas/targets/profile.json
+  - targetsBody-post: !include schemas/targets/bodyPost.json
+  - targetsBody-put: !include schemas/targets/bodyPut.json
+
+  - tasks-profile: !include schemas/tasks/profile.json
+
+  - technicalDatasPublic-profile: !include schemas/technicalDatas/visitorAccess.json
+  - technicalDatas-profile: !include schemas/technicalDatas/profile.json
+  - technicalDatasInformation-profile: !include schemas/technicalDatas/profile.json
+  - technicalDatasDefault-profile: !include schemas/technicalDatas/default.json
+  - technicalDatasBody-post: !include schemas/technicalDatas/bodyPost.json
+  - technicalDatasResume-profile: !include schemas/technicalDatas/profile.json
+  - technicalDatasResumeBody-put: !include schemas/technicalDatas/resumeBodyPut.json
+
+  - todoList-search: !include schemas/todolists/search.json
+  - todoList-profile: !include schemas/todolists/profile.json
+  - todoListDefault-profile: !include schemas/todolists/default.json
+  - todoListBody-post: !include schemas/todolists/bodyPost.json
+  - todoListBody-put: !include schemas/todolists/bodyPut.json
+
+  - thumbnails-profile: !include schemas/thumbnails/profile.json
+
+  - timesReports-search: !include schemas/timesReports/search.json
+  - timesReports-profile: !include schemas/timesReports/profile.json
+  - timesReportsInformation-profile: !include schemas/timesReports/profile.json
+  - timesReports-rights: !include schemas/timesReports/rights.json
+  - timesReportsDefault-profile: !include schemas/timesReports/default.json
+  - timesReportsBody-post: !include schemas/timesReports/bodyPost.json
+  - timesReportsBody-put: !include schemas/timesReports/bodyPut.json
+  - timesReportsRejectBody-post: !include schemas/timesReports/rejectPost.json
+  - timesReportsSignatureBody-post: !include schemas/timesReports/signatureBodyPost.json
+
+  - times-search: !include schemas/times/search.json
+
+  - validations-search: !include schemas/validations/search.json
+  - validations-profile: !include schemas/validations/profile.json
+  - validationsInformation-profile: !include schemas/validations/profile.json
+  - validationBody-put: !include schemas/validations/bodyPut.json
+  - validationsBody-post: !include schemas/validations/bodyPost.json
+
+  - vendor-profile: !include schemas/vendor/profile.json
+  - vendorBody-put: !include schemas/vendor/bodyPut.json
+
+  - webhooks-search: !include schemas/webhooks/search.json
+  - webhooks-profile: !include schemas/webhooks/profile.json
+  - webhooksBody-put: !include schemas/webhooks/bodyPut.json
+  - webhooksBody-post: !include schemas/webhooks/bodyPost.json
+
+  - workplacesTimes-search: !include schemas/workplacesTimes/search.json
+
+resourceTypes:
+  - search: !include resourceTypes/search.raml
+  - profile: !include resourceTypes/profile.raml
+  - rights: !include resourceTypes/rights.raml
+  - download: !include resourceTypes/download.raml
+  - base: !include resourceTypes/base.raml
+
+traits:
+  - searchable: !include traits/searchable.raml
+  - sortable: !include traits/sortable.raml
+  - sortablePaginable: !include traits/sortablePaginable.raml
+  - paginable: !include traits/paginable.raml
+
+documentation:
+  - title: How to
+    content: !include documentation/how-to-externe.md
+  - title: Errors 422
+    content: !include documentation/errors_422-externe.md
+
+/absences: !include resources/absences/search.raml
+
+/absences-reports: !include resources/absencesReports/search.raml
+/absences-reports/default: !include resources/absencesReports/default.raml
+/absences-reports/{id}: !include resources/absencesReports/profile.raml
+
+/accounts: !include resources/accounts/search.raml
+/accounts/default: !include resources/accounts/default.raml
+/accounts/{id}: !include resources/accounts/profile.raml
+
+/actions: !include resources/actions/search.raml
+/actions/default: !include resources/actions/default.raml
+/actions/{id}: !include resources/actions/profile.raml
+
+/actions/templates: !include resources/actions/templates/search.raml
+/actions/templates/{id}: !include resources/actions/templates/profile.raml
+
+/administrator: !include resources/administrator/profile.raml
+
+/advantages: !include resources/advantages/search.raml
+/advantages/default: !include resources/advantages/default.raml
+/advantages/{id}: !include resources/advantages/profile.raml
+
+/agencies: !include resources/agencies/search.raml
+/agencies/default: !include resources/agencies/default.raml
+/agencies/{id}: !include resources/agencies/profile.raml
+
+/alerts: !include resources/alerts/search.raml
+/alerts/configuration: !include resources/alerts/configuration.raml
+/alerts/{id}/values: !include resources/alerts/values.raml
+
+/application/assignments: !include resources/application/assignments.raml
+/application/current-user: !include resources/application/currentUser.raml
+/application/dictionary: !include resources/application/dictionary.raml
+/application/dynamic-filters: !include resources/application/dynamicFilters.raml
+/application/download-dictionary: !include resources/application/downloadDictionary.raml
+/application/backup-dictionary: !include resources/application/backupDictionary.raml
+/application/restore-dictionary: !include resources/application/restoreDictionary.raml
+/application/dump-database: !include resources/application/dumpDatabase.raml
+/application/flags: !include resources/application/flags.raml
+/application/geocities: !include resources/application/geoCities.raml
+/application/perimeters: !include resources/application/perimeters.raml
+/application/read-database: !include resources/application/readDatabase.raml
+/application/settings: !include resources/application/settings.raml
+/application/status: !include resources/application/status.raml
+/application/weekendAndBankHolidays: !include resources/application/weekendAndBankHolidays.raml
+
+/apps: !include resources/apps/search.raml
+/apps/{id}: !include resources/apps/profile.raml
+/apps/{appCode}/install: !include resources/apps/install.raml
+/apps/{appCode}/uninstall: !include resources/apps/uninstall.raml
+/apps/{appId}/entities: !include resources/apps/entities/search.raml
+/apps/{appId}/entities/dependson: !include resources/apps/entities/dependson.raml
+/apps/{appId}/entities/default: !include resources/apps/entities/default.raml
+/apps/{appId}/entities/{id}: !include resources/apps/entities/profile.raml
+
+/apps/absences-accounts: !include resources/apps/absencesAccounts/profile.raml
+/apps/accounting-payroll: !include resources/apps/accountingPayroll/profile.raml
+/apps/advanced-candidates: !include resources/apps/advancedCandidates/profile.raml
+/apps/advanced-projects: !include resources/apps/advancedProjects/profile.raml
+/apps/advantages: !include resources/apps/advantages/profile.raml
+/apps/answering-validators: !include resources/apps/answeringValidators/profile.raml
+/apps/backup-database: !include resources/apps/backupDatabase/profile.raml
+/apps/celebrations: !include resources/apps/celebrations/profile.raml
+/apps/contracts: !include resources/apps/contracts/profile.raml
+/apps/corporama: !include resources/apps/corporama/profile.raml
+/apps/digital-workplace: !include resources/apps/digitalWorkplace/profile.raml
+/apps/create-activity-documents: !include resources/apps/createActivityDocuments/profile.raml
+/apps/data-closing: !include resources/apps/dataClosing/profile.raml
+/apps/doc-templates: !include resources/apps/docTemplates/profile.raml
+/apps/emailing: !include resources/apps/emailing/profile.raml
+/apps/esignature: !include resources/apps/esignature/profile.raml
+/apps/exceptional-activity: !include resources/apps/exceptionalActivity/profile.raml
+/apps/extractbi: !include resources/apps/extractBi/profile.raml
+/apps/extract-payroll: !include resources/apps/extractPayroll/profile.raml
+/apps/gcalendar: !include resources/apps/gcalendar/profile.raml
+/apps/gmail: !include resources/apps/gmail/profile.raml
+/apps/gviewer: !include resources/apps/gviewer/profile.raml
+/apps/hrflow: !include resources/apps/hrflow/profile.raml
+/apps/hour-accounts: !include resources/apps/hourAccounts/profile.raml
+/apps/intranet-accounts: !include resources/apps/intranetAccounts/profile.raml
+/apps/markers: !include resources/apps/markers/profile.raml
+/apps/microsoft: !include resources/apps/microsoft/profile.raml
+/apps/organization-charts: !include resources/apps/organizationCharts/profile.raml
+/apps/plan-production: !include resources/apps/planProduction/profile.raml
+/apps/post-production: !include resources/apps/postProduction/profile.raml
+/apps/quotations: !include resources/apps/quotations/profile.raml
+/apps/resource-planner: !include resources/apps/resourcePlanner/profile.raml
+/apps/saas-editor: !include resources/apps/saasEditor/profile.raml
+/apps/sepa: !include resources/apps/sepa/profile.raml
+/apps/special-reporting: !include resources/apps/specialReporting/profile.raml
+/apps/survey: !include resources/apps/survey/profile.raml
+
+/attached-flags: !include resources/attachedFlags/search.raml
+
+/banking-accounts: !include resources/bankingAccounts/search.raml
+
+/banking-transactions: !include resources/bankingTransactions/search.raml
+/banking-transactions/{id}: !include resources/bankingTransactions/profile.raml
+
+# /billable-items: !include resources/billableItems/search.raml
+# /billable-items/{id}: !include resources/billableItems/profile.raml
+
+/billing-details: !include resources/billingDetails/search.raml
+/billing-details/analyze: !include resources/billingDetails/analyze.raml
+/billing-details/{id}: !include resources/billingDetails/profile.raml
+
+/billing-deliveries-purchases-balance: !include resources/billingDeliveriesPurchasesBalance/search.raml
+/billing-monthly-balance: !include resources/billingMonthlyBalance/search.raml
+/billing-projects-balance: !include resources/billingProjectsBalance/search.raml
+/billing-schedules-balance: !include resources/billingSchedulesBalance/search.raml
+
+/business-units: !include resources/businessUnits/search.raml
+/business-units/default: !include resources/businessUnits/default.raml
+/business-units/{id}: !include resources/businessUnits/profile.raml
+
+/calendars: !include resources/calendars/search.raml
+/calendars/default: !include resources/calendars/default.raml
+/calendars/{id}: !include resources/calendars/profile.raml
+
+/candidates: !include resources/candidates/search.raml
+/candidates/default: !include resources/candidates/default.raml
+/candidates/{id}: !include resources/candidates/profile.raml
+
+/companies: !include resources/companies/search.raml
+/companies/default: !include resources/companies/default.raml
+/companies/{id}: !include resources/companies/profile.raml
+
+/conditional-fields: !include resources/conditionalFields/search.raml
+/conditional-fields/default: !include resources/conditionalFields/default.raml
+/conditional-fields/{id}: !include resources/conditionalFields/profile.raml
+
+/contacts: !include resources/contacts/search.raml
+/contacts/default: !include resources/contacts/default.raml
+/contacts/{id}: !include resources/contacts/profile.raml
+
+/contracts: !include resources/contracts/search.raml
+/contracts/default: !include resources/contracts/default.raml
+/contracts/{id}: !include resources/contracts/profile.raml
+
+/boondmanager-contracts/{id}: !include resources/boondmanagerContracts/profile.raml
+
+/dashboards: !include resources/dashboards/search.raml
+/dashboards/{id}: !include resources/dashboards/profile.raml
+
+/deliveries: !include resources/deliveries/search.raml
+/deliveries/{id}: !include resources/deliveries/profile.raml
+/deliveries-groupments: !include resources/deliveriesGroupments/search.raml
+
+/devices/{id}: !include resources/devices/profile.raml
+
+/documents: !include resources/documents/search.raml
+/documents/viewer: !include resources/documents/viewer/search.raml
+/documents/{id}: !include resources/documents/profile.raml
+
+/download-center: !include resources/downloadCenter/profile.raml
+/download-center/{perimeterManager}/{folder}: !include resources/downloadCenter/folder.raml
+
+/expenses: !include resources/expenses/search.raml
+
+/expenses-reports: !include resources/expensesReports/search.raml
+/expenses-reports/default: !include resources/expensesReports/default.raml
+/expenses-reports/{id}: !include resources/expensesReports/profile.raml
+
+/flags: !include resources/flags/search.raml
+/flags/{id}: !include resources/flags/profile.raml
+
+/followed-documents: !include resources/followedDocuments/search.raml
+/followed-documents/default: !include resources/followedDocuments/default.raml
+/followed-documents/{id}: !include resources/followedDocuments/profile.raml
+
+/forms: !include resources/forms/search.raml
+/forms/default: !include resources/forms/default.raml
+/forms/{id}: !include resources/forms/profile.raml
+
+/forms/templates: !include resources/forms/templates/search.raml
+/forms/templates/default: !include resources/forms/templates/default.raml
+/forms/templates/{id}: !include resources/forms/templates/profile.raml
+
+/gadgets/{id}/values: !include resources/gadgets/values.raml
+
+/google/{id}: !include resources/google/profile.raml
+
+/groupments: !include resources/groupments/search.raml
+/groupments/default: !include resources/groupments/default.raml
+/groupments/{id}: !include resources/groupments/profile.raml
+/groupments/duplicate: !include resources/groupments/duplicate.raml
+
+/import: !include resources/import/profile.raml
+
+/inactivities: !include resources/inactivities/search.raml
+/inactivities/default: !include resources/inactivities/default.raml
+/inactivities/{id}: !include resources/inactivities/profile.raml
+
+/invoices: !include resources/invoices/search.raml
+/invoices/default: !include resources/invoices/default.raml
+/invoices/{id}: !include resources/invoices/profile.raml
+
+/e-invoicing/schemes: !include resources/einvoicing/schemes.raml
+
+/invoicing-connections: !include resources/invoicingConnections/search.raml
+/invoicing-connections/{id}: !include resources/invoicingConnections/profile.raml
+
+/logs: !include resources/logs/search.raml
+/logs/{id}: !include resources/logs/profile.raml
+
+/mandatory-leave: !include resources/mandatoryLeaves/search.raml
+/mandatory-leave/{id}: !include resources/mandatoryLeaves/profile.raml
+
+/marketplace: !include resources/marketplace/search.raml
+/marketplace/default: !include resources/marketplace/default.raml
+/marketplace/{id}: !include resources/marketplace/profile.raml
+/marketplace/{appCode}/configure: !include resources/marketplace/configure.raml
+/marketplace/refresh-token: !include resources/marketplace/refresh.raml
+
+/microsoft/{id}: !include resources/microsoft/profile.raml
+
+/notifications: !include resources/notifications/search.raml
+/notifications/{id}: !include resources/notifications/profile.raml
+/notifications/markas: !include resources/notifications/markas.raml
+
+/opportunities: !include resources/opportunities/search.raml
+/opportunities/default: !include resources/opportunities/default.raml
+/opportunities/{id}: !include resources/opportunities/profile.raml
+
+/orders: !include resources/orders/search.raml
+/orders/default: !include resources/orders/default.raml
+/orders/{id}: !include resources/orders/profile.raml
+
+/payments: !include resources/payments/search.raml
+/payments/default: !include resources/payments/default.raml
+/payments/{id}: !include resources/payments/profile.raml
+
+/poles: !include resources/poles/search.raml
+
+/planning-absences: !include resources/planningAbsences/search.raml
+
+/poles/{id}: !include resources/poles/profile.raml
+
+/positionings: !include resources/positionings/search.raml
+/positionings/{id}: !include resources/positionings/profile.raml
+
+/products: !include resources/products/search.raml
+/products/default: !include resources/products/default.raml
+/products/{id}: !include resources/products/profile.raml
+
+/projects: !include resources/projects/search.raml
+/projects/{id}: !include resources/projects/profile.raml
+
+/provider-invoices: !include resources/providerInvoices/search.raml
+/provider-invoices/default: !include resources/providerInvoices/default.raml
+/provider-invoices/{id}: !include resources/providerInvoices/profile.raml
+
+/purchases: !include resources/purchases/search.raml
+/purchases/default: !include resources/purchases/default.raml
+/purchases/{id}: !include resources/purchases/profile.raml
+
+/reporting-companies: !include resources/reportingCompanies/search.raml
+/reporting-production-plans: !include resources/reportingProductionPlans/search.raml
+/reporting-projects: !include resources/reportingProjects/search.raml
+/reporting-resources: !include resources/reportingResources/search.raml
+/reporting-synthesis: !include resources/reportingSynthesis/search.raml
+
+/resources: !include resources/resources/search.raml
+/resources/default: !include resources/resources/default.raml
+/resources/{id}: !include resources/resources/profile.raml
+
+/roles: !include resources/roles/search.raml
+/roles/default: !include resources/roles/default.raml
+/roles/{id}: !include resources/roles/profile.raml
+
+/roles/templates: !include resources/roles/templates/search.raml
+/roles/templates/default: !include resources/roles/templates/default.raml
+/roles/templates/{id}: !include resources/roles/templates/profile.raml
+
+/savedsearches: !include resources/savedsearches/search.raml
+/savedsearches/{id}: !include resources/savedsearches/profile.raml
+
+/sandbox: !include resources/sandbox/profile.raml
+
+/share: !include resources/share/search.raml
+/share/default: !include resources/share/default.raml
+
+/signature: !include resources/signatures/profile.raml
+/signatures/document/{id}: !include resources/signatures/document.raml
+
+/standard-profiles: !include resources/standardProfiles/search.raml
+/standard-profiles/default: !include resources/standardProfiles/default.raml
+/standard-profiles/{id}: !include resources/standardProfiles/profile.raml
+
+/subscription: !include resources/subscription/profile.raml
+/subscription/invoices: !include resources/subscription/invoices/search.raml
+/subscription/invoices/{id}: !include resources/subscription/invoices/profile.raml
+
+/targets: !include resources/targets/search.raml
+/targets/{id}: !include resources/targets/profile.raml
+
+/tasks/{id}: !include resources/tasks/profile.raml
+
+/technical-datas: !include resources/technicalDatas/search.raml
+/technical-datas/visitor-access: !include resources/technicalDatas/visitorAccess.raml
+/technical-datas/default: !include resources/technicalDatas/default.raml
+/technical-datas/{id}: !include resources/technicalDatas/profile.raml
+
+/threads: !include resources/threads/search.raml
+/threads/default: !include resources/threads/default.raml
+/threads/{id}: !include resources/threads/profile.raml
+
+/times: !include resources/times/search.raml
+
+/times-reports: !include resources/timesReports/search.raml
+/times-reports/default: !include resources/timesReports/default.raml
+/times-reports/{id}: !include resources/timesReports/profile.raml
+
+/thumbnails: !include resources/thumbnails/search.raml
+/thumbnails/{id}: !include resources/thumbnails/profile.raml
+
+/todolists: !include resources/todolists/search.raml
+/todolists/default: !include resources/todolists/default.raml
+/todolists/{id}: !include resources/todolists/profile.raml
+
+/trustelem/{id}: !include resources/trustelem/profile.raml
+
+/validations: !include resources/validations/search.raml
+/validations/{id}: !include resources/validations/profile.raml
+
+/vendor: !include resources/vendor/profile.raml
+
+/webhooks: !include resources/webhooks/search.raml
+/webhooks/{id}: !include resources/webhooks/profile.raml
+
+/workplaces-times: !include resources/workplacesTimes/search.raml
+
