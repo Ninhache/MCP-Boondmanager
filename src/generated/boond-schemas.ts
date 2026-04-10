@@ -118,7 +118,7 @@ export interface SchemasResourcesSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
-            },
+            }
           ]
         | [
             {
@@ -128,21 +128,7 @@ export interface SchemasResourcesSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
-            },
-          ]
-        | [
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
+            }
           ]
         | [
             {
@@ -156,11 +142,25 @@ export interface SchemasResourcesSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
+            }
+          ]
+        | [
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
             },
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
             },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            }
           ];
       creationSource?: string | null;
     };
@@ -278,6 +278,7 @@ export interface SchemasResourcesSearchJson {
   )[];
 }
 
+
 // ─── candidates ───
 /**
  * List of candidates
@@ -359,7 +360,7 @@ export interface SchemasCandidatesSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
-            },
+            }
           ]
         | [
             {
@@ -369,21 +370,7 @@ export interface SchemasCandidatesSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
-            },
-          ]
-        | [
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
+            }
           ]
         | [
             {
@@ -397,11 +384,25 @@ export interface SchemasCandidatesSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
+            }
+          ]
+        | [
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
             },
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
             },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            }
           ];
       diplomas?: string[];
       activityAreas?: string[];
@@ -589,6 +590,7 @@ export interface SchemasCandidatesSearchJson {
       }
   )[];
 }
+
 
 // ─── projects ───
 /**
@@ -842,6 +844,7 @@ export interface SchemasProjectsSearchJson {
   )[];
 }
 
+
 // ─── companies ───
 /**
  * List of companies
@@ -902,7 +905,7 @@ export interface SchemasCompaniesSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
-            },
+            }
           ]
         | [
             {
@@ -912,21 +915,7 @@ export interface SchemasCompaniesSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
-            },
-          ]
-        | [
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
+            }
           ]
         | [
             {
@@ -940,11 +929,25 @@ export interface SchemasCompaniesSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
+            }
+          ]
+        | [
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
             },
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
             },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            }
           ];
       creationSource?: string | null;
     };
@@ -1031,6 +1034,7 @@ export interface SchemasCompaniesSearchJson {
       }
   )[];
 }
+
 
 // ─── opportunities ───
 /**
@@ -1228,6 +1232,7 @@ export interface SchemasOpportunitiesSearchJson {
   )[];
 }
 
+
 // ─── absences ───
 /**
  * List of absences
@@ -1267,12 +1272,7 @@ export interface SchemasAbsencesSearchJson {
       title?: string;
       workUnitType?: {
         reference: number;
-        activityType:
-          | "production"
-          | "absence"
-          | "internal"
-          | "exceptionalTime"
-          | "exceptionalCalendar";
+        activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
         name: string;
       };
       absencesReport?: {
@@ -1300,6 +1300,7 @@ export interface SchemasAbsencesSearchJson {
     };
   }[];
 }
+
 
 // ─── actions ───
 /**
@@ -1659,6 +1660,7 @@ export interface SchemasActionsSearchJson {
       }
   )[];
 }
+
 
 // ─── positionings ───
 /**
@@ -2054,6 +2056,7 @@ export interface SchemasPositioningsSearchJson {
   )[];
 }
 
+
 // ─── purchases ───
 /**
  * List of purchases
@@ -2257,6 +2260,7 @@ export interface SchemasPurchasesSearchJson {
       }
   )[];
 }
+
 
 // ─── invoices ───
 /**
@@ -2527,6 +2531,7 @@ export interface SchemasInvoicesSearchJson {
   )[];
 }
 
+
 // ─── orders ───
 /**
  * List of orders
@@ -2747,6 +2752,7 @@ export interface SchemasOrdersSearchJson {
   )[];
 }
 
+
 // ─── expenses ───
 /**
  * List of expenses
@@ -2849,6 +2855,7 @@ export interface SchemasExpensesSearchJson {
   }[];
 }
 
+
 // ─── products ───
 /**
  * List of products
@@ -2945,6 +2952,7 @@ export interface SchemasProductsSearchJson {
   )[];
 }
 
+
 // ─── agencies ───
 /**
  * List of agencies
@@ -2995,6 +3003,7 @@ export interface SchemasAgenciesSearchJson {
   }[];
 }
 
+
 // ─── poles ───
 /**
  * List of poles
@@ -3031,6 +3040,7 @@ export interface SchemasPolesSearchJson {
   }[];
 }
 
+
 // ─── calendars ───
 /**
  * List of calendars
@@ -3059,6 +3069,7 @@ export interface SchemasCalendarsSearchJson {
     }[];
   }[];
 }
+
 
 // ─── dashboards ───
 /**
@@ -3194,6 +3205,7 @@ export interface SchemasDashboardsSearchJson {
     };
   }[];
 }
+
 
 // ─── notifications ───
 /**
@@ -3456,6 +3468,7 @@ export interface SchemasNotificationsSearchJson {
   }[];
 }
 
+
 // ─── validations ───
 /**
  * List of validations
@@ -3628,12 +3641,7 @@ export interface SchemasValidationsSearchJson {
             title?: string;
             workUnitType: {
               reference: number;
-              activityType:
-                | "production"
-                | "absence"
-                | "internal"
-                | "exceptionalTime"
-                | "exceptionalCalendar";
+              activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
               name: string;
             };
           }[];
@@ -3661,6 +3669,7 @@ export interface SchemasValidationsSearchJson {
       }
   )[];
 }
+
 
 // ─── roles ───
 /**
@@ -3721,6 +3730,7 @@ export interface SchemasRolesSearchJson {
   }[];
 }
 
+
 // ─── times ───
 /**
  * List of times
@@ -3754,12 +3764,7 @@ export interface SchemasTimesSearchJson {
       category?: "regular" | "exceptional";
       workUnitType?: {
         reference: number;
-        activityType:
-          | "production"
-          | "absence"
-          | "internal"
-          | "exceptionalTime"
-          | "exceptionalCalendar";
+        activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
         name: string;
       };
       /**
@@ -3901,6 +3906,7 @@ export interface SchemasTimesSearchJson {
       }
   )[];
 }
+
 
 // ─── payments ───
 /**
@@ -4126,6 +4132,7 @@ export interface SchemasPaymentsSearchJson {
   )[];
 }
 
+
 // ─── accounts ───
 /**
  * List of resources
@@ -4254,6 +4261,7 @@ export interface SchemasAccountsSearchJson {
   )[];
 }
 
+
 // ─── contacts ───
 /**
  * List of contacts
@@ -4331,7 +4339,7 @@ export interface SchemasContactsSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
-            },
+            }
           ]
         | [
             {
@@ -4341,21 +4349,7 @@ export interface SchemasContactsSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
-            },
-          ]
-        | [
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
-            {
-              network: "facebook" | "viadeo" | "linkedin" | "x";
-              url: string;
-            },
+            }
           ]
         | [
             {
@@ -4369,11 +4363,25 @@ export interface SchemasContactsSearchJson {
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
+            }
+          ]
+        | [
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
             },
             {
               network: "facebook" | "viadeo" | "linkedin" | "x";
               url: string;
             },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            },
+            {
+              network: "facebook" | "viadeo" | "linkedin" | "x";
+              url: string;
+            }
           ];
       creationSource?: string | null;
     };
@@ -4490,6 +4498,7 @@ export interface SchemasContactsSearchJson {
   )[];
 }
 
+
 // ─── absencesReports ───
 /**
  * List of requests of absences
@@ -4536,12 +4545,7 @@ export interface SchemasAbsencesReportsSearchJson {
         title?: string;
         workUnitType: {
           reference: number;
-          activityType:
-            | "production"
-            | "absence"
-            | "internal"
-            | "exceptionalTime"
-            | "exceptionalCalendar";
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
           name: string;
         };
       }[];
@@ -4656,12 +4660,7 @@ export interface SchemasAbsencesReportsProfileJson {
         title?: string;
         workUnitType: {
           reference: number;
-          activityType:
-            | "production"
-            | "absence"
-            | "internal"
-            | "exceptionalTime"
-            | "exceptionalCalendar";
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
           name: string;
         };
       }[];
@@ -4752,12 +4751,7 @@ export interface SchemasAbsencesReportsProfileJson {
             workUnitTypesAllowed?: {
               reference: number;
               name: string;
-              activityType:
-                | "production"
-                | "absence"
-                | "internal"
-                | "exceptionalTime"
-                | "exceptionalCalendar";
+              activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
             }[];
             workUnitRate?: "notUsed" | number;
           };
@@ -4902,10 +4896,7 @@ export interface SchemasAbsencesReportsProfileJson {
              * amountBeingAcquired - amountBeingAcquiredUsed
              */
             deltaBeingAcquiredUsed?: number;
-            useBeingAcquired?:
-              | "inactive"
-              | "allowTakenAbsencesOnBeingAcquired"
-              | "forbidTakenAbsencesOnBeingAcquired";
+            useBeingAcquired?: "inactive" | "allowTakenAbsencesOnBeingAcquired" | "forbidTakenAbsencesOnBeingAcquired";
             /**
              * true if absence's account is set for this resource, false if it does not exist but the resource has only take time of this type
              */
@@ -4919,12 +4910,7 @@ export interface SchemasAbsencesReportsProfileJson {
             }[];
             workUnitType?: {
               reference: number;
-              activityType:
-                | "production"
-                | "absence"
-                | "internal"
-                | "exceptionalTime"
-                | "exceptionalCalendar";
+              activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
               name: string;
             };
           };
@@ -4959,12 +4945,7 @@ export interface SchemasAbsencesReportsProfileJson {
               title?: string;
               workUnitType: {
                 reference: number;
-                activityType:
-                  | "production"
-                  | "absence"
-                  | "internal"
-                  | "exceptionalTime"
-                  | "exceptionalCalendar";
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
                 name: string;
               };
             }[];
@@ -5004,12 +4985,7 @@ export interface SchemasAbsencesReportsProfileJson {
             workUnitTypesAllowed?: {
               reference: number;
               name: string;
-              activityType:
-                | "production"
-                | "absence"
-                | "internal"
-                | "exceptionalTime"
-                | "exceptionalCalendar";
+              activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
             }[];
             workUnitRate?: "notUsed" | number;
           };
@@ -5154,10 +5130,7 @@ export interface SchemasAbsencesReportsProfileJson {
              * amountBeingAcquired - amountBeingAcquiredUsed
              */
             deltaBeingAcquiredUsed?: number;
-            useBeingAcquired?:
-              | "inactive"
-              | "allowTakenAbsencesOnBeingAcquired"
-              | "forbidTakenAbsencesOnBeingAcquired";
+            useBeingAcquired?: "inactive" | "allowTakenAbsencesOnBeingAcquired" | "forbidTakenAbsencesOnBeingAcquired";
             /**
              * true if absence's account is set for this resource, false if it does not exist but the resource has only take time of this type
              */
@@ -5171,12 +5144,7 @@ export interface SchemasAbsencesReportsProfileJson {
             }[];
             workUnitType?: {
               reference: number;
-              activityType:
-                | "production"
-                | "absence"
-                | "internal"
-                | "exceptionalTime"
-                | "exceptionalCalendar";
+              activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
               name: string;
             };
           };
@@ -5211,12 +5179,7 @@ export interface SchemasAbsencesReportsProfileJson {
               title?: string;
               workUnitType: {
                 reference: number;
-                activityType:
-                  | "production"
-                  | "absence"
-                  | "internal"
-                  | "exceptionalTime"
-                  | "exceptionalCalendar";
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
                 name: string;
               };
             }[];
@@ -5244,7 +5207,7 @@ export interface SchemasAbsencesReportsProfileJson {
             };
           };
         }
-    )[],
+    )[]
   ];
 }
 
@@ -5349,12 +5312,7 @@ export interface SchemasAbsencesReportsDefaultJson {
           workUnitTypesAllowed?: {
             reference: number;
             name: string;
-            activityType:
-              | "production"
-              | "absence"
-              | "internal"
-              | "exceptionalTime"
-              | "exceptionalCalendar";
+            activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
           }[];
           workUnitRate?: "notUsed" | number;
         };
@@ -5423,10 +5381,7 @@ export interface SchemasAbsencesReportsDefaultJson {
            * amountBeingAcquired - amountBeingAcquiredUsed
            */
           deltaBeingAcquiredUsed?: number;
-          useBeingAcquired?:
-            | "inactive"
-            | "allowTakenAbsencesOnBeingAcquired"
-            | "forbidTakenAbsencesOnBeingAcquired";
+          useBeingAcquired?: "inactive" | "allowTakenAbsencesOnBeingAcquired" | "forbidTakenAbsencesOnBeingAcquired";
           /**
            * true if absence's account is set for this resource, false if it does not exist but the resource has only take time of this type
            */
@@ -5440,12 +5395,7 @@ export interface SchemasAbsencesReportsDefaultJson {
           }[];
           workUnitType?: {
             reference: number;
-            activityType:
-              | "production"
-              | "absence"
-              | "internal"
-              | "exceptionalTime"
-              | "exceptionalCalendar";
+            activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
             name: string;
           };
         };
@@ -5696,12 +5646,10 @@ export interface SchemasAbsencesReportsRejectPostJson {
      */
     expectedValidator: number;
     reason: string;
-    rejectTypeOf:
-      | "correctionForPreviousValidator"
-      | "correctionForAllValidators"
-      | "definitiveRefusal";
+    rejectTypeOf: "correctionForPreviousValidator" | "correctionForAllValidators" | "definitiveRefusal";
   };
 }
+
 
 // ─── businessUnits ───
 /**
@@ -5924,6 +5872,7 @@ export interface SchemasBusinessUnitsBodyPutJson {
     };
   };
 }
+
 
 // ─── expensesReports ───
 /**
@@ -6573,12 +6522,7 @@ export interface SchemasExpensesReportsProfileJson {
               row: number;
               workUnitType: {
                 reference: number;
-                activityType:
-                  | "production"
-                  | "absence"
-                  | "internal"
-                  | "exceptionalTime"
-                  | "exceptionalCalendar";
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
                 name: string;
               };
               calendar?: string;
@@ -6832,12 +6776,7 @@ export interface SchemasExpensesReportsProfileJson {
               row: number;
               workUnitType: {
                 reference: number;
-                activityType:
-                  | "production"
-                  | "absence"
-                  | "internal"
-                  | "exceptionalTime"
-                  | "exceptionalCalendar";
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
                 name: string;
               };
               calendar?: string;
@@ -6918,7 +6857,7 @@ export interface SchemasExpensesReportsProfileJson {
             };
           };
         }
-    )[],
+    )[]
   ];
 }
 
@@ -7278,12 +7217,7 @@ export interface SchemasExpensesReportsDefaultJson {
               row: number;
               workUnitType: {
                 reference: number;
-                activityType:
-                  | "production"
-                  | "absence"
-                  | "internal"
-                  | "exceptionalTime"
-                  | "exceptionalCalendar";
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
                 name: string;
               };
               calendar?: string;
@@ -7439,12 +7373,7 @@ export interface SchemasExpensesReportsDefaultJson {
               row: number;
               workUnitType: {
                 reference: number;
-                activityType:
-                  | "production"
-                  | "absence"
-                  | "internal"
-                  | "exceptionalTime"
-                  | "exceptionalCalendar";
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
                 name: string;
               };
               calendar?: string;
@@ -7477,7 +7406,7 @@ export interface SchemasExpensesReportsDefaultJson {
             }[];
           };
         }
-    )[],
+    )[]
   ];
 }
 
@@ -8103,10 +8032,7 @@ export interface SchemasExpensesReportsRejectPostJson {
      */
     expectedValidator: number;
     reason: string;
-    rejectTypeOf:
-      | "correctionForPreviousValidator"
-      | "correctionForAllValidators"
-      | "definitiveRefusal";
+    rejectTypeOf: "correctionForPreviousValidator" | "correctionForAllValidators" | "definitiveRefusal";
   };
 }
 
@@ -8368,3 +8294,349 @@ export interface SchemasExpensesReportsCertificationPostJson {
     };
   };
 }
+
+
+// ─── billingDetails ───
+/**
+ * List of billing details
+ */
+export interface SchemasBillingDetailsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+    lastBillingDetailAnalysis?:
+      | {
+          id?: string;
+          /**
+           * 1: waiting, 2: running, 3: finished, 4: failed
+           */
+          state?: number;
+          creationDate?: string;
+          updateDate?: string;
+          createdBy?: number;
+        }
+      | false;
+  };
+  data: {
+    id: string;
+    type: "billingdetail";
+    attributes?: {
+      name?: string;
+      contact?: string;
+      address1?: string;
+      address2?: string;
+      address3?: string;
+      postcode?: string;
+      town?: string;
+      country?: string;
+      subDivision?: string;
+      vatNumber?: string;
+      registrationNumber?: string;
+      number?: string;
+      sendingMode?: number;
+      sendingModeParams?: {} | null;
+      invalid?: boolean;
+      invalidType?: number;
+      state?: boolean;
+      /**
+       * Need to `true` if this item can be read
+       */
+      canRead?: boolean;
+      /**
+       * Need to `true` if this item has to be edit
+       */
+      canEdit?: boolean;
+      /**
+       * Need to `true` if this item has to be deleted
+       */
+      canDelete?: boolean;
+    };
+    relationships?: {
+      /**
+       * Billing detail's company
+       */
+      company?: {
+        data: {
+          id: string;
+          type: "company";
+        };
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "company";
+    attributes?: {
+      name?: string;
+      thumbnail?: string;
+      state?: number;
+    };
+  }[];
+}
+
+/**
+ * Billing detail's data
+ */
+export interface SchemasBillingDetailsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "billingdetail";
+    attributes?: {
+      name?: string;
+      contact?: string;
+      phone1?: string;
+      emails?: unknown[];
+      cc?: unknown[];
+      bcc?: unknown[];
+      reminderEmails?: unknown[];
+      reminderCc?: unknown[];
+      reminderBcc?: unknown[];
+      address1?: string;
+      address2?: string;
+      address3?: string;
+      postcode?: string;
+      town?: string;
+      country?: string;
+      subDivision?: string;
+      vatNumber?: string;
+      registrationNumber?: string;
+      number?: string;
+      sendingMode?: number;
+      sendingModeParams?: {} | null;
+      invalid?: boolean;
+      invalidType?: number;
+      state?: boolean;
+      /**
+       * Need to `true` if this item is used by an order
+       */
+      isUsed?: boolean;
+      /**
+       * Need to `true` if this item can be read
+       */
+      canRead?: boolean;
+      /**
+       * Need to `true` if this item has to be edit
+       */
+      canEdit?: boolean;
+      /**
+       * Need to `true` if this item has to be deleted
+       */
+      canDelete?: boolean;
+    };
+    relationships?: {
+      /**
+       * Billing detail's company
+       */
+      company?: {
+        data: {
+          id: string;
+          type: "company";
+        };
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "company";
+    attributes?: {
+      name?: string;
+      thumbnail?: string;
+      state?: number;
+    };
+  }[];
+}
+
+/**
+ * Billing detail's data
+ */
+export interface SchemasBillingDetailsInformationJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "billingdetail";
+    attributes?: {
+      name?: string;
+      contact?: string;
+      phone1?: string;
+      emails?: unknown[];
+      cc?: unknown[];
+      bcc?: unknown[];
+      reminderEmails?: unknown[];
+      reminderCc?: unknown[];
+      reminderBcc?: unknown[];
+      address1?: string;
+      address2?: string;
+      address3?: string;
+      postcode?: string;
+      town?: string;
+      country?: string;
+      subDivision?: string;
+      vatNumber?: string;
+      registrationNumber?: string;
+      number?: string;
+      sendingMode?: number;
+      sendingModeParams?: {} | null;
+      invalid?: boolean;
+      invalidType?: number;
+      state?: boolean;
+      /**
+       * Need to `true` if this item is used by an order
+       */
+      isUsed?: boolean;
+      /**
+       * Need to `true` if this item can be read
+       */
+      canRead?: boolean;
+      /**
+       * Need to `true` if this item has to be edit
+       */
+      canEdit?: boolean;
+      /**
+       * Need to `true` if this item has to be deleted
+       */
+      canDelete?: boolean;
+    };
+    relationships?: {
+      /**
+       * Billing detail's company
+       */
+      company?: {
+        data: {
+          id: string;
+          type: "company";
+        };
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "company";
+    attributes?: {
+      name?: string;
+      thumbnail?: string;
+      state?: number;
+    };
+  }[];
+}
+
+/**
+ * Billing detail's data sent in the body with a POST method
+ */
+export interface SchemasBillingDetailsBodyPostJson {
+  data: {
+    type: "billingdetail";
+    attributes: {
+      name: string;
+      contact: string;
+      phone1?: string;
+      emails?: unknown[];
+      cc?: unknown[];
+      bcc?: unknown[];
+      reminderEmails?: unknown[];
+      reminderCc?: unknown[];
+      reminderBcc?: unknown[];
+      address1?: string;
+      address2?: string;
+      address3?: string;
+      postcode?: string;
+      town?: string;
+      country?: string;
+      subDivision?: string;
+      vatNumber: string;
+      registrationNumber?: string;
+      number?: string;
+      sendingMode?: number;
+      sendingModeParams?: {} | null;
+      state: boolean;
+    };
+    relationships: {
+      /**
+       * Billing detail's company
+       */
+      company: {
+        data: {
+          id: string;
+          type: "company";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Billing detail's data sent in the body with a PUT method
+ */
+export interface SchemasBillingDetailsBodyPutJson {
+  data: {
+    type: "billingdetail";
+    attributes: {
+      name: string;
+      contact: string;
+      phone1?: string;
+      emails?: unknown[];
+      cc?: unknown[];
+      bcc?: unknown[];
+      reminderEmails?: unknown[];
+      reminderCc?: unknown[];
+      reminderBcc?: unknown[];
+      address1?: string;
+      address2?: string;
+      address3?: string;
+      postcode?: string;
+      town?: string;
+      country?: string;
+      subDivision?: string;
+      vatNumber: string;
+      registrationNumber?: string;
+      number?: string;
+      sendingMode?: number;
+      sendingModeParams?: {} | null;
+      state: boolean;
+    };
+  };
+}
+
