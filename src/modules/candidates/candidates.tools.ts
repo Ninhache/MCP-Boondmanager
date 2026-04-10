@@ -1,10 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
+import type {
+  BoondDetailResponse,
+  BoondListResponse,
+  CandidateAttributes,
+} from "../../generated/index.js";
 import { DEFAULT_PAGE_SIZE } from "../../utils/constants.js";
 import { handleBoondError } from "../../utils/error-handler.js";
 import { formatDetail, formatList, toTextContent } from "../../utils/formatters.js";
-import { BoondClient, type JsonApiResponse } from "../boond/index.js";
+import { BoondClient } from "../boond/index.js";
 
 @Injectable()
 export class CandidatesTools {
@@ -37,7 +42,10 @@ export class CandidatesTools {
     if (page != null) params.page = String(page);
 
     try {
-      const data = await this.boond.get<JsonApiResponse>("/candidates", params);
+      const data = await this.boond.get<BoondListResponse<CandidateAttributes>>(
+        "/candidates",
+        params,
+      );
       const formatted = formatList(data, ["firstName", "lastName", "email", "state", "title"]);
       return { content: [toTextContent(formatted)] };
     } catch (error) {
@@ -54,7 +62,9 @@ export class CandidatesTools {
   })
   async getCandidate({ id }: { id: number }) {
     try {
-      const data = await this.boond.get<JsonApiResponse>(`/candidates/${id}`);
+      const data = await this.boond.get<BoondDetailResponse<CandidateAttributes>>(
+        `/candidates/${id}`,
+      );
       const formatted = formatDetail(data);
       return { content: [toTextContent(formatted)] };
     } catch (error) {

@@ -3,7 +3,7 @@
  * concise payloads that are token-efficient for LLMs.
  */
 
-import type { JsonApiResource, JsonApiResponse } from "../modules/boond/boond.types.js";
+import type { BoondDetailResponse, BoondListResponse } from "../generated/helpers.js";
 
 /** Spec for resolving a relationship into inline attributes. */
 export interface RelationshipSpec {
@@ -13,42 +13,46 @@ export interface RelationshipSpec {
   attributeKeys: string[];
 }
 
+interface JsonApiItem {
+  id: string;
+  type: string;
+  attributes: Record<string, unknown>;
+  relationships?: Record<string, unknown>;
+}
+
 /**
- * Resolve a to-one relationship from the `included` section of a JSON:API response.
- * Only handles to-one relationships. Returns null for to-many (array) relationships.
+ * Resolve a to-one relationship from the `included` section.
+ * Returns null for to-many (array) relationships or if unresolvable.
  */
 export function resolveRelationship(
-  response: JsonApiResponse,
-  resource: JsonApiResource,
+  included: Array<{ id: string; type: string; attributes: Record<string, unknown> }> | undefined,
+  resource: JsonApiItem,
   spec: RelationshipSpec,
 ): Record<string, unknown> | null {
-  const rel = resource.relationships?.[spec.name];
-  if (!rel?.data || !response.included?.length) return null;
+  const rel = resource.relationships?.[spec.name] as
+    | { data: { id: string; type: string } | Array<{ id: string; type: string }> | null }
+    | undefined;
 
-  // Only handle to-one relationships; to-many are not supported
+  if (!rel?.data || !included?.length) return null;
   if (Array.isArray(rel.data)) return null;
-  const relData = rel.data;
 
-  const included = response.included.find((r) => r.id === relData.id && r.type === relData.type);
-  if (!included) return null;
+  const relData = rel.data;
+  const found = included.find((r) => r.id === relData.id && r.type === relData.type);
+  if (!found) return null;
 
   const result: Record<string, unknown> = {};
   for (const key of spec.attributeKeys) {
-    if (key in included.attributes) {
-      result[key] = included.attributes[key];
+    if (key in found.attributes) {
+      result[key] = found.attributes[key];
     }
   }
   return Object.keys(result).length > 0 ? result : null;
 }
 
 /**
- * Extract a flat summary from a JSON:API resource.
- * Merges id + selected attributes into a plain object.
+ * Extract a flat summary from a JSON:API resource item.
  */
-function flattenResource(
-  resource: JsonApiResource,
-  attributeKeys?: string[],
-): Record<string, unknown> {
+function flattenResource(resource: JsonApiItem, attributeKeys?: string[]): Record<string, unknown> {
   const result: Record<string, unknown> = { id: resource.id, type: resource.type };
 
   if (attributeKeys) {
@@ -68,7 +72,7 @@ function flattenResource(
  * Format a JSON:API list response into a concise structure.
  */
 export function formatList(
-  response: JsonApiResponse,
+  response: BoondListResponse,
   attributeKeys?: string[],
 ): { total: number | null; page_count: number | null; items: Record<string, unknown>[] } {
   const items = Array.isArray(response.data) ? response.data : [response.data];
@@ -76,7 +80,7 @@ export function formatList(
   return {
     total: response.meta?.totals?.rows ?? null,
     page_count: response.meta?.totals?.pages ?? null,
-    items: items.map((r) => flattenResource(r, attributeKeys)),
+    items: items.map((r) => flattenResource(r as JsonApiItem, attributeKeys)),
   };
 }
 
@@ -85,20 +89,21 @@ export function formatList(
  * Optionally resolves relationships from the `included` section.
  */
 export function formatDetail(
-  response: JsonApiResponse,
+  response: BoondDetailResponse,
   options?: {
     attributeKeys?: string[];
     relationships?: RelationshipSpec[];
   },
 ): Record<string, unknown> {
-  const resource = Array.isArray(response.data) ? response.data[0] : response.data;
+  const data = response.data;
+  const resource = (Array.isArray(data) ? data[0] : data) as JsonApiItem | undefined;
   if (!resource) return {};
 
   const result = flattenResource(resource, options?.attributeKeys);
 
   if (options?.relationships) {
     for (const spec of options.relationships) {
-      const resolved = resolveRelationship(response, resource, spec);
+      const resolved = resolveRelationship(response.included, resource, spec);
       if (resolved) {
         result[spec.name] = resolved;
       }
