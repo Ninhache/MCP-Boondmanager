@@ -35,6 +35,7 @@ import type {
   SchemasTimesReportsSearchJson,
   SchemasTimesSearchJson,
   SchemasValidationsSearchJson,
+  SchemasWebhooksSearchJson,
 } from "./boond-schemas.js";
 
 /** Extract the attributes type from a generated search schema */
@@ -87,6 +88,7 @@ export type ExpensesReportAttributes = ExtractAttributes<SchemasExpensesReportsS
 export type BillingDetailAttributes = ExtractAttributes<SchemasBillingDetailsSearchJson>;
 export type TimesReportAttributes = ExtractAttributes<SchemasTimesReportsSearchJson>;
 export type ProviderInvoiceAttributes = ExtractAttributes<SchemasProviderInvoicesSearchJson>;
+export type WebhookAttributes = ExtractAttributes<SchemasWebhooksSearchJson>;
 
 /**
  * Generic typed Boond list response.

@@ -11138,3 +11138,348 @@ export interface SchemasProviderInvoicesBodyPutJson {
   };
 }
 
+
+// ─── webhooks ───
+/**
+ * List of webhooks
+ */
+export interface SchemasWebhooksSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "webhook";
+    attributes?: {
+      name?: string;
+      description?: string;
+      url?: string;
+      /**
+       * List of events
+       */
+      events?: {
+        type?: "create" | "update" | "delete";
+        entity?:
+          | (
+              | "product"
+              | "candidate"
+              | "resource"
+              | "advantage"
+              | "contract"
+              | "purchase"
+              | "payment"
+              | "opportunity"
+              | "app"
+              | "positioning"
+              | "order"
+              | "invoice"
+              | "contact"
+              | "company"
+              | "project"
+              | "delivery"
+              | "inactivity"
+              | "groupment"
+              | "businessunit"
+              | "agency"
+              | "pole"
+              | "role"
+              | "expensesreport"
+              | "timesreport"
+              | "absencesreport"
+              | "action"
+              | "quotation"
+              | "validation"
+              | "vendor"
+              | "customer"
+              | "architecture"
+              | "savedsearch"
+              | "actiontemplate"
+              | "flag"
+              | "target"
+              | "thread"
+              | "roletemplate"
+              | "todolist"
+              | "task"
+            )
+          | string;
+      }[];
+    };
+    relationships?: {
+      /**
+       * Target's resource
+       */
+      createdBy?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  }[];
+}
+
+/**
+ * Webhook's basic data
+ */
+export interface SchemasWebhooksProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "webhook";
+    attributes?: {
+      name?: string;
+      description?: string;
+      url?: string;
+      /**
+       * List of events
+       */
+      events?: {
+        type?: "create" | "update" | "delete";
+        entity?:
+          | (
+              | "product"
+              | "candidate"
+              | "resource"
+              | "advantage"
+              | "contract"
+              | "purchase"
+              | "payment"
+              | "opportunity"
+              | "app"
+              | "positioning"
+              | "order"
+              | "invoice"
+              | "contact"
+              | "company"
+              | "project"
+              | "delivery"
+              | "inactivity"
+              | "groupment"
+              | "businessunit"
+              | "agency"
+              | "pole"
+              | "role"
+              | "expensesreport"
+              | "timesreport"
+              | "absencesreport"
+              | "action"
+              | "quotation"
+              | "validation"
+              | "vendor"
+              | "customer"
+              | "architecture"
+              | "savedsearch"
+              | "actiontemplate"
+              | "flag"
+              | "target"
+              | "thread"
+              | "roletemplate"
+              | "todolist"
+              | "task"
+            )
+          | string;
+      }[];
+    };
+    relationships?: {
+      /**
+       * Webhook's resource
+       */
+      createdBy?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "resource";
+    attributes?: {
+      firstName?: string;
+      lastName?: string;
+    };
+  }[];
+}
+
+/**
+ * Webhook's post data
+ */
+export interface SchemasWebhooksBodyPostJson {
+  data: {
+    id?: string;
+    type: "webhook";
+    attributes?: {
+      name?: string;
+      description?: string;
+      url?: string;
+      /**
+       * List of events
+       */
+      events?: {
+        type?: "create" | "update" | "delete";
+        entity?:
+          | (
+              | "product"
+              | "candidate"
+              | "resource"
+              | "advantage"
+              | "contract"
+              | "purchase"
+              | "payment"
+              | "opportunity"
+              | "app"
+              | "positioning"
+              | "order"
+              | "invoice"
+              | "contact"
+              | "company"
+              | "project"
+              | "delivery"
+              | "inactivity"
+              | "groupment"
+              | "businessunit"
+              | "agency"
+              | "pole"
+              | "role"
+              | "expensesreport"
+              | "timesreport"
+              | "absencesreport"
+              | "action"
+              | "quotation"
+              | "validation"
+              | "vendor"
+              | "customer"
+              | "architecture"
+              | "savedsearch"
+              | "actiontemplate"
+              | "flag"
+              | "target"
+              | "thread"
+              | "roletemplate"
+              | "todolist"
+              | "task"
+            )
+          | string;
+      }[];
+    };
+    relationships?: {
+      /**
+       * Webhook's resource
+       */
+      createdBy?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Webhooks basic data sent in the body with a PUT method
+ */
+export interface SchemasWebhooksBodyPutJson {
+  data: {
+    id?: string;
+    type: "webhook";
+    attributes?: {
+      name?: string;
+      description?: string;
+      url?: string;
+      /**
+       * List of events
+       */
+      events?: {
+        type?: "create" | "update" | "delete";
+        entity?:
+          | (
+              | "product"
+              | "candidate"
+              | "resource"
+              | "advantage"
+              | "contract"
+              | "purchase"
+              | "payment"
+              | "opportunity"
+              | "app"
+              | "positioning"
+              | "order"
+              | "invoice"
+              | "contact"
+              | "company"
+              | "project"
+              | "delivery"
+              | "inactivity"
+              | "groupment"
+              | "businessunit"
+              | "agency"
+              | "pole"
+              | "role"
+              | "expensesreport"
+              | "timesreport"
+              | "absencesreport"
+              | "action"
+              | "quotation"
+              | "validation"
+              | "vendor"
+              | "customer"
+              | "architecture"
+              | "savedsearch"
+              | "actiontemplate"
+              | "flag"
+              | "target"
+              | "thread"
+              | "roletemplate"
+              | "todolist"
+              | "task"
+            )
+          | string;
+      }[];
+    };
+    relationships?: {
+      /**
+       * Target's resource
+       */
+      createdBy?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+}
+

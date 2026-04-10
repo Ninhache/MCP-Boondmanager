@@ -32,6 +32,7 @@ import { RolesModule } from "./modules/roles/roles.module.js";
 import { TimesModule } from "./modules/times/times.module.js";
 import { TimesReportsModule } from "./modules/times-reports/times-reports.module.js";
 import { ValidationsModule } from "./modules/validations/validations.module.js";
+import { WebhooksModule } from "./modules/webhooks/webhooks.module.js";
 
 const DOMAIN_MODULES = [
   BoondModule,
@@ -69,6 +70,7 @@ const DOMAIN_MODULES = [
   RolesModule,
   AccountsModule,
   ContactsModule,
+  WebhooksModule,
   // MCP Prompts and Resources
   McpExtrasModule,
 ];
