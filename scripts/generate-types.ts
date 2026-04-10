@@ -98,6 +98,10 @@ const MODULES: readonly ModuleSpec[] = [
     name: "webhooks",
     schemas: ["search", "profile", "bodyPost", "bodyPut"],
   },
+  {
+    name: "deliveries",
+    schemas: ["profile", "rights", "tasks", "bodyPost", "bodyPut", "send"],
+  },
   // Note: "logs" schema has a malformed comment that crashes json-schema-to-typescript
 ];
 
