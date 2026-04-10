@@ -19,6 +19,7 @@ import { ContractsModule } from "./modules/contracts/contracts.module.js";
 import { DashboardsModule } from "./modules/dashboards/dashboards.module.js";
 import { DeliveriesModule } from "./modules/deliveries/deliveries.module.js";
 import { DocumentsModule } from "./modules/documents/documents.module.js";
+import { DownloadCenterModule } from "./modules/download-center/download-center.module.js";
 import { ExpensesModule } from "./modules/expenses/expenses.module.js";
 import { ExpensesReportsModule } from "./modules/expenses-reports/expenses-reports.module.js";
 import { FlagsModule } from "./modules/flags/flags.module.js";
@@ -99,6 +100,7 @@ const DOMAIN_MODULES = [
   TasksModule,
   MarketplaceModule,
   DocumentsModule,
+  DownloadCenterModule,
   SavedSearchesModule,
   TodolistsModule,
   ThreadsModule,

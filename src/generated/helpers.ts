@@ -23,6 +23,7 @@ import type {
   SchemasDashboardsSearchJson,
   SchemasDeliveriesProfileJson,
   SchemasDocumentsProfileJson,
+  SchemasDownloadCenterProfileJson,
   SchemasExpensesReportsSearchJson,
   SchemasExpensesSearchJson,
   SchemasFlagsSearchJson,
@@ -115,6 +116,7 @@ export type BankingTransactionAttributes = ExtractAttributes<SchemasBankingTrans
 export type TargetAttributes = ExtractAttributes<SchemasTargetsProfileJson>;
 export type MarketplaceAttributes = ExtractAttributes<SchemasMarketplaceSearchJson>;
 export type DocumentAttributes = ExtractAttributes<SchemasDocumentsProfileJson>;
+export type DownloadCenterAttributes = ExtractAttributes<SchemasDownloadCenterProfileJson>;
 export type SavedSearchAttributes = ExtractAttributes<SchemasSavedsearchesSearchJson>;
 export type TodolistAttributes = ExtractAttributes<SchemasTodolistsSearchJson>;
 export type ThreadAttributes = ExtractAttributes<SchemasThreadsSearchJson>;

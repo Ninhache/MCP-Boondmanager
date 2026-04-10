@@ -23819,3 +23819,124 @@ export interface SchemasTasksProfileJson {
   uniqueItems?: unknown;
 }
 
+
+// ─── downloadCenter ───
+/**
+ * List of folders
+ */
+export interface SchemasDownloadCenterProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "downloadcenterfolder";
+    attributes?: {
+      name?: string;
+      urlVisitor?: string;
+      /**
+       * Folder is locked when an operation is occuring
+       */
+      isLocked?: boolean;
+      /**
+       * File is temporary
+       */
+      isTemporary?: boolean;
+      /**
+       * Folder has an available zip archive containing all its files
+       */
+      hasArchive?: boolean;
+      /**
+       * Folder contains too many files to list and display them all, use folder archive download feature
+       */
+      hasTooManyFiles?: boolean;
+      /**
+       * Number of files inside the folder
+       */
+      filesCount?: number;
+    };
+    relationships?: {
+      /**
+       * List of files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "downloadcenterfile";
+        }[];
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "downloadcenterfile";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * List of files
+ */
+export interface SchemasDownloadCenterFolderJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "downloadcenterfolder";
+    attributes?: {
+      name?: string;
+      urlVisitor?: string;
+    };
+    relationships?: {
+      /**
+       * List of files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "downloadcenterfile";
+        }[];
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "downloadcenterfile";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
