@@ -14647,3 +14647,159 @@ export interface SchemasContractsBodyPutJson {
   };
 }
 
+
+// ─── flags ───
+/**
+ * List of flags
+ */
+export interface SchemasFlagsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "flag";
+    attributes?: {
+      name?: string;
+      /**
+       * If false then positioning is not accessible
+       */
+      canReadFlag?: boolean;
+      /**
+       * If false then positioning is not editable
+       */
+      canWriteFlag?: boolean;
+    };
+    relationships?: {
+      /**
+       * Flag's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "resource";
+    attributes?: {
+      firstName?: string;
+      lastName?: string;
+    };
+  }[];
+}
+
+/**
+ * Flag's basic data
+ */
+export interface SchemasFlagsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "flag";
+    attributes?: {
+      name?: string;
+    };
+    relationships?: {
+      /**
+       * Flag's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "resource";
+    attributes?: {
+      lastName?: string;
+      firstName?: string;
+    };
+  }[];
+}
+
+/**
+ * flag's basic data sent in the body with a POST method
+ */
+export interface SchemasFlagsBodyPostJson {
+  data: {
+    type: "flag";
+    attributes: {
+      name: string;
+    };
+    relationships: {
+      /**
+       * Flag's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Flag's basic data sent in the body with a PUT method
+ */
+export interface SchemasFlagsBodyPutJson {
+  data: {
+    id: string;
+    type: "flag";
+    attributes?: {
+      name?: string;
+    };
+    relationships?: {
+      /**
+       * Flag's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+}
+
