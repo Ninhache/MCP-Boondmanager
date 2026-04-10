@@ -7,6 +7,7 @@ import { ActionsModule } from "./modules/actions/actions.module.js";
 import { AdvantagesModule } from "./modules/advantages/advantages.module.js";
 import { AgenciesModule } from "./modules/agencies/agencies.module.js";
 import { AlertsModule } from "./modules/alerts/alerts.module.js";
+import { BankingTransactionsModule } from "./modules/banking-transactions/banking-transactions.module.js";
 import { BillingDetailsModule } from "./modules/billing-details/billing-details.module.js";
 import { BoondModule } from "./modules/boond/boond.module.js";
 import { BusinessUnitsModule } from "./modules/business-units/business-units.module.js";
@@ -53,6 +54,7 @@ const DOMAIN_MODULES = [
   ActionsModule,
   BusinessUnitsModule,
   BillingDetailsModule,
+  BankingTransactionsModule,
   // Commercial / financial
   PositioningsModule,
   PurchasesModule,

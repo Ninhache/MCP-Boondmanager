@@ -17198,3 +17198,185 @@ export interface SchemasAlertsValuesJson {
   )[];
 }
 
+
+// ─── bankingTransactions ───
+/**
+ * List of banking transactions
+ */
+export interface SchemasBankingTransactionsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id?: string;
+    type?: "bankingtransaction";
+    attributes?: {
+      amount?: {
+        [k: string]: unknown;
+      };
+      currency?: number;
+      date?: string;
+      numberOfInvoices?: number;
+      title?: string;
+      state?: 0 | 1 | 2 | 3;
+      totalAmountToReconcile?: {
+        [k: string]: unknown;
+      };
+      canReadTransaction?: boolean;
+      canWriteTransaction?: boolean;
+      canReconcile?: boolean;
+    };
+    relationships?: {
+      account?: {
+        data?: {
+          id?: string;
+          type?: "bankingaccount";
+        };
+      };
+    };
+    required?: ["id", "type"];
+    additionalProperties?: never;
+  }[];
+  included?: (
+    | {
+        id?: string;
+        type?: "bankingaccount";
+        attributes?: {
+          name?: string;
+          title?: string;
+        };
+        relationships?: {
+          connection?: {
+            data?: {
+              id?: string;
+              type?: string;
+            };
+          };
+        };
+      }
+    | {
+        id?: string;
+        type?: "bankingconnection";
+        attributes?: {
+          bankName?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Banking transaction's basic data
+ */
+export interface SchemasBankingTransactionsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "bankingtransaction";
+    attributes?: {
+      amount?: {
+        [k: string]: unknown;
+      };
+      currency?: number;
+      date?: string;
+      title?: string;
+      exchangeRate?: number;
+      state?: 0 | 1 | 2 | 3;
+      /**
+       * Invoice's payments list reconciliated with banking transaction
+       */
+      invoicePayments?: {
+        id: string;
+        /**
+         * Payment creation date
+         */
+        createdAt: string;
+        /**
+         * Payment's amount including tax
+         */
+        amountIncludingTax: number;
+        invoice?: {
+          id?: string;
+        };
+      }[];
+      numberOfInvoices?: number;
+      totalAmountToReconcile?: {
+        [k: string]: unknown;
+      };
+      canWriteTransaction?: boolean;
+    };
+    relationships?: {
+      account?: {
+        data?: {
+          id?: string;
+          type?: "bankingaccount";
+        };
+      };
+    };
+  };
+  included?: (
+    | {
+        id?: string;
+        type?: "bankingaccount";
+        attributes?: {
+          name?: string;
+          title?: string;
+        };
+        relationships?: {
+          connection?: {
+            data?: {
+              id?: string;
+              type?: string;
+            };
+          };
+        };
+      }
+    | {
+        id?: string;
+        type?: "bankingconnection";
+        attributes?: {
+          bankName?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Update banking transaction
+ */
+export interface SchemasBankingTransactionsBodyPutJson {
+  data: {
+    state?: 0 | 1 | 2 | 3;
+  };
+}
+
