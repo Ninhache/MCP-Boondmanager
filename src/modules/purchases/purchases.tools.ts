@@ -46,7 +46,7 @@ export class PurchasesTools {
       this.boond,
       {
         path: "/purchases",
-        attributeKeys: ["reference", "state", "startDate", "endDate"],
+        attributeKeys: ["date", "title", "reference", "state", "amountExcludingTax"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

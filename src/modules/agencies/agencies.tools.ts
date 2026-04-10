@@ -46,7 +46,7 @@ export class AgenciesTools {
       this.boond,
       {
         path: "/agencies",
-        attributeKeys: ["name", "city", "country"],
+        attributeKeys: ["name", "town", "country", "state"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

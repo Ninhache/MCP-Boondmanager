@@ -46,7 +46,7 @@ export class InvoicesTools {
       this.boond,
       {
         path: "/invoices",
-        attributeKeys: ["reference", "state", "date", "amount"],
+        attributeKeys: ["date", "reference", "state", "turnoverInvoicedExcludingTax"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

@@ -46,7 +46,7 @@ export class CompaniesTools {
       this.boond,
       {
         path: "/companies",
-        attributeKeys: ["name", "phone", "email", "city", "country", "state"],
+        attributeKeys: ["name", "phone1", "town", "country", "state", "website"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

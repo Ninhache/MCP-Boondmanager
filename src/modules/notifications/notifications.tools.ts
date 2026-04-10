@@ -38,7 +38,7 @@ export class NotificationsTools {
       this.boond,
       {
         path: "/notifications",
-        attributeKeys: ["typeOf", "state", "date", "comment"],
+        attributeKeys: ["title", "message", "state", "category", "type"],
       },
       { page, pageSize, fetchAll },
     );

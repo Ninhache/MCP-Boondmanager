@@ -46,7 +46,7 @@ export class ExpensesTools {
       this.boond,
       {
         path: "/expenses",
-        attributeKeys: ["reference", "state", "date", "amount"],
+        attributeKeys: ["category", "reference", "name"],
       },
       { page, pageSize, fetchAll, extraParams },
     );

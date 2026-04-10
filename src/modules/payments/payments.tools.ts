@@ -44,7 +44,7 @@ export class PaymentsTools {
       this.boond,
       {
         path: "/payments",
-        attributeKeys: ["reference", "state", "date", "amount"],
+        attributeKeys: ["date", "state", "number", "amountIncludingTax"],
       },
       { page, pageSize, fetchAll, extraParams },
     );
