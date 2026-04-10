@@ -18,6 +18,7 @@ import { ContactsModule } from "./modules/contacts/contacts.module.js";
 import { ContractsModule } from "./modules/contracts/contracts.module.js";
 import { DashboardsModule } from "./modules/dashboards/dashboards.module.js";
 import { DeliveriesModule } from "./modules/deliveries/deliveries.module.js";
+import { DocumentsModule } from "./modules/documents/documents.module.js";
 import { ExpensesModule } from "./modules/expenses/expenses.module.js";
 import { ExpensesReportsModule } from "./modules/expenses-reports/expenses-reports.module.js";
 import { FlagsModule } from "./modules/flags/flags.module.js";
@@ -88,6 +89,7 @@ const DOMAIN_MODULES = [
   FlagsModule,
   TargetsModule,
   MarketplaceModule,
+  DocumentsModule,
   WebhooksModule,
   // MCP Prompts and Resources
   McpExtrasModule,
