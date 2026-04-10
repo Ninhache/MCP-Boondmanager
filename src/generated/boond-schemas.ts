@@ -8640,3 +8640,1527 @@ export interface SchemasBillingDetailsBodyPutJson {
   };
 }
 
+
+// ─── timesReports ───
+/**
+ * List of timesheets
+ */
+export interface SchemasTimesReportsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "timesreport";
+    attributes?: {
+      term?: string;
+      state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+      closed?: boolean;
+    };
+    relationships?: {
+      /**
+       * Timesheet's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      /**
+       * Timesheet's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Timesheet's basic data
+ */
+export interface SchemasTimesReportsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    warnings?: {
+      /**
+       * Warning's code
+       */
+      code:
+        | "moreThanNumberOfWorkingDays"
+        | "workplaceTimesMoreThanNumberOfWorkingDays"
+        | "workplaceTimesLessThanNumberOfWorkingDays"
+        | "atLeastOneAbsenceQuotaExceeded"
+        | "wrongAbsences"
+        | "wrongMandatoryLeaves"
+        | "noDeliveryOnProject"
+        | "projectDoesNotExist"
+        | "deliveryDoesNotExist"
+        | "outsideContractDates"
+        | "outsideDeliveryDates"
+        | "outsideDocumentDates"
+        | "lessThanNumberOfWorkingDaysInsideContractDates"
+        | "moreThanNumberOfWorkingDaysInsideContractDates"
+        | "noSignedTimesheet"
+        | "workUnitRatesNotEqual";
+      /**
+       * Warning's message
+       */
+      detail: string;
+      project:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            reference: string;
+          };
+      delivery:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            title: string;
+            startDate: string;
+            endDate: string;
+            calendar?: string;
+          };
+      workUnitType:
+        | {
+            data: null;
+          }
+        | {
+            reference: number;
+            name: string;
+          };
+      projects?: {
+        id: string;
+        reference: string;
+        mailValidatorSignature?: string;
+      }[];
+    }[];
+    expectedValidatorsAllowedForValidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForUnvalidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForReject?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+  };
+  data: {
+    id: string;
+    type: "timesreport";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      term?: string;
+      workUnitRate?: number;
+      informationComments?: string;
+      closed?: boolean;
+      state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+      /**
+       * List of regular times
+       */
+      regularTimes?: {
+        id: string;
+        startDate: string;
+        duration: number;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        workUnitType: {
+          reference: number;
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+          name: string;
+        };
+        calendar?: string;
+        delivery:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+              startDate?: string;
+              endDate?: string;
+            };
+        batch:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+            };
+        project:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              reference?: string;
+            };
+      }[];
+      /**
+       * List of exceptional times
+       */
+      exceptionalTimes?: {
+        id: string;
+        startDate: string;
+        endDate: string;
+        duration: number;
+        recovering: boolean;
+        description: string;
+        workUnitType: {
+          reference: number;
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+          name: string;
+        };
+        /**
+         * Delivery on which exceptional time depends
+         */
+        delivery: {
+          id: string;
+          title?: string;
+          startDate?: string;
+          endDate?: string;
+        };
+        batch:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+            };
+        /**
+         * Project on which exceptional time depends
+         */
+        project: {
+          id: string;
+          reference?: string;
+        };
+      }[];
+      /**
+       * List of absences times
+       */
+      absencesTimes?: {
+        startDate: string;
+        duration: number;
+        workUnitType: {
+          reference: number;
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+          name: string;
+        };
+      }[];
+      /**
+       * List of planned times
+       */
+      plannedTimes?: {
+        id?: string;
+        startDate: string;
+        duration: number;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        workUnitType: {
+          reference: number;
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+          name: string;
+        };
+        delivery:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+              startDate?: string;
+              endDate?: string;
+              calendar?: string;
+            };
+        batch:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+            };
+        project:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              reference?: string;
+            };
+      }[];
+      /**
+       * List of workplace times
+       */
+      workplaceTimes?: {
+        id: string;
+        startDate: string;
+        duration: number;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        workplaceType: {
+          reference: number;
+          name: string;
+        };
+      }[];
+    };
+    relationships?: {
+      /**
+       * Timesheet's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      /**
+       * Timesheet's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      /**
+       * List of timesheet's files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "document";
+        }[];
+      };
+      expensesReport?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          };
+      /**
+       * List of timesheet's orders available on this term
+       */
+      orders?: {
+        data: {
+          id: string;
+          type: "order";
+        }[];
+      };
+      /**
+       * List of timesheet's projects available on this term
+       */
+      projects?: {
+        data: {
+          id: string;
+          type: "project";
+          mailValidatorSignature?: string;
+        }[];
+      };
+      /**
+       * List of timesheet's validations
+       */
+      validations?: {
+        data: {
+          id: string;
+          type: "validation";
+        }[];
+      };
+      /**
+       * Timesheet's expected validators
+       */
+      validationWorkflow?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      /**
+       * The signatures related to the timesheet
+       */
+      signatures?: {
+        data: {
+          id: string;
+          type: "signature";
+        }[];
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "signature";
+        attributes?: {
+          state?: "pending" | "validated";
+          creationDate?: string;
+          remindDate?: string;
+          date?: string;
+          lastName?: string;
+          firstName?: string;
+          function?: string;
+          token?: string;
+          mailValidatorSignature?: string;
+        };
+        relationships?: {
+          createdBy?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+          remindedBy?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          function?: string;
+          allowExceptionalTimes?: -1 | 0 | 1;
+          canRecoverExceptionalTimes?: boolean;
+          workUnitTypesAllowed?: {
+            reference: number;
+            name: string;
+            activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+          }[];
+          workUnitRate?: "notUsed" | number;
+          workplacesDefaultWeek?: {
+            reference?: number;
+            /**
+             * Day of week for workplace time setting
+             */
+            dayOfWeek: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+            /**
+             * Duration for the workplace times settings
+             */
+            duration: number;
+          }[];
+        };
+        relationships?: {
+          /**
+           * Resource's contracts/amendments
+           */
+          contracts?: {
+            data: {
+              id: string;
+              type: "contract";
+            }[];
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          workUnitRate?: "notUsed" | number;
+          calendar?: string;
+          /**
+           * Agency's workplaceTypes
+           */
+          workplaceTypes?: {
+            reference: number;
+            name: string;
+          }[];
+          timesLegals?: string;
+          timesAlerts?:
+            | []
+            | [
+                {
+                  alert:
+                    | "moreThanNumberOfWorkingDays"
+                    | "workplaceTimesMoreThanNumberOfWorkingDays"
+                    | "workplaceTimesLessThanNumberOfWorkingDays"
+                    | "atLeastOneAbsenceQuotaExceeded"
+                    | "wrongAbsences"
+                    | "outsideContractDates"
+                    | "lessThanNumberOfWorkingDaysInsideContractDates"
+                    | "moreThanNumberOfWorkingDaysInsideContractDates";
+                  blocking: boolean;
+                }
+              ];
+        };
+      }
+    | {
+        id: string;
+        type: "document";
+        attributes?: {
+          name: string;
+          category: string;
+        };
+        relationships?: {
+          /**
+           * The project related to the document
+           */
+          project?: {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+          /**
+           * The signature related to the file
+           */
+          signature?: {
+            data: {
+              id: string;
+              type: "signature";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          title?: string;
+          startDate?: string;
+          endDate?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "batch";
+        attributes?: {
+          title?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+          mailValidatorSignature?: string;
+          /**
+           * true if the project's order monitor signed timesheets
+           */
+          isMonitorSignedTimesheets?: boolean;
+        };
+        relationships?: {
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          /**
+           * List of project's deliveries available on this term
+           */
+          deliveries?: {
+            data: {
+              id: string;
+              type: "delivery";
+            }[];
+          };
+          /**
+           * List of project's batches available on this term
+           */
+          batches?: unknown[];
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "validation";
+        attributes?: {
+          date?: string;
+          state?: "waitingForValidation" | "validated" | "rejected";
+          reason?: string;
+        };
+        relationships?: {
+          realValidator?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+          /**
+           * Validation's expected validator
+           */
+          expectedValidator?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "order";
+        attributes?: {
+          reference?: string;
+          number?: string;
+        };
+        relationships?: {
+          /**
+           * Order's project
+           */
+          project?: {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "contract";
+        attributes?: {
+          startDate?: string;
+          endDate?: string;
+          calendar?: string;
+          partialWorkTimes?: string[];
+          isPartialWorkTimeEvenOdd?: boolean;
+        };
+        relationships?: {
+          /**
+           * Contract's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+        };
+      }
+  )[];
+}
+
+/**
+ * Empty timesheet's default basic data
+ */
+export interface SchemasTimesReportsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    warnings?: {
+      /**
+       * Warning's code
+       */
+      code:
+        | "moreThanNumberOfWorkingDays"
+        | "workplaceTimesMoreThanNumberOfWorkingDays"
+        | "workplaceTimesLessThanNumberOfWorkingDays"
+        | "atLeastOneAbsenceQuotaExceeded"
+        | "wrongAbsences"
+        | "wrongMandatoryLeaves"
+        | "noDeliveryOnProject"
+        | "projectDoesNotExist"
+        | "deliveryDoesNotExist"
+        | "outsideContractDates"
+        | "outsideDeliveryDates"
+        | "outsideDocumentDates"
+        | "lessThanNumberOfWorkingDaysInsideContractDates"
+        | "moreThanNumberOfWorkingDaysInsideContractDates"
+        | "noSignedTimesheet"
+        | "workUnitRatesNotEqual";
+      /**
+       * Warning's message
+       */
+      detail: string;
+      project:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            reference: string;
+          };
+      delivery:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            title: string;
+            startDate: string;
+            endDate: string;
+          };
+      workUnitType:
+        | {
+            data: null;
+          }
+        | {
+            reference: number;
+            name: string;
+          };
+    }[];
+    expectedValidatorsAllowedForValidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForUnvalidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForReject?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+  };
+  data: {
+    id: "0";
+    type: "timesreport";
+    attributes?: {
+      term?: string;
+      workUnitRate?: number;
+      /**
+       * List of absences times
+       */
+      absencesTimes?: {
+        startDate: string;
+        duration: number;
+        workUnitType: {
+          reference: number;
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+          name: string;
+        };
+      }[];
+      /**
+       * List of planned times
+       */
+      plannedTimes?: {
+        id?: string;
+        startDate: string;
+        duration: number;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        workUnitType: {
+          reference: number;
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+          name: string;
+        };
+        delivery:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+              startDate?: string;
+              endDate?: string;
+              calendar?: string;
+            };
+        batch:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+            };
+        project:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              reference?: string;
+            };
+      }[];
+      /**
+       * List of workplace times
+       */
+      workplaceTimes?: {
+        id: string;
+        startDate: string;
+        duration: number;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        workplaceType: {
+          reference: number;
+          name: string;
+        };
+      }[];
+    };
+    relationships?: {
+      /**
+       * Timesheet's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Timesheet's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      expensesReport?:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            type: "expensesreport";
+          };
+      /**
+       * List of timesheet's projects available on this term
+       */
+      projects?: {
+        data: {
+          id: string;
+          type: "project";
+        }[];
+      };
+      /**
+       * Timesheet's expected validators
+       */
+      validationWorkflow?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          function?: string;
+          allowExceptionalTimes?: -1 | 0 | 1;
+          canRecoverExceptionalTimes?: boolean;
+          workUnitTypesAllowed?: {
+            reference: number;
+            name: string;
+            activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+          }[];
+          workUnitRate?: "notUsed" | number;
+          workplacesDefaultWeek?: {
+            reference?: number;
+            /**
+             * Day of week for workplace time setting
+             */
+            dayOfWeek: "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday";
+            /**
+             * Duration for the workplace times settings
+             */
+            duration: number;
+          }[];
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          workUnitRate?: "notUsed" | number;
+          calendar?: string;
+          timesLegals?: string;
+          timesAlerts?:
+            | []
+            | [
+                {
+                  alert:
+                    | "moreThanNumberOfWorkingDays"
+                    | "workplaceTimesMoreThanNumberOfWorkingDays"
+                    | "workplaceTimesLessThanNumberOfWorkingDays"
+                    | "atLeastOneAbsenceQuotaExceeded"
+                    | "wrongAbsences"
+                    | "outsideContractDates"
+                    | "lessThanNumberOfWorkingDaysInsideContractDates"
+                    | "moreThanNumberOfWorkingDaysInsideContractDates";
+                  blocking: boolean;
+                }
+              ];
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          title?: string;
+          startDate?: string;
+          endDate?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "batch";
+        attributes?: {
+          title?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+        };
+        relationships?: {
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          /**
+           * List of project's deliveries available on this term
+           */
+          deliveries?: unknown[];
+          /**
+           * List of project's batches available on this term
+           */
+          batches?: unknown[];
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Timesheet's rights
+ */
+export interface SchemasTimesReportsRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+        /**
+         * true if this action is available
+         */
+        validate?: boolean;
+        /**
+         * true if this action is available
+         */
+        reject?: boolean;
+        /**
+         * true if this action is available
+         */
+        unvalidate?: boolean;
+        /**
+         * true if this action is available
+         */
+        downloadInternalPDF?: boolean;
+        /**
+         * true if this action is available
+         */
+        downloadClientPDF?: boolean;
+        /**
+         * true if this action is available
+         */
+        addInvoice?: boolean;
+        /**
+         * true if this action is available
+         */
+        exportToDownloadCenter?: boolean;
+        /**
+         * true if this action is available
+         */
+        deleteValidators?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+        /**
+         * true if this action is available
+         */
+        setWorkplacesDefaultWeek?: boolean;
+        /**
+         * true if this action is available
+         */
+        signature?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        files?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        workplaceTimes?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Timesheet's basic data sent in the body with a POST method
+ */
+export interface SchemasTimesReportsBodyPostJson {
+  data: {
+    type: "timesreport";
+    attributes: {
+      term: string;
+      workUnitRate?: number;
+      informationComments?: string;
+      /**
+       * List of regular times
+       */
+      regularTimes?: (
+        | {
+            startDate: string;
+            duration: number;
+            row: number;
+            workUnitType: {
+              reference: number;
+            };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+        | {
+            id: string;
+            startDate: string;
+            duration: number;
+            row: number;
+            workUnitType: {
+              reference: number;
+            };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+      )[];
+      /**
+       * List of exceptional times
+       */
+      exceptionalTimes?: (
+        | {
+            startDate: string;
+            endDate: string;
+            recovering?: boolean;
+            description: string;
+            workUnitType: {
+              reference: number;
+            };
+            /**
+             * Delivery on which exceptional time depends
+             */
+            delivery: {
+              id: string;
+            };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            /**
+             * Project on which exceptional time depends
+             */
+            project: {
+              id: string;
+            };
+          }
+        | {
+            id: string;
+            startDate: string;
+            endDate: string;
+            recovering?: boolean;
+            description: string;
+            workUnitType: {
+              reference: number;
+            };
+            /**
+             * Delivery on which exceptional time depends
+             */
+            delivery: {
+              id: string;
+            };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            /**
+             * Project on which exceptional time depends
+             */
+            project: {
+              id: string;
+            };
+          }
+      )[];
+      /**
+       * List of workplace times
+       */
+      workplaceTimes?: {
+        id: string;
+        startDate: string;
+        duration: number;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        workplaceType: {
+          reference: number;
+          name: string;
+        };
+      }[];
+    };
+    relationships: {
+      /**
+       * Timesheet's resource
+       */
+      resource: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Timesheet's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Timesheet's basic data sent in the body with a PUT method
+ */
+export interface SchemasTimesReportsBodyPutJson {
+  data: {
+    id: string;
+    type: "timesreport";
+    attributes?: {
+      workUnitRate?: number;
+      informationComments?: string;
+      /**
+       * List of regular times
+       */
+      regularTimes?: (
+        | {
+            startDate: string;
+            duration: number;
+            row: number;
+            workUnitType: {
+              reference: number;
+            };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+        | {
+            id: string;
+            startDate: string;
+            duration: number;
+            row: number;
+            workUnitType: {
+              reference: number;
+            };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+      )[];
+      /**
+       * List of exceptional times
+       */
+      exceptionalTimes?: (
+        | {
+            startDate: string;
+            endDate: string;
+            recovering?: boolean;
+            description: string;
+            workUnitType: {
+              reference: number;
+            };
+            /**
+             * Delivery on which exceptional time depends
+             */
+            delivery: {
+              id: string;
+            };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            /**
+             * Project on which exceptional time depends
+             */
+            project: {
+              id: string;
+            };
+          }
+        | {
+            id: string;
+            startDate: string;
+            endDate: string;
+            recovering?: boolean;
+            description: string;
+            workUnitType: {
+              reference: number;
+            };
+            /**
+             * Delivery on which exceptional time depends
+             */
+            delivery: {
+              id: string;
+            };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            /**
+             * Project on which exceptional time depends
+             */
+            project: {
+              id: string;
+            };
+          }
+      )[];
+      /**
+       * List of workplace times
+       */
+      workplaceTimes?: {
+        id: string;
+        startDate: string;
+        duration: number;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        workplaceType: {
+          reference: number;
+          name: string;
+        };
+      }[];
+    };
+  };
+}
+
+/**
+ * Timesheet's validation reject data sent in the body with a POST method
+ */
+export interface SchemasTimesReportsRejectPostJson {
+  data: {
+    /**
+     * Resource's `id` on which timesheet depends
+     */
+    expectedValidator: number;
+    reason: string;
+    rejectTypeOf: "correctionForPreviousValidator" | "correctionForAllValidators" | "definitiveRefusal";
+  };
+}
+
+/**
+ * Timesheet's signature data sent in the body with a POST method
+ */
+export interface SchemasTimesReportsSignatureBodyPostJson {
+  data: {
+    /**
+     * Project's `id` on which signature depends
+     */
+    project?: number;
+    /**
+     * Type of formatted file (imported or customer)
+     */
+    type?: string;
+    /**
+     * File's `id` on which signature depends
+     */
+    attachment?: string;
+    workUnitTypes?: string[];
+    /**
+     * Available only if **type** is `customer`
+     */
+    showWorkUnitTypeName?: boolean;
+    /**
+     * Available only if **type** is `customer`
+     */
+    useWorkUnitsForRegularDurations?: boolean;
+    /**
+     * Available only if **type** is `customer`
+     */
+    showResourceFullName?: boolean;
+    /**
+     * Available only if **type** is `customer`
+     */
+    showInformationComments?: boolean;
+    /**
+     * Email's of validator
+     */
+    mailValidatorSignature?: string;
+  };
+}
+

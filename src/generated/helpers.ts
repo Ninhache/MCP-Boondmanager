@@ -31,6 +31,7 @@ import type {
   SchemasPurchasesSearchJson,
   SchemasResourcesSearchJson,
   SchemasRolesSearchJson,
+  SchemasTimesReportsSearchJson,
   SchemasTimesSearchJson,
   SchemasValidationsSearchJson,
 } from "./boond-schemas.js";
@@ -83,6 +84,7 @@ export type AbsencesReportAttributes = ExtractAttributes<SchemasAbsencesReportsS
 export type BusinessUnitAttributes = ExtractAttributes<SchemasBusinessUnitsSearchJson>;
 export type ExpensesReportAttributes = ExtractAttributes<SchemasExpensesReportsSearchJson>;
 export type BillingDetailAttributes = ExtractAttributes<SchemasBillingDetailsSearchJson>;
+export type TimesReportAttributes = ExtractAttributes<SchemasTimesReportsSearchJson>;
 
 /**
  * Generic typed Boond list response.
