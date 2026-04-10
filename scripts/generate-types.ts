@@ -171,6 +171,10 @@ const MODULES: readonly ModuleSpec[] = [
     name: "tasks",
     schemas: ["profile"],
   },
+  {
+    name: "downloadCenter",
+    schemas: ["profile", "folder"],
+  },
   // Note: "logs" schema has a malformed comment that crashes json-schema-to-typescript
 ];
 
