@@ -22347,3 +22347,439 @@ export interface SchemasThreadsBodyPutJson {
   };
 }
 
+
+// ─── forms ───
+/**
+ * Form data
+ */
+export interface SchemasFormsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "form";
+    attributes?: {
+      mailObject?: string;
+      mailBody?: string;
+      validated?: boolean;
+      creationDate?: string;
+      validateDate?: string;
+      dependsOnCanShow?: string;
+      /**
+       * Form's questions
+       */
+      questions?: {
+        id?: string;
+        question?: string;
+        description?: string;
+        typeOf?: "barometer" | "singleChoice" | "multipleChoice" | "text" | "number";
+        required?: boolean;
+        state?: boolean;
+        /**
+         * Form's questions
+         */
+        choices?: {
+          id?: string;
+          description?: string;
+        }[];
+        response?: string;
+      }[];
+    };
+    relationships?: {
+      dependsOn?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      recipient?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      /**
+       * Template associated to the form
+       */
+      template?: {
+        data: {
+          id: string;
+          type: "formtemplate";
+        }[];
+      };
+      /**
+       * Creator of the form
+       */
+      createdBy?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      /**
+       * Validator of the form
+       */
+      validator?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "formtemplate";
+        attributes?: {
+          title?: string;
+          description?: string;
+          state?: boolean;
+          additionalProperties?: never;
+        };
+      }
+  )[];
+}
+
+/**
+ * Empty form's default basic data
+ */
+export interface SchemasFormsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "form";
+    attributes?: {
+      mailToRecipient?: {};
+      mailObject?: string;
+      mailBody?: string;
+      dependsOnCanShow?: string;
+      validated?: boolean;
+    };
+    relationships?: {
+      /**
+       * Form's recipient
+       */
+      recipient?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Form's dependsOn
+       */
+      dependsOn?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Form's template
+       */
+      template?: {
+        data: {
+          id: string;
+          type: "formtemplate";
+        };
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "formtemplate";
+        attributes?: {
+          title?: string;
+          mailTo?: string;
+          mailObject?: string;
+          mailBody?: string;
+          /**
+           * Form's template's questions
+           */
+          questions?: {
+            id?: string;
+            question?: string;
+            description?: string;
+            typeOf?: "barometer" | "singleChoice" | "multipleChoice" | "text" | "number";
+            required?: boolean;
+            state?: boolean;
+            /**
+             * Form's questions
+             */
+            choices?: {
+              id?: string;
+              description?: string;
+            }[];
+          }[];
+        };
+      }
+  )[];
+}
+
+/**
+ * Form's rights
+ */
+export interface SchemasFormsRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        validate?: boolean;
+        /**
+         * true if this action is available
+         */
+        unvalidate?: boolean;
+        /**
+         * true if this action is available
+         */
+        remind?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+        /**
+         * true if this action is available
+         */
+        dependsOnCanShowOnValidate?: boolean;
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+        tasks?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        mailObject?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        mailBody?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        questions?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        validated?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        dependsOnCanShow?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Forms tasks data
+ */
+export interface SchemasFormsTasksJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+    additionalTasks?: {
+      id?: string;
+      type?: "form";
+      state?: "pending" | "validated";
+      button?: {
+        action?: "remindFormAction";
+      };
+    }[];
+  };
+  data: {
+    id: string;
+    type: "task";
+    attributes?: {
+      description?: string;
+      row?: number;
+      state?: boolean;
+      validatedAt?: number;
+      validatedBy?: {
+        id?: string;
+        firstName?: string;
+        lastName?: string;
+      };
+    };
+    relationships?: {
+      /**
+       * List of children tasks
+       */
+      children?: {
+        data: {
+          id: string;
+          type: "task";
+        }[];
+      };
+      /**
+       * Task's todolist
+       */
+      todolist?: {
+        data: {
+          id: string;
+          type: "todolist";
+        }[];
+      };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "task";
+        attributes?: {
+          description?: string;
+          row?: number;
+          state?: boolean;
+          validatedAt?: number;
+          validatedBy?: {
+            id?: string;
+            firstName?: string;
+            lastName?: string;
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "todolist";
+        attributes?: {
+          title?: string;
+        };
+      }
+  )[];
+}
+
