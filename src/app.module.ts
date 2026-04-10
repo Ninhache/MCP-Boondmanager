@@ -46,6 +46,7 @@ import { ResourcesModule } from "./modules/resources/resources.module.js";
 import { RolesModule } from "./modules/roles/roles.module.js";
 import { SavedSearchesModule } from "./modules/savedsearches/savedsearches.module.js";
 import { StandardProfilesModule } from "./modules/standard-profiles/standard-profiles.module.js";
+import { SubscriptionModule } from "./modules/subscription/subscription.module.js";
 import { TargetsModule } from "./modules/targets/targets.module.js";
 import { TasksModule } from "./modules/tasks/tasks.module.js";
 import { TechnicalDatasModule } from "./modules/technical-datas/technical-datas.module.js";
@@ -112,6 +113,7 @@ const DOMAIN_MODULES = [
   DownloadCenterModule,
   SavedSearchesModule,
   StandardProfilesModule,
+  SubscriptionModule,
   TodolistsModule,
   ThreadsModule,
   WebhooksModule,

@@ -49,6 +49,7 @@ import type {
   SchemasRolesSearchJson,
   SchemasSavedsearchesSearchJson,
   SchemasStandardProfilesSearchJson,
+  SchemasSubscriptionProfileJson,
   SchemasTargetsProfileJson,
   SchemasTasksProfileJson,
   SchemasTechnicalDatasProfileJson,
@@ -127,6 +128,7 @@ export type DocumentAttributes = ExtractAttributes<SchemasDocumentsProfileJson>;
 export type DownloadCenterAttributes = ExtractAttributes<SchemasDownloadCenterProfileJson>;
 export type SavedSearchAttributes = ExtractAttributes<SchemasSavedsearchesSearchJson>;
 export type StandardProfileAttributes = ExtractAttributes<SchemasStandardProfilesSearchJson>;
+export type SubscriptionAttributes = ExtractAttributes<SchemasSubscriptionProfileJson>;
 export type TodolistAttributes = ExtractAttributes<SchemasTodolistsSearchJson>;
 export type ThreadAttributes = ExtractAttributes<SchemasThreadsSearchJson>;
 export type FormAttributes = ExtractAttributes<SchemasFormsProfileJson>;
