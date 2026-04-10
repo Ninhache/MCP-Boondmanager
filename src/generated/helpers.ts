@@ -45,6 +45,7 @@ import type {
   SchemasRolesSearchJson,
   SchemasSavedsearchesSearchJson,
   SchemasTargetsProfileJson,
+  SchemasTasksProfileJson,
   SchemasThreadsSearchJson,
   SchemasTimesReportsSearchJson,
   SchemasTimesSearchJson,
@@ -119,6 +120,7 @@ export type TodolistAttributes = ExtractAttributes<SchemasTodolistsSearchJson>;
 export type ThreadAttributes = ExtractAttributes<SchemasThreadsSearchJson>;
 export type FormAttributes = ExtractAttributes<SchemasFormsProfileJson>;
 export type GroupmentAttributes = ExtractAttributes<SchemasGroupmentsProfileJson>;
+export type TaskAttributes = ExtractAttributes<SchemasTasksProfileJson>;
 
 /**
  * Generic typed Boond list response.
