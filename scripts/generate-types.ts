@@ -183,6 +183,10 @@ const MODULES: readonly ModuleSpec[] = [
     name: "followedDocuments",
     schemas: ["profile", "default", "rights", "bodyPost", "bodyPut"],
   },
+  {
+    name: "conditionalFields",
+    schemas: ["search", "profile", "default", "bodyPost", "bodyPut"],
+  },
   // Note: "logs" schema has a malformed comment that crashes json-schema-to-typescript
 ];
 
