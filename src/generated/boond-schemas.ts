@@ -1,7 +1,7 @@
 /* eslint-disable */
 /**
  * Auto-generated from BoondManager JSON schemas.
- * Generated on: 2026-04-09
+ * Generated on: 2026-04-10
  * Source: https://doc.boondmanager.com/api-externe/
  * DO NOT MODIFY — run `npm run generate-types` to regenerate.
  */
@@ -1658,4 +1658,2065 @@ export interface SchemasActionsSearchJson {
         };
       }
   )[];
+}
+
+// ─── positionings ───
+/**
+ * List of positionings
+ */
+export interface SchemasPositioningsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+    /**
+     * true if conditional fields are configured for this module
+     */
+    conditionalFields?: boolean;
+  };
+  data: {
+    id: string;
+    type: "positioning";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      state?: number;
+      stateReason?: {
+        typeOf?: number;
+        detail?: string;
+      };
+      startDate?: string;
+      endDate?: string;
+      informationComments?: string;
+      /**
+       * If false then positioning is not accessible
+       */
+      canReadPositioning?: boolean;
+      /**
+       * If false then dependsOn's data are masked
+       */
+      canShowDependsOn?: boolean;
+      /**
+       * If false then opportunity's data are masked
+       */
+      canShowOpportunity?: boolean;
+      /**
+       * If false then updateDate is masked
+       */
+      canShowUpdateDate?: boolean;
+      /**
+       * If false then state is masked
+       */
+      canShowState?: boolean;
+      /**
+       * If false then creationDate is masked
+       */
+      canShowCreationDate?: boolean;
+      /**
+       * If false then startDate is masked
+       */
+      canShowStartDate?: boolean;
+      /**
+       * If false then endDate is masked
+       */
+      canShowEndDate?: boolean;
+      /**
+       * If false then informationComments is masked
+       */
+      canShowInformationComments?: boolean;
+      creationSource?: string | null;
+    };
+    relationships?: {
+      /**
+       * Target's resource
+       */
+      createdBy?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Positioning's creator
+       */
+      creator?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Opportunity on which positioning depends
+       */
+      opportunity?: {
+        data: {
+          id: string;
+          type: "opportunity";
+        };
+      };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          thumbnail?: string;
+          typeOf?: number;
+          title?: string;
+        };
+        relationships?: {
+          mainManager?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+          hrManager?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+          /**
+           * Resource's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          pole?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "pole";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "candidate";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+          thumbnail?: string;
+          typeOf?: number;
+          title?: string;
+        };
+        relationships?: {
+          /**
+           * Candidate's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          hrManager?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+          /**
+           * Candidate's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          pole?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "pole";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "opportunity";
+        attributes?: {
+          title?: string;
+          reference?: string;
+          typeOf?: number;
+          mode?: 1 | 2 | 3 | 4;
+          isVisible?: boolean;
+          /**
+           * If false then contact's data are masked
+           */
+          canShowContact?: boolean;
+          /**
+           * If false then company's data are masked
+           */
+          canShowCompany?: boolean;
+          currency?: number;
+          /**
+           * If false then opportunity is not accessible
+           */
+          canReadOpportunity?: boolean;
+        };
+        relationships?: {
+          /**
+           * Opportunity's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          /**
+           * Opportunity's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          pole?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "pole";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "product";
+        attributes?: {
+          reference?: string;
+          subscription?: number;
+          name?: string;
+        };
+        relationships?: {
+          /**
+           * Product's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          /**
+           * Candidate's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          pole?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "pole";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          /**
+           * If false then contact is not accessible
+           */
+          canReadContact?: boolean;
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+          thumbnail?: string;
+          /**
+           * If false then company is not accessible
+           */
+          canReadCompany?: boolean;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | (
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            type: "pole";
+            attributes?: {
+              name?: string;
+            };
+          }
+      )
+  )[];
+}
+
+// ─── purchases ───
+/**
+ * List of purchases
+ */
+export interface SchemasPurchasesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+      /**
+       * Sum of all amountExcludingTax * quantity
+       */
+      totalAmountExcludingTax?: number;
+      /**
+       * engagedPaymentsAmountExcludingTax - totalAmountExcludingTax
+       */
+      deltaExcludingTax?: number;
+      /**
+       * Sum of engaged payments amount excluding tax (state's payments id is not 0)
+       */
+      engagedPaymentsAmountExcludingTax?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "purchase";
+    attributes?: {
+      date?: string;
+      title?: string;
+      subscription?: number;
+      typeOf?: number;
+      reference?: string;
+      state?: number;
+      taxRate?: number;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      amountExcludingTax?: number;
+      quantity?: number;
+      /**
+       * Sum of all amountExcludingTax * quantity
+       */
+      totalAmountExcludingTax?: number;
+      /**
+       * engagedPaymentsAmountExcludingTax - totalAmountExcludingTax
+       */
+      deltaExcludingTax?: number;
+      /**
+       * Sum of engaged payments amount excluding tax (state's payments id is not 0)
+       */
+      engagedPaymentsAmountExcludingTax?: number;
+      creationDate?: string;
+      updateDate?: string;
+    };
+    relationships?: {
+      /**
+       * Purchase's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      project?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+      delivery?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          };
+      contact?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          };
+      company?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "company";
+            };
+          };
+      /**
+       * Purchase's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      pole?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          title?: string;
+        };
+        relationships?: {
+          dependsOn?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+// ─── invoices ───
+/**
+ * List of invoices
+ */
+export interface SchemasInvoicesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+      /**
+       * Sum of invoiced amount excluding tax
+       */
+      turnoverInvoicedExcludingTax?: number;
+      /**
+       * Sum of invoiced amount including tax
+       */
+      turnoverInvoicedIncludingTax?: number;
+      /**
+       * Amount left to pay on invoice including tax
+       */
+      totalPayableIncludingTax?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "invoice";
+    attributes?: {
+      date?: string;
+      expectedPaymentDate?: string;
+      /**
+       * Sum of invoiced amount excluding tax
+       */
+      turnoverInvoicedExcludingTax?: number;
+      /**
+       * Sum of invoiced amount including tax
+       */
+      turnoverInvoicedIncludingTax?: number;
+      isCreditNote?: boolean;
+      reference?: string;
+      state?: number;
+      sendingState?: number;
+      refuseReason?: string;
+      taxReportState?: number;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      paymentMethod?: number;
+      closed?: boolean;
+      /**
+       * Amount left to pay on invoice including tax
+       */
+      totalPayableIncludingTax?: number;
+      creationDate?: string;
+      updateDate?: string;
+      startDate?: string;
+      /**
+       * The value have to be superior or equal to startDate
+       */
+      endDate?: string;
+      performedPaymentDate?: string;
+      /**
+       * If true then invoice can be sent with peppol network
+       */
+      canSendWithPeppol?: boolean;
+    };
+    relationships?: {
+      /**
+       * Invoice's order
+       */
+      order?: {
+        data: {
+          id: string;
+          type: "order";
+        };
+      };
+      schedule?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "schedule";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "order";
+        attributes?: {
+          number?: string;
+          reference?: string;
+        };
+        relationships?: {
+          /**
+           * Order's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          /**
+           * Order's project
+           */
+          project?: {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+          typeOf?: number;
+          mode?: number;
+        };
+        relationships?: {
+          opportunity?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "opportunity";
+                };
+              };
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          /**
+           * Project's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          pole?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "pole";
+                };
+              };
+          intermediaryContact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          intermediaryCompany?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "opportunity";
+        attributes?: {
+          title?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+          thumbnail?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "schedule";
+        attributes?: {
+          date?: string;
+          title?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          invoicesLockingStates?: number[];
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+// ─── orders ───
+/**
+ * List of orders
+ */
+export interface SchemasOrdersSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+      /**
+       * Sum of invoiced amount excluding tax
+       */
+      turnoverInvoicedExcludingTax?: number;
+      /**
+       * Sum of ordered amount excluding tax
+       */
+      turnoverOrderedExcludingTax?: number;
+      /**
+       * turnoverInvoicedExcludingTax - turnoverOrderedExcludingTax
+       */
+      deltaInvoicedExcludingTax?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "order";
+    attributes?: {
+      date?: string;
+      number?: string;
+      reference?: string;
+      customerAgreement?: boolean;
+      billableItemTypes?: {
+        [k: string]: unknown;
+      }[];
+      /**
+       * Sum of invoiced amount excluding tax
+       */
+      turnoverInvoicedExcludingTax?: number;
+      /**
+       * Sum of ordered amount excluding tax
+       */
+      turnoverOrderedExcludingTax?: number;
+      /**
+       * turnoverInvoicedExcludingTax - turnoverOrderedExcludingTax
+       */
+      deltaInvoicedExcludingTax?: number;
+      requestTimesheetsSignature?: boolean;
+      state?: number;
+      creationDate?: string;
+      updateDate?: string;
+    };
+    relationships?: {
+      /**
+       * Order's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Order's project
+       */
+      project?: {
+        data: {
+          id: string;
+          type: "project";
+        };
+      };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+          typeOf?: number;
+          mode?: number;
+          currency?: number;
+          exchangeRate?: number;
+          currencyAgency?: number;
+          exchangeRateAgency?: number;
+        };
+        relationships?: {
+          opportunity?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "opportunity";
+                };
+              };
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          intermediaryContact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          intermediaryCompany?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          /**
+           * Project's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          pole?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "pole";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "opportunity";
+        attributes?: {
+          title?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+          thumbnail?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+// ─── expenses ───
+/**
+ * List of expenses
+ */
+export interface SchemasExpensesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "expense";
+    attributes?: {
+      category?: "actual" | "fixed";
+      activityType?: "production" | "absence" | "internal";
+      expenseType?: null | {
+        reference: number;
+        taxRate: number;
+        name: string;
+        guest?: boolean;
+        mealDeduction?: boolean;
+        position?: number;
+      };
+      /**
+       * If it is a new line then row should be inferior or equal to 0
+       */
+      row?: number;
+      startDate?: string;
+      reinvoiced?: boolean;
+      /**
+       * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+       */
+      amountIncludingTax?: number;
+      tax?: number;
+      numberOfKilometers?: number;
+      number?: number;
+      title?: string;
+      currency?: number;
+      exchangeRate?: number;
+      isKilometricExpense?: boolean;
+      expensesReport?: {
+        id: string;
+        term: string;
+        state: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+        ratePerKilometerType: {
+          reference: number;
+          name: string;
+          amount: number;
+        };
+        advance?: number;
+        agency?: {
+          id?: string;
+          name?: string;
+          workUnitRate?: "notUsed" | number;
+        };
+        resource?: {
+          id?: string;
+          lastName?: string;
+          firstName?: string;
+        };
+      };
+      delivery?: null | {
+        id: string;
+        title?: string;
+        startDate?: string;
+        endDate?: string;
+      };
+      batch?: null | {
+        id: string;
+        title?: string;
+      };
+      project?: null | {
+        id: string;
+        reference?: string;
+      };
+      guestResources?: {
+        id?: string;
+        lastName?: string;
+        firstName?: string;
+        thumbnail?: string;
+      }[];
+    };
+  }[];
+}
+
+// ─── products ───
+/**
+ * List of products
+ */
+export interface SchemasProductsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "product";
+    attributes?: {
+      reference?: string;
+      subscription?: number;
+      name?: string;
+      priceExcludingTax?: number;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+    };
+    relationships?: {
+      /**
+       * Product's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Product's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      pole?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+// ─── agencies ───
+/**
+ * List of agencies
+ */
+export interface SchemasAgenciesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "agency";
+    attributes?: {
+      name?: string;
+      calendar?: string;
+      currency?: number;
+      numberOfWorkingDays?: number;
+      chargeFactor?: number;
+      vatNumber?: string;
+      registrationNumber?: string;
+      address?: string;
+      postcode?: string;
+      town?: string;
+      country?: string;
+      staff?: number;
+      state?: boolean;
+      workUnitRate?: "notUsed" | number;
+      workUnitRateOnProjectsAndOpportunities?: number;
+      subDivision?: string;
+    };
+  }[];
+}
+
+// ─── poles ───
+/**
+ * List of poles
+ */
+export interface SchemasPolesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "pole";
+    attributes?: {
+      name?: string;
+      state?: boolean;
+    };
+  }[];
+}
+
+// ─── calendars ───
+/**
+ * List of calendars
+ */
+export interface SchemasCalendarsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    iso: string;
+    value: string;
+    subCalendars?: {
+      iso: string;
+      value: string;
+    }[];
+  }[];
+}
+
+// ─── dashboards ───
+/**
+ * List of dashboard for Current User
+ */
+export interface SchemasDashboardsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "dashboard";
+    attributes?: {
+      /**
+       * Title of dashboard
+       */
+      title?: string;
+      /**
+       * Description of dashboard
+       */
+      "description,"?: string;
+      /**
+       * Category of analytics dashboard
+       */
+      "category,"?: "sales" | "hr" | "delivery" | "finance" | "recruitment";
+      /**
+       * Number of columns to display the dashboard
+       */
+      columns?: number;
+      /**
+       * True if the dashboard is the default dashboard
+       */
+      isDefault?: boolean;
+      /**
+       * Type of dashboard
+       */
+      typeOf?: "dashboard" | "analytics";
+      /**
+       * Gadgets to display on the dashboard
+       */
+      gadgets?: {
+        id: string;
+        /**
+         * Type of the gadget
+         */
+        gadgetType: "widget" | "metric" | "collection";
+        /**
+         * Type of the widget if gadgetType is widget
+         */
+        widgetType:
+          | "resourceTimesReports"
+          | "resourceExpensesReports"
+          | "resourceAbsencesReports"
+          | "summary"
+          | "recruitmentsFunnel"
+          | "salesFunnel"
+          | "opportunitiesDistribution"
+          | "opportunitiesDistributionByState"
+          | "positioningsDistributionByState"
+          | "candidatesDistribution"
+          | "chargedTurnoverSignedTurnover"
+          | "chargedTurnoverProductionTurnoverSignedTurnover"
+          | "chargedTurnoverChargedMargin"
+          | "productionTurnoverProductionMargin"
+          | "signedTurnoverSignedMargin"
+          | "signedPeriodTurnoverCharged"
+          | "chargedPeriodTurnoverProductionTurnoverSignedTurnover"
+          | "periodTurnoverChargedMarginPeriodCharged"
+          | "digitalWorkplace"
+          | "myPeriodicalsTargets"
+          | "myFormsToComplete";
+        /**
+         * Additional type of widget if gadgetType is widget and widgetType is analytics
+         */
+        widgetTypeOf?: "chart" | "table" | "number";
+        /**
+         * Module associated to the gadget
+         */
+        module: string;
+        /**
+         * Title of the gadget
+         */
+        title: string;
+        /**
+         * Description of the gadget
+         */
+        description?: string;
+        /**
+         * Position of the gadget
+         */
+        col: number;
+        /**
+         * Position of the gadget
+         */
+        row: number;
+        /**
+         * JSON Object with parameters to display gadget's data
+         */
+        params: {
+          [k: string]: unknown;
+        };
+        /**
+         * Charts associated to the gadget (for Periodical Targets)
+         */
+        charts: unknown[];
+        /**
+         * User can read gadget
+         */
+        canReadGadget: boolean;
+        /**
+         * User can write gadget
+         */
+        canWriteGadget: boolean;
+      }[];
+    };
+  }[];
+}
+
+// ─── notifications ───
+/**
+ * List of current user notifications
+ */
+export interface SchemasNotificationsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+      /**
+       * Total number of read notification
+       */
+      unread?: {
+        oneOf?: {
+          /**
+           * Number of unread notification of type thread
+           */
+          thread?: number;
+          /**
+           * Number of unread notification of type activity
+           */
+          activity?: number;
+        };
+      };
+    };
+    /**
+     * Timestamp of the last notification available for this user independently of filters.
+     */
+    last?: {
+      [k: string]: unknown;
+    };
+  };
+  data: {
+    id: string;
+    type: "notification";
+    attributes?: {
+      title?: string;
+      message?: string;
+      state?: "new" | "read";
+      creationDate?: string;
+      category?: "activity" | "thread";
+      type?:
+        | "unknown"
+        | "autotimesheet"
+        | "autoexpense"
+        | "pending"
+        | "validated"
+        | "rejected"
+        | "refused"
+        | "deleted"
+        | "created"
+        | "shared"
+        | "mention"
+        | "daily"
+        | "weekly"
+        | "positioning"
+        | "response"
+        | "monthly"
+        | "digitalworkplacecategorydocument"
+        | "digitalworkplacenews"
+        | "bankingerror"
+        | "bankingreconciliation"
+        | "bankingsuccess"
+        | "bankingpending"
+        | "bankingexpired";
+      parentType?: (
+        | "global"
+        | "absencesreport"
+        | "contract"
+        | "delivery"
+        | "positioning"
+        | "contact"
+        | "opportunity"
+        | "company"
+        | "project"
+        | "order"
+        | "invoice"
+        | "purchase"
+        | "payment"
+        | "inactivity"
+        | "groupment"
+        | "advantage"
+        | "action"
+        | "timesreport"
+        | "expensesreport"
+        | "candidate"
+        | "resource"
+        | "product"
+        | "quotation"
+        | "app:wnotification"
+        | "app:celebrations"
+      )[];
+    };
+    relationships?: {
+      /**
+       * Notification recipient
+       */
+      createdFor: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Notification author
+       */
+      createdBy?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      dependsOn?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "action";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "order";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "invoice";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "payment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "positioning";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "absencesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "advantage";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "inactivity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "quotation";
+            };
+          };
+    };
+  }[];
+}
+
+// ─── validations ───
+/**
+ * List of validations
+ */
+export interface SchemasValidationsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  } & {
+    creationDate?: string;
+    status?: "waiting" | "running" | "finished" | "failed";
+  };
+  data: {
+    id: string;
+    type: "validation";
+    attributes?: {
+      date?: string;
+      state?: "waitingForValidation" | "validated" | "rejected";
+      nbAlerts?: number;
+      expectedValidatorsAllowedForValidate?: {
+        id: string;
+      }[];
+      expectedValidatorsAllowedForUnValidate?: {
+        id: string;
+      }[];
+      expectedValidatorsAllowedForReject?: {
+        id: string;
+      }[];
+    };
+    relationships?: {
+      expectedValidator?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      realValidator?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "absencesreport";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          thumbnail?: string;
+        };
+      }
+    | {
+        id?: string;
+        type?: "timesreport";
+        attributes?: {
+          term?: string;
+          closed?: boolean;
+          state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+        };
+        relationships?: {
+          /**
+           * Timesheet's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          /**
+           * Timesheet's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+        };
+      }
+    | {
+        id?: string;
+        type?: "expensesreport";
+        attributes?: {
+          term?: string;
+          closed?: boolean;
+          state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+        };
+        relationships?: {
+          /**
+           * Expenses resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          /**
+           * Expenses's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+        };
+      }
+    | {
+        id?: string;
+        type?: "absencesreport";
+        attributes?: {
+          creationDate?: string;
+          state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+          /**
+           * List of absences periods
+           */
+          absencesPeriods?: {
+            id: string;
+            startDate: string;
+            /**
+             * The value have to be superior or equal to startDate
+             */
+            endDate: string;
+            duration: number;
+            title?: string;
+            workUnitType: {
+              reference: number;
+              activityType:
+                | "production"
+                | "absence"
+                | "internal"
+                | "exceptionalTime"
+                | "exceptionalCalendar";
+              name: string;
+            };
+          }[];
+        };
+        relationships?: {
+          /**
+           * Leaves request's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          /**
+           * Leaves request's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+        };
+      }
+  )[];
+}
+
+// ─── roles ───
+/**
+ * List of roles
+ */
+export interface SchemasRolesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "role";
+    attributes?: {
+      name?: string;
+      /**
+       * Number of manager whose are attached to this role
+       */
+      numberOfAccounts?: number;
+      /**
+       * Number of active manager whose are attached to this role
+       */
+      numberOfActiveAccounts?: number;
+      /**
+       * true if secondary agencies is defined on this role and not on manager's account
+       */
+      isSecondaryAgenciesAllowed?: boolean;
+      /**
+       * true if secondary poles is defined on this role and not on manager's account
+       */
+      isSecondaryPolesAllowed?: boolean;
+      /**
+       * Role's type
+       */
+      typeOf?: "manager" | "intranet";
+      /**
+       * true if the role has role been created by the system
+       */
+      isSystem?: boolean;
+    };
+  }[];
 }

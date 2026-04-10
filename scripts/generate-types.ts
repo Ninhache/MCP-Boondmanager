@@ -16,6 +16,7 @@ import { compile } from "json-schema-to-typescript";
 const SCHEMA_BASE_URL = "https://doc.boondmanager.com/api-externe/raml-build/schemas";
 
 const MODULES = [
+  // Core business modules (phase 1-2)
   "resources",
   "candidates",
   "projects",
@@ -23,6 +24,24 @@ const MODULES = [
   "opportunities",
   "absences",
   "actions",
+  // Commercial / financial (phase 3)
+  "positionings",
+  "purchases",
+  "invoices",
+  "orders",
+  "expenses",
+  "products",
+  // Organizational (phase 3)
+  "agencies",
+  "poles",
+  "calendars",
+  "dashboards",
+  // Admin / system (phase 3)
+  "notifications",
+  "validations",
+  "roles",
+  // Note: "logs" schema has a malformed comment that crashes json-schema-to-typescript
+  // Skip for now — can be added later if/when Boond fixes the schema
 ] as const;
 
 const SCHEMA_DIR = join(import.meta.dirname, "..", "schemas");
@@ -93,9 +112,10 @@ async function generateTypes(): Promise<void> {
   await writeFile(outputPath, allTypes.join("\n"));
   console.log(`\n\u2705 Types written to src/generated/boond-schemas.ts`);
 
-  // Write a barrel export
+  // Write barrel export (includes helpers.ts if present)
   const indexPath = join(OUTPUT_DIR, "index.ts");
-  await writeFile(indexPath, 'export * from "./boond-schemas.js";\n');
+  const indexContent = `export * from "./boond-schemas.js";\nexport * from "./helpers.js";\n`;
+  await writeFile(indexPath, indexContent);
   console.log(`\u2705 Index written to src/generated/index.ts`);
 }
 
