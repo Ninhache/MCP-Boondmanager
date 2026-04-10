@@ -23,6 +23,7 @@ import { ExpensesReportsModule } from "./modules/expenses-reports/expenses-repor
 import { FlagsModule } from "./modules/flags/flags.module.js";
 import { InactivitiesModule } from "./modules/inactivities/inactivities.module.js";
 import { InvoicesModule } from "./modules/invoices/invoices.module.js";
+import { MarketplaceModule } from "./modules/marketplace/marketplace.module.js";
 import { McpExtrasModule } from "./modules/mcp-extras/mcp-extras.module.js";
 import { NotificationsModule } from "./modules/notifications/notifications.module.js";
 import { OpportunitiesModule } from "./modules/opportunities/opportunities.module.js";
@@ -86,6 +87,7 @@ const DOMAIN_MODULES = [
   AdvantagesModule,
   FlagsModule,
   TargetsModule,
+  MarketplaceModule,
   WebhooksModule,
   // MCP Prompts and Resources
   McpExtrasModule,

@@ -17496,3 +17496,2923 @@ export interface SchemasTargetsBodyPutJson {
   };
 }
 
+
+// ─── marketplace ───
+/**
+ * List of marketplace's apps
+ */
+export interface SchemasMarketplaceSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "app";
+    attributes?: {
+      name?: string;
+      isInstalled?: boolean;
+      /**
+       * Customer's absolute logo url
+       */
+      logo?: string;
+      code?: string;
+      integration?: "iFrame" | "module" | "moduleNoCode" | "sectionNoCode";
+      website?: string;
+      isValidated?: boolean;
+      isPublic?: boolean;
+      title?: string;
+      description?: string;
+    };
+    relationships?: {
+      /**
+       * App's vendor
+       */
+      vendor?: {
+        data: {
+          id: string;
+          type: "vendor";
+        };
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "vendor";
+    attributes?: {
+      name?: string;
+      /**
+       * Vendor's absolute logo url
+       */
+      logo?: string;
+      isOwner?: boolean;
+    };
+  }[];
+}
+
+/**
+ * App's basic data
+ */
+export interface SchemasMarketplaceProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "app";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      name?: string;
+      title?: string;
+      category?:
+        | "other"
+        | "mail"
+        | "calendar"
+        | "mailAndCalendar"
+        | "certification"
+        | "emailing"
+        | "templates"
+        | "ged"
+        | "viewer";
+      code?: string;
+      key?: string;
+      url?: string;
+      integration?: "iFrame" | "module" | "moduleNoCode" | "sectionNoCode";
+      website?: string;
+      testimoniesUrl?: string;
+      termsOfUseUrl?: string;
+      description?: string;
+      price?: string;
+      /**
+       * Customer's absolute logo url
+       */
+      logo?: string;
+      isPublic?: boolean;
+      tokenSecurity?: "permanent" | "temporary";
+      isRefreshTokenValidated?: boolean;
+      isValidated?: boolean;
+      isInstalled?: boolean;
+      isBoondManagerApp?: boolean;
+      hasConfigurationPage?: boolean;
+      /**
+       * List of APIs allowed
+       */
+      apisAllowed?: {
+        page:
+          | "application/dictionary"
+          | "application/perimeters"
+          | "application/flags"
+          | "application/assignments"
+          | "purchases"
+          | "payments"
+          | "actions"
+          | "opportunities"
+          | "candidates"
+          | "absencesReports"
+          | "expensesReports"
+          | "timesReports"
+          | "invoices"
+          | "orders"
+          | "billing-deliveries-purchases-balance"
+          | "billing-monthly-schedule"
+          | "billing-projects-balance"
+          | "billing-schedules-balance"
+          | "contacts"
+          | "companies"
+          | "positionings"
+          | "products"
+          | "projects"
+          | "deliveries-inactivities-groupments"
+          | "resources"
+          | "accounts"
+          | "dashboard"
+          | "accounts/(id}"
+          | "resources/@id"
+          | "resources/@id/information"
+          | "resources/@id/administrative"
+          | "resources/@id/technical-data"
+          | "resources/@id/actions"
+          | "resources/@id/positionings"
+          | "resources/@id/deliveries"
+          | "resources/@id/times-reports"
+          | "resources/@id/expenses-reports"
+          | "resources/@id/absences-reports"
+          | "resources/@id/absences-accounts"
+          | "candidates/@id"
+          | "candidates/@id/information"
+          | "candidates/@id/administrative"
+          | "candidates/@id/technical-data"
+          | "candidates/@id/actions"
+          | "candidates/@id/positionings"
+          | "contacts/@id"
+          | "contacts/@id/information"
+          | "contacts/@id/actions"
+          | "contacts/@id/opportunities"
+          | "contacts/@id/projects"
+          | "contacts/@id/purchases"
+          | "contacts/@id/orders"
+          | "contacts/@id/invoices"
+          | "companies/@id"
+          | "companies/@id/information"
+          | "companies/@id/contacts"
+          | "companies/@id/actions"
+          | "companies/@id/opportunities"
+          | "companies/@id/projects"
+          | "companies/@id/purchases"
+          | "companies/@id/orders"
+          | "companies/@id/invoices"
+          | "opportunities/@id"
+          | "opportunities/@id/information"
+          | "opportunities/@id/positionings"
+          | "opportunities/@id/actions"
+          | "absencesReports/@id"
+          | "invoices/@id"
+          | "invoices/@id/information"
+          | "invoices/@id/actions"
+          | "timesReports/@id"
+          | "expensesReports/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "products/@id"
+          | "products/@id/information"
+          | "products/@id/actions"
+          | "products/@id/opportunities"
+          | "products/@id/projects"
+          | "projects/@id"
+          | "projects/@id/information"
+          | "projects/@id/batches-markers"
+          | "projects/@id/actions"
+          | "projects/@id/deliveries"
+          | "projects/@id/advantages"
+          | "projects/@id/purchases"
+          | "projects/@id/productivity"
+          | "projects/@id/orders"
+          | "purchases/@id"
+          | "purchases/@id/information"
+          | "purchases/@id/payments"
+          | "purchases/@id/actions"
+          | "purchases/@id/projects"
+          | "payments/@id"
+          | "positionings/@id"
+          | "actions/@id"
+          | "advantages/@id"
+          | "orders/@id"
+          | "orders/@id/information"
+          | "orders/@id/invoices"
+          | "orders/@id/actions"
+          | "contracts/@id"
+          | "technical-datas"
+          | "technical-datas/@id";
+        event: "read" | "create" | "update" | "delete";
+      }[];
+      /**
+       * List of customers codes
+       */
+      customersAllowed?: string[];
+      /**
+       * List of IPs
+       */
+      hostsAllowed?: string[];
+      /**
+       * List of buttons
+       */
+      buttonsSetting?: {
+        page:
+          | "resources/@id"
+          | "resources/@id/information"
+          | "resources/@id/administrative"
+          | "resources/@id/technical-data"
+          | "resources/@id/actions"
+          | "resources/@id/positionings"
+          | "resources/@id/deliveries-inactivities"
+          | "resources/@id/times-reports"
+          | "resources/@id/expenses-reports"
+          | "resources/@id/absences-reports"
+          | "resources/@id/absences-accounts"
+          | "candidates/@id"
+          | "candidates/@id/information"
+          | "candidates/@id/administrative"
+          | "candidates/@id/technical-data"
+          | "candidates/@id/actions"
+          | "candidates/@id/positionings"
+          | "contacts/@id"
+          | "contacts/@id/information"
+          | "contacts/@id/actions"
+          | "contacts/@id/opportunities"
+          | "contacts/@id/projects"
+          | "contacts/@id/purchases"
+          | "contacts/@id/orders"
+          | "contacts/@id/invoices"
+          | "companies/@id"
+          | "companies/@id/information"
+          | "companies/@id/contacts"
+          | "companies/@id/actions"
+          | "companies/@id/opportunities"
+          | "companies/@id/projects"
+          | "companies/@id/purchases"
+          | "companies/@id/orders"
+          | "companies/@id/invoices"
+          | "opportunities/@id"
+          | "opportunities/@id/information"
+          | "opportunities/@id/positionings"
+          | "opportunities/@id/actions"
+          | "absences-reports/@id"
+          | "invoices/@id"
+          | "invoices/@id/information"
+          | "invoices/@id/actions"
+          | "times-reports/@id"
+          | "expenses-reports/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "products/@id"
+          | "products/@id/information"
+          | "products/@id/actions"
+          | "products/@id/opportunities"
+          | "products/@id/projects"
+          | "projects/@id"
+          | "projects/@id/information"
+          | "projects/@id/batches-markers"
+          | "projects/@id/actions"
+          | "projects/@id/deliveries-groupments"
+          | "projects/@id/advantages"
+          | "projects/@id/purchases"
+          | "projects/@id/productivity"
+          | "projects/@id/orders"
+          | "purchases/@id"
+          | "purchases/@id/information"
+          | "purchases/@id/payments"
+          | "purchases/@id/actions"
+          | "purchases/@id/projects"
+          | "payments/@id"
+          | "positionings/@id"
+          | "actions/@id"
+          | "advantages/@id"
+          | "orders/@id"
+          | "orders/@id/information"
+          | "orders/@id/invoices"
+          | "orders/@id/actions"
+          | "contracts/@id"
+          | "purchases"
+          | "payments"
+          | "actions"
+          | "opportunities"
+          | "candidates"
+          | "absences-reports"
+          | "expenses-reports"
+          | "times-reports"
+          | "invoices"
+          | "orders"
+          | "billing-deliveries-purchases-balance"
+          | "billing-monthly-schedule"
+          | "billing-projects-balance"
+          | "billing-schedules-balance"
+          | "contacts"
+          | "companies"
+          | "positionings"
+          | "products"
+          | "projects"
+          | "deliveries-inactivities-groupments"
+          | "resources";
+        title: string;
+        function: string;
+      }[];
+      /**
+       * List of iFrames
+       */
+      iFramesSetting?: {
+        page:
+          | "dashboard"
+          | "resources/@id"
+          | "resources/@id/information"
+          | "resources/@id/administrative"
+          | "resources/@id/technical-data"
+          | "resources/@id/actions"
+          | "resources/@id/positionings"
+          | "resources/@id/deliveries"
+          | "resources/@id/times-reports"
+          | "resources/@id/expenses-reports"
+          | "resources/@id/absences-reports"
+          | "resources/@id/absences-accounts"
+          | "candidates/@id"
+          | "candidates/@id/information"
+          | "candidates/@id/administrative"
+          | "candidates/@id/technical-data"
+          | "candidates/@id/actions"
+          | "candidates/@id/positionings"
+          | "contacts/@id"
+          | "contacts/@id/information"
+          | "contacts/@id/actions"
+          | "contacts/@id/opportunities"
+          | "contacts/@id/projects"
+          | "contacts/@id/purchases"
+          | "contacts/@id/orders"
+          | "contacts/@id/invoices"
+          | "companies/@id"
+          | "companies/@id/information"
+          | "companies/@id/contacts"
+          | "companies/@id/actions"
+          | "companies/@id/opportunities"
+          | "companies/@id/projects"
+          | "companies/@id/purchases"
+          | "companies/@id/orders"
+          | "companies/@id/invoices"
+          | "opportunities/@id"
+          | "opportunities/@id/information"
+          | "opportunities/@id/positionings"
+          | "opportunities/@id/actions"
+          | "absencesReports/@id"
+          | "invoices/@id"
+          | "invoices/@id/information"
+          | "invoices/@id/actions"
+          | "times-reports/@id"
+          | "expenses-reports/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "products/@id"
+          | "products/@id/information"
+          | "products/@id/actions"
+          | "products/@id/opportunities"
+          | "products/@id/projects"
+          | "projects/@id"
+          | "projects/@id/information"
+          | "projects/@id/batches-markers"
+          | "projects/@id/actions"
+          | "projects/@id/deliveries"
+          | "projects/@id/advantages"
+          | "projects/@id/purchases"
+          | "projects/@id/productivity"
+          | "projects/@id/orders"
+          | "purchases/@id"
+          | "purchases/@id/information"
+          | "purchases/@id/payments"
+          | "purchases/@id/actions"
+          | "purchases/@id/projects"
+          | "payments/@id"
+          | "positionings/@id"
+          | "actions/@id"
+          | "advantages/@id"
+          | "orders/@id"
+          | "orders/@id/information"
+          | "orders/@id/invoices"
+          | "orders/@id/actions"
+          | "contracts/@id";
+        scrolling: boolean;
+        height: number;
+        isHalfWidth: boolean;
+        function: string;
+      }[];
+      /**
+       * List of triggers
+       */
+      triggersSetting?: {
+        page:
+          | "actions/@id"
+          | "candidates/@id"
+          | "resources/@id"
+          | "products/@id"
+          | "contracts/@id"
+          | "advantages/@id"
+          | "opportunities/@id"
+          | "projects/@id"
+          | "positionings/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "times-reports/@id"
+          | "expenses-reports/@id"
+          | "absences-reports/@id"
+          | "purchases/@id"
+          | "payments/@id"
+          | "orders/@id"
+          | "invoices/@id"
+          | "contacts/@id"
+          | "companies/@id";
+        event: "create" | "update" | "delete";
+        function: string;
+      }[];
+      /**
+       * List of widgets
+       */
+      widgetsSetting?: {
+        page?: "topBar" | "bottomLeft" | "bottomRight";
+        function: string;
+      }[];
+      /**
+       * List of models
+       */
+      allowedModels?: string[];
+      /**
+       * List of features that will be added in allow attribute for iframe tag
+       */
+      allowedIframeFeatures?: string[];
+      visibility?: "allowedManagers" | "allManagers" | "allowedManagersAndResources" | "allManagersAndResources";
+      /**
+       * Parent module for fields & applications customized
+       */
+      module?:
+        | ""
+        | "resources"
+        | "candidates"
+        | "opportunities"
+        | "products"
+        | "companies"
+        | "contacts"
+        | "projects"
+        | "pruchases"
+        | "orders"
+        | "invoices";
+      /**
+       * Tab for sections customized
+       */
+      tab?: "information" | "administrative" | "technicalData";
+      allowGuestsValidation?: boolean;
+      allowManagersValidation?: boolean;
+      allowAccessToMyProfile?: boolean;
+      actionTypeOf?: number;
+      allowEntitiesAction?: "" | "created" | "mainManagerValidated" | "guestsValidated" | "allValidated";
+      /**
+       * List of fields to show in the parent's tab
+       */
+      defaultColumnsForParent?: string[];
+      /**
+       * List of fields to show in the search's view
+       */
+      defaultColumnsForSearch?: string[];
+      sharingMailObject?: string;
+      sharingMailBody?: string;
+      validatedMailObject?: string;
+      validatedMailBody?: string;
+      /**
+       * List of sections of fields & applications customized
+       */
+      sections?: {
+        id: string;
+        title: string;
+        col: number;
+        row: number;
+        span: number;
+        showUpdateDate: boolean;
+        /**
+         * List of fields
+         */
+        fields: {
+          id: string;
+          title?: string;
+          placeholder?: string;
+          suffix?: string;
+          options?: unknown[];
+          settings: {
+            maxLenth?: number;
+            required?: boolean;
+            multiple?: boolean;
+            readOnly?: boolean;
+            noTitle?: boolean;
+            maxFiles?: number;
+            precision?: number;
+            hasMin?: boolean;
+            min?: number;
+            hasMax?: boolean;
+            max?: number;
+            optionColors?: unknown[];
+            optionsIsEnabled?: unknown[];
+            displayNumberSelected?: boolean;
+            defaultValue?:
+              | boolean
+              | number
+              | (
+                  | "veryGood"
+                  | "good"
+                  | "bad"
+                  | "veryBad"
+                  | "fromParent"
+                  | "fromParentMainManager"
+                  | "fromParentHrManager"
+                  | "fromCurrentUser"
+                  | "fromParentAgency"
+                  | "fromParentPole"
+                  | "fromCurrentUserAgency"
+                  | "fromCurrentUserPole"
+                )
+              | unknown[];
+            module?:
+              | "resources"
+              | "candidates"
+              | "contacts"
+              | "companies"
+              | "products"
+              | "opportunities"
+              | "projects"
+              | "purchases";
+            alertType?: "info" | "warning" | "danger";
+            url?: string;
+            scrolling?: boolean;
+            height?: number;
+            asReference?: boolean;
+            owner?: boolean;
+            nonOwnerCanReadAnswer?: boolean;
+            canBeSearched?: boolean;
+          };
+          typeOf?:
+            | "barometer"
+            | "select"
+            | "textarea"
+            | "html"
+            | "text"
+            | "currency"
+            | "files"
+            | "float"
+            | "int"
+            | "bool"
+            | "parent"
+            | "mainManager"
+            | "pole"
+            | "agency"
+            | "guests"
+            | "visibility"
+            | "money"
+            | "state"
+            | "typeOf"
+            | "tools"
+            | "mobilityAreas"
+            | "activityAreas"
+            | "expertiseArea"
+            | "alert"
+            | "address"
+            | "email"
+            | "phone"
+            | "iFrame"
+            | "date"
+            | "datetime"
+            | "period"
+            | "periodtime"
+            | "nationality"
+            | "country";
+          col: number;
+          row: number;
+          span: number;
+        }[];
+      }[];
+    };
+    relationships?: {
+      /**
+       * App's vendor
+       */
+      vendor?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "vendor";
+        attributes?: {
+          name?: string;
+          email1?: string;
+          phone1?: string;
+          address?: string;
+          postcode?: string;
+          town?: string;
+          country?: string;
+          website?: string;
+          isOwner?: boolean;
+        };
+        relationships?: {
+          /**
+           * Vendor's customer
+           */
+          customer?: {
+            data?: {
+              id?: string;
+              code?: string;
+            };
+          };
+        };
+      }
+    | {
+        id?: string;
+        type?: "customer";
+        attributes?: {
+          code?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Empty app's default basic data
+ */
+export interface SchemasMarketplaceDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "action";
+    attributes?: {
+      category?:
+        | "other"
+        | "mail"
+        | "calendar"
+        | "mailAndCalendar"
+        | "certification"
+        | "emailing"
+        | "templates"
+        | "ged"
+        | "viewer";
+      isPublic?: boolean;
+      tokenSecurity?: "permanent" | "temporary";
+      integration?: "iFrame" | "module" | "moduleNoCode" | "sectionNoCode";
+      isValidated?: boolean;
+      isInstalled?: boolean;
+      hasConfigurationPage?: boolean;
+      isBoondManagerApp?: boolean;
+      /**
+       * Parent module for fields & applications customized
+       */
+      module?:
+        | ""
+        | "resources"
+        | "candidates"
+        | "opportunities"
+        | "products"
+        | "companies"
+        | "contacts"
+        | "projects"
+        | "pruchases"
+        | "orders"
+        | "invoices";
+      /**
+       * Tab for sections customized
+       */
+      tab?: "information" | "administrative" | "technicalData";
+      allowGuestsValidation?: boolean;
+      allowManagersValidation?: boolean;
+      allowAccessToMyProfile?: boolean;
+      actionTypeOf?: number;
+      allowEntitiesAction?: "" | "created" | "mainManagerValidated" | "guestsValidated" | "allValidated";
+      /**
+       * List of fields to show in the parent's tab
+       */
+      defaultColumnsForParent?: string[];
+      /**
+       * List of fields to show in the search's view
+       */
+      defaultColumnsForSearch?: string[];
+      sharingMailObject?: string;
+      sharingMailBody?: string;
+      validatedMailObject?: string;
+      validatedMailBody?: string;
+    };
+    relationships?: {
+      /**
+       * App's vendor
+       */
+      vendor?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "vendor";
+        attributes?: {
+          name?: string;
+          email1?: string;
+          phone1?: string;
+          address?: string;
+          postcode?: string;
+          town?: string;
+          country?: string;
+          website?: string;
+        };
+      }
+    | {
+        id?: string;
+        type?: "customer";
+      }
+  )[];
+}
+
+/**
+ * App's rights
+ */
+export interface SchemasMarketplaceRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        install?: boolean;
+        /**
+         * true if this action is available
+         */
+        uninstall?: boolean;
+        /**
+         * true if this action is available
+         */
+        edit?: boolean;
+        /**
+         * true if this action is available
+         */
+        publish?: boolean;
+        /**
+         * true if this action is available
+         */
+        configure?: boolean;
+        /**
+         * true if this action is available
+         */
+        usersAccess?: boolean;
+        /**
+         * true if this action is available
+         */
+        delete?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+        /**
+         * true if this action is available
+         */
+        validate?: boolean;
+        /**
+         * true if this action is available
+         */
+        resetToken?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+        translations?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        name?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        key?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        title?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        category?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        website?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        testimoniesUrl?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        termsOfUseUrl?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        price?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        creationDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        code?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        isPublic?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        isValidated?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        url?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        integration?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        hasConfigurationPage?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        apisAllowed?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        hostsAllowed?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        customersAllowed?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        buttonsSetting?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        iFramesSetting?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        triggersSetting?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        widgetsSetting?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        allowedModels?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        allowedIframeFeatures?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        logo?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        tokenSecurity?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        description?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        translations?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        module?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        tab?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        sections?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        allowGuestsValidation?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        allowManagersValidation?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        allowAccessToMyProfile?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        allowEntitiesAction?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        actionTypeOf?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        defaultColumnsForParent?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        defaultColumnsForSearch?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        sharingMailObject?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        sharingMailBody?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        validatedMailObject?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        validatedMailBody?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        updateDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        createdBy?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        installUrl?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        uninstallUrl?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        redirectUris?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        oauth2Enabled?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        accessTokens?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Specific translations
+ */
+export interface SchemasMarketplaceTranslationsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    appSetting?: {
+      name?: string;
+      title?: string;
+      description?: string;
+      price?: string;
+      sharingMailObject?: string;
+      sharingMailBody?: string;
+      validatedMailObject?: string;
+      validatedMailBody?: string;
+      sections?: {
+        id: string;
+        title: string;
+        fields?: {
+          id: string;
+          title?: string;
+          placeholder?: string;
+          suffix?: string;
+          options?: unknown[];
+        }[];
+      }[];
+    };
+  };
+}
+
+/**
+ * App's access
+ */
+export interface SchemasMarketplaceConfigureJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "app";
+    attributes?: {
+      name?: string;
+      visibility?: "allowedManagers" | "allManagers" | "allowedManagersAndResources" | "allManagersAndResources";
+    };
+  };
+}
+
+/**
+ * App's basic data sent in the body with a POST method
+ */
+export interface SchemasMarketplaceBodyPostJson {
+  data: {
+    type: "app";
+    attributes: {
+      name: string;
+      title?: string;
+      category?:
+        | "other"
+        | "mail"
+        | "calendar"
+        | "mailAndCalendar"
+        | "certification"
+        | "emailing"
+        | "templates"
+        | "ged"
+        | "viewer";
+      code: string;
+      url?: string;
+      website?: string;
+      testimoniesUrl?: string;
+      termsOfUseUrl?: string;
+      description?: string;
+      price?: string;
+      /**
+       * Customer's absolute logo url
+       */
+      logo?: string;
+      isPublic?: boolean;
+      tokenSecurity?: "permanent" | "temporary";
+      isValidated?: boolean;
+      hasConfigurationPage?: boolean;
+      /**
+       * List of APIs allowed
+       */
+      apisAllowed?: {
+        page:
+          | "application/dictionary"
+          | "application/perimeters"
+          | "application/flags"
+          | "application/assignments"
+          | "purchases"
+          | "payments"
+          | "actions"
+          | "opportunities"
+          | "candidates"
+          | "absencesReports"
+          | "expensesReports"
+          | "timesReports"
+          | "invoices"
+          | "orders"
+          | "billing-deliveries-purchases-balance"
+          | "billing-monthly-schedule"
+          | "billing-projects-balance"
+          | "billing-schedules-balance"
+          | "contacts"
+          | "companies"
+          | "positionings"
+          | "products"
+          | "projects"
+          | "deliveries-inactivities-groupments"
+          | "resources"
+          | "accounts"
+          | "dashboard"
+          | "accounts/(id}"
+          | "resources/@id"
+          | "resources/@id/information"
+          | "resources/@id/administrative"
+          | "resources/@id/technical-data"
+          | "resources/@id/actions"
+          | "resources/@id/positionings"
+          | "resources/@id/deliveries"
+          | "resources/@id/times-reports"
+          | "resources/@id/expenses-reports"
+          | "resources/@id/absences-reports"
+          | "resources/@id/absences-accounts"
+          | "candidates/@id"
+          | "candidates/@id/information"
+          | "candidates/@id/administrative"
+          | "candidates/@id/technical-data"
+          | "candidates/@id/actions"
+          | "candidates/@id/positionings"
+          | "contacts/@id"
+          | "contacts/@id/information"
+          | "contacts/@id/actions"
+          | "contacts/@id/opportunities"
+          | "contacts/@id/projects"
+          | "contacts/@id/purchases"
+          | "contacts/@id/orders"
+          | "contacts/@id/invoices"
+          | "companies/@id"
+          | "companies/@id/information"
+          | "companies/@id/contacts"
+          | "companies/@id/actions"
+          | "companies/@id/opportunities"
+          | "companies/@id/projects"
+          | "companies/@id/purchases"
+          | "companies/@id/orders"
+          | "companies/@id/invoices"
+          | "opportunities/@id"
+          | "opportunities/@id/information"
+          | "opportunities/@id/positionings"
+          | "opportunities/@id/actions"
+          | "absencesReports/@id"
+          | "invoices/@id"
+          | "invoices/@id/information"
+          | "invoices/@id/actions"
+          | "timesReports/@id"
+          | "expensesReports/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "products/@id"
+          | "products/@id/information"
+          | "products/@id/actions"
+          | "products/@id/opportunities"
+          | "products/@id/projects"
+          | "projects/@id"
+          | "projects/@id/information"
+          | "projects/@id/batches-markers"
+          | "projects/@id/actions"
+          | "projects/@id/deliveries"
+          | "projects/@id/advantages"
+          | "projects/@id/purchases"
+          | "projects/@id/productivity"
+          | "projects/@id/orders"
+          | "purchases/@id"
+          | "purchases/@id/information"
+          | "purchases/@id/payments"
+          | "purchases/@id/actions"
+          | "purchases/@id/projects"
+          | "payments/@id"
+          | "positionings/@id"
+          | "actions/@id"
+          | "advantages/@id"
+          | "orders/@id"
+          | "orders/@id/information"
+          | "orders/@id/invoices"
+          | "orders/@id/actions"
+          | "contracts/@id"
+          | "technical-datas"
+          | "technical-datas/@id";
+        event: "read" | "create" | "update" | "delete";
+      }[];
+      /**
+       * List of customers codes
+       */
+      customersAllowed?: string[];
+      /**
+       * List of IPs
+       */
+      hostsAllowed?: string[];
+      /**
+       * List of buttons
+       */
+      buttonsSetting?: {
+        page:
+          | "resources/@id"
+          | "resources/@id/information"
+          | "resources/@id/administrative"
+          | "resources/@id/technical-data"
+          | "resources/@id/actions"
+          | "resources/@id/positionings"
+          | "resources/@id/deliveries-inactivities"
+          | "resources/@id/times-reports"
+          | "resources/@id/expenses-reports"
+          | "resources/@id/absences-reports"
+          | "resources/@id/absences-accounts"
+          | "candidates/@id"
+          | "candidates/@id/information"
+          | "candidates/@id/administrative"
+          | "candidates/@id/technical-data"
+          | "candidates/@id/actions"
+          | "candidates/@id/positionings"
+          | "contacts/@id"
+          | "contacts/@id/information"
+          | "contacts/@id/actions"
+          | "contacts/@id/opportunities"
+          | "contacts/@id/projects"
+          | "contacts/@id/purchases"
+          | "contacts/@id/orders"
+          | "contacts/@id/invoices"
+          | "companies/@id"
+          | "companies/@id/information"
+          | "companies/@id/contacts"
+          | "companies/@id/actions"
+          | "companies/@id/opportunities"
+          | "companies/@id/projects"
+          | "companies/@id/purchases"
+          | "companies/@id/orders"
+          | "companies/@id/invoices"
+          | "opportunities/@id"
+          | "opportunities/@id/information"
+          | "opportunities/@id/positionings"
+          | "opportunities/@id/actions"
+          | "absences-reports/@id"
+          | "invoices/@id"
+          | "invoices/@id/information"
+          | "invoices/@id/actions"
+          | "times-reports/@id"
+          | "expenses-reports/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "products/@id"
+          | "products/@id/information"
+          | "products/@id/actions"
+          | "products/@id/opportunities"
+          | "products/@id/projects"
+          | "projects/@id"
+          | "projects/@id/information"
+          | "projects/@id/batches-markers"
+          | "projects/@id/actions"
+          | "projects/@id/deliveries-groupments"
+          | "projects/@id/advantages"
+          | "projects/@id/purchases"
+          | "projects/@id/productivity"
+          | "projects/@id/orders"
+          | "purchases/@id"
+          | "purchases/@id/information"
+          | "purchases/@id/payments"
+          | "purchases/@id/actions"
+          | "purchases/@id/projects"
+          | "payments/@id"
+          | "positionings/@id"
+          | "actions/@id"
+          | "advantages/@id"
+          | "orders/@id"
+          | "orders/@id/information"
+          | "orders/@id/invoices"
+          | "orders/@id/actions"
+          | "contracts/@id"
+          | "purchases"
+          | "payments"
+          | "actions"
+          | "opportunities"
+          | "candidates"
+          | "absences-reports"
+          | "expenses-reports"
+          | "times-reports"
+          | "invoices"
+          | "orders"
+          | "billing-deliveries-purchases-balance"
+          | "billing-monthly-schedule"
+          | "billing-projects-balance"
+          | "billing-schedules-balance"
+          | "contacts"
+          | "companies"
+          | "positionings"
+          | "products"
+          | "projects"
+          | "deliveries-inactivities-groupments"
+          | "resources";
+        title: string;
+        function: string;
+      }[];
+      /**
+       * List of iFrames
+       */
+      iFramesSetting?: {
+        page:
+          | "dashboard"
+          | "resources/@id"
+          | "resources/@id/information"
+          | "resources/@id/administrative"
+          | "resources/@id/technical-data"
+          | "resources/@id/actions"
+          | "resources/@id/positionings"
+          | "resources/@id/deliveries"
+          | "resources/@id/times-reports"
+          | "resources/@id/expenses-reports"
+          | "resources/@id/absences-reports"
+          | "resources/@id/absences-accounts"
+          | "candidates/@id"
+          | "candidates/@id/information"
+          | "candidates/@id/administrative"
+          | "candidates/@id/technical-data"
+          | "candidates/@id/actions"
+          | "candidates/@id/positionings"
+          | "contacts/@id"
+          | "contacts/@id/information"
+          | "contacts/@id/actions"
+          | "contacts/@id/opportunities"
+          | "contacts/@id/projects"
+          | "contacts/@id/purchases"
+          | "contacts/@id/orders"
+          | "contacts/@id/invoices"
+          | "companies/@id"
+          | "companies/@id/information"
+          | "companies/@id/contacts"
+          | "companies/@id/actions"
+          | "companies/@id/opportunities"
+          | "companies/@id/projects"
+          | "companies/@id/purchases"
+          | "companies/@id/orders"
+          | "companies/@id/invoices"
+          | "opportunities/@id"
+          | "opportunities/@id/information"
+          | "opportunities/@id/positionings"
+          | "opportunities/@id/actions"
+          | "absencesReports/@id"
+          | "invoices/@id"
+          | "invoices/@id/information"
+          | "invoices/@id/actions"
+          | "times-reports/@id"
+          | "expenses-reports/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "products/@id"
+          | "products/@id/information"
+          | "products/@id/actions"
+          | "products/@id/opportunities"
+          | "products/@id/projects"
+          | "projects/@id"
+          | "projects/@id/information"
+          | "projects/@id/batches-markers"
+          | "projects/@id/actions"
+          | "projects/@id/deliveries"
+          | "projects/@id/advantages"
+          | "projects/@id/purchases"
+          | "projects/@id/productivity"
+          | "projects/@id/orders"
+          | "purchases/@id"
+          | "purchases/@id/information"
+          | "purchases/@id/payments"
+          | "purchases/@id/actions"
+          | "purchases/@id/projects"
+          | "payments/@id"
+          | "positionings/@id"
+          | "actions/@id"
+          | "advantages/@id"
+          | "orders/@id"
+          | "orders/@id/information"
+          | "orders/@id/invoices"
+          | "orders/@id/actions"
+          | "contracts/@id";
+        scrolling: boolean;
+        height: number;
+        isHalfWidth: boolean;
+        function: string;
+      }[];
+      /**
+       * List of triggers
+       */
+      triggersSetting?: {
+        page:
+          | "actions/@id"
+          | "candidates/@id"
+          | "resources/@id"
+          | "products/@id"
+          | "contracts/@id"
+          | "advantages/@id"
+          | "opportunities/@id"
+          | "projects/@id"
+          | "positionings/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "times-reports/@id"
+          | "expenses-reports/@id"
+          | "absences-reports/@id"
+          | "purchases/@id"
+          | "payments/@id"
+          | "orders/@id"
+          | "invoices/@id"
+          | "contacts/@id"
+          | "companies/@id";
+        event: "create" | "update" | "delete";
+        function: string;
+      }[];
+      /**
+       * List of widgets
+       */
+      widgetsSetting?: {
+        page?: "topBar" | "bottomLeft" | "bottomRight";
+        function: string;
+      }[];
+      /**
+       * List of models
+       */
+      allowedModels?: string[];
+      /**
+       * List of features that will be added in allow attribute for iframe tag
+       */
+      allowedIframeFeatures?: string[];
+      /**
+       * Parent module for fields & applications customized
+       */
+      module?:
+        | ""
+        | "resources"
+        | "candidates"
+        | "opportunities"
+        | "products"
+        | "companies"
+        | "contacts"
+        | "projects"
+        | "pruchases"
+        | "orders"
+        | "invoices";
+      /**
+       * Tab for sections customized
+       */
+      tab?: "information" | "administrative" | "technicalData";
+      allowGuestsValidation?: boolean;
+      allowManagersValidation?: boolean;
+      allowAccessToMyProfile?: boolean;
+      actionTypeOf?: number;
+      allowEntitiesAction?: "" | "created" | "mainManagerValidated" | "guestsValidated" | "allValidated";
+      /**
+       * List of fields to show in the parent's tab
+       */
+      defaultColumnsForParent?: string[];
+      /**
+       * List of fields to show in the search's view
+       */
+      defaultColumnsForSearch?: string[];
+      sharingMailObject?: string;
+      sharingMailBody?: string;
+      validatedMailObject?: string;
+      validatedMailBody?: string;
+      /**
+       * List of sections of fields & applications customized
+       */
+      sections?: (
+        | {
+            title: string;
+            col: number;
+            row: number;
+            span: number;
+            showUpdateDate: boolean;
+            /**
+             * List of fields
+             */
+            fields: {
+              title?: string;
+              placeholder?: string;
+              suffix?: string;
+              options?: unknown[];
+              settings: {
+                maxLenth?: number;
+                required?: boolean;
+                multiple?: boolean;
+                readOnly?: boolean;
+                noTitle?: boolean;
+                maxFiles?: number;
+                precision?: number;
+                hasMin?: boolean;
+                min?: number;
+                hasMax?: boolean;
+                max?: number;
+                optionColors?: unknown[];
+                optionsIsEnabled?: unknown[];
+                displayNumberSelected?: boolean;
+                defaultValue?:
+                  | boolean
+                  | number
+                  | (
+                      | "veryGood"
+                      | "good"
+                      | "bad"
+                      | "veryBad"
+                      | "fromParent"
+                      | "fromParentMainManager"
+                      | "fromParentHrManager"
+                      | "fromCurrentUser"
+                      | "fromParentAgency"
+                      | "fromParentPole"
+                      | "fromCurrentUserAgency"
+                      | "fromCurrentUserPole"
+                    )
+                  | unknown[];
+                module?:
+                  | "resources"
+                  | "candidates"
+                  | "contacts"
+                  | "companies"
+                  | "products"
+                  | "opportunities"
+                  | "projects"
+                  | "purchases";
+                alertType?: "info" | "warning" | "danger";
+                url?: string;
+                scrolling?: boolean;
+                height?: number;
+                asReference?: boolean;
+                owner?: boolean;
+                nonOwnerCanReadAnswer?: boolean;
+                canBeSearched?: boolean;
+              };
+              typeOf?:
+                | "barometer"
+                | "select"
+                | "textarea"
+                | "html"
+                | "text"
+                | "currency"
+                | "files"
+                | "float"
+                | "int"
+                | "bool"
+                | "parent"
+                | "mainManager"
+                | "pole"
+                | "agency"
+                | "guests"
+                | "visibility"
+                | "money"
+                | "state"
+                | "typeOf"
+                | "tools"
+                | "mobilityAreas"
+                | "activityAreas"
+                | "expertiseArea"
+                | "alert"
+                | "address"
+                | "email"
+                | "phone"
+                | "iFrame"
+                | "date"
+                | "datetime"
+                | "period"
+                | "periodtime"
+                | "nationality"
+                | "country";
+              col: number;
+              row: number;
+              span: number;
+            }[];
+          }
+        | {
+            id: string;
+            title: string;
+            col: number;
+            row: number;
+            span: number;
+            showUpdateDate: boolean;
+            /**
+             * List of fields
+             */
+            fields: (
+              | {
+                  title?: string;
+                  placeholder?: string;
+                  suffix?: string;
+                  options?: unknown[];
+                  settings: {
+                    maxLenth?: number;
+                    required?: boolean;
+                    multiple?: boolean;
+                    readOnly?: boolean;
+                    noTitle?: boolean;
+                    maxFiles?: number;
+                    precision?: number;
+                    hasMin?: boolean;
+                    min?: number;
+                    hasMax?: boolean;
+                    max?: number;
+                    optionColors?: unknown[];
+                    optionsIsEnabled?: unknown[];
+                    displayNumberSelected?: boolean;
+                    defaultValue?:
+                      | boolean
+                      | number
+                      | (
+                          | "veryGood"
+                          | "good"
+                          | "bad"
+                          | "veryBad"
+                          | "fromParent"
+                          | "fromParentMainManager"
+                          | "fromParentHrManager"
+                          | "fromCurrentUser"
+                          | "fromParentAgency"
+                          | "fromParentPole"
+                          | "fromCurrentUserAgency"
+                          | "fromCurrentUserPole"
+                        )
+                      | unknown[];
+                    module?:
+                      | "resources"
+                      | "candidates"
+                      | "contacts"
+                      | "companies"
+                      | "products"
+                      | "opportunities"
+                      | "projects"
+                      | "purchases";
+                    alertType?: "info" | "warning" | "danger";
+                    url?: string;
+                    scrolling?: boolean;
+                    height?: number;
+                    asReference?: boolean;
+                    owner?: boolean;
+                    nonOwnerCanReadAnswer?: boolean;
+                    canBeSearched?: boolean;
+                  };
+                  typeOf?:
+                    | "barometer"
+                    | "select"
+                    | "textarea"
+                    | "html"
+                    | "text"
+                    | "currency"
+                    | "files"
+                    | "float"
+                    | "int"
+                    | "bool"
+                    | "parent"
+                    | "mainManager"
+                    | "pole"
+                    | "agency"
+                    | "guests"
+                    | "visibility"
+                    | "money"
+                    | "state"
+                    | "typeOf"
+                    | "tools"
+                    | "mobilityAreas"
+                    | "activityAreas"
+                    | "expertiseArea"
+                    | "alert"
+                    | "address"
+                    | "email"
+                    | "phone"
+                    | "iFrame"
+                    | "date"
+                    | "datetime"
+                    | "period"
+                    | "periodtime"
+                    | "nationality"
+                    | "country";
+                  col: number;
+                  row: number;
+                  span: number;
+                }
+              | {
+                  id: string;
+                  title?: string;
+                  placeholder?: string;
+                  suffix?: string;
+                  options?: unknown[];
+                  settings: {
+                    maxLenth?: number;
+                    required?: boolean;
+                    multiple?: boolean;
+                    readOnly?: boolean;
+                    noTitle?: boolean;
+                    maxFiles?: number;
+                    precision?: number;
+                    hasMin?: boolean;
+                    min?: number;
+                    hasMax?: boolean;
+                    max?: number;
+                    optionColors?: unknown[];
+                    optionsIsEnabled?: unknown[];
+                    displayNumberSelected?: boolean;
+                    defaultValue?:
+                      | boolean
+                      | number
+                      | (
+                          | "veryGood"
+                          | "good"
+                          | "bad"
+                          | "veryBad"
+                          | "fromParent"
+                          | "fromParentMainManager"
+                          | "fromParentHrManager"
+                          | "fromCurrentUser"
+                          | "fromParentAgency"
+                          | "fromParentPole"
+                          | "fromCurrentUserAgency"
+                          | "fromCurrentUserPole"
+                        )
+                      | unknown[];
+                    module?:
+                      | "resources"
+                      | "candidates"
+                      | "contacts"
+                      | "companies"
+                      | "products"
+                      | "opportunities"
+                      | "projects"
+                      | "purchases";
+                    alertType?: "info" | "warning" | "danger";
+                    url?: string;
+                    scrolling?: boolean;
+                    height?: number;
+                    asReference?: boolean;
+                    owner?: boolean;
+                    nonOwnerCanReadAnswer?: boolean;
+                    canBeSearched?: boolean;
+                  };
+                  typeOf?:
+                    | "barometer"
+                    | "select"
+                    | "textarea"
+                    | "html"
+                    | "text"
+                    | "currency"
+                    | "files"
+                    | "float"
+                    | "int"
+                    | "bool"
+                    | "parent"
+                    | "mainManager"
+                    | "pole"
+                    | "agency"
+                    | "guests"
+                    | "visibility"
+                    | "money"
+                    | "state"
+                    | "typeOf"
+                    | "tools"
+                    | "mobilityAreas"
+                    | "activityAreas"
+                    | "expertiseArea"
+                    | "alert"
+                    | "address"
+                    | "email"
+                    | "phone"
+                    | "iFrame"
+                    | "date"
+                    | "datetime"
+                    | "period"
+                    | "periodtime"
+                    | "nationality"
+                    | "country";
+                  col: number;
+                  row: number;
+                  span: number;
+                }
+            )[];
+          }
+      )[];
+    };
+  };
+}
+
+/**
+ * App's basic data sent in the body with a PUT method
+ */
+export interface SchemasMarketplaceBodyPutJson {
+  data: {
+    id: string;
+    type: "app";
+    attributes?: {
+      name?: string;
+      title?: string;
+      category?:
+        | "other"
+        | "mail"
+        | "calendar"
+        | "mailAndCalendar"
+        | "certification"
+        | "emailing"
+        | "templates"
+        | "ged"
+        | "viewer";
+      url?: string;
+      website?: string;
+      testimoniesUrl?: string;
+      termsOfUseUrl?: string;
+      description?: string;
+      price?: string;
+      /**
+       * Customer's absolute logo url
+       */
+      logo?: string;
+      isPublic?: boolean;
+      tokenSecurity?: "permanent" | "temporary";
+      isValidated?: boolean;
+      hasConfigurationPage?: boolean;
+      /**
+       * List of APIs allowed
+       */
+      apisAllowed?: {
+        page:
+          | "application/dictionary"
+          | "application/perimeters"
+          | "application/flags"
+          | "application/assignments"
+          | "purchases"
+          | "payments"
+          | "actions"
+          | "opportunities"
+          | "candidates"
+          | "absencesReports"
+          | "expensesReports"
+          | "timesReports"
+          | "invoices"
+          | "orders"
+          | "billing-deliveries-purchases-balance"
+          | "billing-monthly-schedule"
+          | "billing-projects-balance"
+          | "billing-schedules-balance"
+          | "contacts"
+          | "companies"
+          | "positionings"
+          | "products"
+          | "projects"
+          | "deliveries-inactivities-groupments"
+          | "resources"
+          | "accounts"
+          | "dashboard"
+          | "accounts/(id}"
+          | "resources/@id"
+          | "resources/@id/information"
+          | "resources/@id/administrative"
+          | "resources/@id/technical-data"
+          | "resources/@id/actions"
+          | "resources/@id/positionings"
+          | "resources/@id/deliveries"
+          | "resources/@id/times-reports"
+          | "resources/@id/expenses-reports"
+          | "resources/@id/absences-reports"
+          | "resources/@id/absences-accounts"
+          | "candidates/@id"
+          | "candidates/@id/information"
+          | "candidates/@id/administrative"
+          | "candidates/@id/technical-data"
+          | "candidates/@id/actions"
+          | "candidates/@id/positionings"
+          | "contacts/@id"
+          | "contacts/@id/information"
+          | "contacts/@id/actions"
+          | "contacts/@id/opportunities"
+          | "contacts/@id/projects"
+          | "contacts/@id/purchases"
+          | "contacts/@id/orders"
+          | "contacts/@id/invoices"
+          | "companies/@id"
+          | "companies/@id/information"
+          | "companies/@id/contacts"
+          | "companies/@id/actions"
+          | "companies/@id/opportunities"
+          | "companies/@id/projects"
+          | "companies/@id/purchases"
+          | "companies/@id/orders"
+          | "companies/@id/invoices"
+          | "opportunities/@id"
+          | "opportunities/@id/information"
+          | "opportunities/@id/positionings"
+          | "opportunities/@id/actions"
+          | "absencesReports/@id"
+          | "invoices/@id"
+          | "invoices/@id/information"
+          | "invoices/@id/actions"
+          | "timesReports/@id"
+          | "expensesReports/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "products/@id"
+          | "products/@id/information"
+          | "products/@id/actions"
+          | "products/@id/opportunities"
+          | "products/@id/projects"
+          | "projects/@id"
+          | "projects/@id/information"
+          | "projects/@id/batches-markers"
+          | "projects/@id/actions"
+          | "projects/@id/deliveries"
+          | "projects/@id/advantages"
+          | "projects/@id/purchases"
+          | "projects/@id/productivity"
+          | "projects/@id/orders"
+          | "purchases/@id"
+          | "purchases/@id/information"
+          | "purchases/@id/payments"
+          | "purchases/@id/actions"
+          | "purchases/@id/projects"
+          | "payments/@id"
+          | "positionings/@id"
+          | "actions/@id"
+          | "advantages/@id"
+          | "orders/@id"
+          | "orders/@id/information"
+          | "orders/@id/invoices"
+          | "orders/@id/actions"
+          | "contracts/@id"
+          | "technical-datas"
+          | "technical-datas/@id";
+        event: "read" | "create" | "update" | "delete";
+      }[];
+      /**
+       * List of customers codes
+       */
+      customersAllowed?: string[];
+      /**
+       * List of IPs
+       */
+      hostsAllowed?: string[];
+      /**
+       * List of buttons
+       */
+      buttonsSetting?: {
+        page:
+          | "resources/@id"
+          | "resources/@id/information"
+          | "resources/@id/administrative"
+          | "resources/@id/technical-data"
+          | "resources/@id/actions"
+          | "resources/@id/positionings"
+          | "resources/@id/deliveries-inactivities"
+          | "resources/@id/times-reports"
+          | "resources/@id/expenses-reports"
+          | "resources/@id/absences-reports"
+          | "resources/@id/absences-accounts"
+          | "candidates/@id"
+          | "candidates/@id/information"
+          | "candidates/@id/administrative"
+          | "candidates/@id/technical-data"
+          | "candidates/@id/actions"
+          | "candidates/@id/positionings"
+          | "contacts/@id"
+          | "contacts/@id/information"
+          | "contacts/@id/actions"
+          | "contacts/@id/opportunities"
+          | "contacts/@id/projects"
+          | "contacts/@id/purchases"
+          | "contacts/@id/orders"
+          | "contacts/@id/invoices"
+          | "companies/@id"
+          | "companies/@id/information"
+          | "companies/@id/contacts"
+          | "companies/@id/actions"
+          | "companies/@id/opportunities"
+          | "companies/@id/projects"
+          | "companies/@id/purchases"
+          | "companies/@id/orders"
+          | "companies/@id/invoices"
+          | "opportunities/@id"
+          | "opportunities/@id/information"
+          | "opportunities/@id/positionings"
+          | "opportunities/@id/actions"
+          | "absences-reports/@id"
+          | "invoices/@id"
+          | "invoices/@id/information"
+          | "invoices/@id/actions"
+          | "times-reports/@id"
+          | "expenses-reports/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "products/@id"
+          | "products/@id/information"
+          | "products/@id/actions"
+          | "products/@id/opportunities"
+          | "products/@id/projects"
+          | "projects/@id"
+          | "projects/@id/information"
+          | "projects/@id/batches-markers"
+          | "projects/@id/actions"
+          | "projects/@id/deliveries-groupments"
+          | "projects/@id/advantages"
+          | "projects/@id/purchases"
+          | "projects/@id/productivity"
+          | "projects/@id/orders"
+          | "purchases/@id"
+          | "purchases/@id/information"
+          | "purchases/@id/payments"
+          | "purchases/@id/actions"
+          | "purchases/@id/projects"
+          | "payments/@id"
+          | "positionings/@id"
+          | "actions/@id"
+          | "advantages/@id"
+          | "orders/@id"
+          | "orders/@id/information"
+          | "orders/@id/invoices"
+          | "orders/@id/actions"
+          | "contracts/@id"
+          | "purchases"
+          | "payments"
+          | "actions"
+          | "opportunities"
+          | "candidates"
+          | "absences-reports"
+          | "expenses-reports"
+          | "times-reports"
+          | "invoices"
+          | "orders"
+          | "billing-deliveries-purchases-balance"
+          | "billing-monthly-schedule"
+          | "billing-projects-balance"
+          | "billing-schedules-balance"
+          | "contacts"
+          | "companies"
+          | "positionings"
+          | "products"
+          | "projects"
+          | "deliveries-inactivities-groupments"
+          | "resources";
+        title: string;
+        function: string;
+      }[];
+      /**
+       * List of iFrames
+       */
+      iFramesSetting?: {
+        page:
+          | "dashboard"
+          | "resources/@id"
+          | "resources/@id/information"
+          | "resources/@id/administrative"
+          | "resources/@id/technical-data"
+          | "resources/@id/actions"
+          | "resources/@id/positionings"
+          | "resources/@id/deliveries"
+          | "resources/@id/times-reports"
+          | "resources/@id/expenses-reports"
+          | "resources/@id/absences-reports"
+          | "resources/@id/absences-accounts"
+          | "candidates/@id"
+          | "candidates/@id/information"
+          | "candidates/@id/administrative"
+          | "candidates/@id/technical-data"
+          | "candidates/@id/actions"
+          | "candidates/@id/positionings"
+          | "contacts/@id"
+          | "contacts/@id/information"
+          | "contacts/@id/actions"
+          | "contacts/@id/opportunities"
+          | "contacts/@id/projects"
+          | "contacts/@id/purchases"
+          | "contacts/@id/orders"
+          | "contacts/@id/invoices"
+          | "companies/@id"
+          | "companies/@id/information"
+          | "companies/@id/contacts"
+          | "companies/@id/actions"
+          | "companies/@id/opportunities"
+          | "companies/@id/projects"
+          | "companies/@id/purchases"
+          | "companies/@id/orders"
+          | "companies/@id/invoices"
+          | "opportunities/@id"
+          | "opportunities/@id/information"
+          | "opportunities/@id/positionings"
+          | "opportunities/@id/actions"
+          | "absencesReports/@id"
+          | "invoices/@id"
+          | "invoices/@id/information"
+          | "invoices/@id/actions"
+          | "times-reports/@id"
+          | "expenses-reports/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "products/@id"
+          | "products/@id/information"
+          | "products/@id/actions"
+          | "products/@id/opportunities"
+          | "products/@id/projects"
+          | "projects/@id"
+          | "projects/@id/information"
+          | "projects/@id/batches-markers"
+          | "projects/@id/actions"
+          | "projects/@id/deliveries"
+          | "projects/@id/advantages"
+          | "projects/@id/purchases"
+          | "projects/@id/productivity"
+          | "projects/@id/orders"
+          | "purchases/@id"
+          | "purchases/@id/information"
+          | "purchases/@id/payments"
+          | "purchases/@id/actions"
+          | "purchases/@id/projects"
+          | "payments/@id"
+          | "positionings/@id"
+          | "actions/@id"
+          | "advantages/@id"
+          | "orders/@id"
+          | "orders/@id/information"
+          | "orders/@id/invoices"
+          | "orders/@id/actions"
+          | "contracts/@id";
+        scrolling: boolean;
+        height: number;
+        isHalfWidth: boolean;
+        function: string;
+      }[];
+      /**
+       * List of triggers
+       */
+      triggersSetting?: {
+        page:
+          | "actions/@id"
+          | "candidates/@id"
+          | "resources/@id"
+          | "products/@id"
+          | "contracts/@id"
+          | "advantages/@id"
+          | "opportunities/@id"
+          | "projects/@id"
+          | "positionings/@id"
+          | "deliveries/@id"
+          | "groupments/@id"
+          | "inactivities/@id"
+          | "times-reports/@id"
+          | "expenses-reports/@id"
+          | "absences-reports/@id"
+          | "purchases/@id"
+          | "payments/@id"
+          | "orders/@id"
+          | "invoices/@id"
+          | "contacts/@id"
+          | "companies/@id";
+        event: "create" | "update" | "delete";
+        function: string;
+      }[];
+      /**
+       * List of widgets
+       */
+      widgetsSetting?: {
+        page?: "topBar" | "bottomLeft" | "bottomRight";
+        function: string;
+      }[];
+      /**
+       * List of models
+       */
+      allowedModels?: string[];
+      /**
+       * List of features that will be added in allow attribute for iframe tag
+       */
+      allowedIframeFeatures?: string[];
+      /**
+       * Tab for sections customized
+       */
+      tab?: "information" | "administrative" | "technicalData";
+      allowGuestsValidation?: boolean;
+      allowManagersValidation?: boolean;
+      allowAccessToMyProfile?: boolean;
+      actionTypeOf?: number;
+      allowEntitiesAction?: "" | "created" | "mainManagerValidated" | "guestsValidated" | "allValidated";
+      /**
+       * List of fields to show in the parent's tab
+       */
+      defaultColumnsForParent?: string[];
+      /**
+       * List of fields to show in the search's view
+       */
+      defaultColumnsForSearch?: string[];
+      sharingMailObject?: string;
+      sharingMailBody?: string;
+      validatedMailObject?: string;
+      validatedMailBody?: string;
+      /**
+       * List of sections of fields & applications customized
+       */
+      sections?: (
+        | {
+            title: string;
+            col: number;
+            row: number;
+            span: number;
+            showUpdateDate: boolean;
+            /**
+             * List of fields
+             */
+            fields: {
+              title?: string;
+              placeholder?: string;
+              suffix?: string;
+              options?: unknown[];
+              settings: {
+                maxLenth?: number;
+                required?: boolean;
+                multiple?: boolean;
+                readOnly?: boolean;
+                noTitle?: boolean;
+                maxFiles?: number;
+                precision?: number;
+                hasMin?: boolean;
+                min?: number;
+                hasMax?: boolean;
+                max?: number;
+                optionColors?: unknown[];
+                optionsIsEnabled?: unknown[];
+                displayNumberSelected?: boolean;
+                defaultValue?:
+                  | boolean
+                  | number
+                  | (
+                      | "veryGood"
+                      | "good"
+                      | "bad"
+                      | "veryBad"
+                      | "fromParent"
+                      | "fromParentMainManager"
+                      | "fromParentHrManager"
+                      | "fromCurrentUser"
+                      | "fromParentAgency"
+                      | "fromParentPole"
+                      | "fromCurrentUserAgency"
+                      | "fromCurrentUserPole"
+                    )
+                  | unknown[];
+                module?:
+                  | "resources"
+                  | "candidates"
+                  | "contacts"
+                  | "companies"
+                  | "products"
+                  | "opportunities"
+                  | "projects"
+                  | "purchases";
+                alertType?: "info" | "warning" | "danger";
+                url?: string;
+                scrolling?: boolean;
+                height?: number;
+                asReference?: boolean;
+                owner?: boolean;
+                nonOwnerCanReadAnswer?: boolean;
+                canBeSearched?: boolean;
+              };
+              typeOf?:
+                | "barometer"
+                | "select"
+                | "textarea"
+                | "html"
+                | "text"
+                | "currency"
+                | "files"
+                | "float"
+                | "int"
+                | "bool"
+                | "parent"
+                | "mainManager"
+                | "pole"
+                | "agency"
+                | "guests"
+                | "visibility"
+                | "money"
+                | "state"
+                | "typeOf"
+                | "tools"
+                | "mobilityAreas"
+                | "activityAreas"
+                | "expertiseArea"
+                | "alert"
+                | "address"
+                | "email"
+                | "phone"
+                | "iFrame"
+                | "date"
+                | "datetime"
+                | "period"
+                | "periodtime"
+                | "nationality"
+                | "country";
+              col: number;
+              row: number;
+              span: number;
+            }[];
+          }
+        | {
+            id: string;
+            title: string;
+            col: number;
+            row: number;
+            span: number;
+            showUpdateDate: boolean;
+            /**
+             * List of fields
+             */
+            fields: (
+              | {
+                  title?: string;
+                  placeholder?: string;
+                  suffix?: string;
+                  options?: unknown[];
+                  settings: {
+                    maxLenth?: number;
+                    required?: boolean;
+                    multiple?: boolean;
+                    readOnly?: boolean;
+                    noTitle?: boolean;
+                    maxFiles?: number;
+                    precision?: number;
+                    hasMin?: boolean;
+                    min?: number;
+                    hasMax?: boolean;
+                    max?: number;
+                    optionColors?: unknown[];
+                    optionsIsEnabled?: unknown[];
+                    displayNumberSelected?: boolean;
+                    defaultValue?:
+                      | boolean
+                      | number
+                      | (
+                          | "veryGood"
+                          | "good"
+                          | "bad"
+                          | "veryBad"
+                          | "fromParent"
+                          | "fromParentMainManager"
+                          | "fromParentHrManager"
+                          | "fromCurrentUser"
+                          | "fromParentAgency"
+                          | "fromParentPole"
+                          | "fromCurrentUserAgency"
+                          | "fromCurrentUserPole"
+                        )
+                      | unknown[];
+                    module?:
+                      | "resources"
+                      | "candidates"
+                      | "contacts"
+                      | "companies"
+                      | "products"
+                      | "opportunities"
+                      | "projects"
+                      | "purchases";
+                    alertType?: "info" | "warning" | "danger";
+                    url?: string;
+                    scrolling?: boolean;
+                    height?: number;
+                    asReference?: boolean;
+                    owner?: boolean;
+                    nonOwnerCanReadAnswer?: boolean;
+                    canBeSearched?: boolean;
+                  };
+                  typeOf?:
+                    | "barometer"
+                    | "select"
+                    | "textarea"
+                    | "html"
+                    | "text"
+                    | "currency"
+                    | "files"
+                    | "float"
+                    | "int"
+                    | "bool"
+                    | "parent"
+                    | "mainManager"
+                    | "pole"
+                    | "agency"
+                    | "guests"
+                    | "visibility"
+                    | "money"
+                    | "state"
+                    | "typeOf"
+                    | "tools"
+                    | "mobilityAreas"
+                    | "activityAreas"
+                    | "expertiseArea"
+                    | "alert"
+                    | "address"
+                    | "email"
+                    | "phone"
+                    | "iFrame"
+                    | "date"
+                    | "datetime"
+                    | "period"
+                    | "periodtime"
+                    | "nationality"
+                    | "country";
+                  col: number;
+                  row: number;
+                  span: number;
+                }
+              | {
+                  id: string;
+                  title?: string;
+                  placeholder?: string;
+                  suffix?: string;
+                  options?: unknown[];
+                  settings: {
+                    maxLenth?: number;
+                    required?: boolean;
+                    multiple?: boolean;
+                    readOnly?: boolean;
+                    noTitle?: boolean;
+                    maxFiles?: number;
+                    precision?: number;
+                    hasMin?: boolean;
+                    min?: number;
+                    hasMax?: boolean;
+                    max?: number;
+                    optionColors?: unknown[];
+                    optionsIsEnabled?: unknown[];
+                    displayNumberSelected?: boolean;
+                    defaultValue?:
+                      | boolean
+                      | number
+                      | (
+                          | "veryGood"
+                          | "good"
+                          | "bad"
+                          | "veryBad"
+                          | "fromParent"
+                          | "fromParentMainManager"
+                          | "fromParentHrManager"
+                          | "fromCurrentUser"
+                          | "fromParentAgency"
+                          | "fromParentPole"
+                          | "fromCurrentUserAgency"
+                          | "fromCurrentUserPole"
+                        )
+                      | unknown[];
+                    module?:
+                      | "resources"
+                      | "candidates"
+                      | "contacts"
+                      | "companies"
+                      | "products"
+                      | "opportunities"
+                      | "projects"
+                      | "purchases";
+                    alertType?: "info" | "warning" | "danger";
+                    url?: string;
+                    scrolling?: boolean;
+                    height?: number;
+                    asReference?: boolean;
+                    owner?: boolean;
+                    nonOwnerCanReadAnswer?: boolean;
+                    canBeSearched?: boolean;
+                  };
+                  typeOf?:
+                    | "barometer"
+                    | "select"
+                    | "textarea"
+                    | "html"
+                    | "text"
+                    | "currency"
+                    | "files"
+                    | "float"
+                    | "int"
+                    | "bool"
+                    | "parent"
+                    | "mainManager"
+                    | "pole"
+                    | "agency"
+                    | "guests"
+                    | "visibility"
+                    | "money"
+                    | "state"
+                    | "typeOf"
+                    | "tools"
+                    | "mobilityAreas"
+                    | "activityAreas"
+                    | "expertiseArea"
+                    | "alert"
+                    | "address"
+                    | "email"
+                    | "phone"
+                    | "iFrame"
+                    | "date"
+                    | "datetime"
+                    | "period"
+                    | "periodtime"
+                    | "nationality"
+                    | "country";
+                  col: number;
+                  row: number;
+                  span: number;
+                }
+            )[];
+          }
+      )[];
+    };
+  };
+}
+
