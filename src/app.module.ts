@@ -51,6 +51,7 @@ import { TargetsModule } from "./modules/targets/targets.module.js";
 import { TasksModule } from "./modules/tasks/tasks.module.js";
 import { TechnicalDatasModule } from "./modules/technical-datas/technical-datas.module.js";
 import { ThreadsModule } from "./modules/threads/threads.module.js";
+import { ThumbnailsModule } from "./modules/thumbnails/thumbnails.module.js";
 import { TimesModule } from "./modules/times/times.module.js";
 import { TimesReportsModule } from "./modules/times-reports/times-reports.module.js";
 import { TodolistsModule } from "./modules/todolists/todolists.module.js";
@@ -117,6 +118,7 @@ const DOMAIN_MODULES = [
   SubscriptionModule,
   TodolistsModule,
   ThreadsModule,
+  ThumbnailsModule,
   VendorModule,
   WebhooksModule,
   // MCP Prompts and Resources
