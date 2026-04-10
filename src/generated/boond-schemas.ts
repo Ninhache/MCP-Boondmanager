@@ -24528,3 +24528,351 @@ export interface SchemasFollowedDocumentsBodyPutJson {
   };
 }
 
+
+// ─── conditionalFields ───
+/**
+ * List of conditional fields. When display=cards, totals.rows represents the number of cards (groups) instead of individual items.
+ */
+export interface SchemasConditionalFieldsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+    /**
+     * List of modules pending shield reset/synchronization
+     */
+    conditionalFieldsNotSynchronized?: ("opportunities" | "candidates" | "contacts" | "companies" | "positionings")[];
+  };
+  data: {
+    id: string;
+    type: "conditionalfield";
+    attributes?: {
+      /**
+       * Target module for this conditional field rule
+       */
+      module?: "opportunities" | "candidates" | "contacts" | "companies" | "positionings";
+      /**
+       * Target attribute name that this rule applies to
+       */
+      attribute?: string;
+      /**
+       * Array of state IDs for which this rule applies (empty = all states)
+       */
+      states?: number[];
+      /**
+       * Array of type IDs for which this rule applies (empty = all types)
+       */
+      typesOf?: number[];
+      /**
+       * Criteria settings for this rule
+       */
+      criteria?: {
+        /**
+         * Validation level: required or recommended
+         */
+        level: "required" | "recommended";
+        /**
+         * If true, this conditional field rule is ignored when creating a new entity
+         */
+        ignoreOnCreation: boolean;
+        /**
+         * Minimum value (optional, for numeric fields)
+         */
+        min?: number;
+      };
+    };
+    relationships?: {
+      /**
+       * Agencies to which this rule applies
+       */
+      agencies?: {
+        data: {
+          id: string;
+          type: "agency";
+        }[];
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "agency";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * Conditional field's basic data
+ */
+export interface SchemasConditionalFieldsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "conditionalfield";
+    attributes?: {
+      /**
+       * Target module for this conditional field rule
+       */
+      module?: "opportunities" | "candidates" | "contacts" | "companies" | "positionings";
+      /**
+       * Target attribute name that this rule applies to
+       */
+      attribute?: string;
+      /**
+       * Array of state IDs for which this rule applies (empty = all states)
+       */
+      states?: number[];
+      /**
+       * Array of type IDs for which this rule applies (empty = all types)
+       */
+      typesOf?: number[];
+      /**
+       * Criteria settings for this rule
+       */
+      criteria?: {
+        /**
+         * Validation level: required or recommended
+         */
+        level: "required" | "recommended";
+        /**
+         * If true, this conditional field rule is ignored when creating a new entity
+         */
+        ignoreOnCreation: boolean;
+        /**
+         * Minimum value (optional, for numeric fields)
+         */
+        min?: number;
+      };
+    };
+    relationships?: {
+      /**
+       * Agencies to which this rule applies
+       */
+      agencies?: {
+        data: {
+          id: string;
+          type: "agency";
+        }[];
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "agency";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * Empty conditional field's default data
+ */
+export interface SchemasConditionalFieldsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "conditionalfield";
+    attributes?: {
+      /**
+       * Target module for this conditional field rule
+       */
+      module?: "opportunities" | "candidates" | "contacts" | "companies" | "positionings";
+      /**
+       * Target attribute name that this rule applies to
+       */
+      attribute?: string;
+      /**
+       * Array of state IDs for which this rule applies (empty = all states)
+       */
+      states?: number[];
+      /**
+       * Array of type IDs for which this rule applies (empty = all types)
+       */
+      typesOf?: number[];
+      /**
+       * Criteria settings for this rule
+       */
+      criteria?: {
+        /**
+         * Validation level: required or recommended
+         */
+        level: "required" | "recommended";
+        /**
+         * If true, this conditional field rule is ignored when creating a new entity
+         */
+        ignoreOnCreation: boolean;
+        /**
+         * Minimum value (optional, for numeric fields)
+         */
+        min?: number;
+      };
+    };
+    relationships?: {
+      /**
+       * Agencies to which this rule applies
+       */
+      agencies?: {
+        data: {
+          id: string;
+          type: "agency";
+        }[];
+      };
+    };
+  };
+}
+
+/**
+ * Conditional field's data sent in the body with a POST method
+ */
+export interface SchemasConditionalFieldsBodyPostJson {
+  data: {
+    type: "conditionalfield";
+    attributes: {
+      /**
+       * Target module for this conditional field rule
+       */
+      module: "opportunities" | "candidates" | "contacts" | "companies" | "positionings";
+      /**
+       * Target attribute name that this rule applies to
+       */
+      attribute: string;
+      /**
+       * Array of state IDs for which this rule applies (empty = all states)
+       */
+      states?: number[];
+      /**
+       * Array of type IDs for which this rule applies (empty = all types)
+       */
+      typesOf?: number[];
+      /**
+       * Criteria settings for this rule
+       */
+      criteria?: {
+        /**
+         * Validation level: required or recommended
+         */
+        level: "required" | "recommended";
+        /**
+         * If true, this conditional field rule is ignored when creating a new entity
+         */
+        ignoreOnCreation: boolean;
+        /**
+         * Minimum value (optional, for numeric fields)
+         */
+        min?: number;
+      };
+    };
+    relationships?: {
+      /**
+       * Agencies to which this rule applies
+       */
+      agencies?: {
+        data: {
+          id: string;
+          type: "agency";
+        }[];
+      };
+    };
+  };
+}
+
+/**
+ * Conditional field's data sent in the body with a PUT method
+ */
+export interface SchemasConditionalFieldsBodyPutJson {
+  data: {
+    id: string;
+    type: "conditionalfield";
+    attributes?: {
+      /**
+       * Target module for this conditional field rule
+       */
+      module?: "opportunities" | "candidates" | "contacts" | "companies" | "positionings";
+      /**
+       * Target attribute name that this rule applies to
+       */
+      attribute?: string;
+      /**
+       * Array of state IDs for which this rule applies (empty = all states)
+       */
+      states?: number[];
+      /**
+       * Array of type IDs for which this rule applies (empty = all types)
+       */
+      typesOf?: number[];
+      /**
+       * Criteria settings for this rule
+       */
+      criteria?: {
+        /**
+         * Validation level: required or recommended
+         */
+        level: "required" | "recommended";
+        /**
+         * If true, this conditional field rule is ignored when creating a new entity
+         */
+        ignoreOnCreation: boolean;
+        /**
+         * Minimum value (optional, for numeric fields)
+         */
+        min?: number;
+      };
+    };
+    relationships?: {
+      /**
+       * Agencies to which this rule applies
+       */
+      agencies?: {
+        data: {
+          id: string;
+          type: "agency";
+        }[];
+      };
+    };
+  };
+}
+

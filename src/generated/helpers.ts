@@ -18,6 +18,7 @@ import type {
   SchemasCalendarsSearchJson,
   SchemasCandidatesSearchJson,
   SchemasCompaniesSearchJson,
+  SchemasConditionalFieldsSearchJson,
   SchemasContactsSearchJson,
   SchemasContractsProfileJson,
   SchemasDashboardsSearchJson,
@@ -110,6 +111,7 @@ export type ProviderInvoiceAttributes = ExtractAttributes<SchemasProviderInvoice
 export type WebhookAttributes = ExtractAttributes<SchemasWebhooksSearchJson>;
 export type DeliveryAttributes = ExtractAttributes<SchemasDeliveriesProfileJson>;
 export type ContractAttributes = ExtractAttributes<SchemasContractsProfileJson>;
+export type ConditionalFieldAttributes = ExtractAttributes<SchemasConditionalFieldsSearchJson>;
 export type FlagAttributes = ExtractAttributes<SchemasFlagsSearchJson>;
 export type InactivityAttributes = ExtractAttributes<SchemasInactivitiesProfileJson>;
 export type AdvantageAttributes = ExtractAttributes<SchemasAdvantagesProfileJson>;

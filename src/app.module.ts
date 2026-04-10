@@ -14,6 +14,7 @@ import { BusinessUnitsModule } from "./modules/business-units/business-units.mod
 import { CalendarsModule } from "./modules/calendars/calendars.module.js";
 import { CandidatesModule } from "./modules/candidates/candidates.module.js";
 import { CompaniesModule } from "./modules/companies/companies.module.js";
+import { ConditionalFieldsModule } from "./modules/conditional-fields/conditional-fields.module.js";
 import { ContactsModule } from "./modules/contacts/contacts.module.js";
 import { ContractsModule } from "./modules/contracts/contracts.module.js";
 import { DashboardsModule } from "./modules/dashboards/dashboards.module.js";
@@ -94,6 +95,7 @@ const DOMAIN_MODULES = [
   AccountsModule,
   ContactsModule,
   ContractsModule,
+  ConditionalFieldsModule,
   AdvantagesModule,
   FlagsModule,
   FollowedDocumentsModule,
