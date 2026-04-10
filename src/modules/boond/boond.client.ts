@@ -162,6 +162,15 @@ export class BoondClient {
       throw new BoondApiError(res.status, res.statusText, body);
     }
 
+    // Handle empty body responses (DELETE 204, etc.)
+    if (res.status === 204 || res.headers.get("content-length") === "0") {
+      return undefined as T;
+    }
+    const contentType = res.headers.get("content-type") ?? "";
+    if (!contentType.includes("application/json")) {
+      return undefined as T;
+    }
+
     return res.json() as Promise<T>;
   }
 

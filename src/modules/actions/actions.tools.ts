@@ -5,7 +5,14 @@ import type { ActionAttributes, BoondDetailResponse } from "../../generated/inde
 import { handleBoondError } from "../../utils/error-handler.js";
 import { formatDetail, toTextContent } from "../../utils/formatters.js";
 import { executeListTool } from "../../utils/list-tool-helper.js";
+import {
+  executeCreateTool,
+  executeDeleteTool,
+  executeUpdateTool,
+} from "../../utils/write-tool-helper.js";
 import { BoondClient } from "../boond/index.js";
+
+const ACTIONS_WRITE_CONFIG = { path: "/actions", resourceType: "action" } as const;
 
 @Injectable()
 export class ActionsTools {
@@ -67,5 +74,96 @@ export class ActionsTools {
     } catch (error) {
       return handleBoondError(error);
     }
+  }
+
+  @Tool({
+    name: "create_action",
+    description:
+      "Crée une nouvelle action commerciale dans BoondManager. " +
+      "Exemples : « crée une action de rappel pour demain », « log une action commerciale ».",
+    parameters: z.object({
+      title: z.string().describe("Titre de l'action"),
+      typeOf: z.number().describe("Type d'action (code numérique Boond)"),
+      comment: z.string().optional().describe("Commentaire / description"),
+      date: z.string().optional().describe("Date de l'action (ISO 8601)"),
+    }),
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: false,
+      openWorldHint: true,
+    },
+  })
+  async createAction({
+    title,
+    typeOf,
+    comment,
+    date,
+  }: {
+    title: string;
+    typeOf: number;
+    comment?: string;
+    date?: string;
+  }) {
+    const attributes: Record<string, unknown> = { title, typeOf };
+    if (comment !== undefined) attributes.comment = comment;
+    if (date !== undefined) attributes.date = date;
+
+    return executeCreateTool(this.boond, ACTIONS_WRITE_CONFIG, attributes);
+  }
+
+  @Tool({
+    name: "update_action",
+    description:
+      "Met à jour une action commerciale existante. " + "Seuls les champs fournis seront modifiés.",
+    parameters: z.object({
+      id: z.number().describe("ID de l'action à modifier"),
+      title: z.string().optional().describe("Nouveau titre"),
+      comment: z.string().optional().describe("Nouveau commentaire"),
+      date: z.string().optional().describe("Nouvelle date (ISO 8601)"),
+    }),
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
+  })
+  async updateAction({
+    id,
+    title,
+    comment,
+    date,
+  }: {
+    id: number;
+    title?: string;
+    comment?: string;
+    date?: string;
+  }) {
+    const attributes: Record<string, unknown> = {};
+    if (title !== undefined) attributes.title = title;
+    if (comment !== undefined) attributes.comment = comment;
+    if (date !== undefined) attributes.date = date;
+
+    return executeUpdateTool(this.boond, ACTIONS_WRITE_CONFIG, id, attributes);
+  }
+
+  @Tool({
+    name: "delete_action",
+    description:
+      "⚠️ DESTRUCTIF — Supprime définitivement une action commerciale. " +
+      "Cette opération est irréversible. Confirmer avant d'utiliser.",
+    parameters: z.object({
+      id: z.number().describe("ID de l'action à supprimer"),
+    }),
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: true,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
+  })
+  async deleteAction({ id }: { id: number }) {
+    return executeDeleteTool(this.boond, ACTIONS_WRITE_CONFIG, id);
   }
 }
