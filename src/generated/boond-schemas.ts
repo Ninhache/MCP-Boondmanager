@@ -26457,3 +26457,29 @@ export interface SchemasVendorBodyPutJson {
   };
 }
 
+
+// ─── thumbnails ───
+/**
+ * Thumbnail's basic data
+ */
+export interface SchemasThumbnailsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "thumbnail";
+  };
+}
+

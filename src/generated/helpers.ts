@@ -54,6 +54,7 @@ import type {
   SchemasTasksProfileJson,
   SchemasTechnicalDatasProfileJson,
   SchemasThreadsSearchJson,
+  SchemasThumbnailsProfileJson,
   SchemasTimesReportsSearchJson,
   SchemasTimesSearchJson,
   SchemasTodolistsSearchJson,
@@ -133,6 +134,7 @@ export type SubscriptionAttributes = ExtractAttributes<SchemasSubscriptionProfil
 export type VendorAttributes = ExtractAttributes<SchemasVendorProfileJson>;
 export type TodolistAttributes = ExtractAttributes<SchemasTodolistsSearchJson>;
 export type ThreadAttributes = ExtractAttributes<SchemasThreadsSearchJson>;
+export type ThumbnailAttributes = ExtractAttributes<SchemasThumbnailsProfileJson>;
 export type FormAttributes = ExtractAttributes<SchemasFormsProfileJson>;
 export type FollowedDocumentAttributes = ExtractAttributes<SchemasFollowedDocumentsProfileJson>;
 export type GroupmentAttributes = ExtractAttributes<SchemasGroupmentsProfileJson>;
