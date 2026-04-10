@@ -23,6 +23,7 @@ import { DownloadCenterModule } from "./modules/download-center/download-center.
 import { ExpensesModule } from "./modules/expenses/expenses.module.js";
 import { ExpensesReportsModule } from "./modules/expenses-reports/expenses-reports.module.js";
 import { FlagsModule } from "./modules/flags/flags.module.js";
+import { FollowedDocumentsModule } from "./modules/followed-documents/followed-documents.module.js";
 import { FormsModule } from "./modules/forms/forms.module.js";
 import { GroupmentsModule } from "./modules/groupments/groupments.module.js";
 import { InactivitiesModule } from "./modules/inactivities/inactivities.module.js";
@@ -95,6 +96,7 @@ const DOMAIN_MODULES = [
   ContractsModule,
   AdvantagesModule,
   FlagsModule,
+  FollowedDocumentsModule,
   FormsModule,
   GroupmentsModule,
   TargetsModule,

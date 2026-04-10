@@ -27,6 +27,7 @@ import type {
   SchemasExpensesReportsSearchJson,
   SchemasExpensesSearchJson,
   SchemasFlagsSearchJson,
+  SchemasFollowedDocumentsProfileJson,
   SchemasFormsProfileJson,
   SchemasGroupmentsProfileJson,
   SchemasInactivitiesProfileJson,
@@ -123,6 +124,7 @@ export type StandardProfileAttributes = ExtractAttributes<SchemasStandardProfile
 export type TodolistAttributes = ExtractAttributes<SchemasTodolistsSearchJson>;
 export type ThreadAttributes = ExtractAttributes<SchemasThreadsSearchJson>;
 export type FormAttributes = ExtractAttributes<SchemasFormsProfileJson>;
+export type FollowedDocumentAttributes = ExtractAttributes<SchemasFollowedDocumentsProfileJson>;
 export type GroupmentAttributes = ExtractAttributes<SchemasGroupmentsProfileJson>;
 export type TaskAttributes = ExtractAttributes<SchemasTasksProfileJson>;
 

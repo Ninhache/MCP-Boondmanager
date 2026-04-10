@@ -24234,3 +24234,297 @@ export interface SchemasStandardProfilesBodyPutJson {
   };
 }
 
+
+// ─── followedDocuments ───
+/**
+ * Data of Document to follow
+ */
+export interface SchemasFollowedDocumentsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "followeddocument";
+    attributes?: {
+      typeOf?: number;
+      /**
+       * If 1 then document to follow is followed
+       */
+      state?: number;
+      issuedDate?: string;
+      expirationDate?: string;
+      description?: string;
+      creationDate?: string;
+      updateDate?: string;
+      /**
+       * number of attachments
+       */
+      numberOfFiles?: number;
+      /**
+       * If false then document to follow is not accessible
+       */
+      canReadFollowedDocument?: boolean;
+      /**
+       * If false then document to follow is editable
+       */
+      canWriteFollowedDocument?: boolean;
+    };
+    relationships?: {
+      dependsOn?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      /**
+       * List of files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "document";
+        }[];
+      };
+    };
+  };
+  /**
+   * @minItems 1
+   */
+  included?: [
+    (
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+          };
+          relationships?: {};
+        }
+      | {
+          id: string;
+          type: "document";
+          attributes?: {
+            name?: string;
+          };
+        }
+    ),
+    ...(
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+          };
+          relationships?: {};
+        }
+      | {
+          id: string;
+          type: "document";
+          attributes?: {
+            name?: string;
+          };
+        }
+    )[]
+  ];
+}
+
+/**
+ * Empty document to follow default basic data
+ */
+export interface SchemasFollowedDocumentsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "followeddocument";
+    attributes?: {
+      typeOf?: number;
+      /**
+       * If 1 then document to follow is followed
+       */
+      state?: number;
+      issuedDate?: string;
+      expirationDate?: string;
+      description?: string;
+    };
+    relationships: {
+      dependsOn: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+  /**
+   * @minItems 1
+   */
+  included?: [
+    {
+      id: string;
+      type: "resource";
+      attributes?: {
+        firstName?: string;
+        lastName?: string;
+      };
+    },
+    ...{
+      id: string;
+      type: "resource";
+      attributes?: {
+        firstName?: string;
+        lastName?: string;
+      };
+    }[]
+  ];
+}
+
+/**
+ * Documents to follow rights
+ */
+export interface SchemasFollowedDocumentsRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Data of Document to follow sent in the body with a POST method
+ */
+export interface SchemasFollowedDocumentsBodyPostJson {
+  data: {
+    type: "followeddocument";
+    attributes?: {
+      typeOf: number;
+      /**
+       * If 1 then document to follow is followed
+       */
+      state?: number;
+      issuedDate?: string;
+      expirationDate: string;
+      description?: string;
+    };
+    relationships: {
+      dependsOn: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Data of Document to follow sent in the body with a PUT method
+ */
+export interface SchemasFollowedDocumentsBodyPutJson {
+  data: {
+    id: string;
+    type: "followeddocument";
+    attributes?: {
+      typeOf?: number;
+      /**
+       * If 1 then document to follow is followed
+       */
+      state?: number;
+      issuedDate?: string;
+      expirationDate?: string;
+      description?: string;
+    };
+  };
+}
+
