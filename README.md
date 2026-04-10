@@ -196,6 +196,21 @@ Built with:
 - [Zod](https://zod.dev/) — schema validation
 - [Biome](https://biomejs.dev/) — linting and formatting
 
+## Documentation
+
+Detailed docs in [`docs/`](./docs/):
+
+- [architecture.md](./docs/architecture.md) — System design, module pattern, tech stack
+- [authentication.md](./docs/authentication.md) — Basic Auth + JWT (normal/god) setup
+- [transports.md](./docs/transports.md) — stdio vs HTTP configuration and security
+- [tools.md](./docs/tools.md) — Complete reference of all 45 MCP tools
+- [deployment.md](./docs/deployment.md) — Docker, systemd, PM2, nginx
+- [troubleshooting.md](./docs/troubleshooting.md) — Common errors and fixes
+
+## Contributing
+
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for development workflow, code style, and how to add new modules or tools.
+
 ## License
 
 MIT © 2026 Ninhache
