@@ -23940,3 +23940,297 @@ export interface SchemasDownloadCenterFolderJson {
   }[];
 }
 
+
+// ─── standardProfiles ───
+/**
+ * List of standard profiles
+ */
+export interface SchemasStandardProfilesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "standardprofile";
+    attributes?: {
+      creationDate?: string;
+      title?: string;
+      dailyCostExcludingTax?: number;
+      dailyPriceExcludingTax?: number;
+      informationComments?: string;
+      skills?: string;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+    };
+    relationships?: {
+      /**
+       * Standard profile's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+    };
+  }[];
+  included?: {
+    data: {
+      id: string;
+      type: "agency";
+    };
+  }[];
+}
+
+/**
+ * Standard Profile's basic data
+ */
+export interface SchemasStandardProfilesProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "standardprofile";
+    attributes?: {
+      creationDate?: string;
+      title?: string;
+      dailyCostExcludingTax?: number;
+      dailyPriceExcludingTax?: number;
+      informationComments?: string;
+      skills?: string;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+    };
+    relationships?: {
+      /**
+       * Standard profile's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+    };
+  };
+  included?: {
+    id: string;
+    type: "agency";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * Empty standard profile's basic data
+ */
+export interface SchemasStandardProfilesDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "standardprofile";
+    attributes?: {
+      creationDate?: string;
+      title?: string;
+      dailyCostExcludingTax?: number;
+      dailyPriceExcludingTax?: number;
+      informationComments?: string;
+      skills?: string;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+    };
+    relationships?: {
+      /**
+       * Standard profile's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "agency";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * Standard profiles rights
+ */
+export interface SchemasStandardProfilesRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        agency?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Standard Profile's information data sent in the body with a POST method
+ */
+export interface SchemasStandardProfilesBodyPostJson {
+  data: {
+    type: "standardprofile";
+    attributes?: {
+      creationDate?: string;
+      title?: string;
+      dailyCostExcludingTax?: number;
+      dailyPriceExcludingTax?: number;
+      informationComments?: string;
+      skills?: string;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+    };
+    relationships?: {
+      /**
+       * Standard Profile's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Standard Profile's information data sent in the body with a PUT method
+ */
+export interface SchemasStandardProfilesBodyPutJson {
+  data: {
+    type: "standardprofile";
+    attributes?: {
+      creationDate?: string;
+      title?: string;
+      dailyCostExcludingTax?: number;
+      dailyPriceExcludingTax?: number;
+      informationComments?: string;
+      skills?: string;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+    };
+    relationships?: {
+      /**
+       * Standard Profile's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+    };
+  };
+}
+
