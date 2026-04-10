@@ -14803,3 +14803,631 @@ export interface SchemasFlagsBodyPutJson {
   };
 }
 
+
+// ─── inactivities ───
+/**
+ * Inactivity's basic data
+ */
+export interface SchemasInactivitiesProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "inactivity";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      averageDailyCost?: number;
+      averageDailyContractCost?: number;
+      numberOfDaysInvoicedOrQuantity?: number;
+      informationComments?: string;
+      /**
+       * Sum of all costs on delivery & additional data excluding tax
+       */
+      costsSimulatedExcludingTax?: number;
+      /**
+       * (numberOfDaysInvoicedOrQuantity +  numberOfDaysFree) / number of working days or periods between startDate and endDate, only available if delivery is not a `groupment` and project's type is not `product`
+       */
+      occupationRate?: number;
+      dailyExpenses?: number;
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: {
+        id: string;
+        expenseType: {
+          reference: number;
+          name: string;
+        };
+        periodicity: "daily" | "monthly";
+        netAmount: number;
+        /**
+         * Agency on which expenses detail depends
+         */
+        agency: {
+          id: string;
+          name: string;
+        };
+      }[];
+      inactivityType?: "internal" | "absence";
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      creationDate?: string;
+      updateDate?: string;
+    };
+    relationships?: {
+      /**
+       * Inactivity's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      contract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+      /**
+       * List of inactivity's files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "document";
+        }[];
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          typeOf?: number;
+        };
+        relationships?: {
+          mainManager?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+          hrManager?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+          /**
+           * Resource's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          /**
+           * List of resource's contracts available on this period
+           */
+          contracts?: {
+            data: {
+              id: string;
+              type: "contract";
+            }[];
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          calendar?: string;
+          /**
+           * Agency's expense types
+           */
+          expenseTypes?: {
+            reference: number;
+            name: string;
+            taxRate: number;
+          }[];
+          exchangeRate?: number;
+          currency?: number;
+        };
+      }
+    | {
+        id: string;
+        type: "document";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contract";
+        attributes?: {
+          contractAverageDailyCost?: number;
+          monthlySalary?: number;
+          /**
+           * Can be updated only if `expensesDetails` is not empty
+           */
+          dailyExpenses?: number;
+          /**
+           * Can be updated only if `expensesDetails` is not empty
+           */
+          monthlyExpenses?: number;
+          currency?: number;
+          currencyAgency?: number;
+          exchangeRate?: number;
+          exchangeRateAgency?: number;
+        };
+      }
+  )[];
+}
+
+/**
+ * Inactivity's basic data
+ */
+export interface SchemasInactivitiesDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "inactivity";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      averageDailyContractCost?: number;
+      numberOfWorkingDays?: number;
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: {
+        id: string;
+        expenseType: {
+          reference: number;
+          name: string;
+        };
+        periodicity: "daily" | "monthly";
+        netAmount: number;
+        /**
+         * Agency on which expenses detail depends
+         */
+        agency: {
+          id: string;
+          name: string;
+        };
+      }[];
+      inactivityType?: "internal" | "absence";
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+    };
+    relationships?: {
+      /**
+       * Inactivity's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      contract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          typeOf?: number;
+        };
+        relationships?: {
+          mainManager?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+          hrManager?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              };
+          /**
+           * Resource's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          /**
+           * List of resource's contracts available on this period
+           */
+          contracts?: {
+            data: {
+              id: string;
+              type: "contract";
+            }[];
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          calendar?: string;
+          /**
+           * Agency's expense types
+           */
+          expenseTypes?: {
+            reference: number;
+            name: string;
+            taxRate: number;
+          }[];
+          exchangeRate?: number;
+          currency?: number;
+        };
+      }
+    | {
+        id: string;
+        type: "contract";
+        attributes?: {
+          contractAverageDailyCost?: number;
+          monthlySalary?: number;
+          /**
+           * Can be updated only if `expensesDetails` is not empty
+           */
+          dailyExpenses?: number;
+          /**
+           * Can be updated only if `expensesDetails` is not empty
+           */
+          monthlyExpenses?: number;
+          currency?: number;
+          currencyAgency?: number;
+          exchangeRate?: number;
+          exchangeRateAgency?: number;
+        };
+      }
+  )[];
+}
+
+/**
+ * Delivery's rights
+ */
+export interface SchemasInactivitiesRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        averageDailyContractCost?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        dailyExpenses?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        monthlyExpenses?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        numberOfWorkingDays?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        contract?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "resource.contracts"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        expensesDetails?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        files?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Inactivity's basic data sent in the body with a POST method
+ */
+export interface SchemasInactivitiesBodyPostJson {
+  data: {
+    type: "delivery";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      averageDailyContractCost?: number;
+      numberOfDaysInvoicedOrQuantity?: number;
+      informationComments?: string;
+      dailyExpenses?: number;
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: {
+        id: string;
+        expenseType: {
+          reference: number;
+          name: string;
+        };
+        periodicity: "daily" | "monthly";
+        netAmount: number;
+        /**
+         * Agency on which expenses detail depends
+         */
+        agency: {
+          id: string;
+          name: string;
+        };
+      }[];
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      inactivityType?: "internal" | "absence";
+    };
+    relationships: {
+      /**
+       * Inactivity's resource
+       */
+      resource: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Inactivity's contract
+       */
+      contract?: {
+        data: {
+          id: string;
+          type: "contract";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Inactivity's basic data sent in the body with a PUT method
+ */
+export interface SchemasInactivitiesBodyPutJson {
+  data: {
+    id: string;
+    type: "inactivity";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      averageDailyContractCost?: number;
+      numberOfDaysInvoicedOrQuantity?: number;
+      informationComments?: string;
+      dailyExpenses?: number;
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: {
+        id: string;
+        expenseType: {
+          reference: number;
+          name: string;
+        };
+        periodicity: "daily" | "monthly";
+        netAmount: number;
+        /**
+         * Agency on which expenses detail depends
+         */
+        agency: {
+          id: string;
+          name: string;
+        };
+      }[];
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      inactivityType?: "internal" | "absence";
+    };
+    relationships?: {
+      contract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+    };
+  };
+}
+

@@ -18,6 +18,7 @@ import { DeliveriesModule } from "./modules/deliveries/deliveries.module.js";
 import { ExpensesModule } from "./modules/expenses/expenses.module.js";
 import { ExpensesReportsModule } from "./modules/expenses-reports/expenses-reports.module.js";
 import { FlagsModule } from "./modules/flags/flags.module.js";
+import { InactivitiesModule } from "./modules/inactivities/inactivities.module.js";
 import { InvoicesModule } from "./modules/invoices/invoices.module.js";
 import { McpExtrasModule } from "./modules/mcp-extras/mcp-extras.module.js";
 import { NotificationsModule } from "./modules/notifications/notifications.module.js";
@@ -58,6 +59,7 @@ const DOMAIN_MODULES = [
   DeliveriesModule,
   ExpensesModule,
   ExpensesReportsModule,
+  InactivitiesModule,
   ProductsModule,
   PaymentsModule,
   ProviderInvoicesModule,

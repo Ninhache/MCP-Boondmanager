@@ -22,6 +22,7 @@ import type {
   SchemasExpensesReportsSearchJson,
   SchemasExpensesSearchJson,
   SchemasFlagsSearchJson,
+  SchemasInactivitiesProfileJson,
   SchemasInvoicesSearchJson,
   SchemasNotificationsSearchJson,
   SchemasOpportunitiesSearchJson,
@@ -95,6 +96,7 @@ export type WebhookAttributes = ExtractAttributes<SchemasWebhooksSearchJson>;
 export type DeliveryAttributes = ExtractAttributes<SchemasDeliveriesProfileJson>;
 export type ContractAttributes = ExtractAttributes<SchemasContractsProfileJson>;
 export type FlagAttributes = ExtractAttributes<SchemasFlagsSearchJson>;
+export type InactivityAttributes = ExtractAttributes<SchemasInactivitiesProfileJson>;
 
 /**
  * Generic typed Boond list response.
