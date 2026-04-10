@@ -36,6 +36,7 @@ import { ProviderInvoicesModule } from "./modules/provider-invoices/provider-inv
 import { PurchasesModule } from "./modules/purchases/purchases.module.js";
 import { ResourcesModule } from "./modules/resources/resources.module.js";
 import { RolesModule } from "./modules/roles/roles.module.js";
+import { TargetsModule } from "./modules/targets/targets.module.js";
 import { TimesModule } from "./modules/times/times.module.js";
 import { TimesReportsModule } from "./modules/times-reports/times-reports.module.js";
 import { ValidationsModule } from "./modules/validations/validations.module.js";
@@ -84,6 +85,7 @@ const DOMAIN_MODULES = [
   ContractsModule,
   AdvantagesModule,
   FlagsModule,
+  TargetsModule,
   WebhooksModule,
   // MCP Prompts and Resources
   McpExtrasModule,
