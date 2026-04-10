@@ -25,6 +25,7 @@ import { PolesModule } from "./modules/poles/poles.module.js";
 import { PositioningsModule } from "./modules/positionings/positionings.module.js";
 import { ProductsModule } from "./modules/products/products.module.js";
 import { ProjectsModule } from "./modules/projects/projects.module.js";
+import { ProviderInvoicesModule } from "./modules/provider-invoices/provider-invoices.module.js";
 import { PurchasesModule } from "./modules/purchases/purchases.module.js";
 import { ResourcesModule } from "./modules/resources/resources.module.js";
 import { RolesModule } from "./modules/roles/roles.module.js";
@@ -54,6 +55,7 @@ const DOMAIN_MODULES = [
   ExpensesReportsModule,
   ProductsModule,
   PaymentsModule,
+  ProviderInvoicesModule,
   TimesModule,
   TimesReportsModule,
   // Organizational

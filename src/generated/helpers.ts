@@ -28,6 +28,7 @@ import type {
   SchemasPositioningsSearchJson,
   SchemasProductsSearchJson,
   SchemasProjectsSearchJson,
+  SchemasProviderInvoicesSearchJson,
   SchemasPurchasesSearchJson,
   SchemasResourcesSearchJson,
   SchemasRolesSearchJson,
@@ -85,6 +86,7 @@ export type BusinessUnitAttributes = ExtractAttributes<SchemasBusinessUnitsSearc
 export type ExpensesReportAttributes = ExtractAttributes<SchemasExpensesReportsSearchJson>;
 export type BillingDetailAttributes = ExtractAttributes<SchemasBillingDetailsSearchJson>;
 export type TimesReportAttributes = ExtractAttributes<SchemasTimesReportsSearchJson>;
+export type ProviderInvoiceAttributes = ExtractAttributes<SchemasProviderInvoicesSearchJson>;
 
 /**
  * Generic typed Boond list response.
