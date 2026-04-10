@@ -13113,3 +13113,1537 @@ export interface SchemasDeliveriesSendJson {
   };
 }
 
+
+// ─── contracts ───
+/**
+ * Contract's basic data
+ */
+export interface SchemasContractsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    warnings?: {
+      /**
+       * Warning's code
+       */
+      code: "wrongContractAverageDailyCost" | "wrongContractAverageDailyCostCandidate";
+      /**
+       * Warning's message
+       */
+      detail: string;
+      databaseContractAverageDailyCost?: number;
+    }[];
+  };
+  data: {
+    id: string;
+    type: "contract";
+    attributes?: {
+      typeOf?: number;
+      creationDate?: string;
+      updateDate?: string;
+      employeeType?: number;
+      workingTimeType?: number;
+      numberOfHoursPerWeek?: number;
+      classification?: string;
+      startDate?: string;
+      endDate?: string;
+      endReason?: number;
+      probationState?: number;
+      probationEndDate?: string;
+      renewalProbationEndDate?: string;
+      monthlySalary?: number;
+      hourlySalary?: number;
+      forceHourlySalary?: boolean;
+      contractAverageDailyCost?: number;
+      /**
+       * Can be updated only if `forceContractAverageDailyProductionCost` = true or the contract depends on an external resource
+       */
+      contractAverageDailyProductionCost?: number;
+      forceContractAverageDailyProductionCost?: boolean;
+      /**
+       * Can be updated only if `expensesDetails` is not empty
+       */
+      dailyExpenses?: number;
+      /**
+       * Can be updated only if `expensesDetails` is not empty
+       */
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      chargeFactor?: number;
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: {
+        id: string;
+        expenseType: {
+          reference: number;
+          name: string;
+        };
+        periodicity: "daily" | "monthly";
+        netAmount: number;
+      }[];
+      /**
+       * List of advantages
+       */
+      advantageTypes?: {
+        reference: number;
+        name: string;
+        frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+        category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+        participationQuota: number;
+        agencyQuota: number;
+        employeeQuota: number;
+        default?: boolean;
+        state?: boolean;
+      }[];
+      /**
+       * List of exceptional scales
+       */
+      exceptionalScales?: {
+        reference: number;
+        name: string;
+        workUnitTypes: {
+          reference: number;
+          name: string;
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+        }[];
+        exceptionalRules: {
+          reference: number;
+          name: string;
+          priceExcludingTaxOrPriceRate: null | number;
+          grossCostOrSalaryRate: null | number;
+        }[];
+      }[];
+      informationComments?: string;
+      currency?: number;
+      currencyAgency?: number;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+      calendar?: string;
+      activityRate?: number;
+      partialWorkTimes?: string[];
+      isPartialWorkTimeEvenOdd?: boolean;
+    };
+    relationships?: {
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      /**
+       * Contract's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      parentContract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+      childContract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+      /**
+       * List of contract's files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "document";
+        }[];
+      };
+    };
+  };
+  /**
+   * @minItems 1
+   */
+  included?: [
+    (
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            typeOf?: number;
+            workUnitRate?: "notUsed" | number;
+          };
+          relationships?: {
+            mainManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            /**
+             * Resource's agency
+             */
+            agency?: {
+              data: {
+                id: string;
+                type: "agency";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "candidate";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+          };
+          relationships?: {
+            /**
+             * Candidate's main manager
+             */
+            mainManager?: {
+              data: {
+                id: string;
+                type: "resource";
+              };
+            };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            currency?: number;
+            exchangeRate?: number;
+            /**
+             * Agency's expense types
+             */
+            expenseTypes?: {
+              reference: number;
+              name: string;
+              state?: boolean;
+              taxRate: number;
+            }[];
+            /**
+             * Agency's advantage types
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+              default?: boolean;
+              state?: boolean;
+            }[];
+            allowExceptionalScalesOnContracts?: boolean;
+            /**
+             * Agency's exceptional scales types
+             */
+            exceptionalScales?: {
+              reference: number;
+              name: string;
+              workUnitTypes: {
+                reference: number;
+                name: string;
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+              }[];
+              exceptionalRules: {
+                reference: number;
+                name: string;
+                priceExcludingTaxOrPriceRate: number;
+                grossCostOrSalaryRate: number;
+              }[];
+            }[];
+            chargeFactor?: number;
+            contractsSalaryType?: "monthly" | "annual";
+            calendar?: string;
+            workUnitRate?: "notUsed" | number;
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            startDate?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "document";
+          attributes?: {
+            name?: string;
+          };
+          relationships?: {
+            id?: number;
+            type?: "esignature";
+          };
+        }
+      | {
+          id: number;
+          type: "esignature";
+          attributes?: {
+            state?: "created" | "waiting" | "signed" | "cancelled" | "expired";
+          };
+        }
+    ),
+    ...(
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            typeOf?: number;
+            workUnitRate?: "notUsed" | number;
+          };
+          relationships?: {
+            mainManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            /**
+             * Resource's agency
+             */
+            agency?: {
+              data: {
+                id: string;
+                type: "agency";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "candidate";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+          };
+          relationships?: {
+            /**
+             * Candidate's main manager
+             */
+            mainManager?: {
+              data: {
+                id: string;
+                type: "resource";
+              };
+            };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            currency?: number;
+            exchangeRate?: number;
+            /**
+             * Agency's expense types
+             */
+            expenseTypes?: {
+              reference: number;
+              name: string;
+              state?: boolean;
+              taxRate: number;
+            }[];
+            /**
+             * Agency's advantage types
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+              default?: boolean;
+              state?: boolean;
+            }[];
+            allowExceptionalScalesOnContracts?: boolean;
+            /**
+             * Agency's exceptional scales types
+             */
+            exceptionalScales?: {
+              reference: number;
+              name: string;
+              workUnitTypes: {
+                reference: number;
+                name: string;
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+              }[];
+              exceptionalRules: {
+                reference: number;
+                name: string;
+                priceExcludingTaxOrPriceRate: number;
+                grossCostOrSalaryRate: number;
+              }[];
+            }[];
+            chargeFactor?: number;
+            contractsSalaryType?: "monthly" | "annual";
+            calendar?: string;
+            workUnitRate?: "notUsed" | number;
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            startDate?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "document";
+          attributes?: {
+            name?: string;
+          };
+          relationships?: {
+            id?: number;
+            type?: "esignature";
+          };
+        }
+      | {
+          id: number;
+          type: "esignature";
+          attributes?: {
+            state?: "created" | "waiting" | "signed" | "cancelled" | "expired";
+          };
+        }
+    )[]
+  ];
+}
+
+/**
+ * Empty contract's default basic data
+ */
+export interface SchemasContractsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    warnings?: {
+      /**
+       * Warning's code
+       */
+      code: "wrongContractAverageDailyCost" | "wrongContractAverageDailyCostCandidate";
+      /**
+       * Warning's message
+       */
+      detail: string;
+      databaseContractAverageDailyCost?: number;
+    }[];
+  };
+  data: {
+    id: "0";
+    type: "contract";
+    attributes?: {
+      typeOf?: number;
+      employeeType?: number;
+      workingTimeType?: number;
+      numberOfHoursPerWeek?: number;
+      classification?: string;
+      startDate?: string;
+      endDate?: string;
+      monthlySalary?: number;
+      hourlySalary?: number;
+      forceHourlySalary?: boolean;
+      forceContractAverageDailyProductionCost?: boolean;
+      contractAverageDailyCost?: number;
+      /**
+       * Can be updated only if `forceContractAverageDailyProductionCost` = true or the contract depends on an external resource
+       */
+      contractAverageDailyProductionCost?: number;
+      /**
+       * Can be updated only if `expensesDetails` is not empty
+       */
+      dailyExpenses?: number;
+      /**
+       * Can be updated only if `expensesDetails` is not empty
+       */
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      chargeFactor?: number;
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: {
+        id: string;
+        expenseType: {
+          reference: number;
+          name: string;
+        };
+        periodicity: "daily" | "monthly";
+        netAmount: number;
+      }[];
+      /**
+       * List of advantages
+       */
+      advantageTypes?: {
+        reference: number;
+        name: string;
+        frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+        category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+        participationQuota: number;
+        agencyQuota: number;
+        employeeQuota: number;
+        default?: boolean;
+        state?: boolean;
+      }[];
+      /**
+       * List of exceptional scales
+       */
+      exceptionalScales?: {
+        reference: number;
+        name: string;
+        workUnitTypes: {
+          reference: number;
+          name: string;
+          activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+        }[];
+        exceptionalRules: {
+          reference: number;
+          name: string;
+          priceExcludingTaxOrPriceRate: null | number;
+          grossCostOrSalaryRate: null | number;
+        }[];
+      }[];
+      informationComments?: string;
+      currency?: number;
+      currencyAgency?: number;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+      calendar?: string;
+      activityRate?: number;
+      partialWorkTimes?: string[];
+      isPartialWorkTimeEvenOdd?: boolean;
+    };
+    relationships?: {
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          };
+      /**
+       * Contract's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      parentContract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+    };
+  };
+  /**
+   * @minItems 1
+   */
+  included?: [
+    (
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            typeOf?: number;
+          };
+          relationships?: {
+            mainManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "candidate";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+          };
+          relationships?: {
+            /**
+             * Candidate's main manager
+             */
+            mainManager?: {
+              data: {
+                id: string;
+                type: "resource";
+              };
+            };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            contractsSalaryType?: "monthly" | "annual";
+            /**
+             * Agency's expense types
+             */
+            expenseTypes?: {
+              reference: number;
+              name: string;
+              taxRate: number;
+            }[];
+            /**
+             * Agency's advantage types
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+              default?: boolean;
+              state?: boolean;
+            }[];
+            allowExceptionalScalesOnContracts?: boolean;
+            /**
+             * Agency's exceptional scales types
+             */
+            exceptionalScales?: {
+              reference: number;
+              name: string;
+              workUnitTypes: {
+                reference: number;
+                name: string;
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+              }[];
+              exceptionalRules: {
+                reference: number;
+                name: string;
+                priceExcludingTaxOrPriceRate: number;
+                grossCostOrSalaryRate: number;
+              }[];
+            }[];
+            workUnitRate?: "notUsed" | number;
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            startDate?: string;
+          };
+        }
+    ),
+    ...(
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            typeOf?: number;
+          };
+          relationships?: {
+            mainManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "candidate";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+          };
+          relationships?: {
+            /**
+             * Candidate's main manager
+             */
+            mainManager?: {
+              data: {
+                id: string;
+                type: "resource";
+              };
+            };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            contractsSalaryType?: "monthly" | "annual";
+            /**
+             * Agency's expense types
+             */
+            expenseTypes?: {
+              reference: number;
+              name: string;
+              taxRate: number;
+            }[];
+            /**
+             * Agency's advantage types
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+              default?: boolean;
+              state?: boolean;
+            }[];
+            allowExceptionalScalesOnContracts?: boolean;
+            /**
+             * Agency's exceptional scales types
+             */
+            exceptionalScales?: {
+              reference: number;
+              name: string;
+              workUnitTypes: {
+                reference: number;
+                name: string;
+                activityType: "production" | "absence" | "internal" | "exceptionalTime" | "exceptionalCalendar";
+              }[];
+              exceptionalRules: {
+                reference: number;
+                name: string;
+                priceExcludingTaxOrPriceRate: number;
+                grossCostOrSalaryRate: number;
+              }[];
+            }[];
+            workUnitRate?: "notUsed" | number;
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            startDate?: string;
+          };
+        }
+    )[]
+  ];
+}
+
+/**
+ * Contract's rights
+ */
+export interface SchemasContractsRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+        /**
+         * true if this action is available
+         */
+        addAdvantage?: boolean;
+        /**
+         * true if this action is available
+         */
+        addAmendment?: boolean;
+        /**
+         * true if this action is available
+         */
+        download?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+        /**
+         * true if this action is available
+         */
+        addESignature?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+        advantages?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+        tasks?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        hourlySalary?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        monthlySalary?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        chargeFactor?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        forceHourlySalary?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        advantageTypes?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        exceptionalScales?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        forceContractAverageDailyProductionCost?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        contractAverageDailyProductionCost?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        "agency.exceptionalScales"?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        probationEndDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        renewalProbationEndDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        startDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        endDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        files?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Contract's advantages
+ */
+export interface SchemasContractsAdvantagesJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "advantage";
+    attributes?: {
+      date?: string;
+      advantageType?: {
+        reference: number;
+        name: string;
+      };
+      quantity?: number;
+      /**
+       * employeeAmount * quantity
+       */
+      costPaid?: number;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      /**
+       * If false then advantage is not accessible
+       */
+      canReadAdvantage?: boolean;
+      /**
+       * If false then advantage is editable
+       */
+      canWriteAdvantage?: boolean;
+    };
+    relationships?: {
+      /**
+       * Advantage's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "agency";
+    attributes?: {
+      name?: string;
+    };
+  }[];
+}
+
+/**
+ * Contracts tasks data
+ */
+export interface SchemasContractsTasksJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+    additionalTasks?: {
+      /**
+       * Signature's creator
+       */
+      createdBy?: {
+        id: string;
+        /**
+         * Creator firstname
+         */
+        firstName: string;
+        /**
+         * Creator lastname
+         */
+        lastName: string;
+      };
+      date?: string;
+      file?: {
+        /**
+         * File or document id
+         */
+        id: number;
+        /**
+         * File or document name
+         */
+        name: string;
+      };
+      state?: "created" | "waiting" | "signed" | "cancelled" | "expired";
+      /**
+       * Subtitle for task API
+       */
+      subtitle?: string;
+      type?: "esignature";
+      typeOf?: "candidate" | "contract" | "opportunity" | "resource";
+      recipients?: {
+        data?: {
+          id: number;
+          /**
+           * Recipient firstname
+           */
+          firstName?: string;
+          /**
+           * Recipient lastname
+           */
+          lastName?: string;
+          state?: "waiting" | "signed" | "refused";
+          comment?: string;
+          date?: string;
+        }[];
+      };
+    }[];
+  };
+  data: {
+    id: string;
+    type: "task";
+    attributes?: {
+      description?: string;
+      row?: number;
+      state?: boolean;
+      validatedAt?: number;
+      validatedBy?: {
+        id?: string;
+        firstName?: string;
+        lastName?: string;
+      };
+    };
+    relationships?: {
+      /**
+       * List of children tasks
+       */
+      children?: {
+        data: {
+          id: string;
+          type: "task";
+        }[];
+      };
+      /**
+       * Task's todolist
+       */
+      todolist?: {
+        data: {
+          id: string;
+          type: "todolist";
+        }[];
+      };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "task";
+        attributes?: {
+          description?: string;
+          row?: number;
+          state?: boolean;
+          validatedAt?: number;
+          validatedBy?: {
+            id?: string;
+            firstName?: string;
+            lastName?: string;
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "todolist";
+        attributes?: {
+          title?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Contract's basic data sent in the body with a POST method
+ */
+export interface SchemasContractsBodyPostJson {
+  data: {
+    type: "contract";
+    attributes?: {
+      typeOf?: number;
+      employeeType?: number;
+      workingTimeType?: number;
+      numberOfHoursPerWeek?: number;
+      classification?: string;
+      startDate?: string;
+      endDate?: string;
+      probationState?: number;
+      probationEndDate?: string;
+      renewalProbationEndDate?: string;
+      monthlySalary?: number;
+      hourlySalary?: number;
+      forceHourlySalary?: boolean;
+      forceContractAverageDailyProductionCost?: boolean;
+      /**
+       * Can be updated only if `forceContractAverageDailyProductionCost` = true or the contract depends on an external resource
+       */
+      contractAverageDailyProductionCost?: number;
+      /**
+       * Can be updated only if `expensesDetails` is not empty
+       */
+      dailyExpenses?: number;
+      /**
+       * Can be updated only if `expensesDetails` is not empty
+       */
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      chargeFactor?: number;
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: (
+        | {
+            expenseType: {
+              reference: number;
+            };
+            periodicity: "daily" | "monthly";
+            netAmount: number;
+          }
+        | {
+            id: string;
+            expenseType: {
+              reference: number;
+            };
+            periodicity: "daily" | "monthly";
+            netAmount: number;
+          }
+      )[];
+      /**
+       * List of advantages
+       */
+      advantageTypes?: {
+        reference: number;
+      }[];
+      /**
+       * List of exceptional scales
+       */
+      exceptionalScales?: {
+        reference: number;
+        exceptionalRules: {
+          reference: number;
+          priceExcludingTaxOrPriceRate: null | number;
+          grossCostOrSalaryRate: null | number;
+        }[];
+      }[];
+      informationComments?: string;
+      currency?: number;
+      currencyAgency?: number;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+      calendar?: string;
+      activityRate?: number;
+      partialWorkTimes?: string[];
+      isPartialWorkTimeEvenOdd?: boolean;
+    };
+    relationships: {
+      dependsOn:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          };
+      /**
+       * Contract's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      /**
+       * Contract's parent
+       */
+      parentContract?: {
+        data: {
+          id: string;
+          type: "contract";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Contract's basic data sent in the body with a PUT method
+ */
+export interface SchemasContractsBodyPutJson {
+  data: {
+    id: string;
+    type: "contract";
+    attributes?: {
+      typeOf?: number;
+      employeeType?: number;
+      workingTimeType?: number;
+      numberOfHoursPerWeek?: number;
+      classification?: string;
+      startDate?: string;
+      endDate?: string;
+      probationState?: number;
+      probationEndDate?: string;
+      renewalProbationEndDate?: string;
+      monthlySalary?: number;
+      hourlySalary?: number;
+      forceHourlySalary?: boolean;
+      forceContractAverageDailyProductionCost?: boolean;
+      /**
+       * Can be updated only if `forceContractAverageDailyProductionCost` = true or the contract depends on an external resource
+       */
+      contractAverageDailyProductionCost?: number;
+      /**
+       * Can be updated only if `expensesDetails` is not empty
+       */
+      dailyExpenses?: number;
+      /**
+       * Can be updated only if `expensesDetails` is not empty
+       */
+      monthlyExpenses?: number;
+      numberOfWorkingDays?: number;
+      chargeFactor?: number;
+      /**
+       * List of expenses details
+       */
+      expensesDetails?: (
+        | {
+            expenseType: {
+              reference: number;
+            };
+            periodicity: "daily" | "monthly";
+            netAmount: number;
+          }
+        | {
+            id: string;
+            expenseType: {
+              reference: number;
+            };
+            periodicity: "daily" | "monthly";
+            netAmount: number;
+          }
+      )[];
+      /**
+       * List of advantages
+       */
+      advantageTypes?: {
+        reference: number;
+      }[];
+      /**
+       * List of exceptional scales
+       */
+      exceptionalScales?: {
+        reference: number;
+        exceptionalRules: {
+          reference: number;
+          priceExcludingTaxOrPriceRate: null | number;
+          grossCostOrSalaryRate: null | number;
+        }[];
+      }[];
+      informationComments?: string;
+      currency?: number;
+      currencyAgency?: number;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+      calendar?: string;
+      activityRate?: number;
+      partialWorkTimes?: string[];
+      isPartialWorkTimeEvenOdd?: boolean;
+    };
+  };
+}
+
