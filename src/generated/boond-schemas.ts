@@ -23664,3 +23664,158 @@ export interface SchemasGroupmentsBodyPutJson {
   };
 }
 
+
+// ─── tasks ───
+/**
+ * Task data
+ */
+export interface SchemasTasksProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "task";
+    attributes?: {
+      description?: string;
+      row?: number;
+      state?: boolean;
+      validatedAt?: number;
+      validatedBy?: {
+        id?: string;
+        firstName?: string;
+        lastName?: string;
+      };
+    };
+    relationships?: {
+      /**
+       * List of children tasks
+       */
+      children?: {
+        data: {
+          id: string;
+          type: "task";
+        }[];
+      };
+      /**
+       * Task's todolist
+       */
+      todolist?: {
+        data: {
+          id: string;
+          type: "todolist";
+        }[];
+      };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "company";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "invoice";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "payment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "positioning";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "order";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "quotation";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "appentity";
+            };
+          };
+    };
+  };
+  uniqueItems?: unknown;
+}
+
