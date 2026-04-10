@@ -40,6 +40,11 @@ const MODULES = [
   "notifications",
   "validations",
   "roles",
+  // Additional modules (phase 4)
+  "times",
+  "payments",
+  "accounts",
+  "contacts",
   // Note: "logs" schema has a malformed comment that crashes json-schema-to-typescript
   // Skip for now — can be added later if/when Boond fixes the schema
 ] as const;

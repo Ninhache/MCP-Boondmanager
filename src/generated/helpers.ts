@@ -6,17 +6,20 @@
 
 import type {
   SchemasAbsencesSearchJson,
+  SchemasAccountsSearchJson,
   SchemasActionsSearchJson,
   SchemasAgenciesSearchJson,
   SchemasCalendarsSearchJson,
   SchemasCandidatesSearchJson,
   SchemasCompaniesSearchJson,
+  SchemasContactsSearchJson,
   SchemasDashboardsSearchJson,
   SchemasExpensesSearchJson,
   SchemasInvoicesSearchJson,
   SchemasNotificationsSearchJson,
   SchemasOpportunitiesSearchJson,
   SchemasOrdersSearchJson,
+  SchemasPaymentsSearchJson,
   SchemasPolesSearchJson,
   SchemasPositioningsSearchJson,
   SchemasProductsSearchJson,
@@ -24,6 +27,7 @@ import type {
   SchemasPurchasesSearchJson,
   SchemasResourcesSearchJson,
   SchemasRolesSearchJson,
+  SchemasTimesSearchJson,
   SchemasValidationsSearchJson,
 } from "./boond-schemas.js";
 
@@ -63,6 +67,12 @@ export type DashboardAttributes = ExtractAttributes<SchemasDashboardsSearchJson>
 export type NotificationAttributes = ExtractAttributes<SchemasNotificationsSearchJson>;
 export type ValidationAttributes = ExtractAttributes<SchemasValidationsSearchJson>;
 export type RoleAttributes = ExtractAttributes<SchemasRolesSearchJson>;
+
+// Additional modules (phase 4)
+export type TimeAttributes = ExtractAttributes<SchemasTimesSearchJson>;
+export type PaymentAttributes = ExtractAttributes<SchemasPaymentsSearchJson>;
+export type AccountAttributes = ExtractAttributes<SchemasAccountsSearchJson>;
+export type ContactAttributes = ExtractAttributes<SchemasContactsSearchJson>;
 
 /**
  * Generic typed Boond list response.
