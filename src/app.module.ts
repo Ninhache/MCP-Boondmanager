@@ -5,6 +5,7 @@ import { AbsencesReportsModule } from "./modules/absences-reports/absences-repor
 import { AccountsModule } from "./modules/accounts/accounts.module.js";
 import { ActionsModule } from "./modules/actions/actions.module.js";
 import { AgenciesModule } from "./modules/agencies/agencies.module.js";
+import { BillingDetailsModule } from "./modules/billing-details/billing-details.module.js";
 import { BoondModule } from "./modules/boond/boond.module.js";
 import { BusinessUnitsModule } from "./modules/business-units/business-units.module.js";
 import { CalendarsModule } from "./modules/calendars/calendars.module.js";
@@ -42,6 +43,7 @@ const DOMAIN_MODULES = [
   AbsencesReportsModule,
   ActionsModule,
   BusinessUnitsModule,
+  BillingDetailsModule,
   // Commercial / financial
   PositioningsModule,
   PurchasesModule,

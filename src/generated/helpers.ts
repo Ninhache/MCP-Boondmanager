@@ -10,6 +10,7 @@ import type {
   SchemasAccountsSearchJson,
   SchemasActionsSearchJson,
   SchemasAgenciesSearchJson,
+  SchemasBillingDetailsSearchJson,
   SchemasBusinessUnitsSearchJson,
   SchemasCalendarsSearchJson,
   SchemasCandidatesSearchJson,
@@ -81,6 +82,7 @@ export type ContactAttributes = ExtractAttributes<SchemasContactsSearchJson>;
 export type AbsencesReportAttributes = ExtractAttributes<SchemasAbsencesReportsSearchJson>;
 export type BusinessUnitAttributes = ExtractAttributes<SchemasBusinessUnitsSearchJson>;
 export type ExpensesReportAttributes = ExtractAttributes<SchemasExpensesReportsSearchJson>;
+export type BillingDetailAttributes = ExtractAttributes<SchemasBillingDetailsSearchJson>;
 
 /**
  * Generic typed Boond list response.
