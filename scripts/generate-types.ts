@@ -90,6 +90,10 @@ const MODULES: readonly ModuleSpec[] = [
       "signatureBodyPost",
     ],
   },
+  {
+    name: "providerInvoices",
+    schemas: ["search", "profile", "default", "rights", "activityExpenses", "bodyPost", "bodyPut"],
+  },
   // Note: "logs" schema has a malformed comment that crashes json-schema-to-typescript
 ];
 

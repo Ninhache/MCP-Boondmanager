@@ -10164,3 +10164,977 @@ export interface SchemasTimesReportsSignatureBodyPostJson {
   };
 }
 
+
+// ─── providerInvoices ───
+/**
+ * List of provider invoices
+ */
+export interface SchemasProviderInvoicesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+      amountExcludingTax?: number;
+      amountIncludingTax?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "providerinvoice";
+    attributes?: {
+      creationDate?: string;
+      invoiceDate?: string;
+      paidDate?: string;
+      reference?: string;
+      state?: number;
+      stateReason?: {
+        typeOf?: number;
+        detail?: string;
+      };
+      currency?: number;
+      currencyAgency?: number;
+      dueDate?: string;
+      amountExcludingTax?: number;
+      amountIncludingTax?: number;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+      /**
+       * Payments state
+       */
+      paymentState?: 0 | 1 | 2;
+      canReadProviderInvoice?: boolean;
+      source?: number;
+      vatNumber?: string;
+      isCreditNote?: boolean;
+    };
+    relationships?: {
+      /**
+       * Provider invoice's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Provider invoice's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Provider invoice's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      pole?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+      document?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "providerinvoicedocument";
+            };
+          };
+      providerContact?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          };
+      providerCompany?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "company";
+            };
+          };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          typeOf?: number;
+          /**
+           * If false then resource is not accessible
+           */
+          canReadResource?: boolean;
+        };
+      }
+    | {
+        id: string;
+        type: "providerinvoicedocument";
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Provider invoice's basic data
+ */
+export interface SchemasProviderInvoicesProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    /**
+     * true if ai parsing is enabled
+     */
+    isParsingEnabled?: boolean;
+  };
+  data: {
+    id: string;
+    type: "providerinvoice";
+    attributes?: {
+      reference?: string;
+      state?: number;
+      /**
+       * Payments state
+       */
+      paymentState?: 0 | 1 | 2;
+      stateReason?: {
+        typeOf?: number;
+        detail?: string;
+      };
+      creationDate?: string;
+      invoiceDate?: string;
+      startDate?: string;
+      updateDate?: string;
+      endDate?: string;
+      paidDate?: string;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+      currency?: number;
+      currencyAgency?: number;
+      amountExcludingTax?: number;
+      amountIncludingTax?: number;
+      payments?: {
+        id: string;
+        state: number;
+        number: string;
+        expectedDate: string;
+        amountExcludingTax: number;
+        /**
+         * If false then payment is not accessible
+         */
+        canReadPayment: boolean;
+        purchase: {
+          id: string;
+          title: string;
+          reference: string;
+          currency: number;
+          currencyAgency: number;
+          exchangeRate: number;
+          exchangeRateAgency: number;
+          project: {
+            id: string;
+            reference: string;
+          };
+          delivery: {
+            id: string;
+            title: string;
+          };
+        };
+      }[];
+      vatNumber?: string;
+      source?: number;
+      dueDate?: string;
+      isCreditNote?: boolean;
+      /**
+       * Does provider invoice have additional attachments
+       */
+      hasAttachment?: boolean;
+    };
+    relationships?: {
+      /**
+       * Provider invoice's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Provider invoice's creator
+       */
+      createdBy?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Provider invoice's mainManager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Provider invoice's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      pole?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+      document?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "providerinvoicedocument";
+            };
+          };
+      providerCompany?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "company";
+            };
+          };
+      providerContact?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          };
+      billingDetail?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "billingdetail";
+            };
+          };
+      /**
+       * Provider invoice's attachments
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "providerinvoicedocument";
+        }[];
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+          typeOf?: number;
+        };
+        relationships?: {
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "providerinvoicedocument";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "providerinvoicedocument";
+        attributes?: {
+          name: string;
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+          vatNumber?: string;
+          /**
+           * List of billing details (simplified for provider invoice)
+           */
+          billingDetails?: {
+            id: string;
+            name: string;
+            contact: string;
+            phone1: string;
+            emails: unknown[];
+            address1: string;
+            address2: string;
+            address3: string;
+            postcode: string;
+            town: string;
+            country: string;
+            state: boolean;
+          }[];
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Empty provider invoice's basic data
+ */
+export interface SchemasProviderInvoicesDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    /**
+     * true if ai parsing is enabled
+     */
+    isParsingEnabled?: boolean;
+  };
+  data: {
+    id: "0";
+    type: "providerinvoice";
+    attributes?: {
+      reference?: string;
+      state?: number;
+      /**
+       * Payments state
+       */
+      paymentState?: 0 | 1 | 2;
+      invoiceDate?: string;
+      startDate?: string;
+      endDate?: string;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+      currency?: number;
+      currencyAgency?: number;
+      amountExcludingTax?: number;
+      amountIncludingTax?: number;
+    };
+    relationships?: {
+      /**
+       * Provider invoice's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Provider invoice's mainManager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Provider invoice's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      pole?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+          typeOf?: number;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          lastName?: string;
+          firstName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "pole";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Provider invoices rights
+ */
+export interface SchemasProviderInvoicesRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?:
+        | {
+            /**
+             * true if this action is available
+             */
+            share?: boolean;
+            /**
+             * true if this action is available
+             */
+            seeThreads?: boolean;
+            /**
+             * true if this action is available
+             */
+            seeLogs?: boolean;
+            /**
+             * true if this action is available
+             */
+            seePayments?: boolean;
+            /**
+             * true if this action is available
+             */
+            addPayment?: boolean;
+          }
+        | {
+            /**
+             * true if this action is available
+             *
+             * This interface was referenced by `undefined`'s JSON-Schema definition
+             * via the `patternProperty` "APP[0-9]+".
+             */
+            [k: string]: boolean;
+          };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        document?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        mainManager?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        pole?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        agency?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        resource?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Provider invoices activity expenses
+ */
+export interface SchemasProviderInvoicesActivityExpensesJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totalAmountExcludingTax?: number;
+  };
+  data: {
+    id?: string;
+    type?: "activityexpense";
+    attributes?: {
+      typeOf: "time_regular" | "time_exceptionalTime" | "time_exceptionalCalendar" | "expense";
+      quantity: number;
+      quantityUnit: "days" | "hours";
+      amountExcludingTax: number;
+      totalAmountExcludingTax: number;
+    };
+    relationships?: {
+      project?: {
+        data?: {
+          id?: string;
+          type?: "project";
+        };
+      };
+      delivery?: {
+        data?: {
+          id?: string;
+          type?: "delivery";
+        };
+      };
+    };
+  }[];
+  included?: (
+    | {
+        id?: string;
+        type?: "project";
+        attributes?: {
+          reference?: string;
+        };
+      }
+    | {
+        id?: string;
+        type?: "delivery";
+        attributes?: {
+          title?: string;
+        };
+        relationships?: {
+          /**
+           * Purchase on which delivery or slave depends
+           */
+          purchase?: {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          };
+          slave?: {
+            data?: {
+              id?: string;
+              type?: "delivery";
+            };
+          };
+        };
+        additionalProperties?: never;
+      }
+  )[];
+}
+
+/**
+ * Provider Invoices's information data sent in the body with a POST method
+ */
+export interface SchemasProviderInvoicesBodyPostJson {
+  data: {
+    type: "providerinvoice";
+    attributes?: {
+      invoiceDate?: string;
+      reference?: string;
+      state?: number;
+      stateReason?: {
+        typeOf?: number;
+        detail?: string;
+      };
+      startDate?: string;
+      endDate?: string;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      amountIncludingTax?: number;
+      amountExcludingTax?: number;
+      /**
+       * Temporary file ID to attach to provider invoice on create
+       */
+      tmpFile?: string;
+      payments?: {
+        state: number;
+        amountExcludingTax: number;
+        deliveryId: string;
+      }[];
+    };
+    relationships?: {
+      /**
+       * Provider Invoices's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Provider Invoices's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      pole?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+      /**
+       * Provider invoice's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      providerCompany?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "company";
+            };
+          };
+      providerContact?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          };
+      billingDetail?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "billingdetail";
+            };
+          };
+    };
+  };
+}
+
+/**
+ * Provider Invoices's information data sent in the body with a PUT method
+ */
+export interface SchemasProviderInvoicesBodyPutJson {
+  data: {
+    type: "providerinvoice";
+    attributes?: {
+      creationDate?: string;
+      invoiceDate?: string;
+      reference?: string;
+      state?: number;
+      stateReason?: {
+        typeOf?: number;
+        detail?: string;
+      };
+      startDate?: string;
+      endDate?: string;
+      currency?: number;
+      exchangeRate?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      amountIncludingTax?: number;
+      amountExcludingTax?: number;
+      payments?: {
+        state: number;
+        amountExcludingTax: number;
+        /**
+         * amountExcludingTax * (1 + taxRate / 100)
+         */
+        amountIncludingTax?: number;
+        taxRate?: number;
+        deliveryId: string;
+      }[];
+    };
+    relationships?: {
+      /**
+       * Provider Invoices's main manager
+       */
+      mainManager?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Provider Invoices's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      pole?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "pole";
+            };
+          };
+      providerCompany?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "company";
+            };
+          };
+      providerContact?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          };
+      billingDetail?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "billingdetail";
+            };
+          };
+    };
+  };
+}
+
