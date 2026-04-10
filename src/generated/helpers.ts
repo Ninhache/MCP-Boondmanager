@@ -50,6 +50,7 @@ import type {
   SchemasStandardProfilesSearchJson,
   SchemasTargetsProfileJson,
   SchemasTasksProfileJson,
+  SchemasTechnicalDatasProfileJson,
   SchemasThreadsSearchJson,
   SchemasTimesReportsSearchJson,
   SchemasTimesSearchJson,
@@ -129,6 +130,7 @@ export type FormAttributes = ExtractAttributes<SchemasFormsProfileJson>;
 export type FollowedDocumentAttributes = ExtractAttributes<SchemasFollowedDocumentsProfileJson>;
 export type GroupmentAttributes = ExtractAttributes<SchemasGroupmentsProfileJson>;
 export type TaskAttributes = ExtractAttributes<SchemasTasksProfileJson>;
+export type TechnicalDataAttributes = ExtractAttributes<SchemasTechnicalDatasProfileJson>;
 
 /**
  * Generic typed Boond list response.

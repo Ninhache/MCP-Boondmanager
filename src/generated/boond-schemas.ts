@@ -24876,3 +24876,982 @@ export interface SchemasConditionalFieldsBodyPutJson {
   };
 }
 
+
+// ─── technicalDatas ───
+/**
+ * Technical data's profile
+ */
+export interface SchemasTechnicalDatasProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "technicaldata";
+    attributes: {
+      updateDate?: string;
+      title?: string;
+      description?: string;
+      isReferent?: boolean;
+      /**
+       * Public link of Technical Data profile
+       */
+      tdLink?: string;
+      summary?: string;
+      skills?: string;
+      experience?: number;
+      training?: string;
+      languages?: {
+        language: string;
+        /**
+         * Language level {id}
+         */
+        level: string;
+      }[];
+      diplomas?: string[];
+      tools?: {
+        /**
+         * Tool {id}
+         */
+        tool: string;
+        /**
+         * Tool level
+         */
+        level: number;
+      }[];
+      activityAreas?: string[];
+      expertiseAreas?: string[];
+      /**
+       * List of references
+       */
+      references?: {
+        id: string;
+        title: string;
+        company?: string;
+        location?: string;
+        startMonth?: string;
+        startYear?: string;
+        endMonth?: string;
+        endYear?: string;
+        skills?: string;
+        description: string;
+        startDate?: string;
+        endDate?: string;
+      }[];
+    };
+    relationships?: {
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          thumbnail?: string;
+          email1?: string;
+          phone1?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          initials?: string;
+          firstName?: string;
+          lastName?: string;
+          town?: string;
+          country?: string;
+          availability?: string;
+          resourceCanModifyTechnicalData?: boolean;
+          numberOfResumes?: number;
+          /**
+           * @minItems 0
+           * @maxItems 4
+           */
+          socialNetworks?:
+            | []
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ];
+        };
+        relationships?: {
+          /**
+           * Technical data dependsOn's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          /**
+           * Technical data's dependsOn's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "candidate";
+        attributes?: {
+          initials?: string;
+          firstName?: string;
+          lastName?: string;
+          town?: string;
+          country?: string;
+          availability?: number | string;
+          numberOfResumes?: number;
+          /**
+           * @minItems 0
+           * @maxItems 4
+           */
+          socialNetworks?:
+            | []
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ];
+        };
+        relationships?: {
+          /**
+           * Technical data dependsOn's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          /**
+           * Technical data's dependsOn's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          code?: string;
+          /**
+           * Customer's absolute logo url
+           */
+          groupLogo?: string;
+          /**
+           * Sidebar color in hexadecimal format
+           */
+          technicalDataSidebarColor?: string;
+          /**
+           * Contact color in hexadecimal format
+           */
+          technicalDataContactColor?: string;
+          /**
+           * Title color in hexadecimal format
+           */
+          technicalDataTitleColor?: string;
+          /**
+           * Sidebar text color in hexadecimal format (#000000 for black, #FFFFFF for white)
+           */
+          technicalDataSidebarTextColor?: string;
+          /**
+           * Contact text color in hexadecimal format (#000000 for black, #FFFFFF for white)
+           */
+          technicalDataContactTextColor?: string;
+          /**
+           * Technical data logo
+           */
+          technicalDataLogo?: string;
+          /**
+           * Font family
+           */
+          technicalDataFontFamily?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Empty technical data's basic data
+ */
+export interface SchemasTechnicalDatasDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    ai?: {
+      /**
+       * Number of AI requests left
+       */
+      quota?: number;
+    };
+    /**
+     * Parsing engine used to parse the resume (james_ai, hrflow, mindee, etc.)
+     */
+    parsingEngine?: string | null;
+  };
+  data: {
+    id: "0";
+    type: "technicaldata";
+    attributes?: {
+      title?: string;
+      description?: string;
+      isReferent?: boolean;
+      summary?: string;
+      skills?: string;
+      experience?: number;
+      training?: string;
+      languages?: {
+        language: string;
+        /**
+         * Language level {id}
+         */
+        level: string;
+      }[];
+      diplomas?: string[];
+      tools?: {
+        /**
+         * Tool {id}
+         */
+        tool: string;
+        /**
+         * Tool level
+         */
+        level: number;
+      }[];
+      activityAreas?: string[];
+      expertiseAreas?: string[];
+      /**
+       * List of references
+       */
+      references?: {
+        id: string;
+        title: string;
+        company?: string;
+        location?: string;
+        startMonth?: string;
+        startYear?: string;
+        endMonth?: string;
+        endYear?: string;
+        skills?: string;
+        description: string;
+        startDate?: string;
+        endDate?: string;
+      }[];
+      /**
+       * Indicates if the technical data was created from a resume
+       */
+      createdFromResume?: boolean;
+    };
+    relationships?: {
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          thumbnail?: string;
+          email1?: string;
+          phone1?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          town?: string;
+          country?: string;
+          availability?: string;
+          /**
+           * @minItems 0
+           * @maxItems 4
+           */
+          socialNetworks?:
+            | []
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ];
+        };
+      }
+    | {
+        id: string;
+        type: "candidate";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          town?: string;
+          country?: string;
+          availability?: number | string;
+          /**
+           * @minItems 0
+           * @maxItems 4
+           */
+          socialNetworks?:
+            | []
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ]
+            | [
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                },
+                {
+                  network: "facebook" | "viadeo" | "linkedin" | "x";
+                  url: string;
+                }
+              ];
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          code?: string;
+          /**
+           * Customer's absolute logo url
+           */
+          groupLogo?: string;
+          /**
+           * Sidebar color in hexadecimal format
+           */
+          technicalDataSidebarColor?: string;
+          /**
+           * Contact color in hexadecimal format
+           */
+          technicalDataContactColor?: string;
+          /**
+           * Title color in hexadecimal format
+           */
+          technicalDataTitleColor?: string;
+          /**
+           * Sidebar text color in hexadecimal format (#000000 for black, #FFFFFF for white)
+           */
+          technicalDataSidebarTextColor?: string;
+          /**
+           * Contact text color in hexadecimal format (#000000 for black, #FFFFFF for white)
+           */
+          technicalDataContactTextColor?: string;
+          /**
+           * Technical data logo
+           */
+          technicalDataLogo?: string;
+          /**
+           * Font family
+           */
+          technicalDataFontFamily?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Technical data's sent in the body with a POST method
+ */
+export interface SchemasTechnicalDatasBodyPostJson {
+  data: {
+    type: "technicaldata";
+    attributes?: {
+      title?: string;
+      description?: string;
+      summary?: string;
+      skills?: string;
+      experience?: number;
+      training?: string;
+      languages?: {
+        language: string;
+        /**
+         * Language level {id}
+         */
+        level: string;
+      }[];
+      diplomas?: string[];
+      tools?: {
+        /**
+         * Tool {id}
+         */
+        tool: string;
+        /**
+         * Tool level
+         */
+        level: number;
+      }[];
+      activityAreas?: string[];
+      expertiseAreas?: string[];
+      /**
+       * List of references
+       */
+      references?: {
+        id: string;
+        title: string;
+        company?: string;
+        location?: string;
+        startMonth?: string;
+        startYear?: string;
+        endMonth?: string;
+        endYear?: string;
+        skills?: string;
+        description: string;
+        startDate?: string;
+        endDate?: string;
+      }[];
+    };
+    relationships?: {
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          };
+    };
+  };
+}
+
+/**
+ * Technical data's sent in the body with a PUT method
+ */
+export interface SchemasTechnicalDatasBodyPutJson {
+  data: {
+    type: "technicaldata";
+    attributes?: {
+      title?: string;
+      description?: string;
+      summary?: string;
+      skills?: string;
+      experience?: number;
+      training?: string;
+      languages?: {
+        language: string;
+        /**
+         * Language level {id}
+         */
+        level: string;
+      }[];
+      diplomas?: string[];
+      tools?: {
+        /**
+         * Tool {id}
+         */
+        tool: string;
+        /**
+         * Tool level
+         */
+        level: number;
+      }[];
+      activityAreas?: string[];
+      expertiseAreas?: string[];
+      /**
+       * List of references
+       */
+      references?: {
+        id: string;
+        title: string;
+        company?: string;
+        location?: string;
+        startMonth?: string;
+        startYear?: string;
+        endMonth?: string;
+        endYear?: string;
+        skills?: string;
+        description: string;
+        startDate?: string;
+        endDate?: string;
+      }[];
+      isReferent?: boolean;
+      /**
+       * true to create public link of technical data profile
+       */
+      createLink?: boolean;
+      /**
+       * true to delete public link of technical data profile
+       */
+      deleteLink?: boolean;
+      resourceCanModifyTechnicalData?: boolean;
+    };
+    relationships?: {
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          };
+    };
+  };
+}
+
+/**
+ * Technical data's sent in the body with a PUT method
+ */
+export interface SchemasTechnicalDatasResumeBodyPutJson {
+  data: {
+    type: "technicaldata";
+    attributes?: {
+      resume?: string;
+    };
+  };
+}
+
+/**
+ * Public Technical File
+ */
+export interface SchemasTechnicalDatasVisitorAccessJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    availabilityTypes?: {
+      id?: number;
+      isEnabled?: boolean;
+      value?: string;
+    }[];
+    availableTools?: {
+      id?: string;
+      isEnabled?: boolean;
+      value?: string;
+    }[];
+    languageLevel?: {
+      id?: string;
+      isEnabled?: boolean;
+      value?: string;
+    }[];
+    languageSpoken?: {
+      id?: string;
+      isEnabled?: boolean;
+      value?: string;
+    }[];
+    activityArea?: {
+      id?: string;
+      option?: {
+        id?: string;
+        isEnabled?: boolean;
+        value?: string;
+      }[];
+      isEnabled?: boolean;
+      value?: string;
+    }[];
+  };
+  data: {
+    id: string;
+    type: "technicaldata";
+    attributes: {
+      title?: string;
+      summary?: string;
+      skills?: string;
+      experience?: number;
+      training?: string;
+      languages?: {
+        language: string;
+        /**
+         * Language level {id}
+         */
+        level: string;
+      }[];
+      diplomas?: string[];
+      tools?: {
+        /**
+         * Tool {id}
+         */
+        tool: string;
+        /**
+         * Tool level
+         */
+        level: number;
+      }[];
+      activityAreas?: string[];
+      expertiseAreas?: string[];
+      /**
+       * List of references
+       */
+      references?: {
+        id: string;
+        title: string;
+        company?: string;
+        location?: string;
+        startMonth?: string;
+        startYear?: string;
+        endMonth?: string;
+        endYear?: string;
+        skills?: string;
+        description: string;
+        startDate?: string;
+        endDate?: string;
+      }[];
+    };
+    relationships?: {
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+              attributes?: {
+                town?: string;
+                country?: string;
+                availability?: string;
+                initials?: string;
+              };
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+              attributes?: {
+                town?: string;
+                country?: string;
+                availability?: number | string;
+                initials?: string;
+              };
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+    };
+  };
+  included?: {
+    id: string;
+    type: "agency";
+    attributes?: {
+      /**
+       * Customer's absolute logo url
+       */
+      groupLogo?: string;
+      /**
+       * Sidebar color in hexadecimal format
+       */
+      technicalDataSidebarColor?: string;
+      /**
+       * Contact color in hexadecimal format
+       */
+      technicalDataContactColor?: string;
+      /**
+       * Title color in hexadecimal format
+       */
+      technicalDataTitleColor?: string;
+      /**
+       * Sidebar text color in hexadecimal format (#000000 for black, #FFFFFF for white)
+       */
+      technicalDataSidebarTextColor?: string;
+      /**
+       * Contact text color in hexadecimal format (#000000 for black, #FFFFFF for white)
+       */
+      technicalDataContactTextColor?: string;
+      /**
+       * Technical data logo
+       */
+      technicalDataLogo?: string;
+      /**
+       * Font family
+       */
+      technicalDataFontFamily?: string;
+    };
+  }[];
+}
+
