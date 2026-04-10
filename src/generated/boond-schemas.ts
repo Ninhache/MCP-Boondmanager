@@ -20784,3 +20784,302 @@ export interface SchemasDocumentsProfileBodyPutJson {
   };
 }
 
+
+// ─── savedsearches ───
+/**
+ * List of current user saved search
+ */
+export interface SchemasSavedsearchesSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+  };
+  data: {
+    id: string;
+    type: "savedsearch";
+    attributes?: {
+      module?: string;
+      name?: string;
+      params?: {
+        [k: string]: unknown;
+      };
+      /**
+       * Sharing object
+       */
+      share?: {
+        /**
+         * Share with all agencies and given resource types
+         */
+        allAgenciesTypesOf?: (string | number)[];
+        /**
+         * Share with given agencies and given resource types
+         */
+        agenciesTypesOf?:
+          | []
+          | [
+              {
+                agency?: {
+                  id?: string;
+                  name?: string;
+                };
+                typesOf?: (string | number)[];
+              }
+            ];
+        /**
+         * Share with given resources
+         */
+        resources?:
+          | []
+          | [
+              {
+                id?: string;
+                firstName?: string;
+                lastName?: string;
+              }
+            ];
+        /**
+         * Number of sharings
+         */
+        numberOfSharings?: number;
+        [k: string]: unknown;
+      };
+      date?: string;
+      dateUpdate?: string;
+    };
+    relationships?: {
+      createdBy: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  }[];
+  included?: {
+    id: string;
+    type: "resource";
+    attributes?: {
+      lastName?: string;
+      firstName?: string;
+    };
+  }[];
+}
+
+/**
+ * User's saved search
+ */
+export interface SchemasSavedsearchesProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "savedsearch";
+    attributes?: {
+      module?: string;
+      name?: string;
+      params?: {
+        [k: string]: unknown;
+      };
+      /**
+       * Sharing object
+       */
+      share?: {
+        /**
+         * Share with all agencies and given resource types
+         */
+        allAgenciesTypesOf?: (string | number)[];
+        /**
+         * Share with given agencies and given resource types
+         */
+        agenciesTypesOf?:
+          | []
+          | [
+              {
+                agency?: {
+                  id?: string;
+                  name?: string;
+                };
+                typesOf?: (string | number)[];
+              }
+            ];
+        /**
+         * Share with given resources
+         */
+        resources?:
+          | []
+          | [
+              {
+                id?: string;
+                firstName?: string;
+                lastName?: string;
+              }
+            ];
+        /**
+         * Number of sharings
+         */
+        numberOfSharings?: number;
+        [k: string]: unknown;
+      };
+    };
+    relationships?: {
+      createdBy?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+  included?: {
+    id: string;
+    type: "resource";
+    attributes?: {
+      lastName?: string;
+      firstName?: string;
+    };
+  }[];
+}
+
+/**
+ * User's saved search data sent in the body with a POST method
+ */
+export interface SchemasSavedsearchesBodyPostJson {
+  data: {
+    type: "savedsearch";
+    attributes?: {
+      module: string;
+      name: string;
+      params?: {
+        [k: string]: unknown;
+      };
+      /**
+       * Sharing object
+       */
+      share?: {
+        /**
+         * Share with all agencies and given resource types
+         */
+        allAgenciesTypesOf?: (string | number)[];
+        /**
+         * Share with given agencies and given resource types
+         */
+        agenciesTypesOf?:
+          | []
+          | [
+              {
+                agency?: {
+                  id?: string;
+                };
+                typesOf?: (string | number)[];
+              }
+            ];
+        /**
+         * Share with given resources
+         */
+        resources?:
+          | []
+          | [
+              {
+                id?: string;
+              }
+            ];
+        [k: string]: unknown;
+      };
+    };
+    relationships?: {
+      createdBy: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * User's saved search data sent in the body with a PUT method
+ */
+export interface SchemasSavedsearchesBodyPutJson {
+  data: {
+    id: string;
+    type: "savedsearch";
+    attributes?: {
+      name?: string;
+      params?: {
+        [k: string]: unknown;
+      };
+      /**
+       * Sharing object
+       */
+      share?: {
+        /**
+         * Share with all agencies and given resource types
+         */
+        allAgenciesTypesOf?: (string | number)[];
+        /**
+         * Share with given agencies and given resource types
+         */
+        agenciesTypesOf?:
+          | []
+          | [
+              {
+                agency?: {
+                  id?: string;
+                };
+                typesOf?: (string | number)[];
+              }
+            ];
+        /**
+         * Share with given resources
+         */
+        resources?:
+          | []
+          | [
+              {
+                id?: string;
+              }
+            ];
+        [k: string]: unknown;
+      };
+    };
+    relationships?: {
+      createdBy: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  };
+}
+
