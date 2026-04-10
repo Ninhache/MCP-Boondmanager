@@ -15431,3 +15431,857 @@ export interface SchemasInactivitiesBodyPutJson {
   };
 }
 
+
+// ─── advantages ───
+/**
+ * Advantage's basic data
+ */
+export interface SchemasAdvantagesProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "advantage";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      date?: string;
+      returnDate?: string;
+      advantageType?: {
+        reference: number;
+        name?: string;
+        frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+        category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+        participationQuota: number;
+        agencyQuota: number;
+        employeeQuota: number;
+      };
+      quantity?: number;
+      participationAmount?: number;
+      agencyAmount?: number;
+      employeeAmount?: number;
+      /**
+       * employeeAmount * quantity
+       */
+      costPaid?: number;
+      costCharged?: number;
+      informationComments?: string;
+      currency?: number;
+      currencyAgency?: number;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+      /**
+       * Define if advantage is closed for agency
+       */
+      closed?: boolean;
+    };
+    relationships?: {
+      /**
+       * Advantage's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      contract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+      project?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+      /**
+       * Advantage's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      delivery?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          };
+    };
+  };
+  /**
+   * @minItems 1
+   */
+  included?: [
+    (
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            typeOf?: number;
+          };
+          relationships?: {
+            mainManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "project";
+          attributes?: {
+            reference?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            monthlySalary?: number;
+          };
+        }
+      | {
+          id: string;
+          type: "delivery";
+          relationships?: {
+            contract?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "delivery";
+                  };
+                };
+          };
+        }
+    ),
+    ...(
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            typeOf?: number;
+          };
+          relationships?: {
+            mainManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "project";
+          attributes?: {
+            reference?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            monthlySalary?: number;
+          };
+        }
+      | {
+          id: string;
+          type: "delivery";
+          relationships?: {
+            contract?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "delivery";
+                  };
+                };
+          };
+        }
+    )[]
+  ];
+}
+
+/**
+ * Empty action's default basic data
+ */
+export interface SchemasAdvantagesDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "advantage";
+    attributes?: {
+      advantageType?: {
+        reference: number;
+        name?: string;
+        frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+        category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+        participationQuota: number;
+        agencyQuota: number;
+        employeeQuota: number;
+      };
+      participationAmount?: number;
+      agencyAmount?: number;
+      employeeAmount?: number;
+      currency?: number;
+      currencyAgency?: number;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+    };
+    relationships?: {
+      /**
+       * Advantage's resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      contract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+      project?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+      /**
+       * Advantage's agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      delivery?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          };
+    };
+  };
+  /**
+   * @minItems 1
+   */
+  included?: [
+    (
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            typeOf?: number;
+          };
+          relationships?: {
+            mainManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "project";
+          attributes?: {
+            reference?: string;
+            currencyAgency?: number;
+            exchangeRateAgency?: number;
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            /**
+             * Agency's advantage types
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            monthlySalary?: number;
+            /**
+             * List of advantages
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+              default?: boolean;
+              state?: boolean;
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "delivery";
+          attributes?: {
+            /**
+             * List of advantages
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+              /**
+               * Agency on which advantage type depends
+               */
+              agency: {
+                id: string;
+                name: string;
+              };
+            }[];
+          };
+        }
+    ),
+    ...(
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            typeOf?: number;
+          };
+          relationships?: {
+            mainManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            hrManager?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+          };
+        }
+      | {
+          id: string;
+          type: "project";
+          attributes?: {
+            reference?: string;
+            currencyAgency?: number;
+            exchangeRateAgency?: number;
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            /**
+             * Agency's advantage types
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            monthlySalary?: number;
+            /**
+             * List of advantages
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+              default?: boolean;
+              state?: boolean;
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "delivery";
+          attributes?: {
+            /**
+             * List of advantages
+             */
+            advantageTypes?: {
+              reference: number;
+              name: string;
+              frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+              category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+              participationQuota: number;
+              agencyQuota: number;
+              employeeQuota: number;
+              /**
+               * Agency on which advantage type depends
+               */
+              agency: {
+                id: string;
+                name: string;
+              };
+            }[];
+          };
+        }
+    )[]
+  ];
+}
+
+/**
+ * Advantage's rights
+ */
+export interface SchemasAdvantagesRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        date?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        returnDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        quantity?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        participationAmount?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        agencyAmount?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        employeeAmount?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        costPaid?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        costCharged?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        currency?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        currencyAgency?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        exchangeRate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        exchangeRateAgency?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        project?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Action's basic data sent in the body with a POST method
+ */
+export interface SchemasAdvantagesBodyPostJson {
+  data: {
+    type: "advantage";
+    attributes?: {
+      date?: string;
+      returnDate?: string;
+      advantageType: {
+        reference: number;
+        name?: string;
+        frequency: "punctual" | "daily" | "monthly" | "quarterly" | "semiAnnual" | "annual";
+        category: "fixedAmount" | "variableSalaryBasis" | "package" | "loan";
+        participationQuota: number;
+        agencyQuota: number;
+        employeeQuota: number;
+      };
+      quantity?: number;
+      participationAmount?: number;
+      agencyAmount?: number;
+      employeeAmount?: number;
+      informationComments?: string;
+      currency?: number;
+      currencyAgency?: number;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+    };
+    relationships: {
+      /**
+       * Advantage's resource
+       */
+      resource: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      contract?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          };
+      project?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+      delivery?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          };
+    };
+  };
+}
+
+/**
+ * Advantage's basic data sent in the body with a PUT method
+ */
+export interface SchemasAdvantagesBodyPutJson {
+  data: {
+    id: string;
+    type: "advantage";
+    attributes?: {
+      date?: string;
+      returnDate?: string;
+      quantity?: number;
+      participationAmount?: number;
+      agencyAmount?: number;
+      employeeAmount?: number;
+      informationComments?: string;
+      currency?: number;
+      currencyAgency?: number;
+      exchangeRate?: number;
+      exchangeRateAgency?: number;
+    };
+  };
+}
+
