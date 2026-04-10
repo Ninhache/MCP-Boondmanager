@@ -22783,3 +22783,884 @@ export interface SchemasFormsTasksJson {
   )[];
 }
 
+
+// ─── groupments ───
+/**
+ * Groupment's basic data
+ */
+export interface SchemasGroupmentsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "groupment";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      /**
+       * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+       */
+      averageDailyPriceExcludingTax?: number;
+      averageDailyCost?: number;
+      numberOfDaysInvoicedOrQuantity?: number;
+      numberOfDaysFree?: number;
+      informationComments?: string;
+      /**
+       * Sum of all turnover on delivery & additional data excluding tax
+       */
+      turnoverSimulatedExcludingTax?: number;
+      /**
+       * Sum of all costs on delivery & additional data excluding tax
+       */
+      costsSimulatedExcludingTax?: number;
+      /**
+       * turnoverSimulatedExcludingTax - costsSimulatedExcludingTax
+       */
+      marginSimulatedExcludingTax?: number;
+      /**
+       * 100 * marginSimulatedExcludingTax / turnoverSimulatedExcludingTax
+       */
+      profitabilitySimulated?: number;
+      loadDistribution?: "manual" | "proportional" | "weighted";
+      /**
+       * Groupment's deliveries
+       */
+      deliveries?: {
+        /**
+         * Delivery on which groupment depends
+         */
+        delivery: {
+          id: string;
+          title: string;
+          startDate: string;
+          endDate: string;
+          /**
+           * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+           */
+          averageDailyPriceExcludingTax?: number;
+          averageDailyCost: number;
+          additionalTurnoverExcludingTax?: number;
+          additionalCostsExcludingTax?: number;
+          dependsOn?: {
+            id: string;
+            firstName: string;
+            lastName: string;
+          };
+          groupment?:
+            | {
+                data: null;
+              }
+            | {
+                id: string;
+              };
+          /**
+           * Master delivery on which delivery depends
+           */
+          master?: {
+            data: {
+              id: string;
+            };
+          };
+          /**
+           * Slave delivery on which delivery depends
+           */
+          slave?: {
+            data: {
+              id: string;
+            };
+          };
+        };
+        weighting: number;
+        schedule: number;
+      }[];
+      creationDate?: string;
+      updateDate?: string;
+    };
+    relationships?: {
+      /**
+       * Groupment's project
+       */
+      project?: {
+        data: {
+          id: string;
+          type: "project";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      /**
+       * List of groupment's files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "document";
+        }[];
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "standardprofile";
+        attributes?: {
+          title?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          calendar?: string;
+          exchangeRate?: number;
+          currency?: number;
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          title?: string;
+          startDate?: string;
+          endDate?: string;
+          averageDailyCost?: number;
+          /**
+           * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+           */
+          averageDailyPriceExcludingTax?: number;
+          additionalTurnoverExcludingTax?: number;
+          additionalCostsExcludingTax?: number;
+        };
+        relationships?: {
+          /**
+           * Delivery's resource
+           */
+          dependsOn?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          /**
+           * Delivery's groupment
+           */
+          groupment?: {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+          typeOf?: number;
+          mode?: number;
+          currency?: number;
+          exchangeRate?: number;
+          currencyAgency?: number;
+          exchangeRateAgency?: number;
+          workUnitRate?: number;
+        };
+        relationships?: {
+          /**
+           * Project's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          opportunity?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "opportunity";
+                };
+              };
+          /**
+           * Project's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          technical?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          /**
+           * List of groupment's deliveries available
+           */
+          deliveries?: {
+            data: {
+              id: string;
+              type: "delivery";
+            }[];
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "opportunity";
+        attributes?: {
+          title?: string;
+          reference?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+        relationships?: {
+          /**
+           * Technical contact's company
+           */
+          company?: {
+            data: {
+              id: string;
+              type: "company";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "document";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Groupment's basic data
+ */
+export interface SchemasGroupmentsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "groupment";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      loadDistribution?: "manual" | "proportional" | "weighted";
+    };
+    relationships?: {
+      /**
+       * Groupment's project
+       */
+      project?: {
+        data: {
+          id: string;
+          type: "project";
+        };
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+          calendar?: string;
+          exchangeRate?: number;
+          currency?: number;
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          title?: string;
+          startDate?: string;
+          endDate?: string;
+          averageDailyCost?: number;
+          /**
+           * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+           */
+          averageDailyPriceExcludingTax?: number;
+          additionalTurnoverExcludingTax?: number;
+          additionalCostsExcludingTax?: number;
+        };
+        relationships?: {
+          /**
+           * Delivery's resource
+           */
+          dependsOn?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          /**
+           * Delivery's groupment
+           */
+          groupment?: {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+          typeOf?: number;
+          mode?: number;
+          startDate?: string;
+          endDate?: string;
+          currency?: number;
+          exchangeRate?: number;
+          currencyAgency?: number;
+          exchangeRateAgency?: number;
+          workUnitRate?: number;
+        };
+        relationships?: {
+          /**
+           * Project's main manager
+           */
+          mainManager?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+          opportunity?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "opportunity";
+                };
+              };
+          /**
+           * Project's agency
+           */
+          agency?: {
+            data: {
+              id: string;
+              type: "agency";
+            };
+          };
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          technical?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          /**
+           * List of groupment's deliveries available
+           */
+          deliveries?: {
+            data: {
+              id: string;
+              type: "delivery";
+            }[];
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "opportunity";
+        attributes?: {
+          title?: string;
+          reference?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+        relationships?: {
+          /**
+           * Technical contact's company
+           */
+          company?: {
+            data: {
+              id: string;
+              type: "company";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Delivery's rights
+ */
+export interface SchemasGroupmentsRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+        /**
+         * true if this action is available
+         */
+        addDelivery?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+        /**
+         * true if this action is available
+         */
+        duplicate?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        startDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        endDate?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        files?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        averageDailyCost?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        averageDailyPriceExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        averageWorkUnitPriceExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        numberOfDaysInvoicedOrQuantity?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        numberOfWorkUnitsInvoicedOrQuantity?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        costsSimulatedExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        marginSimulatedExcludingTax?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        profitabilitySimulated?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        additionalTurnoverAndCosts?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Groupment's basic data sent in the body with a POST method
+ */
+export interface SchemasGroupmentsBodyPostJson {
+  data: {
+    type: "groupment";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      /**
+       * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+       */
+      averageDailyPriceExcludingTax?: number;
+      averageDailyCost?: number;
+      numberOfDaysInvoicedOrQuantity?: number;
+      informationComments?: string;
+      loadDistribution?: "manual" | "proportional" | "weighted";
+      /**
+       * Groupment's deliveries
+       */
+      deliveries?: {
+        /**
+         * Delivery on which groupment depends
+         */
+        delivery: {
+          id: string;
+          title: string;
+          startDate: string;
+          endDate: string;
+          /**
+           * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+           */
+          averageDailyPriceExcludingTax?: number;
+          averageDailyCost: number;
+          additionalTurnoverExcludingTax?: number;
+          additionalCostsExcludingTax?: number;
+          dependsOn?: {
+            id: string;
+            firstName: string;
+            lastName: string;
+          };
+          groupment?:
+            | {
+                data: null;
+              }
+            | {
+                id: string;
+              };
+          /**
+           * Master delivery on which delivery depends
+           */
+          master?: {
+            data: {
+              id: string;
+            };
+          };
+          /**
+           * Slave delivery on which delivery depends
+           */
+          slave?: {
+            data: {
+              id: string;
+            };
+          };
+        };
+        weighting: number;
+        schedule: number;
+      }[];
+    };
+    relationships: {
+      /**
+       * Groupment's project
+       */
+      project: {
+        data: {
+          id: string;
+          type: "project";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Groupment's basic data sent in the body with a PUT method
+ */
+export interface SchemasGroupmentsBodyPutJson {
+  data: {
+    id: string;
+    type: "groupment";
+    attributes?: {
+      startDate?: string;
+      endDate?: string;
+      title?: string;
+      /**
+       * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+       */
+      averageDailyPriceExcludingTax?: number;
+      averageDailyCost?: number;
+      numberOfDaysInvoicedOrQuantity?: number;
+      informationComments?: string;
+      loadDistribution?: "manual" | "proportional" | "weighted";
+      /**
+       * Groupment's deliveries
+       */
+      deliveries?: {
+        /**
+         * Delivery on which groupment depends
+         */
+        delivery: {
+          id: string;
+          title: string;
+          startDate: string;
+          endDate: string;
+          /**
+           * Can not be set if delivery depends on a `groupment` and `forceAverageDailyPriceExcludingTax` is false
+           */
+          averageDailyPriceExcludingTax?: number;
+          averageDailyCost: number;
+          additionalTurnoverExcludingTax?: number;
+          additionalCostsExcludingTax?: number;
+          dependsOn?: {
+            id: string;
+            firstName: string;
+            lastName: string;
+          };
+          groupment?:
+            | {
+                data: null;
+              }
+            | {
+                id: string;
+              };
+          /**
+           * Master delivery on which delivery depends
+           */
+          master?: {
+            data: {
+              id: string;
+            };
+          };
+          /**
+           * Slave delivery on which delivery depends
+           */
+          slave?: {
+            data: {
+              id: string;
+            };
+          };
+        };
+        weighting: number;
+        schedule: number;
+      }[];
+    };
+  };
+}
+
