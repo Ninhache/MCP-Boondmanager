@@ -45,6 +45,7 @@ import type {
   SchemasTargetsProfileJson,
   SchemasTimesReportsSearchJson,
   SchemasTimesSearchJson,
+  SchemasTodolistsSearchJson,
   SchemasValidationsSearchJson,
   SchemasWebhooksSearchJson,
 } from "./boond-schemas.js";
@@ -111,6 +112,7 @@ export type TargetAttributes = ExtractAttributes<SchemasTargetsProfileJson>;
 export type MarketplaceAttributes = ExtractAttributes<SchemasMarketplaceSearchJson>;
 export type DocumentAttributes = ExtractAttributes<SchemasDocumentsProfileJson>;
 export type SavedSearchAttributes = ExtractAttributes<SchemasSavedsearchesSearchJson>;
+export type TodolistAttributes = ExtractAttributes<SchemasTodolistsSearchJson>;
 
 /**
  * Generic typed Boond list response.
