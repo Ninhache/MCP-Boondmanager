@@ -1,10 +1,15 @@
 import { Injectable } from "@nestjs/common";
 import { Tool } from "@rekog/mcp-nest";
 import { z } from "zod";
+import type {
+  ActionAttributes,
+  BoondDetailResponse,
+  BoondListResponse,
+} from "../../generated/index.js";
 import { DEFAULT_PAGE_SIZE } from "../../utils/constants.js";
 import { handleBoondError } from "../../utils/error-handler.js";
 import { formatDetail, formatList, toTextContent } from "../../utils/formatters.js";
-import { BoondClient, type JsonApiResponse } from "../boond/index.js";
+import { BoondClient } from "../boond/index.js";
 
 @Injectable()
 export class ActionsTools {
@@ -37,7 +42,7 @@ export class ActionsTools {
     if (keywords) params.keywords = keywords;
 
     try {
-      const data = await this.boond.get<JsonApiResponse>("/actions", params);
+      const data = await this.boond.get<BoondListResponse<ActionAttributes>>("/actions", params);
       const formatted = formatList(data, ["name", "state", "startDate", "endDate", "typeOf"]);
       return { content: [toTextContent(formatted)] };
     } catch (error) {
@@ -54,7 +59,7 @@ export class ActionsTools {
   })
   async getAction({ id }: { id: number }) {
     try {
-      const data = await this.boond.get<JsonApiResponse>(`/actions/${id}`);
+      const data = await this.boond.get<BoondDetailResponse<ActionAttributes>>(`/actions/${id}`);
       const formatted = formatDetail(data);
       return { content: [toTextContent(formatted)] };
     } catch (error) {
