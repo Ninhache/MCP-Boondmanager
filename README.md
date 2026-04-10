@@ -179,7 +179,8 @@ src/
 │   ├── companies/              # list_companies, get_company
 │   ├── opportunities/          # list_opportunities, get_opportunity
 │   ├── absences/               # list_absences
-│   └── actions/                # list_actions, get_action
+│   ├── actions/                # list_actions, get_action
+│   └── mcp-extras/             # MCP Prompts and Resources
 └── utils/
     ├── constants.ts            # Shared constants
     ├── error-handler.ts        # LLM-friendly error mapping
