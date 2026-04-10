@@ -33,6 +33,7 @@
     "@modelcontextprotocol/sdk": "^1.29.0",
     "@nestjs/common": "^11.1.18",
     "@nestjs/core": "^11.1.18",
+    "@nestjs/platform-express": "^11.1.18",
     "@rekog/mcp-nest": "^1.9.9",
     "dotenv": "^17.4.1",
     "reflect-metadata": "^0.2.2",
