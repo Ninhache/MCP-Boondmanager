@@ -29,9 +29,12 @@ import { FlagsModule } from "./modules/flags/flags.module.js";
 import { FollowedDocumentsModule } from "./modules/followed-documents/followed-documents.module.js";
 import { FormsModule } from "./modules/forms/forms.module.js";
 import { GroupmentsModule } from "./modules/groupments/groupments.module.js";
+import { ImportModule } from "./modules/import/import.module.js";
 import { InactivitiesModule } from "./modules/inactivities/inactivities.module.js";
 import { InvoicesModule } from "./modules/invoices/invoices.module.js";
 import { InvoicingConnectionsModule } from "./modules/invoicing-connections/invoicing-connections.module.js";
+import { LogsModule } from "./modules/logs/logs.module.js";
+import { MandatoryLeaveModule } from "./modules/mandatory-leave/mandatory-leave.module.js";
 import { MarketplaceModule } from "./modules/marketplace/marketplace.module.js";
 import { McpExtrasModule } from "./modules/mcp-extras/mcp-extras.module.js";
 import { NotificationsModule } from "./modules/notifications/notifications.module.js";
@@ -115,6 +118,9 @@ const DOMAIN_MODULES = [
   FollowedDocumentsModule,
   FormsModule,
   GroupmentsModule,
+  ImportModule,
+  LogsModule,
+  MandatoryLeaveModule,
   TargetsModule,
   TasksModule,
   TechnicalDatasModule,
