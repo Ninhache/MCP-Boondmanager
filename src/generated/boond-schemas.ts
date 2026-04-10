@@ -5924,3 +5924,2447 @@ export interface SchemasBusinessUnitsBodyPutJson {
     };
   };
 }
+
+// ─── expensesReports ───
+/**
+ * List of expenses
+ */
+export interface SchemasExpensesReportsSearchJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    totals?: {
+      /**
+       * Number total of entities returned
+       */
+      rows?: number;
+    };
+    /**
+     * true if certification is enabled on at least one agency
+     */
+    canExportCertified?: boolean;
+  };
+  data: {
+    id: string;
+    type: "expensesreport";
+    attributes?: {
+      term?: string;
+      state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+      paid?: boolean;
+      closed?: boolean;
+    };
+    relationships?: {
+      /**
+       * Expenses agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      /**
+       * Expenses resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+    };
+  }[];
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "agency";
+        attributes?: {
+          name?: string;
+        };
+      }
+  )[];
+}
+
+/**
+ * Expenses basic data
+ */
+export interface SchemasExpensesReportsProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    warnings?: {
+      /**
+       * Warning's code
+       */
+      code:
+        | "noDeliveryOnProject"
+        | "projectDoesNotExist"
+        | "deliveryDoesNotExist"
+        | "expensesOutsideContractDates"
+        | "expensesOutsideDeliveryDates";
+      /**
+       * Warning's message
+       */
+      detail: string;
+      project:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            reference: string;
+          };
+      delivery:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            title: string;
+            startDate: string;
+            endDate: string;
+            calendar: string;
+          };
+    }[];
+    expectedValidatorsAllowedForValidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForUnvalidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForReject?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    /**
+     * true if ai parsing is enabled
+     */
+    isParsingEnabled?: boolean;
+    /**
+     * Control help: warning if resource is already invited
+     */
+    guestsWarning?: {
+      /**
+       * guestHaveExpense, guestAlreadyGuest or ownerAlreadyGuest
+       */
+      type: string;
+      startDate: string;
+      expenseReport: {
+        id?: string;
+        canRead?: boolean;
+        resource?: {
+          id?: string;
+          fullname?: string;
+        };
+      };
+      expenseType: {
+        name?: string;
+      };
+      guest?: {
+        id?: string;
+        fullname?: string;
+      };
+    }[];
+  };
+  data: {
+    id: string;
+    type: "expensesreport";
+    attributes?: {
+      creationDate?: string;
+      updateDate?: string;
+      term?: string;
+      informationComments?: string;
+      closed?: boolean;
+      state?: "savedAndNoValidation" | "waitingForValidation" | "validated" | "rejected";
+      ratePerKilometerType?: {
+        reference: number;
+        name: string;
+        amount: number;
+      };
+      paid?: boolean;
+      advance?: number;
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      /**
+       * List of actual expenses
+       */
+      actualExpenses?: {
+        id: string;
+        startDate: string;
+        number: number;
+        title: string;
+        currency: number;
+        exchangeRate: number;
+        numberOfKilometers: number;
+        /**
+         * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+         */
+        amountIncludingTax: number;
+        tax: number;
+        reinvoiced: boolean;
+        isKilometricExpense: boolean;
+        activityType: "production" | "absence" | "internal";
+        file?: string;
+        expenseType:
+          | {
+              data: null;
+            }
+          | (null | {
+              reference: number;
+              taxRate: number;
+              name: string;
+              guest?: boolean;
+              mealDeduction?: boolean;
+              position?: number;
+            });
+        delivery:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+              startDate?: string;
+              endDate?: string;
+            };
+        batch:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+            };
+        project:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              reference?: string;
+            };
+        guestResources?: {
+          id?: string;
+          lastName?: string;
+          firstName?: string;
+          thumbnail?: string;
+        }[];
+        guestResourcesManual?: string[];
+        guestContacts?: {
+          id?: string;
+          lastName?: string;
+          firstName?: string;
+          thumbnail?: string;
+        }[];
+        guestContactsManual?: string[];
+        guestCandidates?: {
+          id?: string;
+          lastName?: string;
+          firstName?: string;
+          thumbnail?: string;
+        }[];
+        guestCandidatesManual?: string[];
+      }[];
+      /**
+       * List of fixed expenses
+       */
+      fixedExpenses?: {
+        id: string;
+        startDate: string;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        numberOfKilometers: number;
+        /**
+         * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+         */
+        amountIncludingTax: number;
+        isKilometricExpense: boolean;
+        activityType: "production" | "absence" | "internal";
+        expenseType:
+          | {
+              data: null;
+            }
+          | (null | {
+              reference: number;
+              taxRate: number;
+              name: string;
+              guest?: boolean;
+              mealDeduction?: boolean;
+              position?: number;
+            });
+        delivery:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+              startDate?: string;
+              endDate?: string;
+            };
+        batch:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              title?: string;
+            };
+        project:
+          | {
+              data: null;
+            }
+          | {
+              id: string;
+              reference?: string;
+            };
+      }[];
+      /**
+       * List of projects expenses
+       */
+      projectsExpenses?: {
+        startDate: string;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        numberOfKilometers: number;
+        /**
+         * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+         */
+        amountIncludingTax: number;
+        isKilometricExpense: boolean;
+        activityType: "production" | "absence" | "internal";
+        expenseType:
+          | {
+              data: null;
+            }
+          | (null | {
+              reference: number;
+              taxRate: number;
+              name: string;
+              guest?: boolean;
+              mealDeduction?: boolean;
+              position?: number;
+            });
+        /**
+         * Delivery on which fixed expenses depends
+         */
+        delivery: {
+          id: string;
+          title?: string;
+          startDate?: string;
+          endDate?: string;
+        };
+        /**
+         * Project on which fixed expenses depends
+         */
+        project: {
+          id: string;
+          reference?: string;
+        };
+      }[];
+    };
+    relationships?: {
+      /**
+       * Expenses resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      createdBy?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+      /**
+       * Expenses agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      /**
+       * List of expenses files
+       */
+      files?: {
+        data: {
+          id: string;
+          type: "document";
+        }[];
+      };
+      timesReport?:
+        | {
+            data: null;
+          }
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          };
+      /**
+       * List of expenses orders available on this term
+       */
+      orders?: {
+        data: {
+          id: string;
+          type: "order";
+        }[];
+      };
+      /**
+       * List of expenses projects available on this term
+       */
+      projects?: {
+        data: {
+          id: string;
+          type: "project";
+        }[];
+      };
+      /**
+       * List of expenses validations
+       */
+      validations?: {
+        data: {
+          id: string;
+          type: "validation";
+        }[];
+      };
+      /**
+       * Expenses expected validators
+       */
+      validationWorkflow?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+      /**
+       * Expenses certification
+       */
+      certification?: {
+        data: {
+          id: string;
+          type: "expenseshistory";
+        };
+      };
+    };
+  };
+  /**
+   * @minItems 1
+   */
+  included?: [
+    (
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            function?: string;
+          };
+          relationships?: {
+            /**
+             * Resource's contracts/amendments
+             */
+            contracts?: {
+              data: {
+                id: string;
+                type: "contract";
+              }[];
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            calendar?: string;
+            currency?: number;
+            exchangeRate?: number;
+            /**
+             * Agency's expense types
+             */
+            expenseTypes?: {
+              reference: number;
+              name: string;
+              taxRate: number;
+            }[];
+            /**
+             * Agency's rate per kilometer types
+             */
+            ratePerKilometerTypes?: {
+              reference: number;
+              name: string;
+              amount: number;
+            }[];
+            expensesLegals?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "document";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "delivery";
+          attributes?: {
+            title?: string;
+            startDate?: string;
+            endDate?: string;
+            calendar?: string;
+            /**
+             * List of expenses details
+             */
+            expensesDetails?: {
+              id: string;
+              expenseType: {
+                reference: number;
+                name: string;
+              };
+              periodicity: "daily" | "monthly";
+              netAmount: number;
+              /**
+               * Agency on which expenses detail depends
+               */
+              agency: {
+                id: string;
+                name: string;
+              };
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "batch";
+          attributes?: {
+            title?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "project";
+          attributes?: {
+            reference?: string;
+          };
+          relationships?: {
+            company?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "company";
+                  };
+                };
+            /**
+             * List of project's deliveries available on this term
+             */
+            deliveries?: unknown[];
+            /**
+             * List of project's batches available on this term
+             */
+            batches?: unknown[];
+          };
+        }
+      | {
+          id: string;
+          type: "company";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "validation";
+          attributes?: {
+            date?: string;
+            state?: "waitingForValidation" | "validated" | "rejected";
+            reason?: string;
+          };
+          relationships?: {
+            realValidator?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            /**
+             * Validation's expected validator
+             */
+            expectedValidator?: {
+              data: {
+                id: string;
+                type: "resource";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "timesreport";
+          attributes?: {
+            /**
+             * List of regular times
+             */
+            regularTimes?: {
+              id: string;
+              startDate: string;
+              duration: number;
+              /**
+               * If it is a new line then row should be inferior or equal to 0
+               */
+              row: number;
+              workUnitType: {
+                reference: number;
+                activityType:
+                  | "production"
+                  | "absence"
+                  | "internal"
+                  | "exceptionalTime"
+                  | "exceptionalCalendar";
+                name: string;
+              };
+              calendar?: string;
+              delivery:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    title?: string;
+                    startDate?: string;
+                    endDate?: string;
+                  };
+              batch:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    title?: string;
+                  };
+              project:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    reference?: string;
+                  };
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "order";
+          attributes?: {
+            reference?: string;
+            number?: string;
+          };
+          relationships?: {
+            /**
+             * Order's project
+             */
+            project?: {
+              data: {
+                id: string;
+                type: "project";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "expenseshistory";
+          attributes?: {
+            updateDate?: string;
+            state?: 0 | 1 | 2;
+            errorMsg?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            startDate?: string;
+            endDate?: string;
+            calendar?: string;
+          };
+          relationships?: {
+            /**
+             * Contract's agency
+             */
+            agency?: {
+              data: {
+                id: string;
+                type: "agency";
+              };
+            };
+          };
+        }
+    ),
+    ...(
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            function?: string;
+          };
+          relationships?: {
+            /**
+             * Resource's contracts/amendments
+             */
+            contracts?: {
+              data: {
+                id: string;
+                type: "contract";
+              }[];
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            calendar?: string;
+            currency?: number;
+            exchangeRate?: number;
+            /**
+             * Agency's expense types
+             */
+            expenseTypes?: {
+              reference: number;
+              name: string;
+              taxRate: number;
+            }[];
+            /**
+             * Agency's rate per kilometer types
+             */
+            ratePerKilometerTypes?: {
+              reference: number;
+              name: string;
+              amount: number;
+            }[];
+            expensesLegals?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "document";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "delivery";
+          attributes?: {
+            title?: string;
+            startDate?: string;
+            endDate?: string;
+            calendar?: string;
+            /**
+             * List of expenses details
+             */
+            expensesDetails?: {
+              id: string;
+              expenseType: {
+                reference: number;
+                name: string;
+              };
+              periodicity: "daily" | "monthly";
+              netAmount: number;
+              /**
+               * Agency on which expenses detail depends
+               */
+              agency: {
+                id: string;
+                name: string;
+              };
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "batch";
+          attributes?: {
+            title?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "project";
+          attributes?: {
+            reference?: string;
+          };
+          relationships?: {
+            company?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "company";
+                  };
+                };
+            /**
+             * List of project's deliveries available on this term
+             */
+            deliveries?: unknown[];
+            /**
+             * List of project's batches available on this term
+             */
+            batches?: unknown[];
+          };
+        }
+      | {
+          id: string;
+          type: "company";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "validation";
+          attributes?: {
+            date?: string;
+            state?: "waitingForValidation" | "validated" | "rejected";
+            reason?: string;
+          };
+          relationships?: {
+            realValidator?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "resource";
+                  };
+                };
+            /**
+             * Validation's expected validator
+             */
+            expectedValidator?: {
+              data: {
+                id: string;
+                type: "resource";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "timesreport";
+          attributes?: {
+            /**
+             * List of regular times
+             */
+            regularTimes?: {
+              id: string;
+              startDate: string;
+              duration: number;
+              /**
+               * If it is a new line then row should be inferior or equal to 0
+               */
+              row: number;
+              workUnitType: {
+                reference: number;
+                activityType:
+                  | "production"
+                  | "absence"
+                  | "internal"
+                  | "exceptionalTime"
+                  | "exceptionalCalendar";
+                name: string;
+              };
+              calendar?: string;
+              delivery:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    title?: string;
+                    startDate?: string;
+                    endDate?: string;
+                  };
+              batch:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    title?: string;
+                  };
+              project:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    reference?: string;
+                  };
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "order";
+          attributes?: {
+            reference?: string;
+            number?: string;
+          };
+          relationships?: {
+            /**
+             * Order's project
+             */
+            project?: {
+              data: {
+                id: string;
+                type: "project";
+              };
+            };
+          };
+        }
+      | {
+          id: string;
+          type: "expenseshistory";
+          attributes?: {
+            updateDate?: string;
+            state?: 0 | 1 | 2;
+            errorMsg?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "contract";
+          attributes?: {
+            startDate?: string;
+            endDate?: string;
+            calendar?: string;
+          };
+          relationships?: {
+            /**
+             * Contract's agency
+             */
+            agency?: {
+              data: {
+                id: string;
+                type: "agency";
+              };
+            };
+          };
+        }
+    )[],
+  ];
+}
+
+/**
+ * Empty expenses default basic data
+ */
+export interface SchemasExpensesReportsDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  } & {
+    warnings?: {
+      /**
+       * Warning's code
+       */
+      code:
+        | "noDeliveryOnProject"
+        | "projectDoesNotExist"
+        | "deliveryDoesNotExist"
+        | "expensesOutsideContractDates"
+        | "expensesOutsideDeliveryDates";
+      /**
+       * Warning's message
+       */
+      detail: string;
+      project:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            reference: string;
+          };
+      delivery:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            title: string;
+            startDate: string;
+            endDate: string;
+          };
+    }[];
+    expectedValidatorsAllowedForValidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForUnvalidate?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    expectedValidatorsAllowedForReject?: {
+      id: string;
+      firstName: string;
+      lastName: string;
+    }[];
+    /**
+     * true if ai parsing is enabled
+     */
+    isParsingEnabled?: boolean;
+    /**
+     * Control help: warning if resource is already invited
+     */
+    guestsWarning?: {
+      /**
+       * guestHaveExpense, guestAlreadyGuest or ownerAlreadyGuest
+       */
+      type: string;
+      startDate: string;
+      expenseReport: {
+        id?: string;
+        canRead?: boolean;
+        resource?: {
+          id?: string;
+          fullname?: string;
+        };
+      };
+      expenseType: {
+        name?: string;
+      };
+      guest?: {
+        id?: string;
+        fullname?: string;
+      };
+    }[];
+  };
+  data: {
+    id: "0";
+    type: "expensesreport";
+    attributes?: {
+      term?: string;
+      ratePerKilometerType?: {
+        reference: number;
+        name: string;
+        amount: number;
+      };
+      currencyAgency?: number;
+      exchangeRateAgency?: number;
+      /**
+       * List of contractual expenses
+       */
+      fixedExpenses?: {
+        startDate: string;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        numberOfKilometers: number;
+        /**
+         * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+         */
+        amountIncludingTax: number;
+        isKilometricExpense: boolean;
+        activityType: "production" | "absence" | "internal";
+        expenseType:
+          | {
+              data: null;
+            }
+          | (null | {
+              reference: number;
+              taxRate: number;
+              name: string;
+              guest?: boolean;
+              mealDeduction?: boolean;
+              position?: number;
+            });
+      }[];
+      /**
+       * List of projects expenses
+       */
+      projectsExpenses?: {
+        startDate: string;
+        /**
+         * If it is a new line then row should be inferior or equal to 0
+         */
+        row: number;
+        numberOfKilometers: number;
+        /**
+         * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+         */
+        amountIncludingTax: number;
+        isKilometricExpense: boolean;
+        activityType: "production" | "absence" | "internal";
+        expenseType:
+          | {
+              data: null;
+            }
+          | (null | {
+              reference: number;
+              taxRate: number;
+              name: string;
+              guest?: boolean;
+              mealDeduction?: boolean;
+              position?: number;
+            });
+        /**
+         * Delivery on which fixed expenses depends
+         */
+        delivery: {
+          id: string;
+          title?: string;
+          startDate?: string;
+          endDate?: string;
+        };
+        /**
+         * Project on which fixed expenses depends
+         */
+        project: {
+          id: string;
+          reference?: string;
+        };
+      }[];
+    };
+    relationships?: {
+      /**
+       * Expenses resource
+       */
+      resource?: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Expenses agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+      timesReport?:
+        | {
+            data: null;
+          }
+        | {
+            id: string;
+            type: "timesreport";
+          };
+      /**
+       * List of expenses projects available on this term
+       */
+      projects?: {
+        data: {
+          id: string;
+          type: "project";
+        }[];
+      };
+      /**
+       * Timesheet's expected validators
+       */
+      validationWorkflow?: {
+        data: {
+          id: string;
+          type: "resource";
+        }[];
+      };
+    };
+  };
+  /**
+   * @minItems 1
+   */
+  included?: [
+    (
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            function?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            calendar?: string;
+            currency?: number;
+            exchangeRate?: number;
+            /**
+             * Agency's expense types
+             */
+            expenseTypes?: {
+              reference: number;
+              name: string;
+              taxRate: number;
+            }[];
+            /**
+             * Agency's rate per kilometer types
+             */
+            ratePerKilometerTypes?: {
+              reference: number;
+              name: string;
+              amount: number;
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "delivery";
+          attributes?: {
+            title?: string;
+            startDate?: string;
+            endDate?: string;
+            /**
+             * List of expenses details
+             */
+            expensesDetails?: {
+              id: string;
+              expenseType: {
+                reference: number;
+                name: string;
+              };
+              periodicity: "daily" | "monthly";
+              netAmount: number;
+              /**
+               * Agency on which expenses detail depends
+               */
+              agency: {
+                id: string;
+                name: string;
+              };
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "batch";
+          attributes?: {
+            title?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "project";
+          attributes?: {
+            reference?: string;
+          };
+          relationships?: {
+            company?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "company";
+                  };
+                };
+            /**
+             * List of project's deliveries available on this term
+             */
+            deliveries?: unknown[];
+            /**
+             * List of project's batches available on this term
+             */
+            batches?: unknown[];
+          };
+        }
+      | {
+          id: string;
+          type: "company";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "timesreport";
+          relationships?: {
+            /**
+             * List of regular times
+             */
+            regularTimes?: {
+              id: string;
+              startDate: string;
+              duration: number;
+              /**
+               * If it is a new line then row should be inferior or equal to 0
+               */
+              row: number;
+              workUnitType: {
+                reference: number;
+                activityType:
+                  | "production"
+                  | "absence"
+                  | "internal"
+                  | "exceptionalTime"
+                  | "exceptionalCalendar";
+                name: string;
+              };
+              calendar?: string;
+              delivery:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    title?: string;
+                    startDate?: string;
+                    endDate?: string;
+                  };
+              batch:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    title?: string;
+                  };
+              project:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    reference?: string;
+                  };
+            }[];
+          };
+        }
+    ),
+    ...(
+      | {
+          id: string;
+          type: "resource";
+          attributes?: {
+            firstName?: string;
+            lastName?: string;
+            function?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "agency";
+          attributes?: {
+            name?: string;
+            calendar?: string;
+            currency?: number;
+            exchangeRate?: number;
+            /**
+             * Agency's expense types
+             */
+            expenseTypes?: {
+              reference: number;
+              name: string;
+              taxRate: number;
+            }[];
+            /**
+             * Agency's rate per kilometer types
+             */
+            ratePerKilometerTypes?: {
+              reference: number;
+              name: string;
+              amount: number;
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "delivery";
+          attributes?: {
+            title?: string;
+            startDate?: string;
+            endDate?: string;
+            /**
+             * List of expenses details
+             */
+            expensesDetails?: {
+              id: string;
+              expenseType: {
+                reference: number;
+                name: string;
+              };
+              periodicity: "daily" | "monthly";
+              netAmount: number;
+              /**
+               * Agency on which expenses detail depends
+               */
+              agency: {
+                id: string;
+                name: string;
+              };
+            }[];
+          };
+        }
+      | {
+          id: string;
+          type: "batch";
+          attributes?: {
+            title?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "project";
+          attributes?: {
+            reference?: string;
+          };
+          relationships?: {
+            company?:
+              | {
+                  data: null;
+                }
+              | {
+                  data: {
+                    id: string;
+                    type: "company";
+                  };
+                };
+            /**
+             * List of project's deliveries available on this term
+             */
+            deliveries?: unknown[];
+            /**
+             * List of project's batches available on this term
+             */
+            batches?: unknown[];
+          };
+        }
+      | {
+          id: string;
+          type: "company";
+          attributes?: {
+            name?: string;
+          };
+        }
+      | {
+          id: string;
+          type: "timesreport";
+          relationships?: {
+            /**
+             * List of regular times
+             */
+            regularTimes?: {
+              id: string;
+              startDate: string;
+              duration: number;
+              /**
+               * If it is a new line then row should be inferior or equal to 0
+               */
+              row: number;
+              workUnitType: {
+                reference: number;
+                activityType:
+                  | "production"
+                  | "absence"
+                  | "internal"
+                  | "exceptionalTime"
+                  | "exceptionalCalendar";
+                name: string;
+              };
+              calendar?: string;
+              delivery:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    title?: string;
+                    startDate?: string;
+                    endDate?: string;
+                  };
+              batch:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    title?: string;
+                  };
+              project:
+                | {
+                    data: null;
+                  }
+                | {
+                    id: string;
+                    reference?: string;
+                  };
+            }[];
+          };
+        }
+    )[],
+  ];
+}
+
+/**
+ * Expenses rights
+ */
+export interface SchemasExpensesReportsRightsJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "rights";
+    attributes?: {
+      actions?: {
+        /**
+         * true if this action is available
+         */
+        share?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeThreads?: boolean;
+        /**
+         * true if this action is available
+         */
+        validate?: boolean;
+        /**
+         * true if this action is available
+         */
+        reject?: boolean;
+        /**
+         * true if this action is available
+         */
+        unvalidate?: boolean;
+        /**
+         * true if this action is available
+         */
+        downloadInternalPDF?: boolean;
+        /**
+         * true if this action is available
+         */
+        downloadClientPDF?: boolean;
+        /**
+         * true if this action is available
+         */
+        addInvoice?: boolean;
+        /**
+         * true if this action is available
+         */
+        exportToDownloadCenter?: boolean;
+        /**
+         * true if this action is available
+         */
+        exportCertification?: boolean;
+        /**
+         * true if this action is available
+         */
+        deleteValidators?: boolean;
+        /**
+         * true if this action is available
+         */
+        pay?: boolean;
+        /**
+         * true if this action is available
+         */
+        seeLogs?: boolean;
+      };
+      apis?: {
+        entity?: {
+          /**
+           * true if the user can read this api
+           */
+          read: boolean;
+          /**
+           * true if the user can write this api
+           */
+          write: boolean;
+        };
+      };
+      attributes?: {
+        files?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+        certification?: {
+          /**
+           * false if this attribute is not readable
+           */
+          read: boolean;
+          /**
+           * false if this attribute is not writable
+           */
+          write: boolean;
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Expenses basic data sent in the body with a POST method
+ */
+export interface SchemasExpensesReportsBodyPostJson {
+  data: {
+    type: "expensesreport";
+    attributes: {
+      term: string;
+      informationComments?: string;
+      ratePerKilometerType?: {
+        reference: number;
+        amount: number;
+      };
+      paid?: boolean;
+      advance?: number;
+      /**
+       * List of actual expenses
+       */
+      actualExpenses?: (
+        | {
+            startDate: string;
+            number: number;
+            title: string;
+            currency?: number;
+            exchangeRate?: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            tax?: number;
+            reinvoiced: boolean;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            guestResources?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestResourcesManual?: string[];
+            guestContacts?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestContactsManual?: string[];
+            guestCandidates?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestCandidatesManual?: string[];
+          }
+        | {
+            id: string;
+            startDate: string;
+            number: number;
+            title: string;
+            currency?: number;
+            exchangeRate?: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            tax?: number;
+            reinvoiced: boolean;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            guestResources?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestResourcesManual?: string[];
+            guestContacts?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestContactsManual?: string[];
+            guestCandidates?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestCandidatesManual?: string[];
+          }
+      )[];
+      /**
+       * List of fixed expenses
+       */
+      fixedExpenses?: (
+        | {
+            startDate: string;
+            row: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+        | {
+            id: string;
+            startDate: string;
+            row: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+      )[];
+    };
+    relationships: {
+      /**
+       * Expenses resource
+       */
+      resource: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Expenses agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+    };
+  };
+}
+
+/**
+ * Expenses basic data sent in the body with a PUT method
+ */
+export interface SchemasExpensesReportsBodyPutJson {
+  data: {
+    id: string;
+    type: "expensesreport";
+    attributes?: {
+      informationComments?: string;
+      ratePerKilometerType?: {
+        reference: number;
+        amount: number;
+      };
+      paid?: boolean;
+      advance?: number;
+      /**
+       * List of actual expenses
+       */
+      actualExpenses?: (
+        | {
+            startDate: string;
+            number: number;
+            title: string;
+            currency?: number;
+            exchangeRate?: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            tax?: number;
+            reinvoiced: boolean;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            guestResources?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestResourcesManual?: string[];
+            guestContacts?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestContactsManual?: string[];
+            guestCandidates?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestCandidatesManual?: string[];
+          }
+        | {
+            id: string;
+            startDate: string;
+            number: number;
+            title: string;
+            currency?: number;
+            exchangeRate?: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            tax?: number;
+            reinvoiced: boolean;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            guestResources?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestResourcesManual?: string[];
+            guestContacts?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestContactsManual?: string[];
+            guestCandidates?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestCandidatesManual?: string[];
+          }
+      )[];
+      /**
+       * List of fixed expenses
+       */
+      fixedExpenses?: (
+        | {
+            startDate: string;
+            row: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+        | {
+            id: string;
+            startDate: string;
+            row: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+      )[];
+    };
+  };
+}
+
+/**
+ * Expenses validation reject data sent in the body with a POST method
+ */
+export interface SchemasExpensesReportsRejectPostJson {
+  data: {
+    /**
+     * Resource's `id` on which expenses depends
+     */
+    expectedValidator: number;
+    reason: string;
+    rejectTypeOf:
+      | "correctionForPreviousValidator"
+      | "correctionForAllValidators"
+      | "definitiveRefusal";
+  };
+}
+
+/**
+ * Expenses certification data sent in the body with a POST method
+ */
+export interface SchemasExpensesReportsCertificationPostJson {
+  data: {
+    type: "expensesreport";
+    attributes: {
+      term: string;
+      informationComments?: string;
+      ratePerKilometerType?: {
+        reference: number;
+        amount: number;
+      };
+      paid?: boolean;
+      advance?: number;
+      /**
+       * List of actual expenses
+       */
+      actualExpenses?: (
+        | {
+            startDate: string;
+            number: number;
+            title: string;
+            currency?: number;
+            exchangeRate?: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            tax?: number;
+            reinvoiced: boolean;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            guestResources?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestResourcesManual?: string[];
+            guestContacts?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestContactsManual?: string[];
+            guestCandidates?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestCandidatesManual?: string[];
+          }
+        | {
+            id: string;
+            startDate: string;
+            number: number;
+            title: string;
+            currency?: number;
+            exchangeRate?: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            tax?: number;
+            reinvoiced: boolean;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            guestResources?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestResourcesManual?: string[];
+            guestContacts?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestContactsManual?: string[];
+            guestCandidates?: {
+              id?: string;
+              lastName?: string;
+              firstName?: string;
+              thumbnail?: string;
+            }[];
+            guestCandidatesManual?: string[];
+          }
+      )[];
+      /**
+       * List of fixed expenses
+       */
+      fixedExpenses?: (
+        | {
+            startDate: string;
+            row: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+        | {
+            id: string;
+            startDate: string;
+            row: number;
+            numberOfKilometers?: number;
+            /**
+             * If kilometer expenses then numberOfKilometers * ratePerKilometerType else cf. database
+             */
+            amountIncludingTax?: number;
+            isKilometricExpense: boolean;
+            activityType: "production" | "absence" | "internal";
+            expenseType:
+              | {
+                  data: null;
+                }
+              | {
+                  reference: number;
+                };
+            delivery:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            batch:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+            project:
+              | {
+                  data: null;
+                }
+              | {
+                  id: string;
+                };
+          }
+      )[];
+    };
+    relationships: {
+      /**
+       * Expenses resource
+       */
+      resource: {
+        data: {
+          id: string;
+          type: "resource";
+        };
+      };
+      /**
+       * Expenses agency
+       */
+      agency?: {
+        data: {
+          id: string;
+          type: "agency";
+        };
+      };
+    };
+  };
+}
