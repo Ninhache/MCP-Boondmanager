@@ -55,9 +55,9 @@
 ### `fetchAllPages expected array response from /xyz`
 **Cause**: An endpoint returned a single object where a list was expected (API drift or wrong path).
 **Fix**:
-1. Run `npm run validate-routes` to identify the broken endpoint
-2. Check if Boond changed the response shape — regenerate types with `npm run generate-types`
-3. If the endpoint is legitimately single-object, don't use `fetchAll` on it
+1. Check if Boond changed the response shape — regenerate types with `npm run generate-types`
+2. If the endpoint is legitimately single-object, don't use `fetchAll` on it
+3. Cross-reference the expected route shape in `docs/boond-routes.json`
 
 ## MCP client issues
 
@@ -125,13 +125,6 @@ The following are **not** retried (business errors):
 - 500 Internal Server Error (too generic, might be a real bug in the payload)
 
 ## Getting more diagnostic info
-
-Run the route validation script against your Boond instance:
-```bash
-npm run validate-routes
-```
-
-This hits every tool's endpoint and reports ✅/⚠️/❌ per route. Good first step when something breaks.
 
 Check generated types are up to date:
 ```bash

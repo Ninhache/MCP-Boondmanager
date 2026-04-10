@@ -145,7 +145,6 @@ npm run dev              # Dev mode with tsx watch
 npm run start            # Start built server
 npm run check            # Biome lint + format check
 npm run check:fix        # Auto-fix
-npm run validate-routes  # Test all Boond API endpoints
 npm run generate-types   # Regenerate TS types from Boond schemas
 ```
 
