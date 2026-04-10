@@ -38,19 +38,22 @@ interface DetailRouteSpec {
 
 type RouteSpec = ListRouteSpec | DetailRouteSpec;
 
+// Routes match the attributeKeys declared in each module's .tools.ts file.
+// If a tool's attributeKeys change, update the corresponding entry here.
 const ROUTES: RouteSpec[] = [
+  // Core modules
   {
     kind: "list",
     name: "list_resources",
     path: "/resources",
-    expectedAttrs: ["firstName", "lastName", "email", "title", "state"],
+    expectedAttrs: ["firstName", "lastName", "email1", "title", "state"],
     detailName: "get_resource",
   },
   {
     kind: "list",
     name: "list_projects",
     path: "/projects",
-    expectedAttrs: ["name", "reference", "state", "startDate", "endDate"],
+    expectedAttrs: ["reference", "typeOf", "mode", "startDate", "endDate"],
     detailName: "get_project",
   },
   {
@@ -58,35 +61,146 @@ const ROUTES: RouteSpec[] = [
     name: "search_candidates",
     path: "/candidates",
     params: { keywords: "test" },
-    expectedAttrs: ["firstName", "lastName", "email", "state", "title"],
+    expectedAttrs: ["firstName", "lastName", "email1", "state", "title"],
     detailName: "get_candidate",
   },
   {
     kind: "list",
     name: "list_companies",
     path: "/companies",
-    expectedAttrs: ["name", "phone", "email", "city", "country", "state"],
+    expectedAttrs: ["name", "phone1", "town", "country", "state", "website"],
     detailName: "get_company",
   },
   {
     kind: "list",
     name: "list_opportunities",
     path: "/opportunities",
-    expectedAttrs: ["name", "state", "startDate", "endDate", "typeOf"],
+    expectedAttrs: ["title", "reference", "state", "startDate", "endDate", "typeOf"],
     detailName: "get_opportunity",
   },
   {
     kind: "list",
     name: "list_absences",
     path: "/absences",
-    expectedAttrs: ["startDate", "endDate", "duration", "state", "typeOf", "comment"],
+    expectedAttrs: ["startDate", "endDate", "duration", "title", "workUnitType", "activityType"],
   },
   {
     kind: "list",
     name: "list_actions",
     path: "/actions",
-    expectedAttrs: ["name", "state", "startDate", "endDate", "typeOf"],
+    expectedAttrs: ["startDate", "creationDate", "typeOf", "text"],
     detailName: "get_action",
+  },
+  // Commercial / financial
+  {
+    kind: "list",
+    name: "list_positionings",
+    path: "/positionings",
+    expectedAttrs: ["creationDate", "state", "typeOf"],
+    detailName: "get_positioning",
+  },
+  {
+    kind: "list",
+    name: "list_purchases",
+    path: "/purchases",
+    expectedAttrs: ["date", "title", "reference", "state", "amountExcludingTax"],
+    detailName: "get_purchase",
+  },
+  {
+    kind: "list",
+    name: "list_invoices",
+    path: "/invoices",
+    expectedAttrs: ["date", "reference", "state", "turnoverInvoicedExcludingTax"],
+    detailName: "get_invoice",
+  },
+  {
+    kind: "list",
+    name: "list_orders",
+    path: "/orders",
+    expectedAttrs: ["date", "number", "reference"],
+    detailName: "get_order",
+  },
+  {
+    kind: "list",
+    name: "list_expenses",
+    path: "/expenses",
+    expectedAttrs: ["category", "reference", "name"],
+    detailName: "get_expense",
+  },
+  {
+    kind: "list",
+    name: "list_products",
+    path: "/products",
+    expectedAttrs: ["reference", "name", "priceExcludingTax"],
+    detailName: "get_product",
+  },
+  {
+    kind: "list",
+    name: "list_payments",
+    path: "/payments",
+    expectedAttrs: ["date", "state", "number", "amountIncludingTax"],
+    detailName: "get_payment",
+  },
+  {
+    kind: "list",
+    name: "list_times",
+    path: "/times",
+    expectedAttrs: ["category", "reference", "name"],
+    detailName: "get_time",
+  },
+  // Organizational
+  {
+    kind: "list",
+    name: "list_agencies",
+    path: "/agencies",
+    expectedAttrs: ["name", "town", "country", "state"],
+    detailName: "get_agency",
+  },
+  {
+    kind: "list",
+    name: "list_poles",
+    path: "/poles",
+    expectedAttrs: ["name"],
+    detailName: "get_pole",
+  },
+  {
+    kind: "list",
+    name: "list_dashboards",
+    path: "/dashboards",
+    expectedAttrs: ["title", "typeOf", "isDefault"],
+  },
+  // Admin / system
+  {
+    kind: "list",
+    name: "list_notifications",
+    path: "/notifications",
+    expectedAttrs: ["title", "message", "state", "category", "type"],
+  },
+  {
+    kind: "list",
+    name: "list_validations",
+    path: "/validations",
+    expectedAttrs: ["date", "state"],
+  },
+  {
+    kind: "list",
+    name: "list_roles",
+    path: "/roles",
+    expectedAttrs: ["name", "typeOf"],
+  },
+  {
+    kind: "list",
+    name: "list_accounts",
+    path: "/accounts",
+    expectedAttrs: ["firstName", "lastName", "typeOf", "login"],
+    detailName: "get_account",
+  },
+  {
+    kind: "list",
+    name: "list_contacts",
+    path: "/contacts",
+    expectedAttrs: ["firstName", "lastName", "email1", "phone1", "state"],
+    detailName: "get_contact",
   },
 ];
 
