@@ -26483,3 +26483,1303 @@ export interface SchemasThumbnailsProfileJson {
   };
 }
 
+
+// ─── administrator ───
+/**
+ * Customer's administrator data
+ */
+export interface SchemasAdministratorProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: string;
+    type: "administrator";
+    attributes?: {
+      modules?: {
+        downloadCenter?: boolean;
+        intranet?: boolean;
+        resources?: boolean;
+        projects?: boolean;
+        opportunities?: boolean;
+        candidates?: boolean;
+        crm?: boolean;
+        activityExpenses?: boolean;
+        billing?: boolean;
+        products?: boolean;
+        purchases?: boolean;
+        appsNoCode?: boolean;
+        advancedBi?: boolean;
+        artificialIntelligence?: boolean;
+        banking?: boolean;
+        labs?: boolean;
+        standardProfiles?: boolean;
+        eInvoicing?: boolean;
+        sandbox?: boolean;
+        matchingAi?: boolean;
+        parsingAi?: boolean;
+        enrichmentAi?: boolean;
+        jamesAi?: boolean;
+        conditionalFields?: boolean;
+        appExtractBi?: boolean;
+        appDataClosing?: boolean;
+        appAccountingPayroll?: boolean;
+        appSepa?: boolean;
+        appBackupDatabase?: boolean;
+        appDocTemplates?: boolean;
+        readDatabase?: boolean;
+        appESignature?: boolean;
+        multiTd?: boolean;
+        tdCustomization?: boolean;
+        validationsAlerts?: boolean;
+        createIntranetRoles?: boolean;
+        core?: boolean;
+        advance?: boolean;
+        business?: boolean;
+        enterprise?: boolean;
+      };
+      clientKey?: string;
+      /**
+       * Client's token
+       */
+      clientToken?: string;
+      isBoondManagerAdministrator?: boolean;
+      isSandboxActivated?: boolean;
+      xJwtClientApiAccess?: boolean;
+      canCreateSandbox?: boolean;
+      /**
+       * Customer's absolute logo url
+       */
+      groupLogo?: string;
+    };
+    relationships?: {
+      /**
+       * List of customer's contract
+       */
+      boondmanagerContracts?: {
+        data: {
+          id: string;
+          type: "boondmanagercontract";
+        }[];
+      };
+      /**
+       * List of installed's apps
+       */
+      apps?: {
+        data: {
+          id: string;
+          type: "app";
+        }[];
+      };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "boondmanagercontract";
+        attributes?: {
+          creationDate?: string;
+          documentLink?: string;
+          validatorDate?: string;
+          validatorFirstName?: string;
+          validatorLastName?: string;
+          validatorFunction?: string;
+          validatorState?: boolean;
+        };
+      }
+    | {
+        id: string;
+        type: "app";
+        attributes?: {
+          name?: string;
+          title?: string;
+          description?: string;
+          category?:
+            | "other"
+            | "mail"
+            | "calendar"
+            | "mailAndCalendar"
+            | "certification"
+            | "emailing"
+            | "templates"
+            | "ged"
+            | "viewer";
+          code?: string;
+          /**
+           * Customer's absolute logo url
+           */
+          logo?: string;
+          integration?: "iFrame" | "module" | "moduleNoCode" | "sectionNoCode";
+          visibility?: "allowedManagers" | "allManagers" | "allowedManagersAndResources" | "allManagersAndResources";
+          /**
+           * Parent module for fields & applications customized
+           */
+          module?:
+            | ""
+            | "resources"
+            | "candidates"
+            | "opportunities"
+            | "products"
+            | "companies"
+            | "contacts"
+            | "projects"
+            | "pruchases"
+            | "orders"
+            | "invoices";
+          /**
+           * List of sections of fields & applications customized
+           */
+          sections?: {
+            id: string;
+            title: string;
+            col: number;
+            row: number;
+            span: number;
+            showUpdateDate: boolean;
+            /**
+             * List of fields
+             */
+            fields: {
+              id: string;
+              title?: string;
+              placeholder?: string;
+              suffix?: string;
+              options?: unknown[];
+              settings: {
+                maxLenth?: number;
+                required?: boolean;
+                multiple?: boolean;
+                readOnly?: boolean;
+                noTitle?: boolean;
+                maxFiles?: number;
+                precision?: number;
+                hasMin?: boolean;
+                min?: number;
+                hasMax?: boolean;
+                max?: number;
+                optionColors?: unknown[];
+                optionsIsEnabled?: unknown[];
+                displayNumberSelected?: boolean;
+                defaultValue?:
+                  | boolean
+                  | number
+                  | (
+                      | "veryGood"
+                      | "good"
+                      | "bad"
+                      | "veryBad"
+                      | "fromParent"
+                      | "fromParentMainManager"
+                      | "fromParentHrManager"
+                      | "fromCurrentUser"
+                      | "fromParentAgency"
+                      | "fromParentPole"
+                      | "fromCurrentUserAgency"
+                      | "fromCurrentUserPole"
+                    )
+                  | unknown[];
+                module?:
+                  | "resources"
+                  | "candidates"
+                  | "contacts"
+                  | "companies"
+                  | "products"
+                  | "opportunities"
+                  | "projects"
+                  | "purchases";
+                alertType?: "info" | "warning" | "danger";
+                url?: string;
+                scrolling?: boolean;
+                height?: number;
+                asReference?: boolean;
+                owner?: boolean;
+                nonOwnerCanReadAnswer?: boolean;
+                canBeSearched?: boolean;
+              };
+              typeOf?:
+                | "barometer"
+                | "select"
+                | "textarea"
+                | "html"
+                | "text"
+                | "currency"
+                | "files"
+                | "float"
+                | "int"
+                | "bool"
+                | "parent"
+                | "mainManager"
+                | "pole"
+                | "agency"
+                | "guests"
+                | "visibility"
+                | "money"
+                | "state"
+                | "typeOf"
+                | "tools"
+                | "mobilityAreas"
+                | "activityAreas"
+                | "expertiseArea"
+                | "alert"
+                | "address"
+                | "email"
+                | "phone"
+                | "iFrame"
+                | "date"
+                | "datetime"
+                | "period"
+                | "periodtime"
+                | "nationality"
+                | "country";
+              col: number;
+              row: number;
+              span: number;
+            }[];
+          }[];
+        };
+      }
+  )[];
+}
+
+
+// ─── share ───
+/**
+ * Share push/message's data sent to these emails
+ */
+export interface SchemasShareProfileJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id?: string;
+    type?: "share";
+    attributes?: {
+      emails: string[];
+    };
+  };
+}
+
+/**
+ * Empty share's profile default basic data
+ */
+export interface SchemasShareDefaultJson {
+  meta: {
+    /**
+     * Boond's version
+     */
+    version: string;
+    /**
+     * true if user is logged
+     */
+    isLogged: boolean;
+    /**
+     * User's language
+     */
+    language: "fr" | "en" | "es";
+  };
+  data: {
+    id: "0";
+    type: "share";
+    attributes?: {
+      /**
+       * Email's object
+       */
+      object?: string;
+      /**
+       * Email's body
+       */
+      body?: string;
+      settings?: "resource" | "account" | "notUsed";
+    };
+    relationships?: {
+      dependsOn?:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "order";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "invoice";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "company";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "absencesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "payment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "action";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "inactivity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "advantage";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "positioning";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "quotation";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "appentity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "form";
+            };
+          };
+    };
+  };
+  included?: (
+    | {
+        id: string;
+        type: "resource";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+          reference?: string;
+          title?: string;
+          /**
+           * If true then this resource can log in Boond
+           */
+          subscription?: "active" | "inactive";
+          level?: "manager" | "resource" | "administrator";
+        };
+      }
+    | {
+        id: string;
+        type: "candidate";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "contact";
+        attributes?: {
+          firstName?: string;
+          lastName?: string;
+        };
+        relationships?: {
+          /**
+           * Contact's company
+           */
+          company?: {
+            data: {
+              id: string;
+              type: "company";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "product";
+        attributes?: {
+          name?: string;
+          reference?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "project";
+        attributes?: {
+          reference?: string;
+        };
+        relationships?: {
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          /**
+           * List of project managers
+           */
+          projectManagers?: {
+            data: {
+              id: string;
+              type: "resource";
+            }[];
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "opportunity";
+        attributes?: {
+          title?: string;
+        };
+        relationships?: {
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "company";
+        attributes?: {
+          name?: string;
+        };
+      }
+    | {
+        id: string;
+        type: "purchase";
+        attributes?: {
+          title?: string;
+        };
+        relationships?: {
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+          project?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "project";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "order";
+        attributes?: {
+          number?: string;
+        };
+        relationships?: {
+          /**
+           * Order's project
+           */
+          project?: {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "invoice";
+        attributes?: {
+          reference?: string;
+          isCreditNote?: boolean;
+        };
+        relationships?: {
+          /**
+           * Invoice's order
+           */
+          order?: {
+            data: {
+              id: string;
+              type: "order";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "timesreport";
+        attributes?: {
+          term?: string;
+        };
+        relationships?: {
+          /**
+           * Timesheet's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "expensesreport";
+        attributes?: {
+          term?: string;
+        };
+        relationships?: {
+          /**
+           * Expenses resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "absencesreport";
+        attributes?: {
+          creationDate?: string;
+        };
+        relationships?: {
+          /**
+           * Request of absences resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "payment";
+        attributes?: {
+          number?: string;
+        };
+        relationships?: {
+          /**
+           * Payment's purchase
+           */
+          purchase?: {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "delivery";
+        attributes?: {
+          title?: string;
+        };
+        relationships?: {
+          /**
+           * Delivery's project
+           */
+          project?: {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+          dependsOn?:
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "product";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "inactivity";
+        attributes?: {
+          title?: string;
+        };
+        relationships?: {
+          /**
+           * Inactivity's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "groupment";
+        attributes?: {
+          title?: string;
+        };
+        relationships?: {
+          /**
+           * Groupment's project
+           */
+          project?: {
+            data: {
+              id: string;
+              type: "project";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "contract";
+        relationships?: {
+          dependsOn?:
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "candidate";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "advantage";
+        relationships?: {
+          /**
+           * Advantage's resource
+           */
+          resource?: {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "positioning";
+        relationships?: {
+          dependsOn?:
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "candidate";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "product";
+                };
+              };
+          /**
+           * Positioning's opportunity
+           */
+          opportunity?: {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "action";
+        attributes?: {
+          creationDate?: string;
+        };
+        relationships?: {
+          dependsOn?:
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "candidate";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "product";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "opportunity";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "project";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "purchase";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "order";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "invoice";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "app";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "quotation";
+        attributes?: {
+          reference?: string;
+        };
+        relationships?: {
+          /**
+           * Positioning's opportunity
+           */
+          opportunity?: {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          };
+          contact?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              };
+          company?:
+            | {
+                data: null;
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              };
+        };
+      }
+    | {
+        id: string;
+        type: "appentity";
+        relationships?: {
+          /**
+           * App entity's app
+           */
+          app?: {
+            data: {
+              id: string;
+              type: "app";
+            };
+          };
+          dependsOn?:
+            | {
+                data: {
+                  id: string;
+                  type: "opportunity";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "resource";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "candidate";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "product";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "company";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "contact";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "project";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "order";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "invoice";
+                };
+              }
+            | {
+                data: {
+                  id: string;
+                  type: "purchase";
+                };
+              };
+          /**
+           * List of guests
+           */
+          guests?: {
+            data: {
+              id: string;
+              type: "resource";
+            }[];
+          };
+        };
+      }
+    | {
+        id: string;
+        type: "app";
+      }
+    | {
+        id: string;
+        type: "form";
+      }
+  )[];
+}
+
+/**
+ * Share's profile data sent in the body with a POST method
+ */
+export interface SchemasShareBodyPostJson {
+  data: {
+    type: "share";
+    attributes: {
+      /**
+       * Email's object
+       */
+      object: string;
+      /**
+       * Email's body
+       */
+      body: string;
+      /**
+       * Sharing object
+       */
+      recipients: {
+        /**
+         * Share with all agencies and given resource types
+         */
+        allAgenciesTypesOf?: (string | number)[];
+        /**
+         * Share with given agencies and given resource types
+         */
+        agenciesTypesOf?:
+          | []
+          | [
+              {
+                agency?: {
+                  id?: string;
+                };
+                typesOf?: (string | number)[];
+              }
+            ];
+        /**
+         * Share with given resources
+         */
+        resources?: [] | [number];
+        /**
+         * Share with given groups
+         */
+        groups?: [] | [number];
+        [k: string]: unknown;
+      };
+      settings?: "resource" | "account" | "notUsed";
+    };
+    relationships: {
+      dependsOn:
+        | {
+            data: {
+              id: string;
+              type: "resource";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "candidate";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "product";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "opportunity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "project";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "purchase";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "order";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "invoice";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contact";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "company";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "timesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "expensesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "absencesreport";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "payment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "action";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "delivery";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "inactivity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "groupment";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "contract";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "advantage";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "positioning";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "quotation";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "appentity";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "followeddocument";
+            };
+          }
+        | {
+            data: {
+              id: string;
+              type: "providerinvoice";
+            };
+          };
+    };
+  };
+}
+
