@@ -46,7 +46,7 @@ export class PositioningsTools {
       this.boond,
       {
         path: "/positionings",
-        attributeKeys: ["state", "startDate", "endDate", "typeOf"],
+        attributeKeys: ["state", "startDate", "endDate"],
       },
       { page, pageSize, fetchAll, extraParams },
     );
