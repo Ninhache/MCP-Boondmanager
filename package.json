@@ -17,6 +17,8 @@
     "format": "biome format --write .",
     "lint": "biome lint .",
     "generate-types": "tsx scripts/generate-types.ts",
+    "refresh-boond-routes": "tsx scripts/refresh-boond-routes.ts",
+    "validate-routes": "tsx scripts/validate-routes.ts",
     "prepare": "husky"
   },
   "keywords": [
