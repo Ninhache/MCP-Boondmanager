@@ -1,0 +1,3810 @@
+{
+  "generatedAt": "2026-04-11T09:49:32.167Z",
+  "sourceUrl": "https://doc.boondmanager.com/api-externe/raml-build/api-externe.raml",
+  "totals": {
+    "routes": 592,
+    "actions": 838,
+    "routesExcludingApps": 415,
+    "actionsExcludingApps": 597
+  },
+  "routes": [
+    {
+      "path": "/absences",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/absences-reports",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/absences-reports/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/absences-reports/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/absences-reports/{id}/reject",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/absences-reports/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/absences-reports/{id}/unvalidate",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/absences-reports/{id}/validate",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/absences-reports/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/accounts",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/accounts/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/accounts/{id}/connect",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/accounts/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/actions",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/actions/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/actions/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/actions/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/actions/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/actions/templates",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/actions/templates/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/administrator",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/administrator/logo",
+      "verbs": [
+        "DELETE",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/advantages",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/advantages/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/advantages/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/advantages/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/agencies",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/agencies/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/activity-expenses",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/activity-expenses/logo",
+      "verbs": [
+        "DELETE",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/billing",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/billing/logo",
+      "verbs": [
+        "DELETE",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/opportunities",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/products",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/projects",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/purchases",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/resources",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/agencies/{id}/technical-data",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/agencies/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/alerts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/alerts/{id}/values",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/alerts/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/application/assignments",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/application/backup-dictionary",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/application/current-user",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/application/dictionary",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/application/download-dictionary",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/application/dump-database",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/application/dynamic-filters",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/application/flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/application/geocities",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/application/perimeters",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/application/read-database",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/application/restore-dictionary",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/application/settings",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/application/status",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/application/weekendAndBankHolidays",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/{appCode}/install",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/{appCode}/uninstall",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/apps/{appId}/entities",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/{appId}/entities/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/{appId}/entities/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/{appId}/entities/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/{appId}/entities/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/{appId}/entities/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/{appId}/entities/dependson",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/absences-accounts/absences-accounts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/absences-accounts/absences-accounts/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/absences-accounts/import/absences-accounts",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/accounting-payroll/companies",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/accounting-payroll/companies/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/accounting-payroll/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/accounting-payroll/contracts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/accounting-payroll/expenses-reports",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/accounting-payroll/invoices",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/accounting-payroll/payments",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/accounting-payroll/resources",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/accounting-payroll/resources/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/advanced-candidates/candidates",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/advanced-candidates/candidates/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/advanced-candidates/candidates/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/advanced-candidates/candidates/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/advanced-candidates/candidates/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/advanced-candidates/candidates/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/advanced-candidates/resources/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/advanced-projects/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/advanced-projects/projects",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/advanced-projects/projects/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/advantages/advantages",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/answering-validators/answering-machines",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/answering-validators/answering-machines/{id}",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/apps/backup-database/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/backup-database/dump-database",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/celebrations/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/celebrations/employees/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/celebrations/employees/arrival",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/celebrations/employees/birthday",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/celebrations/employees/seniority",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/contracts/contracts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/corporama/configuration",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/create-activity-documents/resources/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/data-closing/closed-periods",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/data-closing/closed-periods/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/data-closing/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/data-closing/expenses-reports",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/data-closing/expenses-reports/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/data-closing/invoices",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/data-closing/invoices/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/data-closing/times-reports",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/data-closing/times-reports/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/digital-workplace/categories",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/digital-workplace/categories/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/digital-workplace/documents",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/digital-workplace/documents/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/digital-workplace/documents/viewer",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/digital-workplace/news",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/digital-workplace/news/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/doc-templates/configuration",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/doc-templates/templates",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/doc-templates/templates/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/doc-templates/templates/viewer",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/absencesreports/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/candidates/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/emailing/configuration/connection",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/contacts/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/expensesreports/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/invoices/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/positionings/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/quotations/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/resources/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/resources/{id}/connection",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/resources/{id}/settings",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/emailing/share",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/emailing/templates",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/emailing/templates/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/emailing/templates/last-used",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/emailing/timesreports/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/esignature/candidates/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/esignature/esignatures",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/esignature/esignatures/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/esignature/esignatures/{id}/cancel",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/exceptional-activity/companies",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/exceptional-activity/times",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/exceptional-activity/times/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/extract-payroll/contracts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/extract-payroll/contracts/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/extract-payroll/resources/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/extractbi/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/extractbi/requests",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/extractbi/requests/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/extractbi/requests/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/extractbi/templates",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/extractbi/templates/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/extractbi/templates/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/extractbi/test",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/gcalendar/get-event",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/gcalendar/notifications-events",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/gcalendar/remove-event",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/apps/gcalendar/resources/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/gcalendar/update-event",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/gmail/mails",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/gmail/mails/{idMail}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/gmail/resources/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/gviewer/download/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/gviewer/resources/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/gviewer/url-documents",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/hour-accounts/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/hour-accounts/houraccounts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/hour-accounts/houraccounts/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/hour-accounts/houraccounts/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/hour-accounts/resources/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/hour-accounts/resources/{id}/settings",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/hrflow/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/hrflow/resumes",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/intranet-accounts/resources",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/intranet-accounts/resources/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/markers/markers",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/events/{idEvent}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/events/{idEvent}/find",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/extra-id",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/gadget",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/get-event",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/mails",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/mails/{idMail}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/manifest",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/remove-event",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/resources/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/microsoft/update-event",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/organization-charts/nodes",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/organization-charts/nodes/{id}",
+      "verbs": [
+        "DELETE",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/organization-charts/orgcharts",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/organization-charts/orgcharts/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/organization-charts/settings",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/organization-charts/settings/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/plan-production/resources",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/post-production/projects",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/post-production/projects/{id}",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/post-production/resources/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/quotations/quotations",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/quotations/quotations/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/quotations/quotations/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/quotations/quotations/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/quotations/quotations/{id}/send",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/quotations/quotations/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/quotations/quotations/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/resource-planner/projects/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/resource-planner/projects/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/resource-planner/resources/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/resource-planner/resources/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/saas-editor/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/saas-editor/reporting",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/sepa/companies/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/sepa/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/sepa/contracts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/sepa/contracts/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/sepa/import/contracts",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/sepa/import/orders",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/sepa/import/purchases",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/sepa/import/transfers",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/apps/sepa/invoices",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/sepa/orders",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/sepa/orders/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/sepa/payments",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/sepa/purchases",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/sepa/purchases/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/special-reporting/reporting",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/survey/configuration",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/survey/enquiries/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/apps/survey/enquiries/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/survey/satisfaction-indicators",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/apps/survey/satisfactions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/attached-flags",
+      "verbs": [
+        "DELETE",
+        "POST"
+      ]
+    },
+    {
+      "path": "/banking-accounts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/banking-transactions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/banking-transactions/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/billing-deliveries-purchases-balance",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/billing-details",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/billing-details/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/billing-details/analyze",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/billing-monthly-balance",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/billing-projects-balance",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/billing-schedules-balance",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/boondmanager-contracts/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/business-units",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/business-units/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/business-units/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/calendars",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/calendars/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/calendars/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/candidates/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/actions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/administrative",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/ai/matching",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/ai/summary",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/merge",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/positionings",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/technical-data",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/candidates/{id}/technical-datas",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/candidates/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/companies/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/actions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/contacts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/companies/{id}/invoices",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/merge",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/companies/{id}/opportunities",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/orders",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/projects",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/provider-invoices",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/purchases",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/{id}/settings",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/companies/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/companies/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/conditional-fields",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/conditional-fields/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/conditional-fields/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/contacts/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/actions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/invoices",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/merge",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/opportunities",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/orders",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/projects",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/purchases",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contacts/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contracts",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/contracts/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/contracts/{id}/advantages",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contracts/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contracts/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contracts/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/contracts/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/dashboards",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/dashboards/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/deliveries",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/deliveries-groupments",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/deliveries/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/deliveries/{id}/advantages",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/deliveries/{id}/delivery-order-download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/deliveries/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/deliveries/{id}/renew",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/deliveries/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/deliveries/{id}/send",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/deliveries/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/devices/{id}",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/devices/{id}/session",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/documents",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/documents/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/documents/viewer",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/download-center",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/download-center/{perimeterManager}/{folder}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/download-center/{perimeterManager}/{folder}/{file}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/download-center/{perimeterManager}/{folder}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/download-center/{perimeterManager}/{folder}/visitor-access",
+      "verbs": [
+        "DELETE",
+        "POST"
+      ]
+    },
+    {
+      "path": "/e-invoicing/schemes",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/expenses",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/expenses-reports",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/expenses-reports/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/expenses-reports/{id}/certification",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/expenses-reports/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/expenses-reports/{id}/pay",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/expenses-reports/{id}/reject",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/expenses-reports/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/expenses-reports/{id}/unvalidate",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/expenses-reports/{id}/validate",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/expenses-reports/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/flags",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/flags/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/followed-documents",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/followed-documents/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/followed-documents/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/followed-documents/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/forms",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/forms/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/forms/{id}/remind",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/forms/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/forms/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/forms/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/forms/templates",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/forms/templates/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/forms/templates/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/gadgets/{id}/values",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/google/{id}",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/groupments",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/groupments/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/groupments/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/groupments/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/groupments/duplicate",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/import/actions",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/import/candidates",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/import/contacts",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/import/opportunities",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/import/resources",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/inactivities",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/inactivities/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/inactivities/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/inactivities/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/invoices/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/actions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/adjust",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/billable-items",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/check",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/preview",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/send",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/invoices/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/bulk-send",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/invoices/cart",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoices/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/invoicing-connections",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/invoicing-connections/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/logs",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/logs/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/mandatory-leave",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/mandatory-leave/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/mandatory-leave/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/mandatory-leave/{id}/resources",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/mandatory-leave/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/marketplace",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/marketplace/{appCode}/configure",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/marketplace/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/marketplace/{id}/install",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/marketplace/{id}/logo",
+      "verbs": [
+        "DELETE",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/marketplace/{id}/publish",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/marketplace/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/marketplace/{id}/translations",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/marketplace/{id}/uninstall",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/marketplace/{id}/validate",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/marketplace/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/marketplace/refresh-token",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/microsoft/{id}",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/notifications",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/notifications/{id}",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/notifications/markas",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/opportunities",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/actions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/ai/matching",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/positionings",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/projects",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/simulation",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/opportunities/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/opportunities/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/orders",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/orders/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/orders/{id}/actions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/orders/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/orders/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/orders/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/orders/{id}/invoices",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/orders/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/orders/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/orders/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/payments",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/payments/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/payments/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/payments/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/payments/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/planning-absences",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/poles",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/poles/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/positionings",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/positionings/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/positionings/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/positionings/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/positionings/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/positionings/bulk-update",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/products",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/products/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/products/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/products/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/products/{id}/opportunities",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/products/{id}/projects",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/products/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/products/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/products/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/projects/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/{id}/actions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/{id}/advantages",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/{id}/batches-markers",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/projects/{id}/deliveries-groupments",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/projects/{id}/orders",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/{id}/productivity",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/{id}/purchases",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/{id}/simulation",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/projects/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/carts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/projects/carts/widgets",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/provider-invoices",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/provider-invoices/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/provider-invoices/{id}/activity-expenses",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/provider-invoices/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/provider-invoices/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/purchases",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/purchases/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/purchases/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/purchases/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/purchases/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/purchases/{id}/payments",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/purchases/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/purchases/{id}/simulation",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/purchases/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/purchases/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/reporting-companies",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/reporting-production-plans",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/reporting-projects",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/reporting-resources",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/reporting-synthesis",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/resources/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/absences-accounts",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/absences-reports",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/actions",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/administrative",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/advantages",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/ai/matching",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/ai/summary",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/attached-flags",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/deliveries-inactivities",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/expenses-reports",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/followed-documents",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/forms",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/information",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/positionings",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/projects",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/provider-invoices",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/absences-accounts",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/alerts",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/alerts/reset",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/dashboards",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/groups",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/intranet",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/notifications",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/positioning-suggests",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/reporting",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/security",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/settings/targets",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/tasks",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/technical-data",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/resources/{id}/technical-datas",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/{id}/times-reports",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/resources/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/roles",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/roles/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/roles/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/roles/templates",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/roles/templates/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/roles/templates/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/sandbox",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/sandbox/connect",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/savedsearches",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/savedsearches/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/share",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/share/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/signature",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/signatures/document/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/standard-profiles",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/standard-profiles/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/standard-profiles/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/standard-profiles/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/subscription",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/subscription/invoices",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/subscription/invoices/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/targets",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/targets/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/tasks/{id}",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/tasks/{id}/check",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/tasks/{id}/uncheck",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/technical-datas",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/technical-datas/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/technical-datas/{id}/applyresume",
+      "verbs": [
+        "PUT"
+      ]
+    },
+    {
+      "path": "/technical-datas/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/technical-datas/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/technical-datas/visitor-access",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/threads",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/threads/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/threads/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/thumbnails",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/thumbnails/{id}",
+      "verbs": [
+        "DELETE",
+        "GET"
+      ]
+    },
+    {
+      "path": "/times",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/times-reports",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/times-reports/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/times-reports/{id}/download",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/times-reports/{id}/reject",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/times-reports/{id}/rights",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/times-reports/{id}/signature",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/times-reports/{id}/unvalidate",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/times-reports/{id}/validate",
+      "verbs": [
+        "POST"
+      ]
+    },
+    {
+      "path": "/times-reports/default",
+      "verbs": [
+        "GET"
+      ]
+    },
+    {
+      "path": "/todolists",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/todolists/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/trustelem/{id}",
+      "verbs": [
+        "DELETE"
+      ]
+    },
+    {
+      "path": "/validations",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/validations/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/vendor",
+      "verbs": [
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/vendor/logo",
+      "verbs": [
+        "DELETE",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/webhooks",
+      "verbs": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "path": "/webhooks/{id}",
+      "verbs": [
+        "DELETE",
+        "GET",
+        "PUT"
+      ]
+    },
+    {
+      "path": "/workplaces-times",
+      "verbs": [
+        "GET"
+      ]
+    }
+  ]
+}
