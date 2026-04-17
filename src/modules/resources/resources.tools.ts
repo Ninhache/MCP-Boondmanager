@@ -804,7 +804,12 @@ export class ResourcesTools {
       id: z.number().describe("ID du collaborateur"),
       attributes: z.record(z.string(), z.unknown()).describe("Paramètres à modifier"),
     }),
-    annotations: { readOnlyHint: false, idempotentHint: true, openWorldHint: true },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
   })
   async updateResourceSettingsAbsencesAccounts({
     id,
@@ -840,7 +845,12 @@ export class ResourcesTools {
       id: z.number().describe("ID du collaborateur"),
       attributes: z.record(z.string(), z.unknown()).describe("Paramètres d'alertes à modifier"),
     }),
-    annotations: { readOnlyHint: false, idempotentHint: true, openWorldHint: true },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
   })
   async updateResourceSettingsAlerts({
     id,
@@ -876,7 +886,12 @@ export class ResourcesTools {
       id: z.number().describe("ID du collaborateur"),
       attributes: z.record(z.string(), z.unknown()).describe("Groupes à modifier"),
     }),
-    annotations: { readOnlyHint: false, idempotentHint: true, openWorldHint: true },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
   })
   async updateResourceSettingsGroups({
     id,
@@ -912,7 +927,12 @@ export class ResourcesTools {
       id: z.number().describe("ID du collaborateur"),
       attributes: z.record(z.string(), z.unknown()).describe("Paramètres intranet à modifier"),
     }),
-    annotations: { readOnlyHint: false, idempotentHint: true, openWorldHint: true },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
   })
   async updateResourceSettingsIntranet({
     id,
@@ -948,7 +968,12 @@ export class ResourcesTools {
       id: z.number().describe("ID du collaborateur"),
       attributes: z.record(z.string(), z.unknown()).describe("Paramètres de notif à modifier"),
     }),
-    annotations: { readOnlyHint: false, idempotentHint: true, openWorldHint: true },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
   })
   async updateResourceSettingsNotifications({
     id,
@@ -985,7 +1010,12 @@ export class ResourcesTools {
       id: z.number().describe("ID du collaborateur"),
       attributes: z.record(z.string(), z.unknown()).describe("Paramètres à modifier"),
     }),
-    annotations: { readOnlyHint: false, idempotentHint: true, openWorldHint: true },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
   })
   async updateResourceSettingsPositioningSuggests({
     id,
@@ -1021,7 +1051,12 @@ export class ResourcesTools {
       id: z.number().describe("ID du collaborateur"),
       attributes: z.record(z.string(), z.unknown()).describe("Paramètres reporting à modifier"),
     }),
-    annotations: { readOnlyHint: false, idempotentHint: true, openWorldHint: true },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
   })
   async updateResourceSettingsReporting({
     id,
@@ -1057,7 +1092,12 @@ export class ResourcesTools {
       id: z.number().describe("ID du collaborateur"),
       attributes: z.record(z.string(), z.unknown()).describe("Paramètres sécurité à modifier"),
     }),
-    annotations: { readOnlyHint: false, idempotentHint: true, openWorldHint: true },
+    annotations: {
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: true,
+    },
   })
   async updateResourceSettingsSecurity({
     id,
