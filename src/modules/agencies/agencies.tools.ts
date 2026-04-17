@@ -13,6 +13,9 @@ const AGENCIES_CONFIG = {
   resourceType: "agency",
 } as const;
 
+// Sub-resource PUT bodies intentionally omit `data.id` — matches the pattern
+// used in companies/resources modules against live Boond instances. Consolidation
+// of this pattern into a shared helper is tracked in #142.
 const UPDATE_ANNOTATIONS = {
   readOnlyHint: false,
   destructiveHint: false,
@@ -23,6 +26,15 @@ const UPDATE_ANNOTATIONS = {
 const DELETE_ANNOTATIONS = {
   readOnlyHint: false,
   destructiveHint: true,
+  idempotentHint: true,
+  openWorldHint: true,
+} as const;
+
+// Logo removal is a settings reset (recoverable via re-upload), not destruction
+// of business data. Annotate as non-destructive to avoid over-cautious client prompts.
+const LOGO_DELETE_ANNOTATIONS = {
+  readOnlyHint: false,
+  destructiveHint: false,
   idempotentHint: true,
   openWorldHint: true,
 } as const;
@@ -688,11 +700,13 @@ export class AgenciesTools {
 
   @Tool({
     name: "delete_agency_activity_expenses_logo",
-    description: "⚠️ Supprime le logo configuré sur les notes de frais d'activité d'une agence.",
+    description:
+      "Supprime le logo configuré sur les notes de frais d'activité d'une agence. " +
+      "Récupérable en réuploadant un nouveau logo.",
     parameters: z.object({
       id: z.number().describe("ID de l'agence"),
     }),
-    annotations: DELETE_ANNOTATIONS,
+    annotations: LOGO_DELETE_ANNOTATIONS,
   })
   async deleteAgencyActivityExpensesLogo({ id }: { id: number }) {
     try {
@@ -712,11 +726,13 @@ export class AgenciesTools {
 
   @Tool({
     name: "delete_agency_billing_logo",
-    description: "⚠️ Supprime le logo configuré sur les factures d'une agence.",
+    description:
+      "Supprime le logo configuré sur les factures d'une agence. " +
+      "Récupérable en réuploadant un nouveau logo.",
     parameters: z.object({
       id: z.number().describe("ID de l'agence"),
     }),
-    annotations: DELETE_ANNOTATIONS,
+    annotations: LOGO_DELETE_ANNOTATIONS,
   })
   async deleteAgencyBillingLogo({ id }: { id: number }) {
     try {
